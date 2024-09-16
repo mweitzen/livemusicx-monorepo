@@ -1,0 +1,30 @@
+subsection:
+  - name: Atlantic Coast
+    regions:
+      - name: New York City & Metro (NY, NJ)
+        subregions:
+          - name: New York City & Multiple Boroughs (vibrant city with countless music venues & performance spaces)
+          - name: Newark &  New Jersey Performing Arts Center (major performing arts venue)
+          - name: Jersey City &  Wilhelmina Park (trendy neighborhood with music venues)
+          - name: Long Island (limited options due to distance, consider day trips to specific areas like Brooklyn or Queens)
+      - name: Philadelphia & Delaware Valley (PA, NJ, DE)
+        subregions:
+          - name: Philadelphia & Center City (vibrant entertainment district with music venues)
+          - name: Camden &  BB&T Pavilion (outdoor music venue across the Delaware River in New Jersey)
+          - name: King of Prussia &  King of Prussia Mall (suburban area with shopping & event spaces)
+      - name: Ocean City & Delmarva (MD, DE, VA) (Barrier Islands)
+        subregions:
+          - name: Ocean City &  Ocean City Music Hall (potential for events & summer concert series)
+          - name: Rehoboth Beach & Dewey Beach (Delaware beaches with potential for seasonal events)
+      - name: Washington D.C. & Chesapeake Bay (MD, VA)
+        subregions:
+          - name: Washington D.C. & Multiple Districts (vibrant city with diverse music venues & cultural events)
+          - name: Arlington &  National Theatre (historic theater with performances)
+          - name: Alexandria &  Old Town (historic district with potential for cultural events)
+          - name: Virginia Beach (refer to previous breakdown for details; may require slightly longer travel time depending on location)
+      - name: Connecticut Coast & Long Island Sound (CT, RI)
+        subregions:
+          - name: New Haven &  Yale University (college town with vibrant music scene)
+          - name: Bridgeport &  Downtown (potential for music venues & cultural events)
+          - name: Stamford &  Harbor Point (upscale area with potential for events)
+          - name: Long Island (eastern portion of Long Island may be outside 1-hour radius, consider specific areas like Huntington or Patchogue with potential music venues)

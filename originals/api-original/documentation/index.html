@@ -1,0 +1,236 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>live-music-x-monolith documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">live-music-x-monolith documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h2>Music Networking Platform: A Microservices-Based App for Live Events (NestJS, Docker, RabbitMQ, WebSockets)</h2>
+<p><strong>In Progress: A Scalable Live Music Connection Platform</strong></p>
+<p>This repository is under active development and serves as the foundation for a robust music networking platform designed to connect musicians, venues, and music enthusiasts for live entertainment experiences beyond traditional stage shows (restaurants, wineries, etc.). Built on a microservices architecture with NestJS, Docker, RabbitMQ, and WebSockets, this application aims to foster vibrant musical communities through a scalable and performant architecture.</p>
+<p><strong>Technical Overview:</strong></p>
+<ul>
+<li><strong>Microservices Architecture:</strong> The application is divided into independent, well-defined microservices, each responsible for a specific functionality (e.g., User Management, Event Management, Content Management). This promotes modularity, scalability, and easier maintenance.</li>
+<li><strong>NestJS Framework:</strong> Leverages NestJS, a popular TypeScript framework for building efficient and scalable Node.js applications.</li>
+<li><strong>Docker Containerization:</strong> Employs Docker containers to package and isolate microservices, facilitating deployment across different environments.</li>
+<li><strong>RabbitMQ for Communication:</strong> Utilizes RabbitMQ as a message broker for asynchronous communication between microservices, ensuring loose coupling and fault tolerance.</li>
+<li><strong>WebSockets for Real-Time:</strong> Implements WebSockets to enable real-time features like chat functionalities within the platform.</li>
+<li><strong>REST &amp; GraphQL API Gateways:</strong> Exposes well-defined RESTful and GraphQL APIs through API gateways, allowing client applications to interact with the platform&#39;s functionalities.</li>
+</ul>
+<p><strong>Getting Started (Development Environment Setup):</strong></p>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li><strong>Node.js and npm (or yarn):</strong> Ensure you have Node.js (version 16 or later) and npm (or yarn) installed on your development machine.</li>
+<li><strong>Docker:</strong> Install and configure Docker according to the official documentation (<a href="https://docs.docker.com/">https://docs.docker.com/</a>):</li>
+<li><strong>Code Editor or IDE:</strong> Choose a preferred code editor or IDE (Visual Studio Code, WebStorm, etc.)</li>
+</ul>
+<p><strong>Setting Up Your Development Environment:</strong></p>
+<ol>
+<li><p><strong>Clone the repository:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">git clone https://github.com/your-username/music-networking-platform.git</code></pre></div></li>
+<li><p><strong>Install dependencies:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">cd music-networking-platform
+npm install  # or yarn install</code></pre></div></li>
+<li><p><strong>Configure environment variables:</strong></p>
+<p>Create a <code>.env</code> file in the root directory and define essential environment variables for your database connection, authentication services, notification channels, and other configurations. You can use a sample <code>.env.example</code> file as a reference and populate it with your specific values.</p>
+<p><strong>Example (.env.example):</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">DATABASE_URL=postgres://user:password&#64;host:port/database
+JWT_SECRET=your_secret_key
+NOTIFICATION_GATEWAY_URL=...
+# ... other environment variables</code></pre></div></li>
+<li><p><strong>Run database migrations:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run migrate  # or yarn migrate</code></pre></div><p>This command creates or updates database tables based on your models.</p>
+</li>
+<li><p><strong>Start the application:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run start:dev  # or yarn start:dev</code></pre></div><p>This will start all microservices in development mode, allowing you to interact with the platform through the API gateways.</p>
+</li>
+</ol>
+<p><strong>Development Workflow:</strong></p>
+<ul>
+<li>Each microservice resides in its own subdirectory with its own <code>package.json</code> and <code>tsconfig.json</code> files.</li>
+<li>Use NestJS command-line tools for development tasks within each microservice directory:<ul>
+<li><code>npm run build</code> (or <code>yarn build</code>) to build the microservice for production.</li>
+<li><code>npm run start</code> (or <code>yarn start</code>) to start the microservice in development mode.</li>
+<li><code>npm run test</code> (or <code>yarn test</code>) to run unit and integration tests for the microservice.</li>
+</ul>
+</li>
+<li>Utilize Docker for containerization and easier deployment. Docker Compose configuration files (<code>.docker-compose.yml</code>) are provided to manage starting multiple microservices simultaneously. You can run <code>docker-compose up -d</code> to start all services in the background.</li>
+</ul>
+<p><strong>Testing:</strong></p>
+<p>Unit and integration tests are encouraged for each microservice to ensure code quality and functionality. Utilize testing frameworks like Jest or Mocha for comprehensive coverage.</p>
+<p><strong>Contributing (Future):</strong></p>
+<p>This repository is currently under active development. We plan to open contributions in the future. Stay tuned for further updates!</p>
+<p><strong>Disclaimer:</strong></p>
+<p>This application is a work in progress. While the core functionalities are being actively developed, certain features might be under construction or not fully implemented.</p>
+<p><strong>License:</strong></p>
+<p>This project is licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

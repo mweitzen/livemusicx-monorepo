@@ -1,0 +1,67 @@
+--------------------------
+ANONYMOUS USER -> no permanent storage or "app" interactions
+--------------------------
+
+User views page anonymously
+
+User tries to favorite account without being logged in
+    --> prompted to create account
+
+User tries to bookmark event without being logged in
+    --> prompted to create account
+
+User tries to subscribe to notifications without being logged in
+    --> prompted to create account
+
+User tries to contact to account about event or inquiry
+    --> prompted to create account
+
+** User sets their home location for better recommendation results
+
+User adds event to calendar
+
+User shares event to social media
+
+User shares event url
+
+User wants to learn more about what they get when they sign up for an account
+
+User wants to sign up for a public account
+
+User wants to sign up for an upgraded account
+
+--------------------------
+PUBLIC USER -> interacts with personal information
+--------------------------
+
+User wants to deactivate their account
+
+** User sets their home location for better recommendation results
+
+User favorites account
+
+User bookmarks event
+
+User subscribes to notifications from accounts when new events are published
+
+User unsubscribes to notifications
+
+User manages all notification subscriptions in one place
+
+User wants to contact to account about event or inquiry
+
+
+--------------------------
+AUTHORIZED USER -> interacts with "full" app within scope of accountType
+--------------------------
+
+User creates performer
+
+User creates organization(group, venue, organizer)
+
+User creates event
+
+
+--------------------------
+ADMINISTRATIVE USER -> interacts with app and source code as an admin
+--------------------------

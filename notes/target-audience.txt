@@ -1,0 +1,38 @@
+AUDIENCE
+
+general public that considers themselves "music lovers", and maybe sees live music
+    1-2 times a month, who want to plan their next event
+
+regular to semi-regular venue patrons interested in keeping up with that venue's events
+
+once a year (or more rare) who wants to plan a special live music experience, 
+    and doesn't know where to look
+
+
+
+USERS
+
+avid local music scene fans, interested in staying connected to the scene
+
+active live music audience members who would be interested in seeing live music
+    4+ times in a month (once a week or so)
+
+hobbyist to amateur musicians interested in connecting with other musicians, 
+    or possibly taking the step into more regular performing
+
+
+local musicians without any online presence
+
+local musicians with existing online presence, interested in expanding their
+    network
+
+local musicians needing an event publishing solution
+
+
+local venues using live music in a marketing fashion, without ticketing for events
+
+local venues without an event publishing solution
+
+local venues with an existing event publishing solution, that is generally not 
+    a featured platform providing additional capabilities beyond publishing
+

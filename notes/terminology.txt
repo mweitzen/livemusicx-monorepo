@@ -1,0 +1,99 @@
+--------------------------------------------------
+APP SPECIFIC 
+ - Generally Unimportant to Need to Understand
+--------------------------------------------------
+
+USER - A person that uses the application
+    Users can be:
+        Anonymous -> no account
+        Public -> have an account to save preferences
+        Authorized -> have an account to post events and connect with other ACCOUNTS
+
+USER ACCOUNT - An authentication account associated with a single person that is logged in. 
+    The user account is relatively meaningless in the scope of the application 
+    other than to uniquely identify the person using the app. 
+    A user account can be:
+        Public -> only manages personal account and preferences. slightly elevated app experience than anonymous.
+        Performer -> manage MUSICIAN ACCOUNTS and GROUP ACCOUNTS
+        Venue -> manage VENUE ACCOUNTS
+        Organizer -> manage ORGANIZER ACCOUNTS
+        Associate -> invite only to organization accounts that can manage that organization resources.
+
+ORGANIZATION ACCOUNT - an authentication-based, organization account that allows multiple USER ACCOUNTS to share access to resources.
+    Organizations are used to manage:
+        Groups
+        Venues
+        Organizers
+
+--------------------------------------------------
+ACCOUNT RELATED 
+ - Accounts are the resources you create, Musicians,Groups,Venues,orOrganizers that participate in events. And their related resources.
+--------------------------------------------------
+ORGANIZATION ACCOUNT - an authentication-based, organization account that allows multiple USER ACCOUNTS to share access to resources.
+    Organizations are used to manage:
+        Groups
+        Venues
+        Organizers
+        
+ACCOUNT - a single account that represents a performer, venue, or organizer in the event management process.
+    Accounts can be: managed or unmanaged
+    Managed accounts - are created or claimed by a user matching their user account type.
+    Unmanaged accounts - are created when a user creates an event and adds an account that is not yet created.
+        -- example: A venue creates an event, and adds a musician John Doe that does not already have an account in the app.
+            -> the account John Doe will be created and populated with sensible defaults.
+            -> an invite will be sent to that user to join
+            -> that account remains unmanaged until a USER with a USER ACCOUNT claims John Doe
+    Accounts can be:
+        Musician -> Managed by a Performer USER ACCOUNT
+        Group -> Managed by a Performer USER ACCOUNT
+        Venue -> Managed by a Venue USER ACCOUNT
+        Organizer -> Managed by an Organizer USER ACCOUNT
+
+AFFILIATION - a relationship between different account types where they often engage in mutual events together
+
+AFFILIATION REQUEST - sent by one account to another account based on the basis that the two accounts already have an existing relationship,
+    but have not yet created the affiliation in the app.
+    affiliation requests are one-to-one requests
+
+AFFILIATION REQUEST MESSAGE THREAD
+
+INQUIRY - a precursor to an AFFILIATION REQUEST if no current relationship exists. A request sent from one account type to another account type
+    asking about developing a relationship and possibly working together. Which would lead to an eventual AFFILIATION REQUEST when both accounts agree.
+    Inquiries are one-to-one requests.
+
+INQUIRY MESSAGE THREAD
+
+BULLETIN - A publicly broadcasted post, similar to an INQUIRY, but made by one account type seeking requests from many interested accounts.
+    Bulletins are one-to-many requests
+
+BULLETIN RESPONSE THREAD
+
+--------------------------------------------------
+EVENT RELATED
+ - The main resource for the app, and the resources related to their creation and publishing.
+--------------------------------------------------
+
+EVENT
+
+EVENT TEMPLATE
+
+EVENT SERIES
+
+EVENT DRAFT
+
+ARCHIVED EVENT
+
+--------------------------------------------------
+ADVANCED IDEAS
+ - The extension of this application to meet individual needs, and integrate with existing solutions.
+--------------------------------------------------
+
+EXTERNAL CONNECTIONS
+
+THIRD-PARTY SERVICES
+
+OUTGOING WEBHOOKS
+
+API ENDPOINTS
+
+****** MAKING REQUESTS TO THIS SITE ******

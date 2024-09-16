@@ -1,0 +1,19 @@
+-------------------
+LONG
+-------------------
+
+Disclaimer:
+
+Live Music X serves as an event discovery and promotion platform. Any "Buy Tickets" button or links provided within the app are intended solely for user convenience and ease of access to third-party ticketing services. Live Music X does not sell tickets directly nor handle ticket transactions.
+
+Users are redirected to external third-party ticketing platforms upon clicking the "Buy Tickets" button. Live Music X holds no responsibility or liability for the purchase process, ticket availability, pricing, refunds, or any issues related to tickets bought through third-party providers. All ticketing inquiries, concerns, and disputes must be addressed directly with the respective third-party ticketing service provider.
+
+Please review the terms, conditions, and policies of the external ticketing provider before purchasing tickets. Live Music X encourages users to ensure the credibility and authenticity of the ticketing service before making any transactions.
+
+-------------------
+SHORT
+-------------------
+
+Disclaimer:
+
+Tickets are sold through third-party providers. Live Music X bears no responsibility for ticket purchases made through external links. Review the third-party provider's terms and policies before buying.

@@ -1,0 +1,11 @@
+Anonymous User Scenarios
+ - Browsing and Interactions: Viewing pages anonymously, prompted to create an account when engaging with content (favoriting, bookmarking, subscribing to notifications, or contacting about an event).
+ - Event and Social Media Interaction: Adding events to a calendar, sharing events on social media, sharing event URLs.
+ - Account Information and Sign-Up: Learning about account benefits, signing up for public or upgraded accounts.
+Public User Scenarios
+ - Account Management: Deactivating accounts, setting home location for personalized recommendations.
+ - Engagement with Content: Favoriting accounts, bookmarking events, managing notification subscriptions (subscribing/unsubscribing), contacting accounts about events or inquiries.
+Authorized User Scenarios
+ - Content Creation and Management: Creating performers, organizations (groups, venues, organizers), and events.
+Administrative User Scenarios
+ - App and Source Code Management: Interacting with the app and its source code as an admin, which likely includes higher-level administrative tasks and system oversight.

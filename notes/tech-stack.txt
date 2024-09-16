@@ -1,0 +1,21 @@
+Frontend Stack:
+Framework: React with Next.js.
+Version Control: GitHub for source code management.
+Continuous Integration (CI): Integrating with Vercel for deployment.
+UI Framework: Utilizing Tailwind CSS for styling.
+Component Library: Employing Shadcn components for UI elements.
+Data Fetching: Leveraging TRPC and Tanstack/React-Query for efficient data fetching.
+Routing: Using Next.js app router for navigation.
+Form Handling: Implementing React Hook Form for form management.
+Backend and Database:
+ORM (Object-Relational Mapping): Prisma for database interaction and ORM capabilities.
+Database & Storage: Utilizing Supabase Postgres for database management and storage.
+Authentication Services:
+Authentication Provider: Utilizing Google Cloud Platform for authentication services.
+Authentication Integration: Integrating Clerk for user authentication within the app.
+External APIs:
+Google Maps API: Accessing Google Maps API for location-related functionalities.
+Webhooks: Using Svix webhooks for integrating Clerk into the application.
+Development and Deployment:
+Language: Implementing TypeScript for type safety and enhanced development.
+Deployment & Analytics: Leveraging Vercel for continuous integration, deployment, analytics, and speed insights.

@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/gateways/api/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/gateways/api/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/gateways/api",
+  "projects": {
+    "api": {
+      "type": "application",
+      "root": "apps/gateways/api",
+      "entryFile": "main",
+      "sourceRoot": "apps/gateways/api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/gateways/api/tsconfig.app.json"
+      }
+    },
+    "graphql": {
+      "type": "application",
+      "root": "apps/gateways/graphql",
+      "entryFile": "main",
+      "sourceRoot": "apps/gateways/graphql/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/gateways/graphql/tsconfig.app.json"
+      }
+    },
+    "websocket": {
+      "type": "application",
+      "root": "apps/gateways/websocket",
+      "entryFile": "main",
+      "sourceRoot": "apps/gateways/websocket/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/gateways/websocket/tsconfig.app.json"
+      }
+    },
+
+    "auth": {
+      "type": "application",
+      "root": "apps/services/auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/services/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/services/auth/tsconfig.app.json"
+      }
+    },
+    "core": {
+      "type": "application",
+      "root": "apps/services/core",
+      "entryFile": "main",
+      "sourceRoot": "apps/services/core/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/services/core/tsconfig.app.json"
+      }
+    },
+    "static": {
+      "type": "application",
+      "root": "apps/services/static",
+      "entryFile": "main",
+      "sourceRoot": "apps/services/static",
+      "compilerOptions": {
+        "tsConfigPath": "apps/services/static/tsconfig.app.json"
+      }
+    },
+
+    "constants": {
+      "type": "library",
+      "root": "libs/constants",
+      "entryFile": "index",
+      "sourceRoot": "libs/constants",
+      "compilerOptions": {
+        "tsConfigPath": "libs/constants/tsconfig.lib.json"
+      }
+    },
+    "config": {
+      "type": "library",
+      "root": "libs/config",
+      "entryFile": "index",
+      "sourceRoot": "libs/config/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/config/tsconfig.lib.json"
+      }
+    },
+    "data": {
+      "type": "library",
+      "root": "libs/data",
+      "entryFile": "index",
+      "sourceRoot": "libs/data/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/data/tsconfig.lib.json"
+      }
+    },
+    "decorators": {
+      "type": "library",
+      "root": "libs/decorators",
+      "entryFile": "index",
+      "sourceRoot": "libs/decorators/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/decorators/tsconfig.lib.json"
+      }
+    },
+    "messaging": {
+      "type": "library",
+      "root": "libs/messaging",
+      "entryFile": "index",
+      "sourceRoot": "libs/messaging/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/messaging/tsconfig.lib.json"
+      }
+    },
+    "auth-module": {
+      "type": "library",
+      "root": "libs/auth-module",
+      "entryFile": "index",
+      "sourceRoot": "libs/auth-module/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/auth-module/tsconfig.lib.json"
+      }
+    }
+  }
+}

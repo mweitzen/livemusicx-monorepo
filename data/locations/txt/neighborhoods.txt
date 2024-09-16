@@ -1,0 +1,489 @@
+- Pittsburgh & Southwestern Pennsylvania:
+    - Downtown & Cultural District with performance venues & museums hosting events
+    - Strip District & historic market with potential for events
+    - Bloomfield & trendy neighborhood with music venues
+
+- Washington DC
+    - Arlington &  National Theatre
+    - Alexandria &  Old Town
+
+- Oklahoma City & Bricktown
+    - Downtown OKC & Bricktown Entertainment District
+    - Paseo Arts District & Midtown
+    - Norman & University of Oklahoma
+- Tulsa & Downtown Arts District
+    - Brady Arts District & Tulsa Performing Arts Center
+    - Blue Dome District & Route 66
+    - Broken Arrow & Woodland Hills Mall
+
+- Kansas City & Power & Light District
+    - Downtown Kansas City & Power & Light District
+    - Crossroads Arts District & Westport
+    - Lawrence & University of Kansa
+
+- Wichita & Old Town
+    - Downtown Wichita & Century II Performing Arts Center
+    - Old Town & Delano District
+    - Bradley Fair & Towne East
+
+- Lincoln & Haymarket District
+    - Downtown Lincoln & Haymarket District
+    - University of Nebraska-Lincoln
+    - Papillion & La Vista
+- Omaha & Old Market
+    - Downtown Omaha & Old Market
+    - Midtown & Creighton University
+    - West Omaha & Aksarben Village
+
+- Rapid City & Downtown
+    - Main Street Square & Civic Center
+    - Art Alley & Dinosaur Park
+    - Rapid City Rush
+- Deadwood & Historic Main Street
+
+- Sioux Falls & Downtown
+    - Falls Park & Washington Avenue
+    - Sanford Pentagon & Sioux Falls Arena
+    - East Sioux Falls & Empire Mall
+
+- Amarillo & Downtown
+    - West Texas A&M University & Hodgetown
+    - Civic Center & Amarillo Symphony
+    - Wolflin District & Westgate Mall
+
+- Billings & MetraPark
+    - Downtown Billings & MetraPark
+    - Rimrock & Montana State University Billings
+    - West End & Zoo Montana
+
+- Cheyenne & Downtown
+    - State Capitol & Frontier Mall
+    - Clay Center & Botanic Gardens
+
+- Chicago & Great Lakes
+    - Chicago & Downtown
+    - Evanston & Northwestern University
+    - Schaumburg & Woodfield Mall
+- Detroit & Southeast Michigan
+    - Detroit & Downtown
+    - Ann Arbor & University of Michigan
+    - Royal Oak & Ferndale
+- Indianapolis & Central Indiana
+    - Indianapolis & Downtown
+    - Carmel & Arts District
+    - Broad Ripple &  Butler University
+- Cincinnati & Ohio River Valley
+    - Cincinnati & Downtown
+    - Covington & Northern Kentucky
+    - Fairfield &  Kings Island amusement park
+- Cleveland & Northeast Ohio
+    - Cleveland & Downtown
+    - University Heights &  John Carroll University
+    - Westlake & Crocker Park
+- Columbus & Central Ohio
+    - Columbus & Short North Arts District
+    - Ohio State University
+    - Easton Town Center
+- Toledo & Northwest Ohio
+    - Toledo & Downtown
+    - Bowling Green & Bowling Green State University
+    - Sylvania &  Tam O'Shanter
+- St. Louis & Metro East
+    - St. Louis & Downtown
+    - Belleville &  St. Clair County
+    - Clayton &  Washington University
+
+- Denver & Metropolitan Area:
+    - Downtown Denver & LoDo
+    - Capitol Hill & Colfax Avenue
+    - Boulder & University of Colorado
+- Fort Collins & Northern Colorado:
+    - Old Town Fort Collins & CSU
+    - Estes Park & Rocky Mountain National Park
+
+- Colorado Springs & Downtown:
+    - Pikes Peak & Manitou Springs
+    - Old Colorado City & Broadmoor
+    - Briargate & Military Bases
+
+- Salt Lake City & Downtown:
+    - Temple Square & Gateway
+    - Sugar House & Trolley Square
+    - Park City & Canyons Resort
+- Provo & Utah Valley:
+    - Brigham Young University & Provo Downtown
+    - Orem & Utah Valley University
+    - Springville & Art City
+
+- Jackson & Teton Village:
+    - Jackson Hole Town Square & surrounding areas
+    - Teton Village & Jackson Hole Mountain Resort
+    - Grand Teton National Park
+
+- Boise & Downtown:
+    - Boise River Greenbelt & 8th Street
+    - The Village & Boise State University
+    - Meridian & Idaho Botanical Garden
+- Idaho Falls & Snake River Valley:
+    - Downtown Idaho Falls & Colonial Theater
+    - Ammon & T-Rex Center
+    - Rexburg & Brigham Young University-Idaho
+
+- Bozeman & Gallatin Valley:
+    - Downtown Bozeman & Montana State University
+    - Big Sky & Yellowstone Club
+    - Belgrade & Missouri River
+
+- Casper & Casper Events Center:
+    - Downtown Casper & David Street Station
+    - East Casper & Casper College
+    - Mills & North Platte River
+
+- Virginia Beach & Hampton Roads
+    - Virginia Beach & Oceanfront
+    - Norfolk & Downtown
+    - Virginia Beach &  University of Virginia at  Lynchburg
+- Outer Banks & Coastal North Carolina
+    - Nags Head & Kill Devil Hills
+    - Duck & Southern Shores
+    - Roanoke Island & Manteo
+- Charlotte & Piedmont North Carolina
+    - Charlotte & Uptown
+    - Davidson & Davidson College
+    - Matthews &  Carowinds amusement park
+- Columbia & South Carolina Midlands
+    - Columbia & Five Points
+    - Forest Acres &  Columbia Museum of Art
+    - Irmo &  Lake Murray
+- Charleston & Lowcountry
+    - Charleston & Historic District
+    - Mount Pleasant &  Mount Pleasant Towne Centre
+    - Isle of Palms & Sullivan's Island
+- Savannah & Coastal Georgia
+    - Savannah & Historic District
+    - Wilmington Island &  Savannah International Trade Center
+    - Tybee Island
+- Atlanta & Georgia Piedmont
+    - Atlanta & Downtown
+    - Decatur & Emory University
+    - Buckhead &  Lenox Square Mall
+
+
+- Austin & Downtown:
+    - Warehouse District with trendy bars & music venues
+    - University of Texas & surrounding areas with college town atmosphere & music scene
+- San Marcos & I-35 Corridor
+    - New Braunfels & historic Gruene district with potential for cultural events
+    - San Antonio
+
+- Dallas & Downtown
+    - Arts District &  Dee Dee Simmons Waterhouse Pavilion
+    - Deep Ellum & historic district with trendy bars & music venues
+    - Uptown & McKinney Avenue with upscale bars & music venues
+
+- Fort Worth & Sundance Square
+    - Entertainment district with live music venues &  Bass Performance Hall
+    - Cultural District & museums with potential for events
+    - Stockyards & historic district with Western heritage shows
+
+- San Antonio & Downtown
+    - River Walk & vibrant entertainment district with music venues & nightlife
+    - Historic Alamo &  Majestic Theatre
+    - Pearl District & trendy area with potential for events
+
+- Charlottesville & University of Virginia
+    - Downtown Mall &  The Pavilion
+
+- Phoenix & Scottsdale
+    - Downtown Phoenix & Roosevelt Row
+    - Scottsdale & Fashion Square
+    - Tempe & Arizona State University
+
+- Mesa & East Valley
+    - Downtown Mesa & Main Street
+    - Gilbert & Heritage District
+    - Chandler & Price Road Corridor
+
+- Flagstaff & Route 66
+    - Downtown Flagstaff & historic district
+    - Arizona Snowbowl & Ski Country
+
+- Sedona & Oak Creek Canyon
+    - Uptown Sedona & art galleries
+    - West Sedona & Boynton Canyon
+
+- Tucson & Downtown
+    - Fourth Avenue & University of Arizona
+    - Main Gate & MSA Arena
+    - East Tucson & Saguaro National Park
+
+- Green Valley & Sahuarita
+    - Green Valley & retirement community
+    - Sahuarita & industrial corridor
+
+- Albuquerque & Old Town
+    - Downtown Albuquerque & Civic Plaza
+    - Nob Hill & University of New Mexico
+    - BioPark & Rio Grande bosque
+
+    # Central Albuquerque
+    - Downtown/Albuquerque Rail Yards
+    - University of New Mexico (UNM)
+    - Nob Hill
+    - Golden Hill
+    - Barelas
+
+    # East Albuquerque
+    - Sandia Heights
+    - Tijeras (bordering mountains, outside ABQ proper)
+    - Eastside
+
+    # West Albuquerque
+    - Old Town
+    - Atrisco
+    - Southwest Mesa
+    - West Side
+
+    # North Albuquerque
+    - Ventana Ranch
+    - Alameda
+    - Rio Rancho (city north of ABQ, considered part of metro area)
+
+    - **Journal Center:**
+    - **North Valley:**
+
+- Santa Fe & Plaza
+    - Santa Fe Plaza & historic district
+    - Canyon Road & art galleries
+    - Santa Fe Opera
+    - Northside: Generally north of St. Michael's Drive
+        - Alameda
+        - Agua Fria
+    - Eastside: Generally east of Interstate 25
+        - Glorieta
+        - Midtown
+    - Westside: Generally west of Interstate 25
+        - B Sweeney
+        - Casa Blanca
+    - Fontainebleau
+    - The Railyard Southside
+    - Baca Railyard
+    - Guadalupe
+    - Institute/St. Johns
+    - Las Trampas
+
+
+- Las Vegas Strip & Downtown
+    - Strip
+    - Fremont Street Experience
+    - Off-Strip Areas
+
+- Reno & Downtown
+    - Remington Hill & Virginia Street
+    - Midtown & University of Nevada, Reno
+    - Sparks & Nugget Casino
+
+- El Paso & Downtown
+    - Downtown El Paso & El Paso Street
+    - UTEP & Cielo Vista Mall
+    - Fort Bliss & surrounding areas
+
+
+- Minneapolis & St. Paul
+    - Downtown Minneapolis & Warehouse District
+    - Lowertown St. Paul & Historic District
+    - University of Minnesota & Dinkytown
+
+- Milwaukee & Downtown
+    - Third Ward & Historic Pabst Brewery
+    - Lakefront & Summerfest Grounds
+    - Wauwatosa & Mayfair Mall
+
+- Madison & State Street
+    - Capitol Square & University of Wisconsin
+    - State Street &  Wil-Mar Center
+    - West Towne &  West Towne Mall
+
+- Des Moines & Downtown
+    - Court Avenue &  Skyline Music Theatre
+    - East Village &  Pappajohn Sculpture Park
+    - West Des Moines &  Valley West Mall
+
+- Duluth & Canal Park
+    - Downtown Duluth & Canal Park
+    - University of Minnesota Duluth
+    - Miller Hill Mall & Duluth International Airport
+
+- Marquette & Lake Superior
+    - Downtown Marquette & Marquette Harbor
+    - Northern Michigan University
+    - Ishpeming & Negaunee
+
+- Traverse City & Grand Traverse Bay
+    - Downtown Traverse City & West Grand Traverse Bay
+    - Interlochen Center for the Arts
+    - Acme & Grand Traverse Commons
+
+
+- Los Angeles & Hollywood
+    - Downtown LA & Historic Core
+    - Hollywood & West Hollywood
+    - Silver Lake & Echo Park
+
+- Orange County & SoCal Beaches
+    - Santa Monica & Venice Beach
+    - Anaheim & Disneyland Resort
+    - Costa Mesa & Huntington Beach
+
+- San Fernando Valley
+    - North Hollywood & Burbank
+    - Glendale & Pasadena
+    - Woodland Hills & Calabasas
+
+- San Diego City & Beaches:
+    - Gaslamp Quarter & Downtown
+    - Pacific Beach & Mission Beach
+    - North Park & South Park
+
+- Tijuana, Baja California [Mexico]:
+    - Zona Centro & Tijuana Cultural Center
+    - Playas de Tijuana
+
+- Riverside & San Bernardino:
+    - Downtown Riverside & Fox Performing Arts Center
+    - Montclair & Ontario
+    - Moreno Valley & Corona
+
+- Palm Springs & Coachella Valley:
+    - Palm Springs & Uptown Design District
+    - Indio & Coachella Valley Music and Arts Festival
+    - Cathedral City & Desert Hot Springs
+
+- Santa Barbara & American Riviera
+    - Santa Barbara & Funk Zone
+    - Goleta & University of California Santa Barbara
+    - Montecito & Carpinteria
+
+- San Luis Obispo & Pismo Beach
+    - San Luis Obispo Downtown & Fremont Street
+    - Pismo Beach & Avila Beach
+    - Arroyo Grande Village
+
+- Monterey Bay & Carmel
+    - Monterey Fisherman's Wharf & Cannery Row
+    - Carmel-by-the-Sea & Carmel Mission
+    - Pacific Grove & Asilomar State Beach
+
+- Sacramento & Downtown
+    - Golden 1 Center & K Street
+    - Midtown & East Sacramento
+    - West Sacramento & Raley Field
+
+- Fresno & Clovis
+    - Downtown Fresno & Fulton Mall
+    - Clovis & Old Town Clovis
+    - Fig Garden Village
+
+- San Francisco
+    - SoMa & Union Square
+    - North Beach & Chinatown
+    - Golden Gate Park & Haight-Ashbury
+
+- East Bay [Oakland, Berkeley]
+    - Downtown Oakland & Jack London Square
+    - Telegraph Avenue & UC Berkeley
+    - Walnut Creek & Concord
+
+- South Bay [San Jose]
+    - Downtown San Jose & San Pedro Square
+    - Santa Clara & Levi's Stadium
+    - Campbell & Los Gatos
+
+- Eureka & Humboldt County
+    - Eureka & Old Town
+    - Arcata & Humboldt State University
+    - Redwood National and State Parks
+
+- Santa Rosa & Sonoma County Wine Country
+    - Santa Rosa & Downtown
+    - Sonoma & Sonoma Plaza
+    - Healdsburg & Russian River Valley
+
+- Napa Valley
+    - Napa & Oxbow District
+    - Yountville & Stags Leap District
+    - St. Helena & Calistoga
+
+
+
+**** SUB REGIONS ***
+**** SUB REGIONS ***
+**** SUB REGIONS ***
+- Olympic Peninsula:
+    - Port Townsend & East Jefferson County
+    - Sequim & Dungeness Spit
+    - Port Angeles & Olympic National Park
+
+- Seattle & Puget Sound:
+    - Seattle & Eastside
+    - Tacoma & Pierce County
+    - Everett & Snohomish County
+
+- Bellingham & Whatcom County:
+    - Bellingham & Fairhaven
+    - San Juan Islands Ferry & Chuckanut Drive
+
+- Portland & Columbia River Gorge:
+    - Downtown Portland & East Bank
+    - West Portland & Washington Park
+    - Columbia River Gorge & Hood River
+
+- Eugene & Willamette Valley:
+    - Eugene & Springfield
+    - Corvallis & Benton County
+    - Willamette Valley Wine Country
+
+- Bend & Central Oregon:
+    - Bend & Deschutes River
+    - Sunriver & High Cascade Mountains
+    - Prineville & Ochoco National Forest
+
+- Spokane & Eastern Washington:
+    - Spokane & Riverfront Park
+    - Spokane Valley & Liberty Lake
+    - Coeur d'Alene, ID
+- Missoula & Montana Rockies
+    - Missoula & University of Montana
+    - Flathead Lake & Glacier National Park
+    - Helena & Lewis and Clark National Forest
+
+- San Juan Islands:
+    - Friday Harbor & Orcas Island
+    - Lopez Island & Shaw Island
+- Whidbey Island & Camano Island:
+    - Coupeville & Central Whidbey
+    - Langley & Freeland
+    - Camano Island State Park & Stanwood
+
+- North Cascades National Park:
+    - Marblemount & Mount Baker
+    - Mazama & Methow Valley
+    - Winthrop & Sun Valley
+
+- Southern Oregon Coast
+    - Coos Bay & North Bend
+    - Bandon & Face Rock State Park
+    - Port Orford & Cape Blanco
+- Central Oregon Coast
+    - Lincoln City & Devils Lake
+    - Newport & Yaquina Bay
+    - Waldport & Alsea Bay
+- Northern Oregon Coast
+    - Cannon Beach & Haystack Rock
+    - Seaside & Promenade
+    - Astoria & Columbia River Maritime Museum
+
+- Coeur d'Alene & Idaho Panhandle National Forests:
+    - Coeur d'Alene & Lake Coeur d'Alene
+    - Sandpoint & Schweitzer Mountain
+    - Priest River & Kaniksu National Forest

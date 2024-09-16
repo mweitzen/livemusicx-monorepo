@@ -1,0 +1,26 @@
+ANONYMOUS USER:
+Views the page anonymously.
+Attempts to interact with features like favoriting an account, bookmarking an event, subscribing to notifications, or contacting an account, prompting the creation of an account.
+Sets their home location for tailored recommendations.
+Adds an event to their calendar.
+Shares the event on social media and through its URL.
+Seeks information about different account signup types (public or upgraded) and their respective benefits.
+Browses through event listings based on their specified location or interests.
+Explores event details and performer/venue/organizer profiles without signing up.
+PUBLIC USER:
+Manages personal information within the account.
+Deactivates their account if desired.
+Sets their home location to enhance personalized recommendations.
+Favorites specific accounts for easy access.
+Bookmarks events for future reference and viewing.
+Subscribes to event notifications from preferred accounts.
+Manages all subscribed notifications in a centralized location.
+Unsubscribes from specific or all event notifications.
+Contacts accounts for inquiries or event-related communication.
+Leaves reviews or ratings for attended events or performances.
+AUTHORIZED USER:
+Creates a performer account to represent themselves or their band.
+Establishes and manages organization accounts (group, venue, organizer).
+Creates and manages events within their designated account type (performer, venue, organizer).
+Publishes bulletins seeking collaborators or specific event requirements within their account scope.
+Accepts or rejects affiliation requests between their account and others.

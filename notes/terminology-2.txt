@@ -1,0 +1,19 @@
+App Specific:
+
+User: A person utilizing the application.
+User Account: An authentication-based account associated with an individual user who is logged in. Types include Public, Performer, Venue, Organizer, and Associate.
+Organization Account: An authentication-based account allowing multiple user accounts to share access to resources within Live Music X. Manages groups, venues, and organizers.
+Account Related:
+
+Account: Represents a performer, venue, or organizer in the event management process. Can be managed or unmanaged.
+Affiliation: Represents a relationship between different account types frequently participating in mutual events.
+Affiliation Request: Sent from one account to another based on an existing relationship, not yet defined within the app. One-to-one requests.
+Inquiry: A precursor to an affiliation request in case of no existing relationship. One-to-one requests.
+Bulletin: A publicly broadcasted post seeking responses from interested accounts. One-to-many requests.
+Event Related:
+
+Event Details Dialog: Component displaying event information, including external ticket links. Includes a disclaimer clarifying Live Music X's lack of responsibility for third-party ticket purchases.
+Ticketing Link: External links directing users to third-party ticketing platforms for ticket purchases. Live Music X holds no responsibility for transactions made through these links.
+Advanced Ideas:
+
+(Placeholder for advanced concepts or terms that emerge during the development process.)

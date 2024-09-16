@@ -1,0 +1,26 @@
+YouTube:
+YouTube Data API: https://developers.google.com/youtube/v3/docs
+
+Instagram:
+Instagram Graph API: https://developers.facebook.com/docs/instagram-api
+
+Spotify:
+Spotify Web API: https://developer.spotify.com/documentation/web-api
+
+Apple Music:
+Apple Music API: https://developer.apple.com/documentation/applemusicapi
+
+SoundCloud:
+SoundCloud API: https://developers.soundcloud.com/docs/api/guide
+
+Facebook:
+Facebook Graph API: https://developers.facebook.com/docs/graph-api
+
+Twitter:
+Twitter API v2: https://developer.twitter.com/en/docs/api-reference-index
+
+TikTok:
+TikTok Developer Portal: [invalid URL removed]
+
+Bandcamp:
+Bandcamp API: https://bandcamp.com/developer

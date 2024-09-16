@@ -1,0 +1,94 @@
+--------------------------
+GROUP A
+--------------------------
+
+Musician
+
+MusicGroup
+
+Venue
+
+-- Stage
+
+Organizer
+
+--------------------------
+GROUP (a) -> one-to-one affiliations of GROUP A
+--------------------------
+
+Affiliation Inquiry
+
+Affiliation Request
+
+Affiliation
+
+
+--------------------------
+GROUP B
+--------------------------
+
+Event
+ -- Ticket Link
+    - url
+    - price
+    - event (or draft)
+    - availability
+    - validFrom
+    - api endpoint to check for availability (if exists)
+        (if api not available, manual set. if api set, dont let override.)
+    - api credentials
+        (or use clerk to connect details and authenticate requests)
+
+Event Calendar
+    (Separate venue events into unique calendars)
+
+Event Template
+
+Event Draft
+
+Event Series
+
+Event Series Template
+
+Event Series Draft
+
+
+--------------------------
+GROUP C
+--------------------------
+
+Bulletin
+  -- 
+
+Bulletin Draft
+
+Bulletin Reply
+
+Bulletin Reply Thread
+
+
+--------------------------
+GROUP D -> non-interactive, display/storage
+--------------------------
+
+Favorites
+Bookmarks
+
+DESCRIPTORS
+
+Genres
+Keywords
+Address Components
+
+STORAGE
+
+Account Avatars
+Account Galleries
+Account Recordings
+Account EPKs
+
+
+--------------------------
+GROUP E -> external connections
+--------------------------
+

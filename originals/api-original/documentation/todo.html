@@ -1,0 +1,241 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>live-music-x-monolith documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">live-music-x-monolith documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h2>TODO.md - User Authentication Microservice</h2>
+<p>This file outlines the development roadmap for the User Authentication Microservice.</p>
+<h3>High-level Goals</h3>
+<ul>
+<li>Implement a secure and scalable user authentication system.</li>
+<li>Separate authentication logic from the main application for a microservices architecture.</li>
+<li>Support various authentication methods (username/password, potentially social logins in the future).</li>
+<li>Issue and manage tokens (JWTs) for authorization (optional).</li>
+</ul>
+<h3>User Stories</h3>
+<ul>
+<li>As a user, I want to register for an account using a username and password.</li>
+<li>As a user, I want to login using my username and password.</li>
+<li>As a user, I want to be able to reset my password if I forget it. (Optional)</li>
+<li>As a user (admin), I want to be able to manage user accounts (CRUD operations). (Optional)</li>
+</ul>
+<p><strong>Note:</strong> These are just some basic user stories. You can expand on them based on your specific requirements.</p>
+<h3>Database/Datastore</h3>
+<ul>
+<li>Decide on the data storage solution for the auth service (e.g., relational database like PostgreSQL, NoSQL database like Redis). Consider factors like data persistence needs, scalability, and performance requirements.</li>
+<li>Define the data schema for the user authentication service, including tables for:<ul>
+<li>Accounts (foreign key reference to user ID from the user service, potentially additional auth-specific information)</li>
+<li>Credentials (username/password, tokens for social logins, foreign key to the Accounts table)</li>
+<li>Sessions (optional, for managing user sessions, includes session token, expiration time, foreign key to the Accounts table)</li>
+</ul>
+</li>
+</ul>
+<h3>Authentication Methods</h3>
+<ul>
+<li>Implement username/password authentication with secure password hashing and storage.</li>
+<li>Consider integration with social login providers (OIDC, OAuth) in the future. (Optional)</li>
+</ul>
+<h3>Token Management (Optional)</h3>
+<ul>
+<li>Implement JWT (JSON Web Token) generation and validation for authorization purposes.</li>
+<li>Define strategies for token storage, expiration, and refresh mechanisms.</li>
+</ul>
+<h3>Security Considerations</h3>
+<ul>
+<li>Prioritize secure password storage using hashing algorithms (e.g., bcrypt).</li>
+<li>Implement mechanisms for account lockout after failed login attempts.</li>
+<li>Enforce secure communication channels (HTTPS) for API calls within the microservices architecture.</li>
+<li>Consider additional security measures like rate limiting and CSRF protection.</li>
+</ul>
+<h3>API Definition</h3>
+<ul>
+<li>Define a clear and well-documented API for the auth service, including endpoints for user registration, login, password reset (optional), and potentially user management (CRUD) for admin users (optional).</li>
+</ul>
+<h3>Testing</h3>
+<ul>
+<li>Implement unit and integration tests to ensure the functionality and security of the auth service.</li>
+<li>Consider security testing to identify and address potential vulnerabilities.</li>
+</ul>
+<h3>Deployment</h3>
+<ul>
+<li>Define a deployment strategy for the auth service within your microservices architecture.</li>
+<li>Consider containerization and orchestration tools like Docker and Kubernetes for easier deployment and management.</li>
+</ul>
+<h3>Next Steps</h3>
+<ul>
+<li>Prioritize and break down the tasks listed above into smaller, manageable steps.</li>
+<li>Estimate development effort and timeline for each task.</li>
+<li>Start implementing the core functionalities of the user authentication service.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'todo.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

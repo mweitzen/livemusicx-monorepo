@@ -1,0 +1,246 @@
+[
+  {
+    "name": "Central New Mexico",
+    "children": [
+      {
+        "name": "Albuquerque & Rio Grande Valley",
+        "children": [
+          { "name": "Albuquerque" },
+          { "name": "Adelino" },
+          { "name": "Alamillo" },
+          { "name": "Alamo" },
+          { "name": "Belen" },
+          { "name": "Bosque Farms" },
+          { "name": "Corrales" },
+          { "name": "Isleta", "county": "Bernalillo County" },
+          { "name": "Los Lunas", "county": "Valencia County" },
+          { "name": "Meadow Lake", "county": "Valencia County" },
+          { "name": "Monterey Park", "county": "Valencia County" },
+          { "name": "North Valley", "county": "Bernalillo County" },
+          { "name": "Paa-Ko", "county": "Bernalillo County" },
+          { "name": "Paguate", "county": "Cibola County" },
+          { "name": "Paraje", "county": "Cibola County" },
+          { "name": "Peña Blanca", "county": "Sandoval County" },
+          { "name": "Peralta", "county": "Valencia County" },
+          { "name": "Placitas", "county": "Sandoval County" },
+          { "name": "San Acacia", "county": "Socorro County" },
+          { "name": "San Antonio", "county": "Socorro County" },
+          { "name": "San Felipe Pueblo", "county": "Sandoval County" },
+          { "name": "San Luis", "county": "Sandoval County" },
+          { "name": "Santo Domingo Pueblo", "county": "Sandoval County" },
+          { "name": "Sausal", "county": "Valencia County" },
+          { "name": "Socorro", "county": "Socorro County" }
+        ]
+      },
+      {
+        "name": "Santa Fe & Española Valley",
+        "children": [
+          { "name": "Edgewood", "county": "Santa Fe County" },
+          { "name": "Eldorado at Santa Fe", "county": "Santa Fe County" },
+          { "name": "Encantado", "county": "Santa Fe County" },
+          { "name": "Santa Fe" },
+          { "name": "Española", "county": "Rio Arriba County" },
+          { "name": "Galisteo", "county": "Santa Fe County" },
+          { "name": "Glorieta", "county": "Santa Fe County" },
+          { "name": "Hyde Park", "county": "Santa Fe County" },
+          { "name": "Los Cerrillos", "county": "Santa Fe County" },
+          { "name": "Los Luceros", "county": "Rio Arriba County" },
+          { "name": "Los Ojos", "county": "Rio Arriba County" },
+          { "name": "Lyden", "county": "Rio Arriba County" },
+          { "name": "Madrid", "county": "Santa Fe County" },
+          { "name": "Mora", "county": "Mora County" },
+          { "name": "Nambe", "county": "Santa Fe County" },
+          { "name": "Ohkay Owingeh", "county": "Rio Arriba County" },
+          { "name": "Ojo Sarco", "county": "Rio Arriba County" },
+          { "name": "Pecos", "county": "San Miguel County" },
+          { "name": "Peak Place", "county": "Santa Fe County" },
+          { "name": "San Ildefonso Pueblo", "county": "Santa Fe County" },
+          { "name": "San Jose", "county": "Rio Arriba County" },
+          { "name": "Santa Cruz", "county": "Santa Fe County" },
+          { "name": "Santa Fe Foothills", "county": "Santa Fe County" },
+          { "name": "Seton Village", "county": "Santa Fe County" },
+          { "name": "Velarde", "county": "Rio Arriba County" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Northern New Mexico",
+    "children": [
+      {
+        "name": "Chama/Dulce Area",
+        "children": [
+          { "name": "Abiquiu" },
+          { "name": "Brazos" },
+          { "name": "Canjilon" },
+          { "name": "Cañones" },
+          { "name": "Chama" },
+          { "name": "Dulce" }
+        ]
+      },
+      {
+        "name": "Farmington & San Juan Basin",
+        "children": [
+          { "name": "Aztec" },
+          { "name": "Bloomfield" },
+          { "name": "Farmington" },
+          { "name": "Crouch Mesa", "county": "San Juan County" },
+          { "name": "Crystal", "county": "San Juan County" },
+          { "name": "Flora Vista", "county": "San Juan County" },
+          { "name": "Fruitland", "county": "San Juan County" },
+          { "name": "Kirtland", "county": "San Juan County" },
+          { "name": "La Plata", "county": "San Juan County" },
+          { "name": "Lee Acres", "county": "San Juan County" },
+          { "name": "Nageezi", "county": "San Juan County" },
+          { "name": "Napi Headquarters", "county": "San Juan County" },
+          { "name": "Naschitti", "county": "San Juan County" },
+          { "name": "Navajo Dam", "county": "San Juan County" },
+          { "name": "Nenahnezad", "county": "San Juan County" },
+          { "name": "Newcomb", "county": "San Juan County" },
+          { "name": "North Light Plant", "county": "San Juan County" },
+          { "name": "Ojo Amarillo", "county": "San Juan County" },
+          { "name": "South River", "county": "San Juan County" },
+          { "name": "Spencerville", "county": "San Juan County" },
+          { "name": "Tohatchi Vista", "county": "San Juan County" },
+          { "name": "Turley", "county": "San Juan County" },
+          { "name": "Upper Fruitland", "county": "San Juan County" },
+          { "name": "Waterflow" },
+          { "name": "West Hammond" }
+        ]
+      },
+      {
+        "name": "Taos & Northern Mountains",
+        "children": [
+          { "name": "Angel Fire" },
+          { "name": "Arroyo Seco" },
+          { "name": "Arroyo Hondo", "county": "Taos County" },
+          { "name": "Taos" },
+          { "name": "Costilla", "county": "Taos County" },
+          { "name": "Conchas Dam", "county": "San Miguel County" },
+          { "name": "El Rito", "county": "Rio Arriba County" },
+          { "name": "Talpa", "county": "Taos County" },
+          { "name": "Taos Pueblo", "county": "Taos County" },
+          { "name": "Taos Ski Valley", "county": "Taos County" },
+          { "name": "Vadito", "county": "Taos County" },
+          { "name": "San Cristobal", "county": "Taos County" },
+          { "name": "Peñasco", "county": "Taos County" },
+          { "name": "Picuris Pueblo", "county": "Taos County" },
+          { "name": "San Cristobal", "county": "Taos County" },
+          { "name": "**Eagle Nest**", "county": "Colfax County" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Southern New Mexico",
+    "children": [
+      {
+        "name": "Las Cruces & Mesilla Valley",
+        "children": [
+          { "name": "Alamogordo" },
+          { "name": "Anthony" },
+          { "name": "Arrey" },
+          { "name": "Las Cruces" },
+          { "name": "Mesilla" },
+          { "name": "Doña Ana", "county": "Doña Ana County" },
+          { "name": "Vado" },
+          { "name": "White Sands" },
+          { "name": "Williamsburg", "county": "Sierra County" },
+          { "name": "Sunland Park", "county": "Doña Ana County" },
+          { "name": "Tortugas", "county": "Doña Ana County" },
+          { "name": "University Park", "county": "Doña Ana County" },
+          { "name": "San Miguel", "county": "Doña Ana County" },
+          { "name": "San Pablo", "county": "Doña Ana County" },
+          { "name": "San Ysidro", "county": "Doña Ana County" },
+          { "name": "Santa Teresa", "county": "Doña Ana County" },
+          { "name": "Mesquite", "county": "Doña Ana County" },
+          { "name": "Nogal", "county": "Lincoln County" },
+          { "name": "Oasis", "county": "Sierra County" },
+          { "name": "Organ", "county": "Doña Ana County" },
+          { "name": "Orogrande", "county": "Otero County" },
+          { "name": "Picacho Hills", "county": "Doña Ana County" },
+          { "name": "Pinon", "county": "Otero County" },
+          { "name": "Dona Ana", "county": "Doña Ana County" },
+          { "name": "Fairacres", "county": "Doña Ana County" },
+          { "name": "Garfield", "county": "Doña Ana County" },
+          { "name": "Hatch", "county": "Doña Ana County" },
+          { "name": "High Rolls", "county": "Otero County" },
+          { "name": "Holloman AFB", "county": "Otero County" },
+          { "name": "Hot Springs Landing", "county": "Sierra County" },
+          { "name": "La Mesa", "county": "Doña Ana County" },
+          { "name": "La Union", "county": "Doña Ana County" }
+        ]
+      },
+      {
+        "name": "Silver City & Gila Region",
+        "children": [
+          { "name": "Alma" },
+          { "name": "Arenas Valley" },
+          { "name": "Silver City" },
+          { "name": "Cliff", "county": "Grant County" },
+          { "name": "Cobre", "county": "Grant County" },
+          { "name": "Columbus", "county": "Luna County" },
+          { "name": "Deming", "county": "Luna County" },
+          { "name": "Ventura" },
+          { "name": "Virden" },
+          { "name": "Windmill" },
+          { "name": "Winston" },
+          { "name": "Sunshine", "county": "Luna County" },
+          { "name": "Trout Valley", "county": "Grant County" },
+          { "name": "Tyrone", "county": "Grant County" },
+          { "name": "Santa Clara", "county": "Grant County" },
+          { "name": "Mountain View", "county": "Luna County" },
+          { "name": "Old Town", "county": "Luna County" },
+          { "name": "Pecan Park", "county": "Luna County" },
+          { "name": "Hurley", "county": "Grant County" },
+          { "name": "Mimbres", "county": "Luna County" },
+          { "name": "Gage", "county": "Luna County" },
+          { "name": "Fierro", "county": "Grant County" },
+          { "name": "Lake Valley", "county": "Sierra County" },
+          { "name": "Hachita", "county": "Grant County" },
+          { "name": "Lordsburg", "county": "Hidalgo County" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Southwestern New Mexico",
+    "children": [
+      { "name": "Deming", "county": "Luna County" },
+      { "name": "Lordsburg", "county": "Hidalgo County" },
+      { "name": "Hidalgo", "county": "Hidalgo County" },
+      { "name": "Animas", "county": "Hidalgo County" },
+      { "name": "Playas", "county": "Hidalgo County" },
+      { "name": "Palomas", "county": "Luna County" },
+      { "name": "Skeleton Canyon", "county": "Hidalgo County" },
+      { "name": "Steins", "county": "Hidalgo County" }
+    ]
+  },
+  {
+    "name": "Western New Mexico",
+    "children": [
+      {
+        "name": "Catron County",
+        "children": [
+          { "name": "Reserve" },
+          { "name": "Glenwood" },
+          { "name": "Mogollon" },
+          { "name": "San Lorenzo" },
+          { "name": "Datil" },
+          { "name": "Zuni" }
+        ]
+      },
+      {
+        "name": "Cibola County",
+        "children": [
+          { "name": "Milan" },
+          { "name": "Grants" },
+          { "name": "Bluewater" },
+          { "name": "Prewitt" },
+          { "name": "Cibola" },
+          { "name": "Seboyeta" }
+        ]
+      }
+    ]
+  }
+]

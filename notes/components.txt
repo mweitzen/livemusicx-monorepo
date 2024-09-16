@@ -1,0 +1,48 @@
+Components:
+  - Marketing Page Footer (Layout Component)
+  - Marketing Page Header
+  - Marketing Page Section
+  - App Navigation Bar  (Layout Component)
+  - App Sidebar (Layout Component)
+  - Sub Navigation Bar / Filter Bar (Layout Component)
+  - Marketing Pages Dropdown Navigation  (Layout Component)
+  - Search  (Layout Component)
+  - Notifications  (Layout Component)
+  - Account Dropdown  (Layout Component)
+  - Location Selector  (Layout Component)
+  - Featured List
+  - Featured List Card
+  - Explore List
+  - Explore Filters
+  - Explore Sorting
+  - Explore Filter Tag Selectors
+  - Explore Card:
+    - Event
+    - Performer:
+      - Musician
+      - Band
+    - Venue
+    - Organizer
+  - Explore Map View
+
+  - Profile Page Basic Info/Profile Avatar Section
+  - Social Links
+  - Media Gallery
+  - Upcoming Events Quick View
+  - Related Account List
+  - Related Account Card
+  - Profile Specific Events Page List
+  - Profile Specific Events Page Event Card
+
+  - Buttons
+    - Bookmark Event
+    - Favorite Account
+    - Share
+    - RSVP to Event
+    - Promote
+
+  - Dialogs
+    - Login/Signup to Use Feature
+    - Handle Reservation Situation
+    - Handle Ticket Situation
+    - Handle Limited Availability

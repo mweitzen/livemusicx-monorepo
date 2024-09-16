@@ -1,0 +1,1089 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>live-music-x-monolith documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">live-music-x-monolith documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-typealiases">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Type aliases</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#AllGenres" title="original/trpc/general/index.ts" ><b>AllGenres</b>&nbsp;&nbsp;&nbsp;(original/.../index.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AllGroups" title="original/trpc/accounts/groups.ts" ><b>AllGroups</b>&nbsp;&nbsp;&nbsp;(original/.../groups.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AllMusicians" title="original/trpc/accounts/musicians.ts" ><b>AllMusicians</b>&nbsp;&nbsp;&nbsp;(original/.../musicians.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AllOrganizers" title="original/trpc/accounts/organizers.ts" ><b>AllOrganizers</b>&nbsp;&nbsp;&nbsp;(original/.../organizers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AllPerformers" title="original/trpc/accounts/performers.ts" ><b>AllPerformers</b>&nbsp;&nbsp;&nbsp;(original/.../performers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AllVenues" title="original/trpc/accounts/venues.ts" ><b>AllVenues</b>&nbsp;&nbsp;&nbsp;(original/.../venues.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AppRouter" title="original/trpc/index.ts" ><b>AppRouter</b>&nbsp;&nbsp;&nbsp;(original/.../index.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventDetails" title="original/trpc/events/main.ts" ><b>EventDetails</b>&nbsp;&nbsp;&nbsp;(original/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventsInputs" title="original/trpc/events/main.ts" ><b>EventsInputs</b>&nbsp;&nbsp;&nbsp;(original/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventsOutputs" title="original/trpc/events/main.ts" ><b>EventsOutputs</b>&nbsp;&nbsp;&nbsp;(original/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FavoriteEvents" title="original/trpc/events/main.ts" ><b>FavoriteEvents</b>&nbsp;&nbsp;&nbsp;(original/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FavoriteGroups" title="original/trpc/accounts/groups.ts" ><b>FavoriteGroups</b>&nbsp;&nbsp;&nbsp;(original/.../groups.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FavoriteMusicians" title="original/trpc/accounts/musicians.ts" ><b>FavoriteMusicians</b>&nbsp;&nbsp;&nbsp;(original/.../musicians.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FavoriteOrganizers" title="original/trpc/accounts/organizers.ts" ><b>FavoriteOrganizers</b>&nbsp;&nbsp;&nbsp;(original/.../organizers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FavoritePerformers" title="original/trpc/accounts/performers.ts" ><b>FavoritePerformers</b>&nbsp;&nbsp;&nbsp;(original/.../performers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FavoriteVenues" title="original/trpc/accounts/venues.ts" ><b>FavoriteVenues</b>&nbsp;&nbsp;&nbsp;(original/.../venues.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetAllGroupsInput" title="original/trpc/accounts/groups.ts" ><b>GetAllGroupsInput</b>&nbsp;&nbsp;&nbsp;(original/.../groups.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetAllMusiciansInput" title="original/trpc/accounts/musicians.ts" ><b>GetAllMusiciansInput</b>&nbsp;&nbsp;&nbsp;(original/.../musicians.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetAllOrganizersInput" title="original/trpc/accounts/organizers.ts" ><b>GetAllOrganizersInput</b>&nbsp;&nbsp;&nbsp;(original/.../organizers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetAllPerformersInput" title="original/trpc/accounts/performers.ts" ><b>GetAllPerformersInput</b>&nbsp;&nbsp;&nbsp;(original/.../performers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetAllVenuesInput" title="original/trpc/accounts/venues.ts" ><b>GetAllVenuesInput</b>&nbsp;&nbsp;&nbsp;(original/.../venues.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetUpcomingEventsInput" title="original/trpc/events/main.ts" ><b>GetUpcomingEventsInput</b>&nbsp;&nbsp;&nbsp;(original/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetUsersFavoriteEventsInput" title="original/trpc/events/main.ts" ><b>GetUsersFavoriteEventsInput</b>&nbsp;&nbsp;&nbsp;(original/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetUsersFavoriteGroupsInput" title="original/trpc/accounts/groups.ts" ><b>GetUsersFavoriteGroupsInput</b>&nbsp;&nbsp;&nbsp;(original/.../groups.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetUsersFavoriteMusiciansInput" title="original/trpc/accounts/musicians.ts" ><b>GetUsersFavoriteMusiciansInput</b>&nbsp;&nbsp;&nbsp;(original/.../musicians.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetUsersFavoritePerformersInput" title="original/trpc/accounts/performers.ts" ><b>GetUsersFavoritePerformersInput</b>&nbsp;&nbsp;&nbsp;(original/.../performers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetUsersFavoriteVenuesInput" title="original/trpc/accounts/venues.ts" ><b>GetUsersFavoriteVenuesInput</b>&nbsp;&nbsp;&nbsp;(original/.../venues.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GroupDetails" title="original/trpc/accounts/groups.ts" ><b>GroupDetails</b>&nbsp;&nbsp;&nbsp;(original/.../groups.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GroupsInputs" title="original/trpc/accounts/groups.ts" ><b>GroupsInputs</b>&nbsp;&nbsp;&nbsp;(original/.../groups.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GroupsOutputs" title="original/trpc/accounts/groups.ts" ><b>GroupsOutputs</b>&nbsp;&nbsp;&nbsp;(original/.../groups.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LoginDto" title="apps/auth/src/dto/login.dto.ts" ><b>LoginDto</b>&nbsp;&nbsp;&nbsp;(apps/.../login.dto.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MusiciansInputs" title="original/trpc/accounts/musicians.ts" ><b>MusiciansInputs</b>&nbsp;&nbsp;&nbsp;(original/.../musicians.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MusiciansOutputs" title="original/trpc/accounts/musicians.ts" ><b>MusiciansOutputs</b>&nbsp;&nbsp;&nbsp;(original/.../musicians.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OrganizersInputs" title="original/trpc/accounts/organizers.ts" ><b>OrganizersInputs</b>&nbsp;&nbsp;&nbsp;(original/.../organizers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OrganizersOutputs" title="original/trpc/accounts/organizers.ts" ><b>OrganizersOutputs</b>&nbsp;&nbsp;&nbsp;(original/.../organizers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PerformersInputs" title="original/trpc/accounts/performers.ts" ><b>PerformersInputs</b>&nbsp;&nbsp;&nbsp;(original/.../performers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PerformersOutputs" title="original/trpc/accounts/performers.ts" ><b>PerformersOutputs</b>&nbsp;&nbsp;&nbsp;(original/.../performers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#QuickViewEvents" title="original/trpc/events/main.ts" ><b>QuickViewEvents</b>&nbsp;&nbsp;&nbsp;(original/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#QuickViewOrganizers" title="original/trpc/accounts/organizers.ts" ><b>QuickViewOrganizers</b>&nbsp;&nbsp;&nbsp;(original/.../organizers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#QuickViewPerformers" title="original/trpc/accounts/performers.ts" ><b>QuickViewPerformers</b>&nbsp;&nbsp;&nbsp;(original/.../performers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#QuickViewVenues" title="original/trpc/accounts/venues.ts" ><b>QuickViewVenues</b>&nbsp;&nbsp;&nbsp;(original/.../venues.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UpcomingEvents" title="original/trpc/events/main.ts" ><b>UpcomingEvents</b>&nbsp;&nbsp;&nbsp;(original/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#User" title="original/xxx/apps/core/user/src/users.service.ts" ><b>User</b>&nbsp;&nbsp;&nbsp;(original/.../users.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VenueDetails" title="original/trpc/accounts/venues.ts" ><b>VenueDetails</b>&nbsp;&nbsp;&nbsp;(original/.../venues.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VenuesInputs" title="original/trpc/accounts/venues.ts" ><b>VenuesInputs</b>&nbsp;&nbsp;&nbsp;(original/.../venues.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VenuesOutputs" title="original/trpc/accounts/venues.ts" ><b>VenuesOutputs</b>&nbsp;&nbsp;&nbsp;(original/.../venues.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>original/trpc/general/index.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AllGenres"></a>
+                    <span class="name "><b>AllGenres</b><a href="#AllGenres"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>original/trpc/accounts/groups.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AllGroups"></a>
+                    <span class="name "><b>AllGroups</b><a href="#AllGroups"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FavoriteGroups"></a>
+                    <span class="name "><b>FavoriteGroups</b><a href="#FavoriteGroups"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetAllGroupsInput"></a>
+                    <span class="name "><b>GetAllGroupsInput</b><a href="#GetAllGroupsInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetUsersFavoriteGroupsInput"></a>
+                    <span class="name "><b>GetUsersFavoriteGroupsInput</b><a href="#GetUsersFavoriteGroupsInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GroupDetails"></a>
+                    <span class="name "><b>GroupDetails</b><a href="#GroupDetails"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GroupsInputs"></a>
+                    <span class="name "><b>GroupsInputs</b><a href="#GroupsInputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GroupsOutputs"></a>
+                    <span class="name "><b>GroupsOutputs</b><a href="#GroupsOutputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>original/trpc/accounts/musicians.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AllMusicians"></a>
+                    <span class="name "><b>AllMusicians</b><a href="#AllMusicians"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FavoriteMusicians"></a>
+                    <span class="name "><b>FavoriteMusicians</b><a href="#FavoriteMusicians"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetAllMusiciansInput"></a>
+                    <span class="name "><b>GetAllMusiciansInput</b><a href="#GetAllMusiciansInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetUsersFavoriteMusiciansInput"></a>
+                    <span class="name "><b>GetUsersFavoriteMusiciansInput</b><a href="#GetUsersFavoriteMusiciansInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MusiciansInputs"></a>
+                    <span class="name "><b>MusiciansInputs</b><a href="#MusiciansInputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MusiciansOutputs"></a>
+                    <span class="name "><b>MusiciansOutputs</b><a href="#MusiciansOutputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>original/trpc/accounts/organizers.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AllOrganizers"></a>
+                    <span class="name "><b>AllOrganizers</b><a href="#AllOrganizers"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FavoriteOrganizers"></a>
+                    <span class="name "><b>FavoriteOrganizers</b><a href="#FavoriteOrganizers"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetAllOrganizersInput"></a>
+                    <span class="name "><b>GetAllOrganizersInput</b><a href="#GetAllOrganizersInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OrganizersInputs"></a>
+                    <span class="name "><b>OrganizersInputs</b><a href="#OrganizersInputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OrganizersOutputs"></a>
+                    <span class="name "><b>OrganizersOutputs</b><a href="#OrganizersOutputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="QuickViewOrganizers"></a>
+                    <span class="name "><b>QuickViewOrganizers</b><a href="#QuickViewOrganizers"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>original/trpc/accounts/performers.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AllPerformers"></a>
+                    <span class="name "><b>AllPerformers</b><a href="#AllPerformers"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FavoritePerformers"></a>
+                    <span class="name "><b>FavoritePerformers</b><a href="#FavoritePerformers"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetAllPerformersInput"></a>
+                    <span class="name "><b>GetAllPerformersInput</b><a href="#GetAllPerformersInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetUsersFavoritePerformersInput"></a>
+                    <span class="name "><b>GetUsersFavoritePerformersInput</b><a href="#GetUsersFavoritePerformersInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PerformersInputs"></a>
+                    <span class="name "><b>PerformersInputs</b><a href="#PerformersInputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PerformersOutputs"></a>
+                    <span class="name "><b>PerformersOutputs</b><a href="#PerformersOutputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="QuickViewPerformers"></a>
+                    <span class="name "><b>QuickViewPerformers</b><a href="#QuickViewPerformers"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>original/trpc/accounts/venues.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AllVenues"></a>
+                    <span class="name "><b>AllVenues</b><a href="#AllVenues"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FavoriteVenues"></a>
+                    <span class="name "><b>FavoriteVenues</b><a href="#FavoriteVenues"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetAllVenuesInput"></a>
+                    <span class="name "><b>GetAllVenuesInput</b><a href="#GetAllVenuesInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetUsersFavoriteVenuesInput"></a>
+                    <span class="name "><b>GetUsersFavoriteVenuesInput</b><a href="#GetUsersFavoriteVenuesInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="QuickViewVenues"></a>
+                    <span class="name "><b>QuickViewVenues</b><a href="#QuickViewVenues"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VenueDetails"></a>
+                    <span class="name "><b>VenueDetails</b><a href="#VenueDetails"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VenuesInputs"></a>
+                    <span class="name "><b>VenuesInputs</b><a href="#VenuesInputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VenuesOutputs"></a>
+                    <span class="name "><b>VenuesOutputs</b><a href="#VenuesOutputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>original/trpc/index.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AppRouter"></a>
+                    <span class="name "><b>AppRouter</b><a href="#AppRouter"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>original/trpc/events/main.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventDetails"></a>
+                    <span class="name "><b>EventDetails</b><a href="#EventDetails"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventsInputs"></a>
+                    <span class="name "><b>EventsInputs</b><a href="#EventsInputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventsOutputs"></a>
+                    <span class="name "><b>EventsOutputs</b><a href="#EventsOutputs"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FavoriteEvents"></a>
+                    <span class="name "><b>FavoriteEvents</b><a href="#FavoriteEvents"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetUpcomingEventsInput"></a>
+                    <span class="name "><b>GetUpcomingEventsInput</b><a href="#GetUpcomingEventsInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetUsersFavoriteEventsInput"></a>
+                    <span class="name "><b>GetUsersFavoriteEventsInput</b><a href="#GetUsersFavoriteEventsInput"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="QuickViewEvents"></a>
+                    <span class="name "><b>QuickViewEvents</b><a href="#QuickViewEvents"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UpcomingEvents"></a>
+                    <span class="name "><b>UpcomingEvents</b><a href="#UpcomingEvents"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>apps/auth/src/dto/login.dto.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LoginDto"></a>
+                    <span class="name "><b>LoginDto</b><a href="#LoginDto"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>UsernameLoginDto | EmailLoginDto | GoogleLoginDto</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>original/xxx/apps/core/user/src/users.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="User"></a>
+                    <span class="name "><b>User</b><a href="#User"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-typealiases';
+            var COMPODOC_CURRENT_PAGE_URL = 'typealiases.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

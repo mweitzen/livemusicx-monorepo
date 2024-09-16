@@ -1,0 +1,88 @@
+services:
+  # Postgres Database
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=lmx-dev
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  # Static Content service - static.<app>.com
+  static:
+    build:
+      context: ./
+      dockerfile: ./apps/services/static/Dockerfile
+    env_file:
+      - .env.local
+    volumes:
+      - app-code:/app
+      - /app/node_modules
+
+  # Gateways
+  # Rest API service - api.<app>.com
+  api:
+    build:
+      context: ./
+      dockerfile: ./apps/gateways/api/prod.Dockerfile
+    env_file:
+      - .env.local
+    depends_on:
+      - postgres
+    volumes:
+      - app-code:/app
+      - /app/node_modules
+
+  # GraphQl service - graph.<app>.com
+  graphql:
+    build:
+      context: ./
+      dockerfile: ./apps/gateways/graphql/Dockerfile
+    env_file:
+      - .env.local
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  # Websocket service - io.<app>.com
+  websocket:
+    build:
+      context: ./
+      dockerfile: ./apps/gateways/ws/dev.Dockerfile
+    env_file:
+      - .env.local
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  # Internal Services
+  # Auth service - auth.<app>.com
+  # auth:
+  #   build:
+  #     context: ./
+  #     dockerfile: ./apps/auth/Dockerfile
+  #   ports:
+  #     - '5001:5001' # Adjust port mapping
+  #   env_file:
+  #     - .env.local
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+
+  # Notifications service - notifications.<app>.com
+  # notificaations:
+  #   build:
+  #     context: ./
+  #     dockerfile: ./apps/notification/Dockerfile
+  #   ports:
+  #     - '5001:5001' # Adjust port mapping
+  #   env_file:
+  #     - .env.local
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+
+volumes:
+  postgres-data:
+  app-code:

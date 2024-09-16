@@ -1,0 +1,67 @@
+.topbar-wrapper {
+  content: url('http://static.localhost/img/brand-dark.png');
+  width: 36px;
+  height: auto;
+}
+
+.topbar-wrapper svg {
+  visibility: hidden;
+}
+
+.swagger-ui .topbar {
+  background-color: hsl(222.2 47.4% 11.2%);
+}
+
+/* .swagger-ui .opblock.opblock-get {
+  background-color: hsl(210 40% 96.1%);
+  border-color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+  background-color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .opblock.opblock-post {
+  background-color: hsl(210 40% 96.1%);
+  border-color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .opblock.opblock-post .opblock-summary-method {
+  background-color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .opblock.opblock-delete {
+  background-color: hsl(210 40% 96.1%);
+  border-color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .opblock.opblock-delete .opblock-summary-method {
+  background-color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .opblock.opblock-patch {
+  background-color: hsl(210 40% 96.1%);
+  border-color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .opblock.opblock-patch .opblock-summary-method {
+  background-color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .opblock.opblock-put {
+  background-color: hsl(210 40% 96.1%);
+  border-color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .opblock.opblock-put .opblock-summary-method {
+  background-color: hsl(222.2 47.4% 11.2%);
+} */
+
+.swagger-ui .btn.authorize {
+  border-color: hsl(222.2 47.4% 11.2%);
+  color: hsl(222.2 47.4% 11.2%);
+}
+
+.swagger-ui .btn.authorize svg {
+  fill: hsl(222.2 47.4% 11.2%);
+}

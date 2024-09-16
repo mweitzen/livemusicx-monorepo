@@ -1,0 +1,215 @@
+1. West
+  a. West Coast (Pacific Coast)
+    - Pacific Northwest
+      * Puget Sound Lowlands (WA)
+      * Cascade Range (WA & OR)
+      * Columbia Plateau (WA, OR, ID)
+      * Oregon Coast Range (OR)
+    - Northern California
+      * North Coast (CA)
+      * Sacramento Valley (CA)
+      * San Francisco Bay Area (CA)
+      * Sierra Nevada (CA)
+    - Central California
+      * Central Coast (CA)
+      * San Joaquin Valley (CA)
+    - Southern California
+      * Southern Coast (CA)
+      * Transverse Ranges (CA)
+      * Mojave Desert (CA)
+  b. Mountain West
+    - Northern Rockies (Idaho, Montana, Wyoming)
+      * Northern Rocky Mountains (ID, MT, WY)
+      * Middle Rocky Mountains (ID, MT)
+      * Wyoming Ranges (WY)
+
+    - Southern Rockies (Colorado)
+      * Front Range (CO)
+      * Park Range (CO)
+      * San Juan Mountains (CO)
+
+    - Great Basin (Nevada & Utah)
+      * Basin and Range Province (NV, UT)
+      * Wasatch Range (UT)
+
+  c. Southwest
+    - Mojave Desert (California, Nevada, Arizona)
+      * California Deserts
+        - Death Valley (Rural)
+        - Mojave National Preserve (Rural)
+        - Joshua Tree National Park (Rural)
+        - Antelope Valley (Metro/Rural) (includes Palmdale & Lancaster)
+      * Nevada Deserts
+        - Las Vegas Valley:
+          * Las Vegas (Metro)
+          * Henderson (Metro)
+          * North Las Vegas (Metro)
+        - Black Mountains (Rural)
+        - Great Basin National Park (Rural)
+      * Arizona Deserts
+        - Mojave Desert (Arizona)
+          * Kingman (Metro)
+
+    - Colorado Plateau
+      * Four Corners Region
+        - Farmington (Metro) - New Mexico
+      * Canyon Country
+
+    - Navajo Nation (Scattered population centers - Rural/Metro)
+      * Tuba City (Metro)
+      * Gallup (Metro) - New Mexico
+
+    - Mogollon Rim & Central Highlands
+      * Flagstaff (Metro)
+      * Prescott (Metro)
+      * Payson (Metro)
+
+    - Sonoran Desert
+      * Arizona Deserts
+        - Sun Corridor (Urban Corridor):
+          * Phoenix Metro (Metro)
+          * Tucson Metro (Metro)
+        - Yuma Metro (Metro)
+        - Sky Islands (Rural)
+      * Colorado Desert (California portion)
+        - Coachella Valley (Metro/Rural)
+
+    - Rio Grande Valley
+      * Upper Rio Grande Valley
+        - Española Valley (Metro/Rural)
+          * Española (Metro)
+          * Pojoaque Valley (Rural) - Focus on agricultural and traditional communities
+
+        - Chama Valley (Rural)
+          * Chama (Rural) - Small village known for scenic beauty and outdoor recreation
+
+        - Taos Valley (Metro/Rural)
+          * Taos (Metro) - Art hub with a strong Puebloan presence
+          * Ranchos de Taos (Rural) - Artist communities and proximity to Taos Ski Valley
+
+        - Santa Fe Region (Metro)
+          * Santa Fe (Metro) - City center with focus on arts, culture, and government
+          * Santa Fe County (Metro/Rural) - Encompasses suburbs and rural areas surrounding Santa Fe
+
+      * Middle Rio Grande Valley
+
+        - Greater Albuquerque Metro (Metro)
+          *Rio Rancho:
+
+          *Albuquerque Metro Area (Metro):
+            - Eastside
+            - Westside
+            - North Valley
+            - Downtown
+            - Nob Hill
+            - Barelas
+            - Atrisco
+            - Midtown/University
+            - Uptown
+            - Balloon Fiesta Park
+            - Airport
+            
+          * East Mountain Communities (Rural/Metro)
+            - Tijeras (Rural)
+            - Carnuel (Rural)
+            - Sandia Park (Metro/Rural)
+            - Cedar Crest (Rural)
+            - Edgewood (Metro/Rural)
+            - Moriarty (Metro)
+
+          *South Valley (Rural/Metro)
+            - Bosque del Apache National Wildlife Refuge (Rural)
+            - Isleta Pueblo (Rural)
+
+
+          * Los Lunas
+
+        - Socorro Area (Metro/Rural)
+          * Socorro (Metro)
+          * Lemitar (Rural)
+
+      * Lower Rio Grande Valley
+
+        - Las Cruces Area (Metro)
+          * Las Cruces (Metro)
+          * Doña Ana County (Metro/Rural)
+          * Mesilla Valley (Metro/Rural)
+            * Mesilla (Rural)
+
+        - Hatch Valley (Rural)
+          * Hatch (Rural) - Renowned for its chile pepper crops and annual chile festival
+
+    - West Texas
+      * El Paso Metropolitan Area (Metro)
+
+2. Midwest
+  a. Great Plains
+    - Corn Belt
+      * Eastern Corn Belt
+        - Chicago Metropolitan Area (Illinois)
+        - Ohio Valley (Ohio, Indiana)
+          * Columbus Metropolitan Area (Ohio)
+          * Cincinnati Metropolitan Area (Ohio)
+          * Indianapolis Metropolitan Area (Indiana)
+          * Fort Wayne Metropolitan Area (Indiana)
+    - Western Plains
+      * Great Plains Ranching Region
+        - Kansas City Metropolitan Area (Kansas & Missouri)
+    - Cash Grain Belt
+      * Plains States
+        - Des Moines Area (Iowa)
+        - Omaha-Council Bluffs Metropolitan Area (Nebraska & Iowa)
+        - Sioux Falls Metropolitan Area (South Dakota)
+        - Fargo Metropolitan Area (North Dakota)
+      * Driftless Area
+
+  b. Great Lakes
+    - Great Lakes Megalopolis
+      * Southern Great Lakes (Michigan, Indiana, Ohio)
+        - Industrial Core
+          * Detroit Metropolitan Area (Michigan)
+          * Cleveland Metropolitan Area (Ohio)
+          * Toledo Metropolitan Area (Ohio)
+          * Gary Metropolitan Area (Indiana)
+        - Michiana
+          * Grand Rapids Metropolitan Area (Michigan)
+          * South Bend-Mishawaka Metropolitan Area (Indiana)
+          * Fort Wayne Metropolitan Area (Indiana)
+
+      * Northern Great Lakes (Illinois, Wisconsin)
+        - Milwaukee Metropolitan Area (Wisconsin)
+        - Chicago Metropolitan Area (Illinois)
+        - Madison Metropolitan Area (Wisconsin)
+        
+    - Northwoods
+      * Upper Peninsula (Michigan)
+      * Wisconsin Northwoods (Wisconsin & Minnesota)
+        - Duluth Metropolitan Area (Minnesota)
+        - Twin Ports (Minnesota & Wisconsin)
+
+3. Northeast
+  a. New England
+    - Northern New England
+    - Southern New England
+      * Cape Cod & Islands
+  b. Mid Atlantic
+    - Urban Corridor
+    - Interior Mid-Atlantic
+    - Atlantic Coast
+
+4. South
+  a. South Atlantic Coast
+    - Delmarva Peninsula (Virginia, Maryland, Delaware)
+    - Carolina Lowcountry (North Carolina, South Carolina, Georgia)
+      * Gulf Coast (Florida Panhandle to Mississippi)
+    - Florida Peninsula
+  b. Southeast
+    - Piedmont (Virginia, North Carolina, South Carolina, Georgia, Alabama)
+    - Appalachian Region (Extends into Northeast)
+    - Deep South (Mississippi, Alabama, Georgia, Louisiana)
+  c. South Central
+    - Texas Hill Country (Central Texas)
+    - Texas Prairies & Plains (Eastern & Northern Texas)
+    - Oklahoma (Distinctive Cultural Blend)
+  d. Ozark-Ouachita Highlands
+

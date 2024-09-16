@@ -1,0 +1,68 @@
+/**
+ * AUTH
+ *
+ */
+// Initiate
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
+export const REGISTER_USER = 'REGISTER_USER';
+export const VERIFY_USER = 'VERIFY_USER';
+export const BAN_USER = 'BAN_USER';
+export const FORGOT_USER_PASSWORD = 'FORGOT_USER_PASSWORD';
+export const RESET_USER_PASSWORD = 'RESET_USER_PASSWORD';
+// Acknowledge
+export const USER_LOGGED_IN = 'USER_LOGGED_IN';
+export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
+export const USER_REGISTERED = 'USER_REGISTERED';
+export const USER_VERIFIED = 'USER_VERIFIED';
+export const USER_BANNED = 'USER_BANNED';
+export const FORGOTTEN_PASSWORD_RECEIVED = 'FORGOTTEN_PASSWORD_RECEIVED';
+export const USER_PASSWORD_RESET = 'USER_PASSWORD_RESET';
+
+/**
+ * USER
+ *
+ */
+// Initiate
+export const CREATE_USER = 'CREATE_USER';
+export const UPDATE_USER = 'UPDATE_USER';
+export const DELETE_USER = 'DELETE_USER';
+export const UPGRADE_USER = 'UPGRADE_USER';
+export const DOWNGRADE_USER = 'DOWNGRADE_USER';
+export const INVITE_USER = 'INVITE_USER';
+// Acknowledge
+export const USER_CREATED = 'USER_CREATED';
+export const USER_UPDATED = 'USER_UPDATED';
+export const USER_DELETED = 'USER_DELETED';
+export const USER_UPGRADED = 'USER_UPGRADED';
+export const USER_DOWNGRADED = 'USER_DOWNGRADED';
+export const USER_INVITED = 'USER_INVITED';
+
+/**
+ * EVENT
+ *
+ */
+// Initiate
+export const CREATE_EVENT = 'CREATE_EVENT';
+export const UPDATE_EVENT = 'UPDATE_EVENT';
+export const DELETE_EVENT = 'DELETE_EVENT';
+export const PUBLISH_EVENT = 'PUBLISH_EVENT';
+export const POSTPONE_EVENT = 'POSTPONE_EVENT';
+export const CANCEL_EVENT = 'CANCEL_EVENT';
+export const REGISTER_USER_FOR_EVENT = 'REGISTER_USER_FOR_EVENT';
+export const UNREGISTER_USER_FOR_EVENT = 'UNREGISTER_USER_FOR_EVENT';
+
+// Acknowledge
+export const EVENT_CREATED = 'EVENT_CREATED';
+export const EVENT_UPDATED = 'EVENT_UPDATED';
+export const EVENT_DELETED = 'EVENT_DELETED';
+export const EVENT_PUBLISHED = 'EVENT_PUBLISHED';
+export const EVENT_SCHEDULED = 'EVENT_SCHEDULED'; // occurs if event published with date tbd and then adds date/time
+export const EVENT_POSTPONED = 'EVENT_POSTPONED'; // occurs if event scheduled and date removed
+export const EVENT_CANCELLED = 'EVENT_CANCELLED';
+export const EVENT_LOCATION_CHANGED = 'EVENT_LOCATION_CHANGED';
+export const EVENT_TIME_CHANGED = 'EVENT_TIME_CHANGED';
+export const EVENT_PERFORMER_CHANGED = 'EVENT_PERFORMER_CHANGED';
+export const EVENT_CAPACITY_REACHED = 'EVENT_CAPACITY_REACHED';
+export const USER_REGISTERED_FOR_EVENT = 'USER_REGISTERED_FOR_EVENT';
+export const USER_UNREGISTERED_FOR_EVENT = 'USER_UNREGISTERED_FOR_EVENT';

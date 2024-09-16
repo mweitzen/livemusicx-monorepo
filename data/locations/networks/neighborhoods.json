@@ -1,0 +1,233 @@
+[
+  {
+    "name": "Atrisco",
+    "code": "",
+    "about": "Historic Hispanic neighborhood known for its strong cultural identity, traditional plazas, and deep roots in Albuquerque's past.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Barelas",
+    "code": "",
+    "about": "Vibrant Hispanic neighborhood with a rich cultural heritage, offering traditional food, art, and a close-knit community feel.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "University of New Mexico (UNM)",
+    "code": "",
+    "about": "Bustling and youthful area centered around the UNM campus. Known for its student energy, eclectic shops, trendy restaurants, and late-night activity.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Nob Hill",
+    "code": "",
+    "about": "Eclectic and artsy district bordering UNM, featuring independent shops, art galleries, trendy restaurants, and a lively nightlife scene.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Downtown Albuquerque",
+    "code": "",
+    "about": "Central business district with historic buildings, museums, a mix of restaurants and bars, and a professional crowd. Offers a more urban experience.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Huning Highlands",
+    "code": "",
+    "about": "Primarily residential area with a mix of established homes and newer developments, known for its peaceful atmosphere and convenient location.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Gibson",
+    "code": "",
+    "about": "Primarily residential area with a mix of established homes and newer developments, offering a family-friendly environment and convenient access to amenities.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Kirtland",
+    "code": "",
+    "about": "Established neighborhood with a strong military presence due to its proximity to Kirtland Air Force Base. Offers a structured community feel and attracts government contractors and military families.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Sandia Base",
+    "code": "",
+    "about": "Neighborhood directly surrounding Kirtland Air Force Base, known for its military families and government employees. Offers a close-knit community atmosphere.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Lomas",
+    "code": "",
+    "about": "Established residential neighborhood with a mix of apartments and single-family homes, known for its quiet streets and family-oriented atmosphere.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Ridgecrest",
+    "code": "",
+    "about": "Established residential neighborhood with a mix of apartments and single-family homes, offering a peaceful environment and convenient access to amenities.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Academy Acres",
+    "code": "",
+    "about": "Upscale neighborhood with newer developments boasting scenic mountain views. Popular with professionals and families seeking a modern feel.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "High Desert",
+    "code": "",
+    "about": "Upscale neighborhood with newer developments featuring stunning vistas. Attracts professionals and families seeking a modern lifestyle with scenic surroundings.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Tanoan East",
+    "code": "",
+    "about": "Established middle-class neighborhood offering a mix of housing options and convenient access to amenities. Known for its family-friendly atmosphere.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Tanoan West",
+    "code": "",
+    "about": "Established middle-class neighborhood offering a mix of housing options and convenient access to amenities. Popular with families seeking a comfortable and convenient location.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Country Club",
+    "code": "",
+    "about": "Established neighborhood near the Country Club of Albuquerque, featuring a mix of apartments and single-family homes. Attracts a diverse demographic, including families and retirees.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "The Nations",
+    "code": "",
+    "about": "Established neighborhood near the Country Club of Albuquerque, featuring a mix of apartments and single-family homes. Offers a peaceful environment with convenient access to amenities.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Sandia Heights",
+    "code": "",
+    "about": "Upscale neighborhood with breathtaking Sandia Mountain views. Popular with professionals and retirees seeking a tranquil environment with stunning scenery.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Altura Northeast",
+    "code": "",
+    "about": "Upscale neighborhood with breathtaking Sandia Mountain views. Offers a luxurious living experience and attracts professionals and retirees seeking a peaceful environment.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Tramway",
+    "code": "",
+    "about": "Outdoor enthusiast's haven offering direct access to the Sandia Peak Tramway and hiking trails in the foothills. Popular with active residents who enjoy mountain recreation.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Glenwood Hills",
+    "code": "",
+    "about": "Primarily residential neighborhood nestled in the foothills, offering scenic mountain views and close proximity to hiking trails. Attracts outdoor enthusiasts and families seeking a nature-oriented lifestyle.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Journal Center",
+    "code": "",
+    "about": "Primarily commercial area featuring shopping centers, restaurants, and various businesses. Offers convenient access to amenities for nearby residents.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Coors Blvd West",
+    "code": "",
+    "about": "Primarily commercial area featuring shopping centers, restaurants, and various businesses. Offers convenient access to amenities for nearby residents.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Mesa del Rio",
+    "code": "",
+    "about": "Nature lover's paradise with direct access to the Rio Grande bosque trails. Offers a relaxed vibe and attracts outdoorsy residents and families seeking a connection to nature.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "River West",
+    "code": "",
+    "about": "Primarily residential neighborhood with convenient access to the Rio Grande bosque trails. Offers a peaceful environment and attracts residents seeking a nature-oriented lifestyle.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Westgate",
+    "code": "",
+    "about": "Mix of affordable housing options near Interstate 40, popular with budget-conscious residents and young professionals seeking a convenient location.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Valley West",
+    "code": "",
+    "about": "Mix of affordable housing options near Interstate 40, popular with budget-conscious residents and young professionals seeking a convenient location.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "Old Town",
+    "code": "",
+    "about": "Albuquerque's historic heart with traditional adobe buildings, shops selling Native American crafts, and museums.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  },
+
+  {
+    "name": "North Valley",
+    "code": "",
+    "about": "Historic district with agricultural roots and established Hispanic communities. Offers a slower pace of life and is known for its farms and traditional acequias irrigation canals.",
+    "parent": "ABQ-PROPER",
+    "states": ["NM"]
+  }
+]

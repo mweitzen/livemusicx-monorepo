@@ -1,0 +1,746 @@
+// 
+// 
+// 
+// 
+// * CONFIG
+// 
+// 
+// 
+// 
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL")
+    directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+// 
+// 
+// 
+// 
+// * NEXT AUTH
+// 
+// 
+// 
+// 
+model Account {
+    id                       String  @id @default(cuid())
+    userId                   String
+    type                     String
+    provider                 String
+    providerAccountId        String
+    refresh_token            String?
+    refresh_token_expires_in Int?
+    access_token             String?
+    expires_at               Int?
+    token_type               String?
+    scope                    String?
+    id_token                 String?
+    session_state            String?
+    oauth_token_secret       String?
+    oauth_token              String?
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+    @@index([userId])
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
+}
+
+model VerificationToken {
+    identifier String
+    token      String   @unique
+    expires    DateTime
+
+    @@unique([identifier, token])
+}
+
+// 
+// 
+// 
+// 
+// * USER
+// 
+// 
+// 
+// 
+model User {
+    // * METADATA
+    id            String      @id @default(cuid())
+    role          UserRole    @default(USER)
+    accountType   AccountType @default(PUBLIC)
+    createdAt     DateTime    @default(now())
+    emailVerified DateTime?
+    userVerified  Boolean?    @default(false)
+    accounts      Account[]
+    sessions      Session[]
+
+    // * BASIC INFO
+    email         String  @unique
+    name          String?
+    phone         String?
+    firstName     String?
+    preferredName String?
+    lastName      String?
+
+    // * MEDIA
+    image         String?
+    uploadedMedia Media[]
+
+    // * EVENT RELATIONS
+    events           Event[]
+    eventsOwner      Event[]         @relation("EventOwnedByUser")
+    eventsEditor     Event[]         @relation("EventEditableByUser")
+    eventsEdited     Event[]         @relation("EventLastEditedByUser")
+    eventsBookmarked Event[]         @relation("EventBookmarkedByUser")
+    eventsPublished  Event[]         @relation("EventPublishedByUser")
+    eventDrafts      EventDraft[]
+    eventTemplates   EventTemplate[]
+
+    // * ACCOUNT RELATIONS
+    accountsMusicians  Musician[]
+    accountsVenues     Venue[]
+    accountsOrganizers Organizer[]
+    accountsGroups     MusicGroup[]
+    favoriteMusicians  Musician[]   @relation("MusicianFavoritedByUser")
+    favoriteGroups     MusicGroup[] @relation("MusicGroupFavoritedByUser")
+    favoriteVenues     Venue[]      @relation("VenueFavoritedByUser")
+    favoriteOrganizers Organizer[]  @relation("OrganizerFavoritedByUser")
+}
+
+enum UserRole {
+    USER
+    ADMIN
+    SUPER
+}
+
+enum AccountType {
+    PUBLIC
+    PERFORMER
+    VENUE
+    ORGANIZER
+    ASSOCIATE
+}
+
+// 
+// 
+// 
+// 
+// * LOCATION COMPONENTS
+//
+//
+//
+//
+model Zipcode {
+    id      String  @id @default(cuid())
+    code    Int     @unique
+    county  String
+    stateId String
+    state   State   @relation(fields: [stateId], references: [id])
+    venues  Venue[]
+}
+
+model Street {
+    id         String  @id @default(cuid())
+    uniqueName String  @unique
+    name       String
+    cityId     String
+    city       City    @relation(fields: [cityId], references: [id])
+    venues     Venue[]
+}
+
+model Neighborhood {
+    id                    String      @id @default(cuid())
+    name                  String
+    uniqueName            String      @unique
+    description           String
+    boundaries            String
+    cityId                String
+    city                  City        @relation(fields: [cityId], references: [id])
+    venues                Venue[]
+    events                Event[]
+    organizersOperatingIn Organizer[]
+}
+
+model City {
+    id            String         @id @default(cuid())
+    name          String
+    uniqueName    String         @unique
+    slug          String         @unique
+    county        String
+    center        String
+    lat           Float
+    lng           Float
+    regionId      String
+    region        Region         @relation(fields: [regionId], references: [id])
+    stateId       String
+    state         State          @relation(fields: [stateId], references: [id])
+    streets       Street[]
+    neighborhoods Neighborhood[]
+    events        Event[]
+
+    // * ACCOUNT RELATIONSHIPS
+    venues                Venue[]
+    musiciansBasedIn      Musician[]
+    musiciansOperatingIn  Musician[]   @relation("MusiciansPerformInCities")
+    groupsBasedIn         MusicGroup[]
+    groupsOperatingIn     MusicGroup[] @relation("MusicGroupsPerformInCities")
+    organizersBasedIn     Organizer[]
+    organizersOperatingIn Organizer[]  @relation("OrganizersCitiesServed")
+}
+
+model Region {
+    id                    String      @id @default(cuid())
+    name                  String      @unique
+    slug                  String      @unique
+    about                 String
+    center                String
+    northeast             String
+    southwest             String
+    lat                   Float
+    lng                   Float
+    north                 Float
+    east                  Float
+    south                 Float
+    west                  Float
+    stateId               String
+    state                 State       @relation(fields: [stateId], references: [id])
+    cities                City[]
+    events                Event[]
+    venues                Venue[]
+    organizersOperatingIn Organizer[]
+}
+
+model State {
+    id                    String      @id @default(cuid())
+    name                  String      @unique
+    shortCode             String      @unique
+    lat                   Float
+    lng                   Float
+    center                String
+    regions               Region[]
+    cities                City[]
+    venues                Venue[]
+    events                Event[]
+    zipcodes              Zipcode[]
+    organizersOperatingIn Organizer[]
+}
+
+// 
+// 
+// 
+// 
+// * ALL PUBLIC FACING ACCOUNTS
+// 
+// 
+// 
+// 
+model Username {
+    id         String       @id @default(cuid())
+    username   String       @unique
+    rewriteUrl String
+    musicians  Musician[]
+    groups     MusicGroup[]
+    venues     Venue[]
+    organizers Organizer[]
+}
+
+model Genre {
+    id             String          @id @default(cuid())
+    name           String          @unique
+    displayName    String          @unique
+    events         Event[]
+    eventDrafts    EventDraft[]
+    eventTemplates EventTemplate[]
+    musicians      Musician[]
+    groups         MusicGroup[]
+    venues         Venue[]
+    organizers     Organizer[]
+    media          Media[]
+}
+
+model Media {
+    id              String @id @default(cuid())
+    name            String
+    uploadedById    String
+    uploadedBy      User   @relation(fields: [uploadedById], references: [id])
+    storageUrl      String @unique
+    storageId       String @unique
+    storageFileName String
+
+    musicianId  String?
+    musician    Musician?   @relation(fields: [musicianId], references: [id])
+    groupId     String?
+    group       MusicGroup? @relation(fields: [groupId], references: [id])
+    venueId     String?
+    venue       Venue?      @relation(fields: [venueId], references: [id])
+    organizerId String?
+    organizer   Organizer?  @relation(fields: [organizerId], references: [id])
+    genres      Genre[]
+}
+
+enum MediaType {
+    IMAGE
+    AUDIO
+    VIDEO
+}
+
+// 
+// 
+// 
+// 
+// * VENUE MODELS
+// 
+// 
+// 
+// 
+model Venue {
+    id         String         @id @default(cuid())
+    slug       String         @unique
+    name       String
+    avatar     String?
+    usernameId String?
+    username   Username?      @relation(fields: [usernameId], references: [id])
+    type       VenueType?     @default(VENUE)
+    about      String?
+    genres     Genre[]
+    keywords   VenueKeyword[]
+    media      Media[]
+    // reviews
+    stages     Stage[]
+
+    servesAlcohol       Boolean?
+    servesFood          Boolean?
+    ageRestriction      Boolean?
+    minimumAge          Int?
+    requiresReservation Boolean? @default(false)
+    reservationLink     String?
+
+    active           Boolean? @default(false)
+    accountManagerId String?
+    accountManager   User?    @relation(fields: [accountManagerId], references: [id])
+
+    affiliatedMusicians  Musician[]
+    affiliatedGroups     MusicGroup[]
+    affiliatedOrganizers Organizer[]
+
+    canText             Boolean @default(true)
+    canCall             Boolean @default(true)
+    canEmail            Boolean @default(true)
+    phone               String?
+    email               String?
+    phoneBooking        String?
+    emailBooking        String?
+    website             String?
+    socialYouTube       String?
+    socialFacebook      String?
+    socialInstagram     String?
+    socialTwitter       String?
+    businessYelp        String?
+    businessTripadvisor String?
+    businessGoogle      String?
+    businessOpentable   String?
+
+    addressLong    String
+    addressShort   String
+    streetNumber   String?
+    unit           String?
+    streetId       String
+    street         Street        @relation(fields: [streetId], references: [id])
+    zipcodeId      String
+    zipcode        Zipcode       @relation(fields: [zipcodeId], references: [id])
+    neighborhoodId String?
+    neighborhood   Neighborhood? @relation(fields: [neighborhoodId], references: [id])
+    cityId         String
+    city           City          @relation(fields: [cityId], references: [id])
+    regionId       String
+    region         Region        @relation(fields: [regionId], references: [id])
+    stateId        String
+    state          State         @relation(fields: [stateId], references: [id])
+
+    favoritedBy User[] @relation("VenueFavoritedByUser")
+
+    events           Event[]
+    inEventTemplates EventTemplate[]
+    inEventDrafts    EventDraft[]
+}
+
+enum VenueType {
+    VENUE
+    RESTAURANT
+    CAFE
+    BAR
+    BREWERY
+    WINERY
+    DISTILLERY
+    CLUB
+    THEATER
+    GALLERY
+    AREA
+    CASINO
+    LOCATION
+    COMPLEX
+    STADIUM
+}
+
+model Stage {
+    id               String          @id @default(cuid())
+    slug             String          @unique
+    name             String
+    type             StageType       @default(STAGE)
+    active           Boolean?        @default(true)
+    venueId          String
+    venue            Venue           @relation(fields: [venueId], references: [id])
+    events           Event[]
+    inEventTemplates EventTemplate[]
+    inEventDrafts    EventDraft[]
+}
+
+enum StageType {
+    STAGE
+    ROOM
+    AREA
+}
+
+model VenueKeyword {
+    id     String  @id @default(cuid())
+    name   String
+    venues Venue[]
+}
+
+// 
+// 
+// 
+// 
+// * PERFORMER MODELS
+// 
+// 
+// 
+// 
+model Musician {
+    id            String       @id @default(cuid())
+    slug          String       @unique
+    performerType String       @default("musician")
+    name          String
+    avatar        String?
+    usernameId    String?
+    username      Username?    @relation(fields: [usernameId], references: [id])
+    about         String?
+    basedInId     String?
+    basedIn       City?        @relation(fields: [basedInId], references: [id])
+    operatesIn    City[]       @relation("MusiciansPerformInCities")
+    // willPerformIn    City[]
+    genres        Genre[]
+    groups        MusicGroup[] @relation("GroupMembers")
+
+    media Media[]
+    // reviews
+
+    active           Boolean? @default(false)
+    accountManagerId String?
+    accountManager   User?    @relation(fields: [accountManagerId], references: [id])
+
+    affiliatedVenues     Venue[]
+    affiliatedOrganizers Organizer[]
+
+    canText         Boolean @default(true)
+    canCall         Boolean @default(true)
+    canEmail        Boolean @default(true)
+    phone           String?
+    email           String?
+    website         String?
+    socialYouTube   String?
+    socialSpotify   String?
+    socialBandcamp  String?
+    socialFacebook  String?
+    socialInstagram String?
+    socialTwitter   String?
+
+    favoritedBy User[] @relation("MusicianFavoritedByUser")
+
+    events           Event[]
+    inEventTemplates EventTemplate[]
+    inEventDrafts    EventDraft[]
+}
+
+model MusicGroup {
+    id            String     @id @default(cuid())
+    slug          String     @unique
+    performerType String     @default("group")
+    name          String
+    avatar        String?
+    usernameId    String?
+    username      Username?  @relation(fields: [usernameId], references: [id])
+    about         String?
+    basedInId     String?
+    basedIn       City?      @relation(fields: [basedInId], references: [id])
+    operatesIn    City[]     @relation("MusicGroupsPerformInCities")
+    // willPerformIn    City[] @relation("MusiciansWillPerformInCities")
+    genres        Genre[]
+    members       Musician[] @relation("GroupMembers")
+
+    media Media[]
+    // reviews
+
+    active           Boolean? @default(false)
+    accountManagerId String?
+    accountManager   User?    @relation(fields: [accountManagerId], references: [id])
+
+    affiliatedVenues     Venue[]
+    affiliatedOrganizers Organizer[]
+
+    canText         Boolean @default(true)
+    canCall         Boolean @default(true)
+    canEmail        Boolean @default(true)
+    phone           String?
+    email           String?
+    website         String?
+    socialYouTube   String?
+    socialSpotify   String?
+    socialBandcamp  String?
+    socialFacebook  String?
+    socialInstagram String?
+    socialTwitter   String?
+
+    favoritedBy User[] @relation("MusicGroupFavoritedByUser")
+
+    events           Event[]
+    inEventTemplates EventTemplate[]
+    inEventDrafts    EventDraft[]
+}
+
+// 
+// 
+// 
+// 
+// * ORGANIZER MODELS
+// 
+// 
+// 
+// 
+model Organizer {
+    id            String         @id @unique @default(cuid())
+    slug          String         @unique
+    name          String
+    avatar        String?
+    usernameId    String?
+    username      Username?      @relation(fields: [usernameId], references: [id])
+    about         String?
+    genres        Genre[]
+    basedInId     String?
+    basedIn       City?          @relation(fields: [basedInId], references: [id])
+    states        State[]
+    regions       Region[]
+    cities        City[]         @relation("OrganizersCitiesServed")
+    neighborhoods Neighborhood[]
+    media         Media[]
+    // reviews
+
+    active           Boolean @default(false)
+    accountManagerId String?
+    accountManager   User?   @relation(fields: [accountManagerId], references: [id])
+
+    affiliatedMusicians Musician[]
+    affiliatedGroups    MusicGroup[]
+    affiliatedVenues    Venue[]
+
+    canText         Boolean @default(true)
+    canCall         Boolean @default(true)
+    canEmail        Boolean @default(true)
+    phone           String?
+    email           String?
+    phoneInquiries  String?
+    emailInquiries  String?
+    website         String?
+    socialYouTube   String?
+    socialFacebook  String?
+    socialInstagram String?
+    socialTwitter   String?
+
+    favoritedBy User[] @relation("OrganizerFavoritedByUser")
+
+    events           Event[]
+    inEventTemplates EventTemplate[]
+    inEventDrafts    EventDraft[]
+}
+
+// 
+// 
+// 
+// 
+// * EVENT MODELS
+// 
+// 
+// 
+// 
+model TicketLink {
+    id           String      @id @default(cuid())
+    url          String
+    price        Int
+    eventId      String?
+    event        Event?      @relation(fields: [eventId], references: [id])
+    eventDraftId String?
+    eventDraft   EventDraft? @relation(fields: [eventDraftId], references: [id])
+}
+
+model EventTemplate {
+    id                  String   @id @default(cuid())
+    createdById         String
+    createdBy           User     @relation(fields: [createdById], references: [id])
+    templateName        String
+    templateDescription String?
+    eventName           String
+    eventDescription    String?
+    duration            Int? //**** IN MINUTES
+    ageRestriction      Boolean?
+    minimumAge          Int?
+    isPrivate           Boolean?
+    isFree              Boolean?
+    isChildFriendly     Boolean?
+    isHoliday           Boolean?
+    servesAlcohol       Boolean?
+    servesFood          Boolean?
+    requiresRsvp        Boolean?
+    rsvpLink            String?
+    requiresTicket      Boolean?
+
+    venueId     String?
+    venue       Venue?       @relation(fields: [venueId], references: [id])
+    stageId     String?
+    stage       Stage?       @relation(fields: [stageId], references: [id])
+    musicians   Musician[]
+    groups      MusicGroup[]
+    organizerId String?
+    organizer   Organizer?   @relation(fields: [organizerId], references: [id])
+
+    genres   Genre[]
+    keywords EventKeyword[]
+}
+
+model EventDraft {
+    id          String  @id @default(cuid())
+    slug        String? @unique
+    name        String?
+    description String?
+    createdById String
+    createdBy   User    @relation(fields: [createdById], references: [id])
+
+    timeDoor  DateTime?
+    timeStart DateTime? @db.Timestamptz(6)
+    timeEnd   DateTime? @db.Timestamptz(6)
+
+    isPrivate       Boolean?
+    isFree          Boolean?
+    isChildFriendly Boolean?
+    isHoliday       Boolean?
+    ageRestriction  Boolean?
+    minimumAge      Int?
+    servesAlcohol   Boolean?
+    servesFood      Boolean?
+    requiresRsvp    Boolean?
+    rsvpLink        String?
+    requiresTicket  Boolean?
+    ticketLinks     TicketLink[]
+
+    venueId     String?
+    venue       Venue?       @relation(fields: [venueId], references: [id])
+    stageId     String?
+    stage       Stage?       @relation(fields: [stageId], references: [id])
+    musicians   Musician[]
+    groups      MusicGroup[]
+    organizerId String?
+    organizer   Organizer?   @relation(fields: [organizerId], references: [id])
+
+    genres   Genre[]
+    keywords EventKeyword[]
+}
+
+model Event {
+    // * METADATA
+    id             String   @id @default(cuid())
+    publishedById  String
+    publishedBy    User     @relation(fields: [publishedById], references: [id], name: "EventPublishedByUser")
+    // TODO: Remove optional
+    lastEditedAt   DateTime @default(now())
+    lastEditedById String?
+    lastEditedBy   User?    @relation(fields: [lastEditedById], references: [id], name: "EventLastEditedByUser")
+    ownerId        String?
+    owner          User?    @relation(fields: [ownerId], references: [id], name: "EventOwnedByUser")
+    // TODO: Remove optional ^^^
+    editors        User[]   @relation("EventEditableByUser")
+    users          User[]
+
+    name        String
+    slug        String         @unique
+    image       String? // ***** REMOVE OPTIONAL
+    description String
+    genres      Genre[]
+    keywords    EventKeyword[]
+    status      EventStatus?   @default(SCHEDULED)
+
+    timeDoor          DateTime?
+    timeStart         DateTime  @db.Timestamptz(6)
+    timeStartPrevious DateTime?
+    timeEnd           DateTime? @db.Timestamptz(6)
+
+    isPrivate       Boolean?     @default(false)
+    isFree          Boolean?     @default(true)
+    isChildFriendly Boolean?     @default(false)
+    isHoliday       Boolean?     @default(false)
+    ageRestriction  Boolean?     @default(false)
+    minimumAge      Int?         @default(0)
+    servesAlcohol   Boolean?     @default(false)
+    servesFood      Boolean?     @default(false)
+    requiresRsvp    Boolean?     @default(false)
+    rsvpLink        String?
+    requiresTicket  Boolean      @default(false)
+    ticketLinks     TicketLink[]
+
+    venueId        String
+    venue          Venue         @relation(fields: [venueId], references: [id])
+    stageId        String
+    stage          Stage         @relation(fields: [stageId], references: [id])
+    neighborhoodId String?
+    neighborhood   Neighborhood? @relation(fields: [neighborhoodId], references: [id])
+    cityId         String?
+    city           City?         @relation(fields: [cityId], references: [id])
+    regionId       String?
+    region         Region?       @relation(fields: [regionId], references: [id])
+    stateId        String?
+    state          State?        @relation(fields: [stateId], references: [id])
+
+    musicians   Musician[]
+    groups      MusicGroup[]
+    organizerId String?
+    organizer   Organizer?   @relation(fields: [organizerId], references: [id])
+
+    bookmarkedBy User[] @relation("EventBookmarkedByUser")
+}
+
+enum EventStatus {
+    CANCELLED
+    POSTPONED
+    RESCHEDULED
+    SCHEDULED
+}
+
+model EventKeyword {
+    id          String          @id @default(cuid())
+    name        String
+    displayName String
+    events      Event[]
+    drafts      EventDraft[]
+    templates   EventTemplate[]
+}

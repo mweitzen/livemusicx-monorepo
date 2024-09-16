@@ -1,0 +1,48 @@
+USER ROUTER
+  -- getAccount
+  -- updateAccount
+  -- deleteAccount
+  -- getManagedAccounts
+  -- getFavoritedAccounts
+  -- verify
+  -- updgrade
+  -- invite
+
+ACCOUNTS ROUTER
+  * SHARED
+    -- list
+    -- search
+    -- searchUnclaimed
+    -- getPublicDetails
+    -- getAuthorizedDetails
+    -- getNextEvent
+    -- getEvents
+    -- favorite
+    -- unfavorite
+    -- create
+    -- claim
+    -- deactivate
+    -- transfer
+    -- requestAffiliation
+    -- approveAffiliation
+    -- denyAffiliation
+    -- removeAffiliation
+    -- sendInquiry
+    -- message
+
+  * VENUE
+    -- createStage
+    -- updateStage
+    -- deleteStage
+
+EVENTS ROUTER
+  * MAIN
+
+  * DRAFTS
+
+  * TEMPLATES
+
+  * SERIES
+
+
+LOCATIONS ROUTER

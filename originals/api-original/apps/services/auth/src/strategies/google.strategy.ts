@@ -1,0 +1,18 @@
+import { Injectable } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { Strategy, StrategyOptions } from 'passport-google-oauth20';
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor() {
+    super({
+      callbackURL: '',
+      clientID: '',
+      clientSecret: '',
+    } satisfies StrategyOptions);
+  }
+
+  async validate(payload: any) {
+    return { userId: payload.sub, username: payload.username };
+  }
+}
