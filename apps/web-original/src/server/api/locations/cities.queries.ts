@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@repo/db";
 
 import {
   GetCitiesInputSchema,
@@ -9,7 +9,7 @@ import {
 } from "@/lib/schema/locations/city";
 
 export const GetAllCitiesQuery = (
-  input: z.infer<typeof GetCitiesInputSchema>
+  input: z.infer<typeof GetCitiesInputSchema>,
 ): Prisma.CityFindManyArgs => ({
   take: input.take,
   skip: input.take * (input.page - 1),
@@ -107,7 +107,7 @@ export const GetAllCitiesQuery = (
   // },
 });
 export const GetCityNeighborhoodsQuery = (
-  input: z.infer<typeof GetCityNeighborhoodsInputSchema>
+  input: z.infer<typeof GetCityNeighborhoodsInputSchema>,
 ) =>
   ({
     where: {
@@ -120,9 +120,11 @@ export const GetCityNeighborhoodsQuery = (
         orderBy: { name: "asc" },
       },
     },
-  } satisfies Prisma.CityFindUniqueArgs);
+  }) satisfies Prisma.CityFindUniqueArgs;
 
-export const GetCityVenuesQuery = (input: z.infer<typeof GetCityVenuesInputSchema>) =>
+export const GetCityVenuesQuery = (
+  input: z.infer<typeof GetCityVenuesInputSchema>,
+) =>
   ({
     where: {
       id: input.id,
@@ -134,9 +136,11 @@ export const GetCityVenuesQuery = (input: z.infer<typeof GetCityVenuesInputSchem
         orderBy: { name: "asc" },
       },
     },
-  } satisfies Prisma.CityFindUniqueArgs);
+  }) satisfies Prisma.CityFindUniqueArgs;
 
-export const GetCityEventsQuery = (input: z.infer<typeof GetCityEventsInputSchema>) =>
+export const GetCityEventsQuery = (
+  input: z.infer<typeof GetCityEventsInputSchema>,
+) =>
   ({
     where: {
       id: input.id,
@@ -148,4 +152,4 @@ export const GetCityEventsQuery = (input: z.infer<typeof GetCityEventsInputSchem
     //     orderBy: { timeStart: "asc" },
     //   },
     // },
-  } satisfies Prisma.CityFindUniqueArgs);
+  }) satisfies Prisma.CityFindUniqueArgs;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Genre } from "@prisma/client";
+import type { Genre } from "@repo/db";
 import type { GroupDetails, MusicianDetails } from "@/lib/types/outputs";
 
 import { SocialIcon } from "react-social-icons";
@@ -41,7 +41,10 @@ function AccountLink({
 
 function SectionHeading(props: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h2 className="mb-1 mt-4 text-sm font-semibold uppercase md:mb-2 md:mt-6" {...props} />
+    <h2
+      className="mb-1 mt-4 text-sm font-semibold uppercase md:mb-2 md:mt-6"
+      {...props}
+    />
   );
 }
 
@@ -50,14 +53,24 @@ interface DetailsHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 function DetailsHeader({ event, ...props }: DetailsHeaderProps) {
   if (event) return <div {...props} />;
-  return <div className="mb-2 flex w-full gap-2 overflow-hidden md:mb-4 md:gap-4" {...props} />;
+  return (
+    <div
+      className="mb-2 flex w-full gap-2 overflow-hidden md:mb-4 md:gap-4"
+      {...props}
+    />
+  );
 }
 
 // interface DetailImageProps extends React.HTMLAttributes<HTMLDivElement> {
 // event?: boolean;
 // }
 function DetailsImage({ src }: { src: string | null }) {
-  return <ProfileImage className="h-20 w-20 flex-shrink-0 md:h-36 md:w-36" src={src} />;
+  return (
+    <ProfileImage
+      className="h-20 w-20 flex-shrink-0 md:h-36 md:w-36"
+      src={src}
+    />
+  );
 }
 
 function DetailsTitle({ ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
@@ -69,8 +82,12 @@ function DetailsTitle({ ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   );
 }
 
-function DetailsAccountType({ ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className="text-sm uppercase text-muted-foreground md:mb-1" {...props} />;
+function DetailsAccountType({
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement>) {
+  return (
+    <p className="text-sm uppercase text-muted-foreground md:mb-1" {...props} />
+  );
 }
 
 function AboutInformation({ about }: { about: string | null }) {
@@ -83,7 +100,9 @@ function AboutInformation({ about }: { about: string | null }) {
 
   return (
     <div>
-      <p className="line-clamp-3 text-sm text-secondary-foreground md:text-base">{about}</p>
+      <p className="line-clamp-3 text-sm text-secondary-foreground md:text-base">
+        {about}
+      </p>
 
       <Dialog>
         <DialogTrigger asChild>
@@ -194,7 +213,13 @@ function LocationInformation({ location }: { location: any }) {
   );
 }
 
-function UpcomingEvents({ href, events }: { href: string; events: MusicianDetails["events"] }) {
+function UpcomingEvents({
+  href,
+  events,
+}: {
+  href: string;
+  events: MusicianDetails["events"];
+}) {
   return (
     <div className="flex flex-col">
       <SectionHeading>Upcoming Events</SectionHeading>
@@ -204,10 +229,14 @@ function UpcomingEvents({ href, events }: { href: string; events: MusicianDetail
             <Link href={`/events/${event.slug}`} key={event.id}>
               <Card className="h-full">
                 <CardHeader>
-                  <p className="text-lg font-semibold tracking-tight">{event.name}</p>
+                  <p className="text-lg font-semibold tracking-tight">
+                    {event.name}
+                  </p>
                 </CardHeader>
                 <CardContent>
-                  <TypographyLarge>{format(event.timeStart, "MMMM d p")}</TypographyLarge>
+                  <TypographyLarge>
+                    {format(event.timeStart, "MMMM d p")}
+                  </TypographyLarge>
                   <p>{event.description}</p>
                 </CardContent>
               </Card>

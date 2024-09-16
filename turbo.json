@@ -25,6 +25,7 @@
     "db:migrate:deploy": {},
     "db:push": {},
     "db:seed": {},
+    "db:generate": {},
     "ui:add": {
       "cache": false,
       "interactive": true

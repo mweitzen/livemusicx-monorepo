@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { unstable_update, signOut, signIn } from "auth";
 import { TRPCError } from "@trpc/server";
-import { AccountType } from "@prisma/client";
+import { AccountType } from "@repo/db";
 import { createTRPCRouter, protectedProcedure } from "@/server/trpc";
 
 export const internalRouter = createTRPCRouter({
@@ -18,7 +18,7 @@ export const internalRouter = createTRPCRouter({
       z.object({
         verificationCode: z.string(),
         accountType: z.nativeEnum(AccountType),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       if (input.verificationCode !== "555-555")
@@ -42,7 +42,7 @@ export const internalRouter = createTRPCRouter({
       z.object({
         verificationCode: z.string(),
         accountType: z.nativeEnum(AccountType),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       if (!input.accountType)
@@ -90,7 +90,7 @@ export const internalRouter = createTRPCRouter({
       z.object({
         email: z.string().email("Please provide a properly formatted email."),
         name: z.string().optional(),
-      })
+      }),
     )
     .mutation(({ ctx, input }) => {
       return ctx.prisma.user.create({

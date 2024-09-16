@@ -1,5 +1,5 @@
 import { addDays } from "date-fns";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@repo/db";
 
 export const QuickViewTake = 10;
 export const QuickViewEventsWhere = {

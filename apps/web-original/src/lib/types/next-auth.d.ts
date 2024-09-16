@@ -1,4 +1,4 @@
-import type { UserRole, AccountType } from "@prisma/client";
+import type { UserRole, AccountType } from "@repo/db";
 
 declare module "next-auth" {
   interface User {

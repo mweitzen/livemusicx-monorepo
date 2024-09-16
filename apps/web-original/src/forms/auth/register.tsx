@@ -1,6 +1,6 @@
 import { api } from "@/lib/trpc/server";
 import { redirect } from "next/navigation";
-import type { AccountType } from "@prisma/client";
+import type { AccountType } from "@repo/db";
 
 import {
   Select,
@@ -31,7 +31,9 @@ export function SignUpForm() {
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Account Type</SelectLabel>
-            <SelectItem value="PERFORMER">Performer (Musician or Group)</SelectItem>
+            <SelectItem value="PERFORMER">
+              Performer (Musician or Group)
+            </SelectItem>
             <SelectItem value="VENUE">Venue</SelectItem>
             <SelectItem value="ORGANIZER">Event Organizer</SelectItem>
             <SelectItem value="ASSOCIATE">Staff or Associate</SelectItem>

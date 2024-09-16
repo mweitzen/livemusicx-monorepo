@@ -1,14 +1,15 @@
 import { z } from "zod";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@repo/db";
 
 import { SaveEventDraftInputSchema } from "@/lib/schema/events/drafts";
 import { GetDetailsInputSchema, SimpleSearchSchema } from "@/lib/schema";
 
 export const SaveEventDraftQuery = (
   input: z.infer<typeof SaveEventDraftInputSchema>,
-  userId: string
+  userId: string,
 ) => {
-  const { musicians, groups, genres, keywords, ticketLinks, ...data } = input.data;
+  const { musicians, groups, genres, keywords, ticketLinks, ...data } =
+    input.data;
 
   return {
     where: {
@@ -51,7 +52,7 @@ export const SaveEventDraftQuery = (
 
 export const GetEventDraftDetailsQuery = (
   input: z.infer<typeof GetDetailsInputSchema>,
-  userId: string
+  userId: string,
 ) =>
   ({
     where: {
@@ -75,11 +76,11 @@ export const GetEventDraftDetailsQuery = (
         },
       },
     },
-  } satisfies Prisma.UserFindUniqueArgs);
+  }) satisfies Prisma.UserFindUniqueArgs;
 
 export const GetAllEventDraftsQuery = (
   input: z.infer<typeof SimpleSearchSchema>,
-  userId: string
+  userId: string,
 ) =>
   ({
     where: {
@@ -115,4 +116,4 @@ export const GetAllEventDraftsQuery = (
         },
       },
     },
-  } satisfies Prisma.UserFindUniqueArgs);
+  }) satisfies Prisma.UserFindUniqueArgs;

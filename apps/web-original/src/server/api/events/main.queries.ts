@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { addDays } from "date-fns";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@repo/db";
 import type { User } from "next-auth";
 
 import {
@@ -8,15 +8,21 @@ import {
   GetEventDetailsInputSchema,
 } from "@/lib/schema/events/main";
 
-import { GenresWhere, QuickViewEventsWhere, VenuesWhere } from "@/server/api/shared.queries";
+import {
+  GenresWhere,
+  QuickViewEventsWhere,
+  VenuesWhere,
+} from "@/server/api/shared.queries";
 import { EventSelect } from "./shared.queries";
 
 export const GetUpcomingEventsQuery = (
   input: z.infer<typeof GetUpcomingEventsInputSchema>,
-  user?: User | null
+  user?: User | null,
 ) => {
   const where: Prisma.EventWhereInput = {
-    timeStart: { gte: input.dateStart ? new Date(input.dateStart) : new Date() },
+    timeStart: {
+      gte: input.dateStart ? new Date(input.dateStart) : new Date(),
+    },
     NOT: {
       status: {
         in: ["CANCELLED", "POSTPONED"],
@@ -117,7 +123,9 @@ export const GetUpcomingEventsQuery = (
   } satisfies Prisma.EventFindManyArgs;
 };
 
-export const GetEventDetailsQuery = (input: z.infer<typeof GetEventDetailsInputSchema>) =>
+export const GetEventDetailsQuery = (
+  input: z.infer<typeof GetEventDetailsInputSchema>,
+) =>
   ({
     where: {
       id: input.id || undefined,
@@ -138,7 +146,7 @@ export const GetEventDetailsQuery = (input: z.infer<typeof GetEventDetailsInputS
         },
       },
     },
-  } satisfies Prisma.EventFindUniqueArgs);
+  }) satisfies Prisma.EventFindUniqueArgs;
 
 export const GetEventsQuickViewQuery = {
   take: 10,

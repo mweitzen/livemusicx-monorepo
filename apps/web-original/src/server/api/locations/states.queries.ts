@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@repo/db";
 
 import {
   GetStateRegionsInputSchema,
@@ -14,7 +14,9 @@ import {
  *
  ** GET STATES */
 export const GetAllStatesQuery: Prisma.StateFindManyArgs = {};
-export const GetStateRegionsQuery = (input: z.infer<typeof GetStateRegionsInputSchema>) =>
+export const GetStateRegionsQuery = (
+  input: z.infer<typeof GetStateRegionsInputSchema>,
+) =>
   ({
     where: {
       id: input.id,
@@ -26,9 +28,11 @@ export const GetStateRegionsQuery = (input: z.infer<typeof GetStateRegionsInputS
         orderBy: { name: "asc" },
       },
     },
-  } satisfies Prisma.StateFindUniqueArgs);
+  }) satisfies Prisma.StateFindUniqueArgs;
 
-export const GetStateCitiesQuery = (input: z.infer<typeof GetStateCitiesInputSchema>) =>
+export const GetStateCitiesQuery = (
+  input: z.infer<typeof GetStateCitiesInputSchema>,
+) =>
   ({
     where: {
       id: input.id,
@@ -40,9 +44,11 @@ export const GetStateCitiesQuery = (input: z.infer<typeof GetStateCitiesInputSch
         orderBy: { name: "asc" },
       },
     },
-  } satisfies Prisma.StateFindUniqueArgs);
+  }) satisfies Prisma.StateFindUniqueArgs;
 
-export const GetStateVenuesQuery = (input: z.infer<typeof GetStateVenuesInputSchema>) =>
+export const GetStateVenuesQuery = (
+  input: z.infer<typeof GetStateVenuesInputSchema>,
+) =>
   ({
     where: {
       id: input.id,
@@ -54,8 +60,10 @@ export const GetStateVenuesQuery = (input: z.infer<typeof GetStateVenuesInputSch
         orderBy: { name: "asc" },
       },
     },
-  } satisfies Prisma.StateFindUniqueArgs);
-export const GetStateEventsQuery = (input: z.infer<typeof GetStateEventsInputSchema>) =>
+  }) satisfies Prisma.StateFindUniqueArgs;
+export const GetStateEventsQuery = (
+  input: z.infer<typeof GetStateEventsInputSchema>,
+) =>
   ({
     where: {
       id: input.id,
@@ -67,4 +75,4 @@ export const GetStateEventsQuery = (input: z.infer<typeof GetStateEventsInputSch
     //     orderBy: { timeStart: "asc" },
     //   },
     // },
-  } satisfies Prisma.StateFindUniqueArgs);
+  }) satisfies Prisma.StateFindUniqueArgs;

@@ -3,9 +3,12 @@ import { z } from "zod";
 import { api } from "@/lib/trpc/server";
 import { signOut, signIn } from "auth";
 
-import { AccountType } from "@prisma/client";
+import { AccountType } from "@repo/db";
 
-export async function upgradeUser(prevState: { message: string }, formData: FormData) {
+export async function upgradeUser(
+  prevState: { message: string },
+  formData: FormData,
+) {
   const schema = z.object({
     accountType: z.nativeEnum(AccountType),
   });

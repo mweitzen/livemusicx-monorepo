@@ -1,10 +1,14 @@
 import { z } from "zod";
 
-import { VenueType } from "@prisma/client";
+import { VenueType } from "@repo/db";
 import { EventInputSchemaBase } from "@/lib/schema/events/shared";
 import { GetDetailsInputSchema, NoInputSchema } from "@/lib/schema";
 
-import { SearchSchemaBase, defaultPaginationValues, groupSizes } from "@/lib/schema";
+import {
+  SearchSchemaBase,
+  defaultPaginationValues,
+  groupSizes,
+} from "@/lib/schema";
 
 export const GetEventsQuickViewInputSchema = NoInputSchema;
 export const EventCountOutputSchema = z.number().nullable();
@@ -30,12 +34,12 @@ export const PublishEventInputSchema = EventInputSchemaBase.refine(
     (schema.ageRestriction === undefined && schema.minimumAge === undefined) ||
     (schema.ageRestriction && schema.minimumAge !== undefined) ||
     (!schema.ageRestriction && schema.minimumAge === undefined),
-  "If you set an age restriction, you must provide a minimum age."
+  "If you set an age restriction, you must provide a minimum age.",
 ).refine(
   (schema) =>
     (schema.requiresTicket === undefined && schema.ticketLinks === undefined) ||
     (schema.requiresTicket &&
       schema.ticketLinks !== undefined &&
       schema.ticketLinks.length > 0),
-  "If you set an requires ticket, you must provide at least one ticket link."
+  "If you set an requires ticket, you must provide at least one ticket link.",
 );

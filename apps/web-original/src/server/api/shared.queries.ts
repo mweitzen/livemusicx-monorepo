@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { addDays } from "date-fns";
 import type { User } from "next-auth";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@repo/db";
 
 import { GetUpcomingEventsInputSchema } from "@/lib/schema/events/main";
 
@@ -74,7 +74,7 @@ export const GenresWhere = (genres?: string[]) => {
 
 export const VenuesWhere = (
   input: z.infer<typeof GetUpcomingEventsInputSchema>,
-  user?: User | null
+  user?: User | null,
 ): Prisma.VenueWhereInput => ({
   favoritedBy:
     user && input.favorites !== undefined
@@ -155,7 +155,9 @@ export const VenuesWhere = (
           some: {
             AND: [
               {
-                timeStart: input.dateStart ? { gte: new Date(input.dateStart) } : undefined,
+                timeStart: input.dateStart
+                  ? { gte: new Date(input.dateStart) }
+                  : undefined,
               },
               {
                 timeStart: input.dateEnd
@@ -166,8 +168,10 @@ export const VenuesWhere = (
           },
         }
       : undefined,
-  servesAlcohol: input.servesAlcohol !== undefined ? input.servesAlcohol || null : undefined,
-  servesFood: input.servesFood !== undefined ? input.servesFood || null : undefined,
+  servesAlcohol:
+    input.servesAlcohol !== undefined ? input.servesAlcohol || null : undefined,
+  servesFood:
+    input.servesFood !== undefined ? input.servesFood || null : undefined,
   minimumAge:
     input.minimumAge !== undefined && input.minimumAge > 0
       ? {

@@ -1,5 +1,5 @@
 import { signIn, signOut } from "auth";
-import type { AccountType } from "@prisma/client";
+import type { AccountType } from "@repo/db";
 
 import { toast } from "sonner";
 import { Button, type ButtonProps } from "@/components/ui/button";
@@ -35,12 +35,17 @@ function SignOutButton() {
   );
 }
 
-function RegisterButton({ accountType, ...props }: { accountType: AccountType } & ButtonProps) {
+function RegisterButton({
+  accountType,
+  ...props
+}: { accountType: AccountType } & ButtonProps) {
   return (
     <form
       action={async () => {
         "use server";
-        await signIn("google", { redirectTo: `/account/upgrade?accountType=${accountType}` });
+        await signIn("google", {
+          redirectTo: `/account/upgrade?accountType=${accountType}`,
+        });
       }}
     >
       <Button variant="outline" type="submit" {...props}>
@@ -50,7 +55,10 @@ function RegisterButton({ accountType, ...props }: { accountType: AccountType } 
   );
 }
 
-function GoogleButton({ accountType, ...props }: { accountType?: AccountType } & ButtonProps) {
+function GoogleButton({
+  accountType,
+  ...props
+}: { accountType?: AccountType } & ButtonProps) {
   return (
     <form
       action={async () => {

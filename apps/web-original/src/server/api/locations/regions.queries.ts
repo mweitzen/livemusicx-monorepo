@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@repo/db";
 
 import {
   GetRegionsInputSchema,
@@ -9,7 +9,7 @@ import {
 } from "@/lib/schema/locations/region";
 
 export const GetAllRegionsQuery = (
-  input: z.infer<typeof GetRegionsInputSchema>
+  input: z.infer<typeof GetRegionsInputSchema>,
 ): Prisma.RegionFindManyArgs => ({
   take: input.take,
   skip: input.take * (input.page - 1),
@@ -22,7 +22,9 @@ export const GetAllRegionsQuery = (
   orderBy: { name: "asc" },
 });
 
-export const GetRegionCitiesQuery = (input: z.infer<typeof GetRegionCitiesInputSchema>) =>
+export const GetRegionCitiesQuery = (
+  input: z.infer<typeof GetRegionCitiesInputSchema>,
+) =>
   ({
     where: {
       id: input.id,
@@ -34,9 +36,11 @@ export const GetRegionCitiesQuery = (input: z.infer<typeof GetRegionCitiesInputS
         orderBy: { name: "asc" },
       },
     },
-  } satisfies Prisma.RegionFindUniqueArgs);
+  }) satisfies Prisma.RegionFindUniqueArgs;
 
-export const GetRegionVenuesQuery = (input: z.infer<typeof GetRegionVenuesInputSchema>) =>
+export const GetRegionVenuesQuery = (
+  input: z.infer<typeof GetRegionVenuesInputSchema>,
+) =>
   ({
     where: {
       id: input.id,
@@ -48,10 +52,10 @@ export const GetRegionVenuesQuery = (input: z.infer<typeof GetRegionVenuesInputS
         orderBy: { name: "asc" },
       },
     },
-  } satisfies Prisma.RegionFindUniqueArgs);
+  }) satisfies Prisma.RegionFindUniqueArgs;
 
 export const GetRegionEventsQuery = (
-  input: z.infer<typeof GetRegionEventsInputSchema>
+  input: z.infer<typeof GetRegionEventsInputSchema>,
 ): Prisma.RegionFindUniqueArgs =>
   ({
     where: {
@@ -64,4 +68,4 @@ export const GetRegionEventsQuery = (
     //     orderBy: { timeStart: "asc" },
     //   },
     // },
-  } satisfies Prisma.RegionFindUniqueArgs);
+  }) satisfies Prisma.RegionFindUniqueArgs;

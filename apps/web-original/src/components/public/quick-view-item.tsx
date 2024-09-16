@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
 
-import type { Genre } from "@prisma/client";
+import type { Genre } from "@repo/db";
 import type { QuickViewEvents } from "@/server/api/events/main";
 import type { QuickViewVenues } from "@/server/api/accounts/venues";
 import type { QuickViewPerformers } from "@/server/api/accounts/performers";
@@ -13,10 +13,19 @@ import { Badge } from "@/components/ui/badge";
 import { ProfileImage } from "@/components/shared/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardFooter, CardContent } from "@/components/ui/card";
-import { TypographyMuted, TypographySmall } from "@/components/shared/typography";
+import {
+  TypographyMuted,
+  TypographySmall,
+} from "@/components/shared/typography";
 import { CalendarIcon, ClockIcon, MapPinIcon } from "@heroicons/react/20/solid";
 
-function QuickViewItem({ children, href }: { children: React.ReactNode; href: string }) {
+function QuickViewItem({
+  children,
+  href,
+}: {
+  children: React.ReactNode;
+  href: string;
+}) {
   return (
     <Link href={href}>
       <Card className="w-60 overflow-hidden">{children}</Card>
@@ -62,7 +71,10 @@ function CardGenresFooter({ genres }: { genres?: Genre[] }) {
 function VenueQuickViewItem({ venue }: { venue: QuickViewVenues[number] }) {
   return (
     <QuickViewItem href={`/venues/${venue.slug}`}>
-      <QuickViewItemImage imageSrc={venue.avatar} imageAlt={`${venue.name} card image`} />
+      <QuickViewItemImage
+        imageSrc={venue.avatar}
+        imageAlt={`${venue.name} card image`}
+      />
       <QuickViewItemContent>
         <QuickViewItemTitle>{venue.name}</QuickViewItemTitle>
         <TypographyMuted className="uppercase">{venue.type}</TypographyMuted>
@@ -74,8 +86,12 @@ function VenueQuickViewItem({ venue }: { venue: QuickViewVenues[number] }) {
         </p>
         <p className="truncate align-middle">
           <TypographySmall>
-            <CalendarIcon className="mr-2 inline-block h-4 w-4 flex-shrink-0" strokeWidth={2} />
-            {format(venue.events[0].timeStart, "MMM d")} | {venue.events[0].name}
+            <CalendarIcon
+              className="mr-2 inline-block h-4 w-4 flex-shrink-0"
+              strokeWidth={2}
+            />
+            {format(venue.events[0].timeStart, "MMM d")} |{" "}
+            {venue.events[0].name}
           </TypographySmall>
         </p>
       </QuickViewItemContent>
@@ -84,7 +100,11 @@ function VenueQuickViewItem({ venue }: { venue: QuickViewVenues[number] }) {
   );
 }
 
-function PerformerQuickViewItem({ performer }: { performer: QuickViewPerformers[number] }) {
+function PerformerQuickViewItem({
+  performer,
+}: {
+  performer: QuickViewPerformers[number];
+}) {
   return (
     <QuickViewItem href={`/${performer.performerType}s/${performer.slug}`}>
       <QuickViewItemImage
@@ -93,10 +113,15 @@ function PerformerQuickViewItem({ performer }: { performer: QuickViewPerformers[
       />
       <QuickViewItemContent>
         <QuickViewItemTitle>{performer.name}</QuickViewItemTitle>
-        <TypographyMuted className="uppercase">{performer.performerType}</TypographyMuted>
+        <TypographyMuted className="uppercase">
+          {performer.performerType}
+        </TypographyMuted>
         <p className="truncate align-middle">
           <TypographySmall>
-            <CalendarIcon className="mr-2 inline-block h-4 w-4" strokeWidth={2} />{" "}
+            <CalendarIcon
+              className="mr-2 inline-block h-4 w-4"
+              strokeWidth={2}
+            />{" "}
             {format(performer.events[0].timeStart, "MMM d")}
           </TypographySmall>
         </p>
@@ -112,7 +137,11 @@ function PerformerQuickViewItem({ performer }: { performer: QuickViewPerformers[
   );
 }
 
-function OrganizerQuickViewItem({ organizer }: { organizer: QuickViewOrganizers[number] }) {
+function OrganizerQuickViewItem({
+  organizer,
+}: {
+  organizer: QuickViewOrganizers[number];
+}) {
   return (
     <QuickViewItem href={`/organizers/${organizer.slug}`}>
       <QuickViewItemImage
@@ -146,7 +175,8 @@ function EventQuickViewItem({ event }: { event: QuickViewEvents[number] }) {
     <QuickViewItem href={`/events/${event.slug}`}>
       <AspectRatio ratio={16 / 9} className="relative overflow-hidden">
         <span className="absolute left-0 top-0 inline-flex gap-1 rounded-br-xl bg-black/50 py-2 pl-2 pr-4 font-bold uppercase text-white backdrop-blur-sm">
-          <CalendarIcon className="h-5 w-5" /> {format(event.timeStart, "MMM d")}
+          <CalendarIcon className="h-5 w-5" />{" "}
+          {format(event.timeStart, "MMM d")}
         </span>
 
         <EventTag event={event} />
@@ -176,7 +206,9 @@ function EventQuickViewItem({ event }: { event: QuickViewEvents[number] }) {
       </QuickViewItemContent>
       <CardFooter className="gap-2">
         {event.genres && event.genres.length ? (
-          event.genres.map((genre) => <Badge key={genre.name}>{genre.displayName}</Badge>)
+          event.genres.map((genre) => (
+            <Badge key={genre.name}>{genre.displayName}</Badge>
+          ))
         ) : (
           <Badge variant="secondary">No genres.</Badge>
         )}
@@ -217,7 +249,7 @@ function QuickViewEmptyState() {
 
 function EventLoadingItem() {
   return (
-    <Card className="flex w-60 flex-shrink-0 flex-col gap-1 min-h-32">
+    <Card className="flex min-h-32 w-60 flex-shrink-0 flex-col gap-1">
       <Skeleton className="h-32 w-full" />
       <CardContent>
         <Skeleton className="h-7 w-full rounded-full" />
@@ -236,7 +268,7 @@ function EventLoadingItem() {
 
 function AccountLoadingItem() {
   return (
-    <Card className="w-60 flex-shrink-0 flex-col gap-1 min-h-32">
+    <Card className="min-h-32 w-60 flex-shrink-0 flex-col gap-1">
       <Skeleton className="h-32 w-32 flex-shrink-0 rounded-full" />
       <Skeleton className="h-7 w-full rounded-full" />
       <span className="flex items-end gap-2">

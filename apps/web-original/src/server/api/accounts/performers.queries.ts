@@ -2,13 +2,13 @@ import { z } from "zod";
 import { addDays } from "date-fns";
 
 import type { User } from "next-auth";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@repo/db";
 
 import { GetAllGroupsInputSchema } from "@/lib/schema/accounts/groups";
 
 export const GetAllPerformersWhere = (
   input: z.infer<typeof GetAllGroupsInputSchema>,
-  user?: User | null
+  user?: User | null,
 ) => {
   return {
     favoritedBy:
@@ -43,7 +43,8 @@ export const GetAllPerformersWhere = (
           ]
         : undefined,
     basedIn:
-      input.regionId! === undefined || (input.cities !== undefined && input.cities.length)
+      input.regionId! === undefined ||
+      (input.cities !== undefined && input.cities.length)
         ? {
             id:
               input.cities !== undefined && input.cities.length
@@ -73,7 +74,9 @@ export const GetAllPerformersWhere = (
             some: {
               AND: [
                 {
-                  timeStart: input.dateStart ? { gte: new Date(input.dateStart) } : undefined,
+                  timeStart: input.dateStart
+                    ? { gte: new Date(input.dateStart) }
+                    : undefined,
                 },
                 {
                   timeStart: input.dateEnd

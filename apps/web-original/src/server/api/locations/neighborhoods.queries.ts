@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@repo/db";
 
 import {
   GetNeighborhoodEventsInputSchema,
@@ -8,7 +8,7 @@ import {
 } from "@/lib/schema/locations/neighborhood";
 
 export const GetAllNeighborhoodsQuery = (
-  input: z.infer<typeof GetNeighborhoodsInputSchema>
+  input: z.infer<typeof GetNeighborhoodsInputSchema>,
 ): Prisma.NeighborhoodFindManyArgs => ({
   take: input.take,
   skip: input.take * (input.page - 1),
@@ -57,7 +57,7 @@ export const GetAllNeighborhoodsQuery = (
 });
 
 export const GetNeighborhoodVenuesQuery = (
-  input: z.infer<typeof GetNeighborhoodVenuesInputSchema>
+  input: z.infer<typeof GetNeighborhoodVenuesInputSchema>,
 ) =>
   ({
     where: {
@@ -70,10 +70,10 @@ export const GetNeighborhoodVenuesQuery = (
         orderBy: { name: "asc" },
       },
     },
-  } satisfies Prisma.NeighborhoodFindUniqueArgs);
+  }) satisfies Prisma.NeighborhoodFindUniqueArgs;
 
 export const GetNeighborhoodEventsQuery = (
-  input: z.infer<typeof GetNeighborhoodEventsInputSchema>
+  input: z.infer<typeof GetNeighborhoodEventsInputSchema>,
 ) =>
   ({
     where: {
@@ -86,4 +86,4 @@ export const GetNeighborhoodEventsQuery = (
     //     orderBy: { timeStart: "asc" },
     //   },
     // },
-  } satisfies Prisma.NeighborhoodFindUniqueArgs);
+  }) satisfies Prisma.NeighborhoodFindUniqueArgs;

@@ -1,4 +1,4 @@
-// import "@repo/ui/styles.css";
+import "@repo/ui/styles.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import type { Metadata, Viewport } from "next";

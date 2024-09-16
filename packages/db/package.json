@@ -9,9 +9,9 @@
     "db:migrate:dev": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:seed": "tsx src/seed.ts",
+    "db:generate": "prisma generate",
     "dev": "tsup src/* --watch",
     "format": "prisma format",
-    "generate": "prisma generate",
     "lint": "eslint . --max-warnings 0",
     "studio": "prisma studio",
     "clean": "git clean -xdf .cache .turbo dist node_modules"

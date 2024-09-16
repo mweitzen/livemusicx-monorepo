@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import type { Genre } from "@prisma/client";
+import type { Genre } from "@repo/db";
 
 import { Badge } from "@/components/ui/badge";
 import { ProfileImage } from "@/components/shared/image";
@@ -9,10 +9,16 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import { CalendarIcon, ClockIcon, MapPinIcon } from "@heroicons/react/24/solid";
 
-function ListItem({ children, href }: { children: React.ReactNode; href: string }) {
+function ListItem({
+  children,
+  href,
+}: {
+  children: React.ReactNode;
+  href: string;
+}) {
   return (
     <Link href={href}>
-      <Card className="flex flex-col gap-2 overflow-hidden sm:flex-row h-96 md:h-28">
+      <Card className="flex h-96 flex-col gap-2 overflow-hidden sm:flex-row md:h-28">
         {children}
       </Card>
     </Link>
@@ -48,11 +54,15 @@ function ListItemImage({
 }
 
 function ListItemContent({ children }: { children: React.ReactNode }) {
-  return <CardContent className="shrink overflow-hidden">{children}</CardContent>;
+  return (
+    <CardContent className="shrink overflow-hidden">{children}</CardContent>
+  );
 }
 
 function ListItemTitle(props: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className="truncate text-lg font-semibold tracking-tight" {...props} />;
+  return (
+    <p className="truncate text-lg font-semibold tracking-tight" {...props} />
+  );
 }
 
 function ListItemGenres({ genres }: { genres?: Genre[] }) {
@@ -242,4 +252,10 @@ function ListItemGenres({ genres }: { genres?: Genre[] }) {
 //   );
 // }
 
-export { ListItem, ListItemImage, ListItemContent, ListItemTitle, ListItemGenres };
+export {
+  ListItem,
+  ListItemImage,
+  ListItemContent,
+  ListItemTitle,
+  ListItemGenres,
+};

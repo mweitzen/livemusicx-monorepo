@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { VenueType, StageType } from "@prisma/client";
+import { VenueType, StageType } from "@repo/db";
 
 import { CreateAccountSchema } from "./shared";
 import {
@@ -22,7 +22,7 @@ export const GetAllVenuesOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const GetVenueDetailsInputSchema = GetDetailsInputSchema;
@@ -38,7 +38,7 @@ export const GetVenueEventsOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const GetVenueQuickViewInputSchema = NoInputSchema;
@@ -48,7 +48,7 @@ export const GetVenueQuickViewOutputSchema = z.array(
   //   name: z.string(),
   //   slug: z.string(),
   // })
-  z.any()
+  z.any(),
 );
 
 export const CreateVenueBaseSchema = CreateAccountSchema.extend({
@@ -58,9 +58,15 @@ export const CreateVenueBaseSchema = CreateAccountSchema.extend({
   phoneBooking: z.string().optional(),
   emailBooking: z.string().optional(),
   businessYelp: z.string().url("Please provide a full, valid URL").optional(),
-  businessTripAdvisor: z.string().url("Please provide a full, valid URL").optional(),
+  businessTripAdvisor: z
+    .string()
+    .url("Please provide a full, valid URL")
+    .optional(),
   businessGoogle: z.string().url("Please provide a full, valid URL").optional(),
-  businessOpenTable: z.string().url("Please provide a full, valid URL").optional(),
+  businessOpenTable: z
+    .string()
+    .url("Please provide a full, valid URL")
+    .optional(),
   servesAlcohol: z.boolean().optional().default(false),
   servesFood: z.boolean().optional().default(false),
   addressLong: z.string(),
@@ -85,7 +91,7 @@ export const CreateVenueInuptSchema = CreateVenueBaseSchema.extend({
   (schema) =>
     (schema.ageRestriction === undefined && schema.minimumAge === undefined) ||
     (schema.ageRestriction && schema.minimumAge !== undefined) ||
-    (!schema.ageRestriction && schema.minimumAge === undefined)
+    (!schema.ageRestriction && schema.minimumAge === undefined),
 );
 
 export const CreateVenueOutputSchema = z.object({
@@ -116,7 +122,8 @@ export const ClaimVenueInputSchema = CreateVenueBaseSchema.omit({
   })
   .refine(
     (schema) =>
-      (schema.ageRestriction === undefined && schema.minimumAge === undefined) ||
+      (schema.ageRestriction === undefined &&
+        schema.minimumAge === undefined) ||
       (schema.ageRestriction && schema.minimumAge !== undefined) ||
-      (!schema.ageRestriction && schema.minimumAge === undefined)
+      (!schema.ageRestriction && schema.minimumAge === undefined),
   );
