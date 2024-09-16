@@ -10,11 +10,23 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
     "dev": {
-      "dependsOn": ["start:db"],
       "cache": false,
       "persistent": true
     },
-    "start:db": {}
+    "clean": {
+      "cache": false
+    },
+    "db:start": {},
+    "db:stop": {},
+    "db:migrate:deploy": {},
+    "db:push": {},
+    "db:seed": {},
+    "generate": {
+      "dependsOn": ["^generate"]
+    }
   }
 }

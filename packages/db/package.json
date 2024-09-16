@@ -13,11 +13,11 @@
     "format": "prisma format",
     "generate": "prisma generate",
     "lint": "eslint . --max-warnings 0",
-    "prebuild": "npm run generate",
-    "predev": "npm run generate",
     "studio": "prisma studio"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.5.5",
     "eslint": "^9.10.0",
     "prisma": "^5.19.1",

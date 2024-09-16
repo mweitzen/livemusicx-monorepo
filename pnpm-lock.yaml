@@ -705,6 +705,12 @@ importers:
         specifier: ^5.9.1
         version: 5.19.1(prisma@5.19.1)
     devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../tooling/typescript-config
       '@types/node':
         specifier: ^22.5.5
         version: 22.5.5
