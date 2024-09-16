@@ -1,4 +1,5 @@
-import "./globals.css";
+// import "./globals.css";
+import "@repo/ui/styles.css";
 import localFont from "next/font/local";
 import type { Metadata, Viewport } from "next";
 import { content } from "@/content/NEW/app";

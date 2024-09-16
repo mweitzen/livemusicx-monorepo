@@ -7,14 +7,13 @@ export default {
   content: base.content,
   presets: [base],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
+      spacing: {
+        navigation: "var(--navigation-bar-height)",
+        sidebar: "var(--sidebar-width)",
+        gutter: "var(--gutter-sm)",
+        "gutter-lg": "var(--gutter-md)",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
