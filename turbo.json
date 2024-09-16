@@ -11,6 +11,7 @@
       "dependsOn": ["^lint"]
     },
     "dev": {
+      "dependsOn": ["start:db"],
       "cache": false,
       "persistent": true
     },
