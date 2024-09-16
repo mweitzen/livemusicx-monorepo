@@ -10,7 +10,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "clean": "git clean -xdf .cache .expo .turbo android ios node_modules"
   },
   "jest": {
     "preset": "jest-expo"

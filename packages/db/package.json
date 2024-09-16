@@ -13,7 +13,8 @@
     "format": "prisma format",
     "generate": "prisma generate",
     "lint": "eslint . --max-warnings 0",
-    "studio": "prisma studio"
+    "studio": "prisma studio",
+    "clean": "git clean -xdf .cache .turbo dist node_modules"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

@@ -3,6 +3,7 @@
   "main": "index.js",
   "version": "1.0.0",
   "scripts": {
+    "clean": "git clean -xdf .cache .expo .turbo android ios node_modules",
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",

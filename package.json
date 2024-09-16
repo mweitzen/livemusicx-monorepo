@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "clean": "turbo run clean && rm -rf node_modules && rm -rf .turbo",
+    "clean": "turbo run clean && git clean -xdf .cache .turbo dist node_modules",
     "dev": "turbo run dev",
     "dev:client": "turbo run dev:client",
     "dev:server": "turbo run dev:server",

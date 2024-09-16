@@ -8,8 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rm -rf .next && rm -rm node_modules",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "clean": "git clean -xdf .cache .next .turbo node_modules"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

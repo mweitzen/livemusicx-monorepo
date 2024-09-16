@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nest start --watch",
     "build": "nest build",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:db": "docker compose up -d",
