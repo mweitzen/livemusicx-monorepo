@@ -51,6 +51,20 @@ async function bootstrap() {
   swagger.setup();
 
   /**
+   * Enable Shutdown Hooks
+   */
+  app.enableShutdownHooks();
+
+  /**
+   * Handle SIGNINT
+   */
+  process.on('SIGINT', async () => {
+    console.log('Gracefully shutting down...');
+    await app.close();
+    process.exit(0);
+  });
+
+  /**
    * Start All Apps and Listen
    */
   await app.startAllMicroservices();
