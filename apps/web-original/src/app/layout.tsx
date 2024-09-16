@@ -1,4 +1,4 @@
-import "./globals.css";
+// import "@repo/ui/styles.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import type { Metadata, Viewport } from "next";
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL
       ? `https://${process.env.NEXT_PUBLIC_SITE_URL}`
-      : "http://localhost:3000"
+      : "http://localhost:3000",
   ),
   appleWebApp: {
     capable: true,
@@ -53,10 +53,16 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className, navigationSpacerClass, "antialiased")}>
+      <body
+        className={cn(inter.className, navigationSpacerClass, "antialiased")}
+      >
         <Providers>
           <Navigation />
           {children}

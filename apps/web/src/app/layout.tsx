@@ -1,4 +1,3 @@
-// import "./globals.css";
 import "@repo/ui/styles.css";
 import localFont from "next/font/local";
 import type { Metadata, Viewport } from "next";
