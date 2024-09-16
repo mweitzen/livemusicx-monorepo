@@ -18,6 +18,6 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "typescript": "latest"
+    "typescript": "catalog:"
   }
 }
