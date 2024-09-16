@@ -15,7 +15,8 @@
     "db:push": "turbo run db:push",
     "db:seed": "turbo run db:seed",
     "db:studio": "turbo -F @repo/db",
-    "generate": "turbo run generate"
+    "generate": "turbo run generate",
+    "ui:add": "turbo run ui:add"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

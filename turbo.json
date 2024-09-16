@@ -25,6 +25,10 @@
     "db:migrate:deploy": {},
     "db:push": {},
     "db:seed": {},
+    "ui:add": {
+      "cache": false,
+      "interactive": true
+    },
     "generate": {
       "dependsOn": ["^generate"]
     }
