@@ -6,10 +6,10 @@ import {
   GetCityNeighborhoodsInputSchema,
   GetCityVenuesInputSchema,
   GetCityEventsInputSchema,
-} from "@/lib/schema/locations/city";
+} from "../../../lib-tmp/schema/locations/city";
 
 export const GetAllCitiesQuery = (
-  input: z.infer<typeof GetCitiesInputSchema>,
+  input: z.infer<typeof GetCitiesInputSchema>
 ): Prisma.CityFindManyArgs => ({
   take: input.take,
   skip: input.take * (input.page - 1),
@@ -107,7 +107,7 @@ export const GetAllCitiesQuery = (
   // },
 });
 export const GetCityNeighborhoodsQuery = (
-  input: z.infer<typeof GetCityNeighborhoodsInputSchema>,
+  input: z.infer<typeof GetCityNeighborhoodsInputSchema>
 ) =>
   ({
     where: {
@@ -123,7 +123,7 @@ export const GetCityNeighborhoodsQuery = (
   }) satisfies Prisma.CityFindUniqueArgs;
 
 export const GetCityVenuesQuery = (
-  input: z.infer<typeof GetCityVenuesInputSchema>,
+  input: z.infer<typeof GetCityVenuesInputSchema>
 ) =>
   ({
     where: {
@@ -139,7 +139,7 @@ export const GetCityVenuesQuery = (
   }) satisfies Prisma.CityFindUniqueArgs;
 
 export const GetCityEventsQuery = (
-  input: z.infer<typeof GetCityEventsInputSchema>,
+  input: z.infer<typeof GetCityEventsInputSchema>
 ) =>
   ({
     where: {

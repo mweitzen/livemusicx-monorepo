@@ -1,4 +1,4 @@
-import type { RouterOutputs, RouterInputs } from "@/lib/trpc/shared";
+import type { RouterOutputs, RouterInputs } from "../../../index";
 
 import {
   createTRPCRouter,
@@ -17,29 +17,29 @@ import {
   EventCountOutputSchema,
   GetEventDetailsInputSchema,
   GetUpcomingEventsInputSchema,
-} from "@/lib/schema/events";
+} from "../../../lib-tmp/schema/events";
 
 import {
   NoInputSchema,
   SimpleSearchSchema,
   IDInputSchema,
-} from "@/lib/schema/shared";
+} from "../../../lib-tmp/schema/shared";
 
-import { PublishEventInputSchema } from "@/lib/schema/events/main";
+import { PublishEventInputSchema } from "../../../lib-tmp/schema/events/main";
 
 /*
  *
  *
  *
  * TYPES */
-type EventsOutputs = RouterOutputs["events"]["main"];
+type EventsOutputs = RouterOutputs["v1"]["events"]["main"];
 
 type UpcomingEvents = EventsOutputs["getUpcoming"];
 type QuickViewEvents = EventsOutputs["getQuickView"];
 type FavoriteEvents = EventsOutputs["getBookmarked"];
 type EventDetails = EventsOutputs["getDetails"];
 
-type EventsInputs = RouterInputs["events"]["main"];
+type EventsInputs = RouterInputs["v1"]["events"]["main"];
 
 type GetUpcomingEventsInput = EventsInputs["getUpcoming"];
 type GetUsersFavoriteEventsInput = EventsInputs["getBookmarked"];
@@ -59,8 +59,8 @@ const mainRouter = createTRPCRouter({
     .output(EventCountOutputSchema)
     .query(({ ctx, input }) =>
       // TODO
-      // ctx.prisma.event.count(GetUpcomingEventsQuery(input, ctx.session?.user))
-      ctx.prisma.event.count({
+      // ctx.db.event.count(GetUpcomingEventsQuery(input, ctx.session?.user))
+      ctx.db.event.count({
         where: {
           timeStart: {
             gte: input.dateStart ? new Date(input.dateStart) : new Date(),
@@ -77,22 +77,20 @@ const mainRouter = createTRPCRouter({
   getUpcoming: publicProcedure
     .input(GetUpcomingEventsInputSchema)
     .query(async ({ ctx, input }) =>
-      ctx.prisma.event.findMany(
-        GetUpcomingEventsQuery(input, ctx.session?.user)
-      )
+      ctx.db.event.findMany(GetUpcomingEventsQuery(input, ctx.session?.user))
     ),
 
   getDetails: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/events/{id}", tags: ["events"] } })
     .input(GetEventDetailsInputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.event.findUnique(GetEventDetailsQuery(input))
+      ctx.db.event.findUnique(GetEventDetailsQuery(input))
     ),
 
   getQuickView: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/events/quick-view", tags: ["events"] } })
     .input(NoInputSchema)
-    .query(({ ctx }) => ctx.prisma.event.findMany(GetEventsQuickViewQuery)),
+    .query(({ ctx }) => ctx.db.event.findMany(GetEventsQuickViewQuery)),
 
   /*
    *
@@ -101,7 +99,7 @@ const mainRouter = createTRPCRouter({
     .input(SimpleSearchSchema)
     .query(async ({ ctx, input }) => {
       const userId = ctx.session.user.id;
-      const user = await ctx.prisma.user.findUnique({
+      const user = await ctx.db.user.findUnique({
         where: {
           id: userId,
           name: input
@@ -118,7 +116,7 @@ const mainRouter = createTRPCRouter({
     .input(IDInputSchema)
     .query(({ ctx, input }) => {
       const userId = ctx.session.user.id;
-      return ctx.prisma.event.update({
+      return ctx.db.event.update({
         where: {
           id: input.id,
         },
@@ -135,7 +133,7 @@ const mainRouter = createTRPCRouter({
     .input(IDInputSchema)
     .query(({ ctx, input }) => {
       const userId = ctx.session.user.id;
-      return ctx.prisma.event.update({
+      return ctx.db.event.update({
         where: {
           id: input.id,
         },

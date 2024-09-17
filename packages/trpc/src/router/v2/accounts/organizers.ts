@@ -7,10 +7,10 @@ import {
 import { TRPCError } from "@trpc/server";
 
 import { z } from "zod";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@repo/db/v1";
 import { OrganizerInputSchema } from "@/lib/validators/accounts";
 
-import { generateUniqueSlug } from "@/lib/utils";
+import { generateUniqueSlug } from "@repo/db/helpers";
 
 /**
  *

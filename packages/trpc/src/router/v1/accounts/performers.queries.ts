@@ -4,11 +4,11 @@ import { addDays } from "date-fns";
 import type { User } from "next-auth";
 import type { Prisma } from "@repo/db/v1";
 
-import { GetAllGroupsInputSchema } from "@/lib/schema/accounts/groups";
+import { GetAllGroupsInputSchema } from "../../../lib-tmp/schema/accounts/groups";
 
 export const GetAllPerformersWhere = (
   input: z.infer<typeof GetAllGroupsInputSchema>,
-  user?: User | null,
+  user?: User | null
 ) => {
   return {
     favoritedBy:

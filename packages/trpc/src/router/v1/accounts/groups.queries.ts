@@ -1,17 +1,17 @@
 import { z } from "zod";
-// import { createSlug } from "@/lib/utils";
+
 import type { User } from "next-auth";
 import type { Prisma } from "@repo/db/v1";
 
 import {
   GetAllGroupsInputSchema,
   CreateGroupInputSchema,
-} from "@/lib/schema/accounts/groups";
+} from "../../../lib-tmp/schema/accounts/groups";
 import { GetAllPerformersWhere } from "./performers.queries";
 
 export const GetAllGroupsQuery = (
   input: z.infer<typeof GetAllGroupsInputSchema>,
-  user?: User | null,
+  user?: User | null
 ) => {
   return {
     take: input.take,

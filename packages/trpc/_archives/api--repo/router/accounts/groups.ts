@@ -7,7 +7,7 @@ import {
   authorizedProcedure,
 } from "@/server/trpc";
 
-import { createSlug, generateUniqueSlug } from "@/lib/utils";
+import { createSlug, generateUniqueSlug } from "@repo/utils/create-slug";
 
 import {
   GetAllGroupsInputSchema,
@@ -47,7 +47,9 @@ export const groupsRouter = createTRPCRouter({
     .input(GetAllGroupsInputSchema)
     // .output(GetAllGroupsOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.musicGroup.findMany(GetAllGroupsQuery(input, ctx.session?.user))
+      ctx.prisma.musicGroup.findMany(
+        GetAllGroupsQuery(input, ctx.session?.user)
+      )
     ),
   getDetails: publicProcedure
     // .meta({
@@ -134,7 +136,9 @@ export const groupsRouter = createTRPCRouter({
       let x = 1;
       while (exists) {
         returnSlug = `${slug}-${x}`;
-        exists = await ctx.prisma.musicGroup.findUnique({ where: { slug: returnSlug } });
+        exists = await ctx.prisma.musicGroup.findUnique({
+          where: { slug: returnSlug },
+        });
         x++;
       }
 

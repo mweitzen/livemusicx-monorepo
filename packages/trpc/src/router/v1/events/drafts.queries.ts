@@ -1,12 +1,15 @@
 import { z } from "zod";
 import type { Prisma } from "@repo/db/v1";
 
-import { SaveEventDraftInputSchema } from "@/lib/schema/events/drafts";
-import { GetDetailsInputSchema, SimpleSearchSchema } from "@/lib/schema";
+import { SaveEventDraftInputSchema } from "../../../lib-tmp/schema/events/drafts";
+import {
+  GetDetailsInputSchema,
+  SimpleSearchSchema,
+} from "../../../lib-tmp/schema";
 
 export const SaveEventDraftQuery = (
   input: z.infer<typeof SaveEventDraftInputSchema>,
-  userId: string,
+  userId: string
 ) => {
   const { musicians, groups, genres, keywords, ticketLinks, ...data } =
     input.data;
@@ -52,7 +55,7 @@ export const SaveEventDraftQuery = (
 
 export const GetEventDraftDetailsQuery = (
   input: z.infer<typeof GetDetailsInputSchema>,
-  userId: string,
+  userId: string
 ) =>
   ({
     where: {
@@ -80,7 +83,7 @@ export const GetEventDraftDetailsQuery = (
 
 export const GetAllEventDraftsQuery = (
   input: z.infer<typeof SimpleSearchSchema>,
-  userId: string,
+  userId: string
 ) =>
   ({
     where: {

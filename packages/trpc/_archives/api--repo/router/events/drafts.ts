@@ -1,10 +1,14 @@
 import { format } from "date-fns";
-import { createSlug } from "@/lib/utils";
+import { createSlug } from "@repo/utils/create-slug";
 
 import { authorizedProcedure, createTRPCRouter } from "@/server/trpc";
 import { TRPCError } from "@trpc/server";
 
-import { GetDetailsInputSchema, IDInputSchema, SimpleSearchSchema } from "@livemusicx/schema";
+import {
+  GetDetailsInputSchema,
+  IDInputSchema,
+  SimpleSearchSchema,
+} from "@livemusicx/schema";
 
 import {
   PublishEventDraftInputSchema,
@@ -23,7 +27,9 @@ export const draftsRouter = createTRPCRouter({
     .input(GetDetailsInputSchema)
     .query(async ({ ctx, input }) => {
       const userId = ctx.session.user.id!;
-      const user = await ctx.prisma.user.findUnique(GetEventDraftDetailsQuery(input, userId));
+      const user = await ctx.prisma.user.findUnique(
+        GetEventDraftDetailsQuery(input, userId)
+      );
       if (!user) {
         throw new TRPCError({ code: "NOT_FOUND", message: "User not found." });
       }
@@ -41,7 +47,9 @@ export const draftsRouter = createTRPCRouter({
     .input(SimpleSearchSchema)
     .query(async ({ ctx, input }) => {
       const userId = ctx.session.user.id!;
-      const user = await ctx.prisma.user.findUnique(GetAllEventDraftsQuery(input, userId));
+      const user = await ctx.prisma.user.findUnique(
+        GetAllEventDraftsQuery(input, userId)
+      );
       if (!user) {
         throw new TRPCError({ code: "NOT_FOUND", message: "User not found." });
       }
@@ -53,7 +61,8 @@ export const draftsRouter = createTRPCRouter({
     .input(PublishEventDraftInputSchema)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.session.user.id!;
-      const { musicians, groups, genres, keywords, ticketLinks, ...data } = input.data;
+      const { musicians, groups, genres, keywords, ticketLinks, ...data } =
+        input.data;
 
       try {
         // Create slug
@@ -107,7 +116,9 @@ export const draftsRouter = createTRPCRouter({
     //.meta({openapi:{method:"POST", path:"/events/drafts/{id}/save"}})
     .input(SaveEventDraftInputSchema)
     .mutation(({ ctx, input }) =>
-      ctx.prisma.eventDraft.upsert(SaveEventDraftQuery(input, ctx.session.user.id!))
+      ctx.prisma.eventDraft.upsert(
+        SaveEventDraftQuery(input, ctx.session.user.id!)
+      )
     ),
 
   delete: authorizedProcedure

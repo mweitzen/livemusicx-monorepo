@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { createSlug } from "@/lib/utils";
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+
+import type { RouterInputs, RouterOutputs } from "../../../index";
 import {
   createTRPCRouter,
   publicProcedure,
@@ -17,21 +17,22 @@ import {
   GetOrganizerEventsOutputSchema,
   CreateOrganizerInputSchema,
   CreateOrganizerOutputSchema,
-} from "@/lib/schema/accounts/organizers";
+} from "../../../lib-tmp/schema/accounts/organizers";
 
 import {
   QuickViewAccountsSelect,
   QuickViewAccountsWhere,
   QuickViewTake,
-} from "@/server/api/shared.queries";
+} from "../shared.queries";
+import { generateUniqueSlug } from "@repo/db/helpers";
 
-type OrganizersOutputs = RouterOutputs["accounts"]["organizers"];
+type OrganizersOutputs = RouterOutputs["v1"]["accounts"]["organizers"];
 
 export type AllOrganizers = OrganizersOutputs["getAll"];
 export type QuickViewOrganizers = OrganizersOutputs["getQuickView"];
 export type FavoriteOrganizers = OrganizersOutputs["getFavorites"];
 
-type OrganizersInputs = RouterInputs["accounts"]["organizers"];
+type OrganizersInputs = RouterInputs["v1"]["accounts"]["organizers"];
 
 export type GetAllOrganizersInput = OrganizersInputs["getAll"];
 
@@ -43,13 +44,13 @@ export const organizersRouter = createTRPCRouter({
     // .meta({ openapi: { method: "GET", path: "/accounts/organizers/count", tags: ["accounts"] } })
     .input(GetAllOrganizersInputSchema)
     .output(z.number())
-    .query(({ ctx }) => ctx.prisma.organizer.count()),
+    .query(({ ctx }) => ctx.db.organizer.count()),
   getAll: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/accounts/organizers", tags: ["accounts"] } })
     .input(GetAllOrganizersInputSchema)
     // .output(GetAllOrganizersOutputSchema)
     .query(({ ctx }) =>
-      ctx.prisma.organizer.findMany({
+      ctx.db.organizer.findMany({
         where: {},
         select: {
           id: true,
@@ -78,7 +79,7 @@ export const organizersRouter = createTRPCRouter({
     // .input(z.object({}))
     // .output(z.object({}))
     .query(async ({ ctx }) => {
-      const organizers = await ctx.prisma.organizer.findMany({
+      const organizers = await ctx.db.organizer.findMany({
         take: QuickViewTake,
         // where: QuickViewAccountsWhere,
         select: {
@@ -105,7 +106,7 @@ export const organizersRouter = createTRPCRouter({
         // return "At least one of: [id, slug] must be provided to get details";
       }
 
-      return await ctx.prisma.organizer.findUnique({
+      return await ctx.db.organizer.findUnique({
         where: {
           id: input.id || undefined,
           slug: input.slug || undefined,
@@ -137,7 +138,7 @@ export const organizersRouter = createTRPCRouter({
     .input(GetOrganizerEventsInputSchema)
     // .output(GetOrganizerEventsOutputSchema)
     .query(async ({ ctx, input }) => {
-      const organizer = await ctx.prisma.organizer.findUnique({
+      const organizer = await ctx.db.organizer.findUnique({
         where: {
           id: input.id || undefined,
           slug: input.slug || undefined,
@@ -168,13 +169,13 @@ export const organizersRouter = createTRPCRouter({
     .input(CreateOrganizerInputSchema)
     .mutation(async ({ ctx, input }) => {
       // Create slug
-      let slug = createSlug(input.name);
+      let slug = await generateUniqueSlug(input.name, "organizer");
       let returnSlug = slug;
-      let exists = await ctx.prisma.musicGroup.findUnique({ where: { slug } });
+      let exists = await ctx.db.musicGroup.findUnique({ where: { slug } });
       let x = 1;
       while (exists) {
         returnSlug = `${slug}-${x}`;
-        exists = await ctx.prisma.musicGroup.findUnique({
+        exists = await ctx.db.musicGroup.findUnique({
           where: { slug: returnSlug },
         });
         x++;

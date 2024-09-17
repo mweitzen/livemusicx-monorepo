@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+import type { RouterInputs, RouterOutputs } from "../../../index";
 import {
   createTRPCRouter,
   publicProcedure,
@@ -7,7 +7,7 @@ import {
   authorizedProcedure,
 } from "../../../trpc";
 
-import { createSlug, generateUniqueSlug } from "@/lib/utils";
+import { generateUniqueSlug } from "@repo/db/helpers";
 
 import {
   GetAllGroupsInputSchema,
@@ -18,17 +18,17 @@ import {
   GetGroupEventsOutputSchema,
   CreateGroupInputSchema,
   ClaimGroupInputSchema,
-} from "@/lib/schema/accounts/groups";
+} from "../../../lib-tmp/schema/accounts/groups";
 
 import { GetAllGroupsQuery } from "./groups.queries";
 
-type GroupsOutputs = RouterOutputs["accounts"]["groups"];
+type GroupsOutputs = RouterOutputs["v1"]["accounts"]["groups"];
 
 export type AllGroups = GroupsOutputs["getAll"];
 export type FavoriteGroups = GroupsOutputs["getFavorites"];
 export type GroupDetails = GroupsOutputs["getDetails"];
 
-type GroupsInputs = RouterInputs["accounts"]["groups"];
+type GroupsInputs = RouterInputs["v1"]["accounts"]["groups"];
 
 export type GetAllGroupsInput = GroupsInputs["getAll"];
 export type GetUsersFavoriteGroupsInput = GroupsInputs["getFavorites"];
@@ -41,15 +41,13 @@ export const groupsRouter = createTRPCRouter({
     // .meta({ openapi: { method: "GET", path: "/accounts/groups/count", tags: ["accounts"] } })
     .input(GetAllGroupsInputSchema)
     .output(z.number())
-    .query(({ ctx }) => ctx.prisma.musicGroup.count()),
+    .query(({ ctx }) => ctx.db.musicGroup.count()),
   getAll: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/accounts/groups", tags: ["accounts"] } })
     .input(GetAllGroupsInputSchema)
     // .output(GetAllGroupsOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.musicGroup.findMany(
-        GetAllGroupsQuery(input, ctx.session?.user)
-      )
+      ctx.db.musicGroup.findMany(GetAllGroupsQuery(input, ctx.session?.user))
     ),
   getDetails: publicProcedure
     // .meta({
@@ -58,7 +56,7 @@ export const groupsRouter = createTRPCRouter({
     .input(GetGroupDetailsInputSchema)
     // .output(GetGroupDetailsOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.musicGroup.findUnique({
+      ctx.db.musicGroup.findUnique({
         where: {
           id: input.id || undefined,
           slug: input.slug || undefined,
@@ -96,7 +94,7 @@ export const groupsRouter = createTRPCRouter({
     .input(GetGroupEventsInputSchema)
     // .output(GetGroupEventsOutputSchema)
     .query(async ({ ctx, input }) => {
-      const group = await ctx.prisma.musicGroup.findUnique({
+      const group = await ctx.db.musicGroup.findUnique({
         where: {
           id: input.id || undefined,
           slug: input.slug || undefined,
@@ -130,19 +128,19 @@ export const groupsRouter = createTRPCRouter({
     // .output()
     .mutation(async ({ ctx, input }) => {
       // Create slug
-      let slug = createSlug(input.name);
+      let slug = await generateUniqueSlug(input.name, "musicGroup");
       let returnSlug = slug;
-      let exists = await ctx.prisma.musicGroup.findUnique({ where: { slug } });
+      let exists = await ctx.db.musicGroup.findUnique({ where: { slug } });
       let x = 1;
       while (exists) {
         returnSlug = `${slug}-${x}`;
-        exists = await ctx.prisma.musicGroup.findUnique({
+        exists = await ctx.db.musicGroup.findUnique({
           where: { slug: returnSlug },
         });
         x++;
       }
 
-      const newAccount = await ctx.prisma.musicGroup.create({
+      const newAccount = await ctx.db.musicGroup.create({
         data: {
           // ...input,
           name: input.name,

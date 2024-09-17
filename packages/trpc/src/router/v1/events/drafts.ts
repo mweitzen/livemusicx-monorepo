@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import { createSlug } from "@/lib/utils";
 
 import { authorizedProcedure, createTRPCRouter } from "../../../trpc";
 import { TRPCError } from "@trpc/server";
@@ -8,18 +7,19 @@ import {
   GetDetailsInputSchema,
   IDInputSchema,
   SimpleSearchSchema,
-} from "@/lib/schema";
+} from "../../../lib-tmp/schema";
 
 import {
   PublishEventDraftInputSchema,
   SaveEventDraftInputSchema,
-} from "@/lib/schema/events/drafts";
+} from "../../../lib-tmp/schema/events/drafts";
 
 import {
   GetEventDraftDetailsQuery,
   GetAllEventDraftsQuery,
   SaveEventDraftQuery,
 } from "./drafts.queries";
+import { generateUniqueSlug } from "@repo/db/helpers";
 
 export const draftsRouter = createTRPCRouter({
   get: authorizedProcedure
@@ -27,7 +27,7 @@ export const draftsRouter = createTRPCRouter({
     .input(GetDetailsInputSchema)
     .query(async ({ ctx, input }) => {
       const userId = ctx.session.user.id!;
-      const user = await ctx.prisma.user.findUnique(
+      const user = await ctx.db.user.findUnique(
         GetEventDraftDetailsQuery(input, userId)
       );
       if (!user) {
@@ -47,7 +47,7 @@ export const draftsRouter = createTRPCRouter({
     .input(SimpleSearchSchema)
     .query(async ({ ctx, input }) => {
       const userId = ctx.session.user.id!;
-      const user = await ctx.prisma.user.findUnique(
+      const user = await ctx.db.user.findUnique(
         GetAllEventDraftsQuery(input, userId)
       );
       if (!user) {
@@ -66,17 +66,17 @@ export const draftsRouter = createTRPCRouter({
 
       try {
         // Create slug
-        let slug = createSlug(input.data.name);
-        let exists = await ctx.prisma.event.findUnique({ where: { slug } });
+        let slug = await generateUniqueSlug(input.data.name, "event");
+        let exists = await ctx.db.event.findUnique({ where: { slug } });
         let x = 1;
         while (exists) {
           slug = `${slug}-${x}`;
-          exists = await ctx.prisma.event.findUnique({ where: { slug } });
+          exists = await ctx.db.event.findUnique({ where: { slug } });
           x++;
         }
 
-        const result = await ctx.prisma.$transaction([
-          ctx.prisma.event.create({
+        const result = await ctx.db.$transaction([
+          ctx.db.event.create({
             data: {
               ...data,
               slug: `${format(data.dateStart, "yyyy-MM-dd")}-${slug}`,
@@ -96,7 +96,7 @@ export const draftsRouter = createTRPCRouter({
               },
             },
           }),
-          ctx.prisma.eventDraft.delete({
+          ctx.db.eventDraft.delete({
             where: {
               id: input.id,
             },
@@ -116,16 +116,14 @@ export const draftsRouter = createTRPCRouter({
     //.meta({openapi:{method:"POST", path:"/events/drafts/{id}/save"}})
     .input(SaveEventDraftInputSchema)
     .mutation(({ ctx, input }) =>
-      ctx.prisma.eventDraft.upsert(
-        SaveEventDraftQuery(input, ctx.session.user.id!)
-      )
+      ctx.db.eventDraft.upsert(SaveEventDraftQuery(input, ctx.session.user.id!))
     ),
 
   delete: authorizedProcedure
     // .meta({ openapi: { method: "POST", path: "/events/drafts/{id}/delete" } })
     .input(IDInputSchema)
     .mutation(({ ctx, input }) =>
-      ctx.prisma.eventDraft.delete({
+      ctx.db.eventDraft.delete({
         where: {
           id: input.id,
         },

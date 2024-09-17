@@ -2,7 +2,7 @@ import Link from "next/link";
 import Logo from "../logo";
 import Topbar from "./topbar";
 
-import { auth } from "@/auth";
+import { auth } from "@repo/auth";
 import { Suspense } from "react";
 
 import { Button } from "../ui/button";

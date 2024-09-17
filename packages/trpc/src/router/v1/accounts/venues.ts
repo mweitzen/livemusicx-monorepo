@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { createSlug } from "@/lib/utils";
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+
+import type { RouterInputs, RouterOutputs } from "../../../index";
 
 import {
   createTRPCRouter,
@@ -14,7 +14,7 @@ import {
   QuickViewTake,
   QuickViewAccountsSelect,
   QuickViewAccountsWhere,
-} from "@/server/api/shared.queries";
+} from "../shared.queries";
 
 import {
   GetAllVenuesInputSchema,
@@ -27,16 +27,17 @@ import {
   GetVenueQuickViewOutputSchema,
   CreateVenueInuptSchema,
   CreateVenueOutputSchema,
-} from "@/lib/schema/accounts/venues";
+} from "../../../lib-tmp/schema/accounts/venues";
+import { generateUniqueSlug } from "@repo/db/helpers";
 
-type VenuesOutputs = RouterOutputs["accounts"]["venues"];
+type VenuesOutputs = RouterOutputs["v1"]["accounts"]["venues"];
 
 export type AllVenues = VenuesOutputs["getAll"];
 export type QuickViewVenues = VenuesOutputs["getQuickView"];
 export type FavoriteVenues = VenuesOutputs["getFavorites"];
 export type VenueDetails = VenuesOutputs["getDetails"];
 
-type VenuesInputs = RouterInputs["accounts"]["venues"];
+type VenuesInputs = RouterInputs["v1"]["accounts"]["venues"];
 
 export type GetAllVenuesInput = VenuesInputs["getAll"];
 export type GetUsersFavoriteVenuesInput = VenuesInputs["getFavorites"];
@@ -49,13 +50,13 @@ export const venuesRouter = createTRPCRouter({
     // .meta({ openapi: { method: "GET", path: "/accounts/venues/count", tags: ["accounts"] } })
     .input(GetAllVenuesInputSchema)
     .output(z.number())
-    .query(({ ctx }) => ctx.prisma.venue.count()),
+    .query(({ ctx }) => ctx.db.venue.count()),
   getAll: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/accounts/venues", tags: ["accounts"] } })
     .input(GetAllVenuesInputSchema)
     // .output(GetAllVenuesOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.venue.findMany({
+      ctx.db.venue.findMany({
         take: input.take,
         skip: (input.page - 1) * input.take,
         where: VenuesWhere(input, ctx.session?.user),
@@ -85,7 +86,7 @@ export const venuesRouter = createTRPCRouter({
     .input(GetVenueDetailsInputSchema)
     // .output(GetVenueDetailsOutputSchema)
     .query(async ({ ctx, input }) => {
-      return ctx.prisma.venue.findUnique({
+      return ctx.db.venue.findUnique({
         where: {
           id: input.id || undefined,
           slug: input.slug || undefined,
@@ -119,7 +120,7 @@ export const venuesRouter = createTRPCRouter({
     .input(GetVenueEventsInputSchema)
     // .output(GetVenueEventsOutputSchema)
     .query(async ({ ctx, input }) => {
-      const venue = await ctx.prisma.venue.findUnique({
+      const venue = await ctx.db.venue.findUnique({
         where: {
           id: input.id || undefined,
           slug: input.slug || undefined,
@@ -143,7 +144,7 @@ export const venuesRouter = createTRPCRouter({
     .input(GetVenueQuickViewInputSchema)
     // .output(GetVenueQuickViewOutputSchema)
     .query(async ({ ctx }) => {
-      const venues = await ctx.prisma.venue.findMany({
+      const venues = await ctx.db.venue.findMany({
         take: QuickViewTake,
         where: QuickViewAccountsWhere,
         select: {
@@ -177,12 +178,12 @@ export const venuesRouter = createTRPCRouter({
     // .output(CreateVenueOutputSchema)
     .mutation(async ({ ctx, input }) => {
       // Create slug
-      let slug = createSlug(input.name);
-      let exists = await ctx.prisma.venue.findUnique({ where: { slug } });
+      let slug = await generateUniqueSlug(input.name, "venue");
+      let exists = await ctx.db.venue.findUnique({ where: { slug } });
       let x = 1;
       while (exists) {
         slug = `${slug}-${x}`;
-        exists = await ctx.prisma.venue.findUnique({ where: { slug } });
+        exists = await ctx.db.venue.findUnique({ where: { slug } });
         x++;
       }
     }),

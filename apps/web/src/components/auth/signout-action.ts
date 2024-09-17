@@ -1,5 +1,5 @@
 "use server";
-import { signOut } from "@/auth";
+import { signOut } from "@repo/auth";
 
 export const handleSignOut = async () => {
   await signOut({ redirectTo: "/signin" });

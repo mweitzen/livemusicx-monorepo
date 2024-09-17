@@ -1,4 +1,4 @@
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+import type { RouterInputs, RouterOutputs } from "../../../index";
 import {
   createTRPCRouter,
   publicProcedure,
@@ -7,7 +7,7 @@ import {
 } from "../../../trpc";
 import { z } from "zod";
 
-import { createSlug } from "@/lib/utils";
+import { generateUniqueSlug } from "@repo/db/helpers";
 
 import { GetAllMusiciansQuery } from "./musicians.queries";
 import {
@@ -23,14 +23,14 @@ import {
   GetMusicianEventsOutputSchema,
   GetRelatedMusiciansInputSchema,
   GetRelatedMusiciansOutputSchema,
-} from "@/lib/schema/accounts/musicians";
+} from "../../../lib-tmp/schema/accounts/musicians";
 
-type MusiciansOutputs = RouterOutputs["accounts"]["musicians"];
+type MusiciansOutputs = RouterOutputs["v1"]["accounts"]["musicians"];
 
 export type AllMusicians = MusiciansOutputs["getAll"];
 export type FavoriteMusicians = MusiciansOutputs["getFavorites"];
 
-type MusiciansInputs = RouterInputs["accounts"]["musicians"];
+type MusiciansInputs = RouterInputs["v1"]["accounts"]["musicians"];
 
 export type GetAllMusiciansInput = MusiciansInputs["getAll"];
 export type GetUsersFavoriteMusiciansInput = MusiciansInputs["getFavorites"];
@@ -43,22 +43,20 @@ export const musiciansRouter = createTRPCRouter({
     // .meta({ openapi: { method: "GET", path: "/accounts/musicians/count", tags: ["accounts"] } })
     .input(GetAllMusiciansInputSchema)
     .output(z.number())
-    .query(({ ctx }) => ctx.prisma.musician.count()),
+    .query(({ ctx }) => ctx.db.musician.count()),
   getAll: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/accounts/musicians", tags: ["accounts"] } })
     .input(GetAllMusiciansInputSchema)
     // .output(GetAllMusiciansOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.musician.findMany(
-        GetAllMusiciansQuery(input, ctx.session?.user)
-      )
+      ctx.db.musician.findMany(GetAllMusiciansQuery(input, ctx.session?.user))
     ),
   getDetails: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/accounts/musicians/{id}", tags: ["accounts"] } })
     .input(GetMusicianDetailsInputSchema)
     // .output(GetMusicianDetailsOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.musician.findUnique({
+      ctx.db.musician.findUnique({
         where: {
           id: input.id || undefined,
           slug: input.slug || undefined,
@@ -91,7 +89,7 @@ export const musiciansRouter = createTRPCRouter({
     .input(GetMusicianEventsInputSchema)
     // .output(GetMusicianEventsOutputSchema)
     .query(async ({ ctx, input }) => {
-      const musician = await ctx.prisma.musician.findUnique({
+      const musician = await ctx.db.musician.findUnique({
         where: {
           id: input.id || undefined,
           slug: input.slug || undefined,
@@ -114,7 +112,7 @@ export const musiciansRouter = createTRPCRouter({
     .input(GetRelatedMusiciansInputSchema)
     // .output(GetRelatedMusiciansOutputSchema)
     .query(async ({ ctx, input }) => {
-      const musician = await ctx.prisma.musician.findUnique({
+      const musician = await ctx.db.musician.findUnique({
         where: {
           id: input.id,
         },
@@ -169,17 +167,17 @@ export const musiciansRouter = createTRPCRouter({
     // .output(CreateMusicianOutputSchema)
     .mutation(async ({ ctx, input }) => {
       // Create slug
-      let slug = createSlug(input.name);
-      let exists = await ctx.prisma.musician.findUnique({ where: { slug } });
+      let slug = await generateUniqueSlug(input.name, "musician");
+      let exists = await ctx.db.musician.findUnique({ where: { slug } });
       let x = 1;
       while (exists) {
         slug = `${slug}-${x}`;
-        exists = await ctx.prisma.musician.findUnique({ where: { slug } });
+        exists = await ctx.db.musician.findUnique({ where: { slug } });
         x++;
       }
 
       // Create account
-      return await ctx.prisma.musician.create({
+      return await ctx.db.musician.create({
         data: {
           slug,
           active: true,

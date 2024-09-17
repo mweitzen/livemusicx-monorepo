@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { auth, UserRole } from "@/auth";
+import { auth } from "@repo/auth";
+import { UserRole } from "@/auth";
 
 const marketingPages = ["/", "/about", "/pricing", "/features"];
 const appPages = ["/manage", "/explore", "/me"];
@@ -8,6 +9,9 @@ export default auth(({ auth, nextUrl, cookies }) => {
   const { pathname } = nextUrl;
   const hasVisitedApp = cookies.get("visitedApp")?.value === "true";
 
+  if (!auth && pathname === "/manage") {
+    return NextResponse.redirect(new URL("/explore", nextUrl));
+  }
   // Control who sees marketing pages
   if (marketingPages.includes(pathname)) {
     // Redirect authenticated users

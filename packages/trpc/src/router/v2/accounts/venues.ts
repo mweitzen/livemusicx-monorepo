@@ -9,7 +9,8 @@ import {
 } from "../../../trpc";
 
 import { VenueInputSchema } from "@/lib/validators/accounts";
-import { generateUniqueSlug } from "@/lib/utils";
+
+import { generateUniqueSlug } from "@repo/db/helpers";
 
 /**
  *

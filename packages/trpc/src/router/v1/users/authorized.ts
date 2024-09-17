@@ -40,19 +40,19 @@ export const authorizedRouter = createTRPCRouter({
 
       switch (input.accountType) {
         case "musician":
-          return await ctx.prisma.musician.findMany({
+          return await ctx.db.musician.findMany({
             take,
             where,
             select,
           });
         case "group":
-          return await ctx.prisma.musicGroup.findMany({
+          return await ctx.db.musicGroup.findMany({
             take,
             where,
             select,
           });
         case "organizer":
-          return await ctx.prisma.organizer.findMany({ take, where, select });
+          return await ctx.db.organizer.findMany({ take, where, select });
         default:
           return null;
       }
@@ -97,11 +97,11 @@ export const authorizedRouter = createTRPCRouter({
 
       switch (input.accountType) {
         case "musician":
-          return await ctx.prisma.musician.update(query);
+          return await ctx.db.musician.update(query);
         case "group":
-          return await ctx.prisma.musicGroup.update(query);
+          return await ctx.db.musicGroup.update(query);
         case "organizer":
-          return await ctx.prisma.organizer.update(query);
+          return await ctx.db.organizer.update(query);
         default:
           return null;
       }
@@ -129,7 +129,7 @@ export const authorizedRouter = createTRPCRouter({
         where: !query ? queryPartial : undefined,
       };
 
-      const currentUser = await ctx.prisma.user.findUnique({
+      const currentUser = await ctx.db.user.findUnique({
         where: {
           id: ctx.session.user.id,
         },
@@ -181,7 +181,7 @@ export const authorizedRouter = createTRPCRouter({
       }
     }),
   getNextEvent: authorizedProcedure.query(async ({ ctx }) => {
-    const user = await ctx.prisma.user.findUnique({
+    const user = await ctx.db.user.findUnique({
       where: { id: ctx.session.user.id },
       select: {
         events: {
@@ -210,7 +210,7 @@ export const authorizedRouter = createTRPCRouter({
     return user.events[0];
   }),
   getDashboardUpcomingEvents: authorizedProcedure.query(async ({ ctx }) => {
-    const user = await ctx.prisma.user.findUnique({
+    const user = await ctx.db.user.findUnique({
       where: { id: ctx.session.user.id },
       select: {
         events: {

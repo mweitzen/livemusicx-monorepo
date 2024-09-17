@@ -8,8 +8,10 @@ import {
 import { TRPCError } from "@trpc/server";
 
 import { GroupInputSchema } from "@/lib/validators/accounts";
-import { generateUniqueSlug } from "@/lib/utils";
-import { Prisma } from "@prisma/client";
+
+import { generateUniqueSlug } from "@repo/db/helpers";
+
+import { Prisma } from "@repo/db/v1";
 
 export const groupsRouter = createTRPCRouter({
   list: publicProcedure.query(({ ctx }) => ctx.db.musicGroup.findMany()),

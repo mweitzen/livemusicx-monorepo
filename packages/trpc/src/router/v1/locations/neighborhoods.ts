@@ -8,7 +8,7 @@ import {
   GetNeighborhoodVenuesOutputSchema,
   GetNeighborhoodEventsInputSchema,
   GetNeighborhoodEventsOutputSchema,
-} from "@/lib/schema/locations/neighborhood";
+} from "../../../lib-tmp/schema/locations/neighborhood";
 
 import {
   GetAllNeighborhoodsQuery,
@@ -28,7 +28,7 @@ export const neighborhoodsRouter = createTRPCRouter({
     .input(GetNeighborhoodsInputSchema)
     .output(GetNeighborhoodsOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.neighborhood.findMany(GetAllNeighborhoodsQuery(input))
+      ctx.db.neighborhood.findMany(GetAllNeighborhoodsQuery(input))
     ),
   getVenues: publicProcedure
     .meta({
@@ -41,7 +41,7 @@ export const neighborhoodsRouter = createTRPCRouter({
     .input(GetNeighborhoodVenuesInputSchema)
     .output(GetNeighborhoodVenuesOutputSchema)
     .query(async ({ ctx, input }) => {
-      const neighborhood = await ctx.prisma.neighborhood.findUnique(
+      const neighborhood = await ctx.db.neighborhood.findUnique(
         GetNeighborhoodVenuesQuery(input)
       );
       if (!neighborhood)
@@ -62,7 +62,7 @@ export const neighborhoodsRouter = createTRPCRouter({
     .input(GetNeighborhoodEventsInputSchema)
     .output(GetNeighborhoodEventsOutputSchema)
     .query(async ({ ctx, input }) => {
-      const neighborhood = await ctx.prisma.neighborhood.findUnique(
+      const neighborhood = await ctx.db.neighborhood.findUnique(
         GetNeighborhoodEventsQuery(input)
       );
       if (!neighborhood)

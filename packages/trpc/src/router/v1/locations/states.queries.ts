@@ -6,7 +6,7 @@ import {
   GetStateCitiesInputSchema,
   GetStateVenuesInputSchema,
   GetStateEventsInputSchema,
-} from "@/lib/schema/locations/state";
+} from "../../../lib-tmp/schema/locations/state";
 
 /*
  *
@@ -15,7 +15,7 @@ import {
  ** GET STATES */
 export const GetAllStatesQuery: Prisma.StateFindManyArgs = {};
 export const GetStateRegionsQuery = (
-  input: z.infer<typeof GetStateRegionsInputSchema>,
+  input: z.infer<typeof GetStateRegionsInputSchema>
 ) =>
   ({
     where: {
@@ -31,7 +31,7 @@ export const GetStateRegionsQuery = (
   }) satisfies Prisma.StateFindUniqueArgs;
 
 export const GetStateCitiesQuery = (
-  input: z.infer<typeof GetStateCitiesInputSchema>,
+  input: z.infer<typeof GetStateCitiesInputSchema>
 ) =>
   ({
     where: {
@@ -47,7 +47,7 @@ export const GetStateCitiesQuery = (
   }) satisfies Prisma.StateFindUniqueArgs;
 
 export const GetStateVenuesQuery = (
-  input: z.infer<typeof GetStateVenuesInputSchema>,
+  input: z.infer<typeof GetStateVenuesInputSchema>
 ) =>
   ({
     where: {
@@ -62,7 +62,7 @@ export const GetStateVenuesQuery = (
     },
   }) satisfies Prisma.StateFindUniqueArgs;
 export const GetStateEventsQuery = (
-  input: z.infer<typeof GetStateEventsInputSchema>,
+  input: z.infer<typeof GetStateEventsInputSchema>
 ) =>
   ({
     where: {

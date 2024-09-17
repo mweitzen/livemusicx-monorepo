@@ -10,7 +10,7 @@ import {
   GetCityVenuesOutputSchema,
   GetCityEventsInputSchema,
   GetCityEventsOutputSchema,
-} from "@/lib/schema/locations/city";
+} from "../../../lib-tmp/schema/locations/city";
 
 import {
   GetAllCitiesQuery,
@@ -30,9 +30,7 @@ export const citiesRouter = createTRPCRouter({
     })
     .input(GetCitiesInputSchema)
     .output(GetCitiesOutputSchema)
-    .query(({ ctx, input }) =>
-      ctx.prisma.city.findMany(GetAllCitiesQuery(input))
-    ),
+    .query(({ ctx, input }) => ctx.db.city.findMany(GetAllCitiesQuery(input))),
 
   getNeighborhoods: publicProcedure
     .meta({
@@ -45,7 +43,7 @@ export const citiesRouter = createTRPCRouter({
     .input(GetCityNeighborhoodsInputSchema)
     .output(GetCityNeighborhoodsOutputSchema)
     .query(async ({ ctx, input }) => {
-      const city = await ctx.prisma.city.findUnique(
+      const city = await ctx.db.city.findUnique(
         GetCityNeighborhoodsQuery(input)
       );
       if (!city)
@@ -63,7 +61,7 @@ export const citiesRouter = createTRPCRouter({
     .input(GetCityVenuesInputSchema)
     .output(GetCityVenuesOutputSchema)
     .query(async ({ ctx, input }) => {
-      const city = await ctx.prisma.city.findUnique(GetCityVenuesQuery(input));
+      const city = await ctx.db.city.findUnique(GetCityVenuesQuery(input));
       if (!city)
         throw new TRPCError({ code: "NOT_FOUND", message: "City not found" });
       return city.venues;
@@ -79,7 +77,7 @@ export const citiesRouter = createTRPCRouter({
     .input(GetCityEventsInputSchema)
     .output(GetCityEventsOutputSchema)
     .query(async ({ ctx, input }) => {
-      const city = await ctx.prisma.city.findUnique(GetCityEventsQuery(input));
+      const city = await ctx.db.city.findUnique(GetCityEventsQuery(input));
       if (!city)
         throw new TRPCError({ code: "NOT_FOUND", message: "City not found" });
       return [];

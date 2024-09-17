@@ -7,7 +7,7 @@ import {
 } from "@/server/trpc";
 import { z } from "zod";
 
-import { createSlug } from "@/lib/utils";
+import { createSlug } from "@repo/utils/create-slug";
 
 import { GetAllMusiciansQuery } from "./musicians.queries";
 import {
@@ -49,7 +49,9 @@ export const musiciansRouter = createTRPCRouter({
     .input(GetAllMusiciansInputSchema)
     // .output(GetAllMusiciansOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.musician.findMany(GetAllMusiciansQuery(input, ctx.session?.user))
+      ctx.prisma.musician.findMany(
+        GetAllMusiciansQuery(input, ctx.session?.user)
+      )
     ),
   getDetails: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/accounts/musicians/{id}", tags: ["accounts"] } })

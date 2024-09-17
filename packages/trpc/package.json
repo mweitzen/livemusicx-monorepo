@@ -31,6 +31,7 @@
   "dependencies": {
     "@repo/auth": "workspace:*",
     "@repo/db": "workspace:*",
+    "@repo/utils": "workspace:*",
     "@repo/validators": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",

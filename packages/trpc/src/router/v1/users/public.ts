@@ -18,7 +18,7 @@ export const publicRouter = createTRPCRouter({
   getBookmarkedEvents: protectedProcedure
     .input(z.object({ query: z.string().optional() }).optional())
     .query(async ({ ctx }) => {
-      const user = await ctx.prisma.user.findUnique({
+      const user = await ctx.db.user.findUnique({
         where: {
           id: ctx.session.user.id,
         },
@@ -39,7 +39,7 @@ export const publicRouter = createTRPCRouter({
   addEventToBookmarks: protectedProcedure
     .input(z.string())
     .mutation(({ input, ctx }) => {
-      return ctx.prisma.user.update({
+      return ctx.db.user.update({
         where: {
           id: ctx.session.user.id,
         },
@@ -59,7 +59,7 @@ export const publicRouter = createTRPCRouter({
   removeEventFromBookmarks: protectedProcedure
     .input(z.string())
     .mutation(({ input, ctx }) =>
-      ctx.prisma.user.update({
+      ctx.db.user.update({
         where: {
           id: ctx.session.user.id,
         },
@@ -79,7 +79,7 @@ export const publicRouter = createTRPCRouter({
   getFavoriteAccounts: protectedProcedure
     .input(accountType)
     .query(async ({ ctx, input }) => {
-      const user = await ctx.prisma.user.findUnique({
+      const user = await ctx.db.user.findUnique({
         where: { id: ctx.session.user.id },
         select: {
           favoriteVenues:
@@ -150,7 +150,7 @@ export const publicRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input: { id, type } }) => {
-      return await ctx.prisma.user.update({
+      return await ctx.db.user.update({
         where: {
           id: ctx.session.user.id,
         },
@@ -202,7 +202,7 @@ export const publicRouter = createTRPCRouter({
       })
     )
     .mutation(({ ctx, input: { id, type } }) =>
-      ctx.prisma.user.update({
+      ctx.db.user.update({
         where: {
           id: ctx.session.user.id,
         },

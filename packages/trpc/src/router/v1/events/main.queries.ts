@@ -6,18 +6,18 @@ import type { User } from "next-auth";
 import {
   GetUpcomingEventsInputSchema,
   GetEventDetailsInputSchema,
-} from "@/lib/schema/events/main";
+} from "../../../lib-tmp/schema/events/main";
 
 import {
   GenresWhere,
   QuickViewEventsWhere,
   VenuesWhere,
-} from "@/server/api/shared.queries";
+} from "../shared.queries";
 import { EventSelect } from "./shared.queries";
 
 export const GetUpcomingEventsQuery = (
   input: z.infer<typeof GetUpcomingEventsInputSchema>,
-  user?: User | null,
+  user?: User | null
 ) => {
   const where: Prisma.EventWhereInput = {
     timeStart: {
@@ -124,7 +124,7 @@ export const GetUpcomingEventsQuery = (
 };
 
 export const GetEventDetailsQuery = (
-  input: z.infer<typeof GetEventDetailsInputSchema>,
+  input: z.infer<typeof GetEventDetailsInputSchema>
 ) =>
   ({
     where: {

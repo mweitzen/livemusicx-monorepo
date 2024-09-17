@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createSlug } from "@/lib/utils";
+import { createSlug } from "@repo/utils/create-slug";
 import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
 
 import {
@@ -154,7 +154,8 @@ export const venuesRouter = createTRPCRouter({
       });
       console.log("venues", venues);
       return venues.sort(
-        (a, b) => (a.events[0].timeStart as any) - (b.events[0].timeStart as any)
+        (a, b) =>
+          (a.events[0].timeStart as any) - (b.events[0].timeStart as any)
       );
     }),
 

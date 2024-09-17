@@ -1,9 +1,12 @@
-import { RouterOutputs } from "@/lib/trpc/shared";
+import { RouterOutputs } from "../../../index";
 import { createTRPCRouter, publicProcedure } from "../../../trpc";
 
-import { GetGenresInputSchema, GetGenresOutputSchema } from "@/lib/schema";
+import {
+  GetGenresInputSchema,
+  GetGenresOutputSchema,
+} from "../../../lib-tmp/schema";
 
-export type AllGenres = RouterOutputs["general"]["getGenres"];
+export type AllGenres = RouterOutputs["v1"]["general"]["getGenres"];
 
 export const generalRouter = createTRPCRouter({
   getGenres: publicProcedure
@@ -12,5 +15,5 @@ export const generalRouter = createTRPCRouter({
     })
     .input(GetGenresInputSchema)
     .output(GetGenresOutputSchema)
-    .query(({ ctx }) => ctx.prisma.genre.findMany()),
+    .query(({ ctx }) => ctx.db.genre.findMany()),
 });

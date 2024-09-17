@@ -1,5 +1,5 @@
 import { z } from "zod";
-// import { createSlug } from "@/lib/utils";
+// import { createSlug } from "@repo/utils/create-slug";
 import type { User } from "next-auth";
 import type { Prisma } from "@livemusicx/db";
 

@@ -3,7 +3,7 @@ import { addDays } from "date-fns";
 import type { User } from "next-auth";
 import type { Prisma } from "@repo/db/v1";
 
-import { GetUpcomingEventsInputSchema } from "@/lib/schema/events/main";
+import { GetUpcomingEventsInputSchema } from "../../../lib-tmp/schema/events/main";
 
 export const QuickViewTake = 10;
 export const QuickViewEventsWhere = {
@@ -74,7 +74,7 @@ export const GenresWhere = (genres?: string[]) => {
 
 export const VenuesWhere = (
   input: z.infer<typeof GetUpcomingEventsInputSchema>,
-  user?: User | null,
+  user?: User | null
 ): Prisma.VenueWhereInput => ({
   favoritedBy:
     user && input.favorites !== undefined

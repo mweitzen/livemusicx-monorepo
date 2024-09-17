@@ -10,7 +10,7 @@ import {
   GetRegionVenuesOutputSchema,
   GetRegionEventsInputSchema,
   GetRegionEventsOutputSchema,
-} from "@/lib/schema/locations/region";
+} from "../../../lib-tmp/schema/locations/region";
 
 import {
   GetAllRegionsQuery,
@@ -31,7 +31,7 @@ export const regionsRouter = createTRPCRouter({
     .input(GetRegionsInputSchema)
     .output(GetRegionsOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.region.findMany(GetAllRegionsQuery(input))
+      ctx.db.region.findMany(GetAllRegionsQuery(input))
     ),
 
   getCities: publicProcedure
@@ -45,7 +45,7 @@ export const regionsRouter = createTRPCRouter({
     .input(GetRegionCitiesInputSchema)
     .output(GetRegionCitiesOutputSchema)
     .query(async ({ ctx, input }) => {
-      const region = await ctx.prisma.region.findUnique(
+      const region = await ctx.db.region.findUnique(
         GetRegionCitiesQuery(input)
       );
       if (!region)
@@ -63,7 +63,7 @@ export const regionsRouter = createTRPCRouter({
     .input(GetRegionVenuesInputSchema)
     .output(GetRegionVenuesOutputSchema)
     .query(async ({ ctx, input }) => {
-      const region = await ctx.prisma.region.findUnique(
+      const region = await ctx.db.region.findUnique(
         GetRegionVenuesQuery(input)
       );
       if (!region)
@@ -81,7 +81,7 @@ export const regionsRouter = createTRPCRouter({
     .input(GetRegionEventsInputSchema)
     .output(GetRegionEventsOutputSchema)
     .query(async ({ ctx, input }) => {
-      const region = await ctx.prisma.region.findUnique(
+      const region = await ctx.db.region.findUnique(
         GetRegionEventsQuery(input)
       );
       if (!region)

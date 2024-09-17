@@ -15,6 +15,18 @@
     "./subtract": {
       "types": "./src/subtract.ts",
       "default": "./dist/subtract.js"
+    },
+    "./capitalize": {
+      "types": "./src/capitalize.ts",
+      "default": "./dist/capitalize.js"
+    },
+    "./sleep": {
+      "types": "./src/sleep.ts",
+      "default": "./dist/sleep.js"
+    },
+    "./create-slug": {
+      "types": "./src/create-slug.ts",
+      "default": "./dist/create-slug.js"
     }
   },
   "devDependencies": {

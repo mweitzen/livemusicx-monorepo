@@ -3,14 +3,14 @@ import { authorizedProcedure, createTRPCRouter } from "../../../trpc";
 
 export const templatesRouter = createTRPCRouter({
   get: authorizedProcedure.input(z.string()).query(({ ctx, input }) =>
-    ctx.prisma.eventTemplate.findUnique({
+    ctx.db.eventTemplate.findUnique({
       where: { id: input },
     })
   ),
   list: authorizedProcedure
     .input(z.object({ q: z.string().optional() }).optional())
     .query(({ ctx, input }) =>
-      ctx.prisma.eventTemplate.findMany({
+      ctx.db.eventTemplate.findMany({
         where: input
           ? {
               OR: [
@@ -35,7 +35,7 @@ export const templatesRouter = createTRPCRouter({
   delete: authorizedProcedure
     .input(z.string())
     .mutation(async ({ ctx, input }) =>
-      ctx.prisma.eventTemplate.delete({
+      ctx.db.eventTemplate.delete({
         where: { id: input },
       })
     ),

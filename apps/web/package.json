@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev:client": "next dev --turbo",
-    "dev": "next dev --turbo -p 3002",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -36,6 +36,8 @@
     "@radix-ui/react-toast": "^1.2.1",
     "@radix-ui/react-toggle": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@repo/auth": "workspace:*",
+    "@repo/trpc": "workspace:*",
     "@repo/ui": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

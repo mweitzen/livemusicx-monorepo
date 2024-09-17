@@ -10,7 +10,8 @@ import {
 
 import { MusicianInputSchema } from "@/lib/validators/accounts";
 import { TRPCError } from "@trpc/server";
-import { generateUniqueSlug } from "@/lib/utils";
+
+import { generateUniqueSlug } from "@repo/db/helpers";
 
 export const musiciansRouter = createTRPCRouter({
   list: publicProcedure.query(({ ctx }) => ctx.db.musician.findMany()),

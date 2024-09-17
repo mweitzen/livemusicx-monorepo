@@ -6,7 +6,7 @@ import { createTRPCRouter, protectedProcedure } from "../../../trpc";
 
 export const internalRouter = createTRPCRouter({
   getCurrent: protectedProcedure.query(({ ctx }) => {
-    return ctx.prisma.user.findUnique({
+    return ctx.db.user.findUnique({
       where: {
         id: ctx.session.user.id,
       },
@@ -27,7 +27,7 @@ export const internalRouter = createTRPCRouter({
           message: "The verification code you provided does not match.",
         });
 
-      return await ctx.prisma.user.update({
+      return await ctx.db.user.update({
         where: {
           id: ctx.session.user.id,
         },
@@ -69,7 +69,7 @@ export const internalRouter = createTRPCRouter({
             message: "Error updating the user session.",
           });
 
-        return await ctx.prisma.user.update({
+        return await ctx.db.user.update({
           where: {
             id: ctx.session.user.id,
           },
@@ -93,7 +93,7 @@ export const internalRouter = createTRPCRouter({
       })
     )
     .mutation(({ ctx, input }) => {
-      return ctx.prisma.user.create({
+      return ctx.db.user.create({
         data: {
           accountType: "PUBLIC",
           ...input,

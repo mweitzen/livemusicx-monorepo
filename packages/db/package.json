@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./src/client.ts",
+    "./helpers": "./src/helpers.ts",
     "./v1": "./src/client.v1.ts",
     "./v2": {
       "require": {
@@ -40,6 +41,7 @@
     "typescript": "catalog:"
   },
   "dependencies": {
-    "@prisma/extension-accelerate": "^1.1.0"
+    "@prisma/extension-accelerate": "^1.1.0",
+    "@repo/utils": "workspace:*"
   }
 }

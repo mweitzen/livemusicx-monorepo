@@ -6,10 +6,10 @@ import {
   GetRegionCitiesInputSchema,
   GetRegionVenuesInputSchema,
   GetRegionEventsInputSchema,
-} from "@/lib/schema/locations/region";
+} from "../../../lib-tmp/schema/locations/region";
 
 export const GetAllRegionsQuery = (
-  input: z.infer<typeof GetRegionsInputSchema>,
+  input: z.infer<typeof GetRegionsInputSchema>
 ): Prisma.RegionFindManyArgs => ({
   take: input.take,
   skip: input.take * (input.page - 1),
@@ -23,7 +23,7 @@ export const GetAllRegionsQuery = (
 });
 
 export const GetRegionCitiesQuery = (
-  input: z.infer<typeof GetRegionCitiesInputSchema>,
+  input: z.infer<typeof GetRegionCitiesInputSchema>
 ) =>
   ({
     where: {
@@ -39,7 +39,7 @@ export const GetRegionCitiesQuery = (
   }) satisfies Prisma.RegionFindUniqueArgs;
 
 export const GetRegionVenuesQuery = (
-  input: z.infer<typeof GetRegionVenuesInputSchema>,
+  input: z.infer<typeof GetRegionVenuesInputSchema>
 ) =>
   ({
     where: {
@@ -55,7 +55,7 @@ export const GetRegionVenuesQuery = (
   }) satisfies Prisma.RegionFindUniqueArgs;
 
 export const GetRegionEventsQuery = (
-  input: z.infer<typeof GetRegionEventsInputSchema>,
+  input: z.infer<typeof GetRegionEventsInputSchema>
 ): Prisma.RegionFindUniqueArgs =>
   ({
     where: {

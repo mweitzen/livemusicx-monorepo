@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createSlug } from "@/lib/utils";
+import { createSlug } from "@repo/utils/create-slug";
 import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
 import {
   createTRPCRouter,
@@ -174,7 +174,9 @@ export const organizersRouter = createTRPCRouter({
       let x = 1;
       while (exists) {
         returnSlug = `${slug}-${x}`;
-        exists = await ctx.prisma.musicGroup.findUnique({ where: { slug: returnSlug } });
+        exists = await ctx.prisma.musicGroup.findUnique({
+          where: { slug: returnSlug },
+        });
         x++;
       }
       return {

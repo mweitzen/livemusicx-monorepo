@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { auth } from "@/auth";
+import { auth } from "@repo/auth";
 import { Button } from "../ui/button";
 
 import Notifications from "../features/notifications";

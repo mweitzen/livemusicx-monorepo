@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AuthError } from "next-auth";
-import { signIn } from "@/auth";
+import { signIn } from "@repo/auth";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
