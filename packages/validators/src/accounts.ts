@@ -1,27 +1,7 @@
 import { z } from "zod";
+import { VenueType } from "@prisma/client";
 
-export const URLSchema = z.string().url("Please provide a full, valid URL");
-
-export const EmailSchema = z
-  .string()
-  .email("Please provide a valid email address");
-
-export const PhoneNumberSchema = z
-  .string()
-  .regex(
-    new RegExp("^(\\+0?1\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$"),
-    "Not passing regex"
-  )
-  .min(10)
-  .transform((val) => (val ? val.replace(/\D/g, "") : undefined));
-
-export const IDArraySchema = z.array(z.object({ id: z.string() }));
-
-export const SearchSchemaBase = {
-  page: z.number().optional().default(1),
-  take: z.number().optional().default(20),
-  query: z.string().optional(),
-};
+import { EmailSchema, URLSchema, PhoneNumberSchema, IDArraySchema } from "./";
 
 const AccountSchemaBase = {
   name: z.string(),
@@ -70,13 +50,10 @@ export const OrganizerInputSchema = z.object({
   emailInquiries: EmailSchema.optional(),
 });
 
-export const VenueType = z.enum(["VENUE", "THEATER"]);
-export const StageType = z.enum(["STAGE", "ROOM", "AREA"]);
-
 export const VenueInputSchema = z
   .object({
     ...AccountSchemaBase,
-    type: VenueType,
+    type: z.nativeEnum(VenueType),
     keywordIds: IDArraySchema.optional(),
     ageRestriction: z.boolean().optional().default(false),
     servesAlcohol: z.boolean().optional(),

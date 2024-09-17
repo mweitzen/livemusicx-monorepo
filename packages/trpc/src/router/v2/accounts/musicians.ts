@@ -8,7 +8,7 @@ import {
   publicProcedure,
 } from "../../../trpc";
 
-import { MusicianInputSchema } from "@/lib/validators/accounts";
+import { MusicianInputSchema } from "@repo/validators";
 import { TRPCError } from "@trpc/server";
 
 import { generateUniqueSlug } from "@repo/db/helpers";

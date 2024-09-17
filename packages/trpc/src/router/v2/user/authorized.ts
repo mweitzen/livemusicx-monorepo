@@ -4,7 +4,7 @@ import { createTRPCRouter, authorizedProcedure } from "../../../trpc";
 
 export const authorizedRouter = createTRPCRouter({
   getManagedAccounts: authorizedProcedure.query(async ({ ctx }) => {
-    const accountType = ctx.session.user.accountType;
+    const accountType = ctx.session.user.type;
 
     const select = {
       select: {

@@ -8,7 +8,7 @@ import {
   publicProcedure,
 } from "../../../trpc";
 
-import { VenueInputSchema } from "@/lib/validators/accounts";
+import { VenueInputSchema } from "@repo/validators";
 
 import { generateUniqueSlug } from "@repo/db/helpers";
 

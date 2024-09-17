@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { unstable_update, signOut, signIn } from "auth";
+import { signOut, signIn, invalidateSessionToken } from "@repo/auth";
 import { TRPCError } from "@trpc/server";
 import { AccountType } from "@repo/db/v1";
 import { createTRPCRouter, protectedProcedure } from "../../../trpc";
@@ -59,15 +59,15 @@ export const internalRouter = createTRPCRouter({
       let success = false;
       try {
         // update session
-        const updateResult = await unstable_update({
-          user: { accountType: input.accountType, userVerified: true },
-        });
+        // const updateResult = await unstable_update({
+        //   user: { accountType: input.accountType, userVerified: true },
+        // });
 
-        if (updateResult?.user?.accountType !== input.accountType)
-          throw new TRPCError({
-            code: "INTERNAL_SERVER_ERROR",
-            message: "Error updating the user session.",
-          });
+        // if (updateResult?.user?.accountType !== input.accountType)
+        //   throw new TRPCError({
+        //     code: "INTERNAL_SERVER_ERROR",
+        //     message: "Error updating the user session.",
+        //   });
 
         return await ctx.db.user.update({
           where: {

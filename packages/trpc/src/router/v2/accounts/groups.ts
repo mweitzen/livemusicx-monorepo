@@ -7,7 +7,7 @@ import {
 } from "../../../trpc";
 import { TRPCError } from "@trpc/server";
 
-import { GroupInputSchema } from "@/lib/validators/accounts";
+import { GroupInputSchema } from "@repo/validators";
 
 import { generateUniqueSlug } from "@repo/db/helpers";
 
