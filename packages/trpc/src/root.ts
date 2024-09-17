@@ -1,21 +1,12 @@
-import { authRouter } from "./router/auth";
 import { createTRPCRouter } from "./trpc";
-
-// import { accountsRouter } from "./router/accounts";
-// import { eventsRouter } from "./router/events";
-// import { usersRouter } from "./router/users";
-// import { bulletinsRouter } from "./router/bulletins";
-// import { locationsRouter } from "./router/locations";
-// import { generalRouter } from "./router/general";
+import { v1Router } from "./router/v1";
+import { v2Router } from "./router/v2";
+import { authRouter } from "./router/auth";
 
 export const appRouter = createTRPCRouter({
+  v1: v1Router,
+  v2: v2Router,
   auth: authRouter,
-  // general: generalRouter,
-  // locations: locationsRouter,
-  // accounts: accountsRouter,
-  // events: eventsRouter,
-  // users: usersRouter,
-  // bulletins: bulletinsRouter,
 });
 
 // export type definition of API
