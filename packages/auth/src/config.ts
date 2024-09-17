@@ -6,7 +6,7 @@ import type {
 import { skipCSRFCheck } from "@auth/core";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
-import { prisma } from "@repo/db/v1";
+import { prisma, AccountType, UserRole } from "@repo/db/v1";
 
 import { env } from "../env";
 import { providers } from "./providers";
@@ -14,8 +14,20 @@ import { providers } from "./providers";
 declare module "next-auth" {
   interface Session {
     user: {
-      id: string;
+      role?: UserRole;
+      type?: AccountType;
+      isVerified?: boolean;
+      isSetup?: boolean;
     } & DefaultSession["user"];
+  }
+}
+
+declare module "@auth/core/jwt" {
+  interface JWT {
+    role?: UserRole;
+    type?: AccountType;
+    isVerified?: boolean;
+    isSetup?: boolean;
   }
 }
 

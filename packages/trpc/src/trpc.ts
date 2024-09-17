@@ -49,7 +49,7 @@ export const createTRPCContext = async (opts: {
 
   return {
     session,
-    db,
+    db: prisma,
     token: authToken,
   };
 };

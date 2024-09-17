@@ -1,3 +1,5 @@
+import { users } from "./mock-users";
+
 import type { Provider } from "next-auth/providers";
 import { CredentialsSignin } from "next-auth";
 import Google, { type GoogleProfile } from "next-auth/providers/google";
@@ -11,13 +13,10 @@ export const providers: Provider[] = [
     },
     /*  TODO: IMPLEMENT */
     async authorize(credentials) {
-      // const foundUser = users.find(
-      //   (item: (typeof users)[0]) => item.email === credentials.email
-      // );
-      const foundUser = {
-        email: "mweitzenhoffer@gmail.com",
-        password: "password",
-      };
+      const foundUser = users.find(
+        (item: (typeof users)[0]) => item.email === credentials.email
+      );
+
       if (!foundUser) throw new CredentialsSignin("invalid-user");
 
       const { password, ...user } = foundUser;

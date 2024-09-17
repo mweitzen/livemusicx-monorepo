@@ -1,13 +1,21 @@
 {
   "name": "@repo/db",
   "version": "1.0.0",
+  "private": true,
+  "type": "module",
   "exports": {
     ".": "./src/client.ts",
     "./v1": "./src/client.v1.ts",
-    "./v1-edge": "./src/client.v1-edge.ts",
     "./v2": {
-      "types": "./dist/v2/index.d.ts",
-      "default": "./dist/v2/index.js"
+      "require": {
+        "types": "./default.d.ts",
+        "node": "./default.js"
+      },
+      "import": {
+        "types": "./default.d.ts",
+        "node": "./default.js"
+      },
+      "default": "./default.js"
     }
   },
   "scripts": {
@@ -19,7 +27,7 @@
     "format": "prisma format",
     "lint": "eslint . --max-warnings 0",
     "studio": "prisma studio",
-    "clean": "git clean -xdf .cache .turbo dist node_modules"
+    "clean": "git clean -xdf .cache .turbo node_modules"
   },
   "devDependencies": {
     "@prisma/client": "5.19.1",

@@ -5,9 +5,10 @@ import { AuthShowcase } from "./_components/auth-showcase";
 
 export const runtime = "edge";
 
-export default function HomePage() {
+export default async function HomePage() {
   // You can await this here if you don't want to show Suspense fallback below
-  // void api.post.all.prefetch();
+  const mesage = api.auth.getSecretMessage();
+  const test = await api.auth.getSession();
 
   return (
     <HydrateClient>
@@ -23,7 +24,8 @@ export default function HomePage() {
               fallback={<div className='flex w-full flex-col gap-4'></div>}
             ></Suspense>
           </div>
-          <p>a</p>
+          {/* <p>{mesage}</p> */}
+          <p>{JSON.stringify(test)}</p>
         </div>
       </main>
     </HydrateClient>
