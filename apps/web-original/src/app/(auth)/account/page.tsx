@@ -1,12 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { auth } from "auth";
+import { auth } from "@repo/auth";
 import { api } from "@/lib/trpc/server";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { TypographyLarge, TypographyMuted } from "@/components/shared/typography";
+import {
+  TypographyLarge,
+  TypographyMuted,
+} from "@/components/shared/typography";
 
 export default async function UserAccountPage() {
   const session = await auth();

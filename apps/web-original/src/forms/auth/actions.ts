@@ -1,7 +1,7 @@
 "use server";
 import { z } from "zod";
 import { api } from "@/lib/trpc/server";
-import { signOut, signIn } from "auth";
+import { signOut, signIn } from "@repo/auth";
 
 import { AccountType } from "@repo/db/v1";
 

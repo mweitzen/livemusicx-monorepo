@@ -1,18 +1,26 @@
 import Link from "next/link";
-import { auth } from "@/auth";
+import { auth } from "@repo/auth";
 import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { GoogleButton } from "@/components/shared/auth-buttons";
-import { TypographyLarge, TypographyMuted, TypographyP } from "@/components/shared/typography";
-import { PageHeader, PageTitle, PageDescription } from "@/components/public/page";
+import {
+  TypographyLarge,
+  TypographyMuted,
+  TypographyP,
+} from "@/components/shared/typography";
+import {
+  PageHeader,
+  PageTitle,
+  PageDescription,
+} from "@/components/public/page";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function LoginPage() {
   const session = await auth();
   if (!!session) {
     const user = session.user!;
-    if (user.accountType !== "PUBLIC") return redirect("/admin");
+    if (user.type !== "PUBLIC") return redirect("/admin");
 
     return redirect("/account");
   }
@@ -31,7 +39,7 @@ export default async function LoginPage() {
           <GoogleButton className="w-full" />
         </CardContent>
       </Card>
-      <div className="text-center mt-4">
+      <div className="mt-4 text-center">
         <TypographyMuted className="mb-4">{`Don't have an account? Simply log in above to begin!`}</TypographyMuted>
         <TypographyLarge className="mb-1">Want to post events?</TypographyLarge>
         <Button variant="outline" asChild>

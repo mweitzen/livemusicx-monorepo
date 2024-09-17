@@ -1,4 +1,4 @@
-import { signIn, signOut } from "auth";
+import { signIn, signOut } from "@repo/auth";
 import type { AccountType } from "@repo/db/v1";
 
 import { toast } from "sonner";

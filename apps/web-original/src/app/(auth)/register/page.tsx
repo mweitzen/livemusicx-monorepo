@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { auth, signIn } from "auth";
+import { auth, signIn } from "@repo/auth";
 import { redirect } from "next/navigation";
 
 import {
@@ -16,7 +16,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
 import { RegisterButton } from "@/components/shared/auth-buttons";
-import { PageHeader, PageTitle, PageDescription } from "@/components/public/page";
+import {
+  PageHeader,
+  PageTitle,
+  PageDescription,
+} from "@/components/public/page";
 import { TypographyMuted, TypographyP } from "@/components/shared/typography";
 
 async function register() {
@@ -51,7 +55,9 @@ export default async function SignUpPage() {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Account Type</SelectLabel>
-                <SelectItem value="PERFORMER">Performer (Musician or Group)</SelectItem>
+                <SelectItem value="PERFORMER">
+                  Performer (Musician or Group)
+                </SelectItem>
                 <SelectItem value="VENUE">Venue</SelectItem>
                 <SelectItem value="ORGANIZER">Event Organizer</SelectItem>
                 <SelectItem value="ASSOCIATE">Staff or Associate</SelectItem>
@@ -65,7 +71,7 @@ export default async function SignUpPage() {
           </TypographyP>
         </CardContent>
       </Card>
-      <div className="text-center mt-8">
+      <div className="mt-8 text-center">
         <TypographyMuted>
           Not looking to post events, and want a regular account?
         </TypographyMuted>

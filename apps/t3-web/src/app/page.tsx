@@ -9,6 +9,7 @@ export default async function HomePage() {
   // You can await this here if you don't want to show Suspense fallback below
   const mesage = api.auth.getSecretMessage();
   const test = await api.auth.getSession();
+  const testing = await api.v1.users.authorized.getUsersAccounts();
 
   return (
     <HydrateClient>
@@ -24,6 +25,7 @@ export default async function HomePage() {
               fallback={<div className='flex w-full flex-col gap-4'></div>}
             ></Suspense>
           </div>
+          {testing && testing.map((test) => <p key={test.id}>{test.name}</p>)}
           {/* <p>{mesage}</p> */}
           <p>{JSON.stringify(test)}</p>
         </div>

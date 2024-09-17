@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { auth } from "auth";
+import { auth } from "@repo/auth";
 import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";

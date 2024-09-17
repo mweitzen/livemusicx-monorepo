@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { unstable_update, signOut, signIn } from "auth";
+import { unstable_update, signOut, signIn } from "@repo/auth";
 import { TRPCError } from "@trpc/server";
 import { AccountType } from "@repo/db/v1";
 import { createTRPCRouter, protectedProcedure } from "@/server/trpc";

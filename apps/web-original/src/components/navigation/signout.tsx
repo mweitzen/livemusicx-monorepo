@@ -1,5 +1,5 @@
 "use server";
-import { signOut as signOutPrimitive } from "auth";
+import { signOut as signOutPrimitive } from "@repo/auth";
 import { toast } from "sonner";
 
 export async function signOut() {
