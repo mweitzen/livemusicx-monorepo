@@ -1,0 +1,90 @@
+# Mid-Atlantic (NY, NJ, PA, DE, MD, VA, DC, WV)
+regions:
+  # New York City & Tri-State Area (NYC)
+  - name: New York City & Tri-State Area
+    regions:
+      - name: New York City
+        description: All five boroughs (Manhattan, Brooklyn, Queens, The Bronx, Staten Island) - Global music hub with diverse scenes for jazz, hip-hop, Broadway musicals, punk, EDM.
+        states: ['NY']
+
+      - name: Northern New Jersey
+        description: Newark, Jersey City, Hoboken - Similar scene to NYC, with a focus on hip-hop and indie rock.
+        states: ['NJ']
+
+      - name: Long Island
+        description: Nassau County, Suffolk County - Mix of indie rock, alternative, and a developing scene with local singer-songwriters.
+        states: ['NY']
+
+  # Philadelphia & Delaware Valley
+  - name: Philadelphia & Delaware Valley
+    regions:
+      - name: Philadelphia
+        description: Philadelphia, Camden (NJ) - Strong rock and soul music traditions, with a developing indie scene.
+        states: ['PA', 'NJ']
+
+      - name: Delaware Valley
+        description: Wilmington (DE), Allentown (PA), Reading (PA) - Mix of alternative rock, Americana, and singer-songwriter acts.
+        states: ['PA', 'DE']
+
+  # Baltimore & Chesapeake Bay (BAL)
+  - name: Baltimore & Chesapeake Bay
+    regions:
+      - name: Baltimore
+        description: Baltimore - Strong Baltimore club and live music scene, with a mix of indie rock and electronic dance music
+        states: ['MD']
+
+      - name: Virginia Beach & Hampton Roads
+        description: Virginia Beach, Norfolk - Beach music, alternative rock, and a touch of Americana, with a seasonal tourist influence.
+        states: ['VA']
+
+      - name: Annapolis & D.C. Suburbs
+        description: Annapolis, Washington D.C. suburbs (MD) - Leans towards indie rock and alternative rock, with some influence from the D.C. music scene.
+        states: ['MD', 'DC']
+
+  # Washington D.C. & NoVA
+  - name: Washington D.C. & NoVA
+    regions:
+      - name: Washington D.C.
+        description: Washington D.C. - Mix of go-go music
+        states: ['DC']
+
+      - name: Northern Virginia
+        description: Arlington (VA), Alexandria (VA), Fairfax (VA) - Similar scene to D.C., with a focus on indie rock and a growing hip-hop scene.
+        states: ['VA']
+
+  # Central Pennsylvania & Appalachia
+  - name: Central Pennsylvania & Appalachia
+    regions:
+      - name: Central Pennsylvania
+        description: Harrisburg, State College, Lancaster - Indie rock and Americana.
+        states: ['PA']
+
+      - name: Northeastern Pennsylvania
+        description: Scranton, Wilkes-Barre - Mix of indie rock, Americana, and some roots rock with a folk music influence.
+        states: ['PA']
+
+      - name: Appalachian Pennsylvania
+        description: Reaches into western Pennsylvania with influences from Appalachia - Leans towards Americana and roots music, with some bluegrass influence.
+        states: ['PA']
+
+  # Upstate New York
+  - name: Upstate New York
+    regions:
+      - name: Western New York
+        description: Buffalo, Rochester - Indie rock, alternative, and some electronic dance music influences.
+        states: ['NY']
+
+      - name: Central New York
+        description: Syracuse - Mix of indie rock, Americana, and singer-songwriter acts.
+        states: ['NY']
+
+  # Virginia & Carolina Beaches
+  - name: Virginia & Carolina Beaches
+    regions:
+      - name: Virginia Beach & Outer Banks
+        description: Virginia Beach (partially covered in BAL-Hampton), Outer Banks (NC) - Beach music, alternative rock, and a touch of Americana, with a strong seasonal tourist influence.
+        states: ['VA', 'NC']
+
+      - name: Myrtle Beach
+        description: Myrtle Beach (SC) - Beach music, pop, and country music influences, with a strong seasonal tourist influence.
+        states: ['SC']

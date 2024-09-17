@@ -1,0 +1,355 @@
+## New Mexico: Regions with Cities/Towns
+
+**Central New Mexico:**
+
+- **Albuquerque & Rio Grande Valley:**
+
+  - Albuquerque
+  - Adelino
+  - Alamillo
+  - Alamo
+  - Belen
+  - Bosque Farms
+  - Los Lunas
+  - Socorro
+  - Albuquerque
+  - Corrales
+  - **El Cerro** (Valencia County)
+  - **El Cerro Mission** (Valencia County)
+  - **Socorro**
+  - **Isleta** (Bernalillo County)
+  - Isleta (Bernalillo County) (from previous data)
+  - Los Lunas (Valencia County)
+  - Meadow Lake (Valencia County)
+  - Monterey Park (Valencia County)
+  - Isleta (Bernalillo County) (from previous data)
+  - Los Lunas (Valencia County)
+  - Meadow Lake (Valencia County)
+  - Monterey Park (Valencia County)
+  - North Valley (Bernalillo County)
+  - Paa-Ko (Bernalillo County)
+  - Paguate (Cibola County)
+  - Paraje (Cibola County)
+  - Peña Blanca (Sandoval County)
+  - Peralta (Valencia County)
+  - Placitas (Sandoval County)
+  - San Antonito (Bernalillo County) (Already included in Central New Mexico - Albuquerque & Rio Grande Valley)
+  - Sandia Heights (Bernalillo County)
+  - Sandia Knolls (Bernalillo County)
+  - Sandia Park (Bernalillo County)
+  - Sedillo (Bernalillo County)
+  - San Acacia (Socorro County)
+  - San Antonio (Socorro County)
+  - San Antonito (Bernalillo County)
+  - San Felipe Pueblo (Sandoval County)
+  - San Luis (Sandoval County)
+  - Santo Domingo Pueblo (Sandoval County)
+  - Sausal (Valencia County)
+
+- **Santa Fe & Española Valley:**
+
+  - **Edgewood** (Santa Fe County)
+  - **Eldorado at Santa Fe** (Santa Fe County)
+  - **Encantado** (Santa Fe County)
+  - Santa Fe
+  - **Española** (Rio Arriba County)
+  - **Galisteo** (Santa Fe County)
+  - **Glorieta** (Santa Fe County)
+  - **Hyde Park** (Santa Fe County)
+  - Nambe (Santa Fe County)
+  - North San Ysidro (San Miguel County)
+  - Ohkay Owingeh (Rio Arriba County)
+  - Ojo Caliente (Taos County)
+  - Ojo Encino (McKinley County)
+  - Ojo Sarco (Rio Arriba County)
+  - Pecos (San Miguel County)
+  - Peak Place (Santa Fe County)
+  - Santa Fe
+  - Velarde
+  - Watrous **[Santa Fe/Las Vegas Region in the reference list]**
+  - San Ildefonso Pueblo (Santa Fe County)
+  - San Jose (Rio Arriba County)
+  - San Pedro (Santa Fe County) (**Uncertain placement - needs further research**)
+  - Santa Cruz (Santa Fe County)
+  - Santa Fe (Santa Fe County)
+  - Santa Fe Foothills (Santa Fe County)
+  - Seton Village (Santa Fe County)
+  - Soham (San Miguel County) (**Possible reassignment to Santa Fe/Las Vegas Region based on proximity**)
+  - Los Cerrillos (Santa Fe County)
+  - Los Luceros (Rio Arriba County)
+  - Los Ojos (Rio Arriba County)
+  - Lyden (Rio Arriba County)
+  - Madrid (Santa Fe County)
+  - Mora (Mora County) (assigned based on proximity)
+
+**Northern New Mexico:**
+
+- **Chama/Dulce Area:**
+
+  - Abiquiu
+  - Brazos
+  - Canjilon
+  - Cañones
+  - Chama
+  - Dulce
+
+- **Farmington & San Juan Basin:**
+
+  - Aztec
+  - Bloomfield
+  - Farmington
+  - **Crouch Mesa** (San Juan County)
+  - **Crystal** (San Juan County)
+  - Farmington
+  - Nageezi (San Juan County)
+  - Napi Headquarters (San Juan County)
+  - Naschitti (San Juan County)
+  - Navajo Dam (San Juan County)
+  - Nenahnezad (San Juan County)
+  - Newcomb (San Juan County)
+  - North Light Plant (San Juan County)
+  - Ojo Amarillo (San Juan County)
+  - South River (San Juan County)
+  - Spencerville (San Juan County)
+  - Tohatchi Vista (San Juan County)
+  - Turley (San Juan County)
+  - Upper Fruitland (San Juan County)
+  - **Farmington** (San Juan County) **[previously included]**
+  - **Flora Vista** (San Juan County)
+  - **Fruitland** (San Juan County)
+  - **Kirtland** (San Juan County)
+  - **La Plata** (San Juan County)
+  - **Lee Acres** (San Juan County)
+  - Farmington
+  - Waterflow
+  - West Hammond
+
+- **Taos & Northern Mountains:**
+
+  - Angel Fire
+  - Arroyo Seco
+  - Arroyo Hondo (Taos County)
+  - Taos
+  - **Costilla** (Taos County)
+  - **Eagle Nest** (Colfax County)
+  - **El Rito** (Rio Arriba County)
+  - Taos
+  - **Gallina** (Rio Arriba County)
+  - Talpa (Taos County)
+  - Taos (Taos County)
+  - Taos Pueblo (Taos County)
+  - Taos Ski Valley (Taos County)
+  - Ute Park (Colfax County) (possibly reassign to Northeastern based on proximity)
+  - Vadito (Taos County)
+  - San Cristobal (Taos County) (**Possible reassignment based on proximity**)
+  - Peñasco (Taos County)
+  - Picuris Pueblo (Taos County)
+
+**Eastern New Mexico:**
+
+- **Clovis & Eastern Plains:**
+
+  - Melrose (Curry County)
+  - **Logan** (Quay County)
+  - Newkirk (Guadalupe County)
+  - Pastura (Guadalupe County)
+  - Cannon AFB
+  - Clovis
+  - Portales
+  - Clovis
+  - **Conchas Dam** (San Miguel County)
+  - **Dora** (Roosevelt County)
+  - **Elida** (Roosevelt County)
+  - Portales
+  - Texico (Curry County) (possibly reassign based on proximity)
+  - Tucumcari (Quay County)
+  - San Jon (Quay County)
+  - Santa Rosa (Guadalupe County)
+  - **Floyd** (Roosevelt County)
+  - **Fort Sumner** (De Baca County)
+  - **Grady** (Curry County)
+  - **House** (Quay County)
+
+- **Roswell & Chaves County:**
+  - Roswell
+  - Dexter (Chaves County)
+  - Roswell
+  - Tatum (Lea County) (possibly reassign to Southeastern based on proximity)
+  - Nadine (Lea County)
+  - North Hobbs (Lea County)
+  - **Hagerman** (Chaves County)
+  - **Lake Arthur** (Chaves County)
+  - Midway (Chaves County)
+
+**Southern New Mexico:**
+
+- **Las Cruces & Mesilla Valley:**
+
+  - Alamogordo
+  - Anthony
+  - Arrey
+  - Las Cruces
+  - Mesilla
+  - **Doña Ana** (Doña Ana County)
+  - Las Cruces
+  - Las Cruces
+  - Vado
+  - White Sands
+  - Williamsburg
+  - Sunland Park (Doña Ana County)
+  - Tortugas (Doña Ana County)
+  - University Park (Doña Ana County)
+  - San Miguel (Doña Ana County)
+  - San Pablo (Doña Ana County)
+  - San Ysidro (Doña Ana County)
+  - Santa Teresa (Doña Ana County)
+  - Mesilla (Doña Ana County)
+  - Mesquite (Doña Ana County)
+  - Nogal (Lincoln County)
+  - Oasis (Sierra County)
+  - Organ (Doña Ana County)
+  - Orogrande (Otero County)
+  - Picacho Hills (Doña Ana County)
+  - Pinon (Otero County)
+  - **Dona Ana** (Doña Ana County)
+  - **Fairacres** (Doña Ana County)
+  - **Garfield** (Doña Ana County)
+  - **Hatch** (Doña Ana County)
+  - **High Rolls** (Otero County)
+  - **Holloman AFB** (Otero County)
+  - **Hot Springs Landing** (Sierra County)
+  - **La Mesa** (Doña Ana County)
+  - **La Union** (Doña Ana County)
+  - **Las Cruces** (Doña Ana County)
+
+- **Silver City & Gila Region:**
+
+  - Alma
+  - Arenas Valley
+  - Silver City
+  - **Cliff** (Grant County)
+  - **Cobre** (Grant County)
+  - Columbus (Luna County)
+  - Deming (Luna County)
+  - Silver City
+  - Silver City
+  - Ventura
+  - Virden
+  - Windmill
+  - Winston
+  - Sunshine (Luna County)
+  - Trout Valley (Grant County)
+  - Tyrone (Grant County)
+  - Santa Clara (Grant County)
+  - Silver City (Grant County)
+  - Mountain View (Luna County)
+  - Old Town (Luna County)
+  - Pecan Park (Luna County)
+  - Pinos Altos (Grant County)
+  - **Faywood** (Grant County)
+  - **Gila** (Grant County)
+  - **Gila Hot Springs** (Grant County)
+  - **Hachita** (Grant County)
+  - **Hanover** (Grant County)
+  - **Hillsboro** (Sierra County)
+  - **Hurley** (Grant County)
+  - **Lake Roberts** (Grant County)
+  - **Lake Roberts Heights** (Grant County)
+  - Mimbres (Grant County)
+  - Mogollon (Catron County) (assigned based on proximity)
+
+**Western New Mexico:**
+
+10. **Gallup Area:**
+
+- San Fidel (Cibola County)
+- San Mateo (Cibola County)
+- **Iyanbito** (McKinley County)
+- **Jamestown** (McKinley County)
+- **Laguna** (Cibola County)
+- **Lobo Canyon** (Cibola County)
+- San Rafael (Cibola County)
+- Seama (Cibola County)
+- Skyline-Ganipa (Cibola County)
+- Mount Taylor (Cibola County)
+- Mountain View (Cibola County)
+- Nakaibito (McKinley County)
+- Navajo (McKinley County)
+- North Acomita Village (Cibola County)
+- Paraje (Cibola County)
+- Pinedale (McKinley County)
+- Pinehaven (McKinley County)
+- Pinehill (Cibola County)
+- McCartys Village (Cibola County)
+- McGaffey (McKinley County)
+- Milan (Cibola County)
+
+---
+
+**Unassigned Regions:**
+
+- **Estancia** (Torrance County)
+- **Eunice** (Lea County)
+- **Fence Lake** (Cibola County)
+- **Fort Wingate** (McKinley County)
+- **Gamerco** (McKinley County)
+- **Golden** (Santa Fe County)
+- **Golden Acres** (Cibola County)
+- **Grenville** (Union County)
+- **Happy Valley** (Eddy County)
+- **Haystack** (McKinley County)
+- **Hernandez** (Rio Arriba County)
+- **Highland Meadows** (Valencia County)
+- **Homer C Jones** (McKinley County)
+- **Homestead** (Catron County)
+- **Hope** (Eddy County)
+- **Indian Hills** (Torrance County)
+- **Lower Frisco** (Catron County) - This location likely belongs to the **Southwest New Mexico - Silver City Area** based on its county.
+- **Luna** (Catron County) - This location likely belongs to the **Southwest New Mexico - Silver City Area** based on its county.
+- **Lybrook** (Rio Arriba County) - This location could potentially belong to the **Northwest New Mexico - Farmington Area** based on its county.
+- **Manzano** (Torrance County) - This location likely belongs to the **Greater Albuquerque Area** based on its county.
+- **Manzano Springs** (Torrance County) - No assignment possible with current information.
+- **Maxwell** (Colfax County) - This location likely belongs to the **Northeast New Mexico - Raton / Clayton Area** based on its county.
+- **Mayhill** (Otero County) - This location likely belongs to the **Southern New Mexico - Las Cruces Area** based on its county.
+- **McIntosh** (Torrance County) - No assignment possible with current information.
+- **Medanales** (Rio Arriba County) - This location could potentially belong to the **North Central New Mexico - Taos Area** based on its county.
+- **Mesita** (Cibola County) - This location likely belongs to the **Greater Albuquerque Area** based on its county.
+- **Middle Frisco** (Catron County) - This location likely belongs to the **Southwest New Mexico - Silver City Area** based on its county.
+- **Moquino** (Cibola County) - This location likely belongs to the **Greater Albuquerque Area** based on its county.
+- **Moriarty** (Torrance County) - No assignment possible with current information.
+- **Lordsburg** (Hidalgo County) - This location likely belongs to the **Southwest New Mexico - Silver City Area** based on its county.
+- **Los Alamos** (Los Alamos County) - This already belongs to the **Los Alamos & Jemez Mountains** region.
+- **Jal** (Lea County) - This location is likely in the **Southeast New Mexico - Roswell / Carlsbad Area** based on its proximity to Roswell.
+- **Jarales** (Valencia County) - This location could potentially belong to the **Central New Mexico - Socorro Area** based on its proximity to Socorro.
+- **Keeler Farm** (Luna County) - This location could be in the **Southwest New Mexico - Silver City Area** based on its proximity to Silver City.
+- **Kingston** (Sierra County) - This location could be in the **Southwest New Mexico - Silver City Area** based on its proximity to Silver City.
+- **La Bajada** (Santa Fe County) - This location likely belongs to the **Santa Fe/Las Vegas Region** based on its county.
+- **La Cienega** (Santa Fe County) - This location likely belongs to the **Santa Fe/Las Vegas Region** based on its county.
+- **La Hacienda** (Luna County) - This location could be in the **Southwest New Mexico - Silver City Area** based on its proximity to Silver City.
+- **La Huerta** (Eddy County) - This location likely belongs to the **Southeast New Mexico - Roswell / Carlsbad Area** based on its county.
+- **La Luz** (Otero County) - This location likely belongs to the **Southern New Mexico - Las Cruces Area** based on its county.
+- **La Madera** (Rio Arriba County) - This location could potentially belong to the **North Central New Mexico - Taos Area** based on its county.
+- **La Mesilla** (Rio Arriba County) - This location likely belongs to the **Santa Fe/Las Vegas Region** based on its county.
+- **La Puebla** (Santa Fe County) - This location likely belongs to the \*\*
+- Sena (San Miguel County) (**Needs further research to determine region**)
+- Stanley (Santa Fe County) (**Needs further research to determine region**)
+- Tecolotito (San Miguel County) (**Needs further research to determine region**)
+- Thunder Mountain (Santa Fe County) (**Needs further research to determine region**)
+- Mosquero (Harding County) (This location doesn't fit any of the established regions)
+- Mountainair (Torrance County) (This location doesn't fit any of the established regions)
+- Nara Visa (Quay County) (This location doesn't fit any of the established regions)
+- Pie Town (Catron County) (This location doesn't fit any of the established regions)
+- Vaughn
+- Willard
+- Corona (Lincoln County)
+- Cruzville (Catron County)
+- Cundiyo (Santa Fe County)
+- Cuyamungue (Santa Fe County)
+- Cuyamungue Grant (Santa Fe County)
+- Datil (Catron County)
+- Deer Canyon (Torrance County)
+- Dixon (Rio Arriba County)
+- Duran (Torrance County)
+- Encino (Torrance County)
+- Ensenada (Rio Arriba County)
+- **Lindrith** (Rio Arriba County)

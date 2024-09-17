@@ -7,6 +7,18 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./src/index.ts"
+    },
+    "./server": {
+      "types": "./dist/clients/server.d.ts",
+      "default": "./src/clients/server.ts"
+    },
+    "./react": {
+      "types": "./dist/clients/react.d.ts",
+      "default": "./src/clients/react.tsx"
+    },
+    "./mobile": {
+      "types": "./dist/clients/mobile.d.ts",
+      "default": "./src/clients/mobile.tsx"
     }
   },
   "scripts": {
@@ -20,6 +32,9 @@
     "@repo/auth": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/validators": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "@trpc/client": "catalog:",
+    "@trpc/react-query": "catalog:",
     "@trpc/server": "catalog:",
     "superjson": "2.2.1",
     "zod": "catalog:"

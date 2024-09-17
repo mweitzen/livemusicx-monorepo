@@ -1,0 +1,126 @@
+Region 1: New England
+  --> Connecticut
+  --> Maine
+  --> Massachusetts
+  --> New Hampshire
+  --> Rhode Island
+  --> Vermont
+Region 2: Mideast
+  --> Delaware
+  --> Maryland
+  --> New Jersey
+  --> New York
+  --> Pennsylvania
+  --> Washington D.C.
+Region 3: Great Lakes
+  --> Illinois
+  --> Indiana
+  --> Michigan
+  --> Ohio
+  --> Wisconsin
+Region 4: Plains
+  --> Iowa
+  --> Kansas
+  --> Minnesota
+  --> Missouri
+  --> Nebraska
+  --> North Dakota
+  --> South Dakota
+Region 5: Southeast
+  --> Alabama
+  --> Arkansas
+  --> Florida
+  --> Georgia
+  --> Kentucky
+  --> Louisiana
+  --> Mississippi
+  --> North Carolina
+  --> South Carolina
+  --> Tennessee
+  --> Virginia
+  --> West Virginia
+Region 6: Southwest
+  --> Arizona
+  --> New Mexico
+  --> Oklahoma
+  --> Texas
+Region 7: Rocky Mountain
+  --> Colorado
+  --> Idaho
+  --> Montana
+  --> Utah
+  --> Wyoming
+Region 8: Far West
+  --> Alaska
+  --> California
+  --> Hawaii
+  --> Nevada
+  --> Oregon
+  --> Washington
+
+---------------------------
+
+Region 1: Northeast
+  Division 1: New England
+    --> Connecticut
+    --> Maine
+    --> Massachusetts
+    --> New Hampshire
+    --> Rhode Island
+    --> Vermont
+  Division 2: Middle Atlantic 
+    --> New Jersey
+    --> New York
+    --> Pennsylvania
+Region 2: Midwest
+  Division 3: East North Central 
+    --> Illinois
+    --> Indiana
+    --> Michigan
+    --> Ohio
+    --> Wisconsin
+  Division 4: West North Central 
+    --> Iowa
+    --> Kansas
+    --> Minnesota
+    --> Missouri
+    --> Nebraska
+    --> North Dakota
+    --> South Dakota
+Region 3: South
+  Division 5: South Atlantic 
+    --> Delaware
+    --> Florida
+    --> Georgia
+    --> Maryland
+    --> North Carolina
+    --> South Carolina
+    --> Virginia
+    --> Washington D.C.
+    --> West Virginia
+  Division 6: East South Central
+    --> Alabama
+    --> Kentucky
+    --> Mississippi
+    --> Tennessee
+  Division 7: West South Central
+    --> Arkansas
+    --> Louisiana
+    --> Oklahoma
+    --> Texas
+Region 4: West
+  Division 8: Mountain 
+    --> Arizona
+    --> Colorado
+    --> Idaho
+    --> Montana
+    --> Nevada
+    --> New Mexico
+    --> Utah
+    --> Wyoming
+  Division 9: Pacific 
+    --> Alaska
+    --> California
+    --> Hawaii
+    --> Oregon
+    --> Washington

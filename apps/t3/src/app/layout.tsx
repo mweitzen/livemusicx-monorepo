@@ -6,7 +6,7 @@ import { cn } from "@repo/ui/helpers";
 import { ThemeProvider } from "@repo/ui/theme";
 import { Toaster } from "@repo/ui/components/toaster";
 
-import { TRPCReactProvider } from "~/trpc/react";
+import { TRPCReactProvider } from "@repo/trpc/react";
 
 import "~/app/globals.css";
 

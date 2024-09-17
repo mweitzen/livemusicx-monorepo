@@ -1,0 +1,63 @@
+regions:
+  - name: Los Angeles & The Valley (LA-Valley)
+    description: Los Angeles, Burbank, Glendale - Heart of the LA music industry, with a strong mix of pop, hip-hop, Latin music, and indie.
+    states: ['CA']
+
+  - name: Orange County & Beaches (LA-OrangeCounty)
+    description: Anaheim, Santa Ana, Huntington Beach, Newport Beach - Beach culture influences music with a mix of alternative rock, pop, and indie.
+    states: ['CA']
+
+  - name: South Bay & Beach Cities (LA-SouthBay)
+    description: Torrance, Redondo Beach, Manhattan Beach, Hermosa Beach - Beach-focused scene with a mix of indie rock, alternative rock, and surf rock.
+    states: ['CA']
+
+  - name: San Diego & Coast (SD-City)
+    description: San Diego, Chula Vista, National City - Distinct scene from LA, with a blend of alternative rock, pop, Latin music (banda, norteño), and a growing indie scene.
+    states: ['CA']
+
+  - name: Tijuana (Mexico) (SD-TJ) # Cultural Context Only
+    description: Tijuana (Mexico) - Border town with a vibrant music scene influencing San Diego. Not included in US states.
+
+  - name: Santa Barbara & Wine Country (CC-SantaBarbara)
+    description: Santa Barbara - Upscale coastal town with a mix of indie rock, singer-songwriter acts, and a touch of Americana.
+    states: ['CA']
+
+  - name: San Luis Obispo & Beaches (CC-SLO)
+    description: San Luis Obispo, Pismo Beach, Avila Beach - Relaxed coastal vibe with a mix of indie rock, singer-songwriter acts, and a touch of Americana.
+    states: ['CA']
+
+  - name: Monterey Bay & Carmel (CC-Monterey)
+    description: Monterey, Carmel-by-the-Sea - Renowned for jazz and singer-songwriter acts, with a touch of classical music influence.
+    states: ['CA']
+
+  - name: Santa Cruz & University Town (CC-SantaCruz)
+    description: Santa Cruz - College town atmosphere with a mix of indie rock, alternative rock, and a growing surf rock scene.
+    states: ['CA']
+
+  - name: San Francisco & The City (SF-City)
+    description: San Francisco - Global center for innovation in music, with strong scenes in electronic dance music (EDM), hip-hop, and indie rock.
+    states: ['CA']
+
+  - name: East Bay & Berkeley (SF-EastBay)
+    description: Oakland, Berkeley - Strong emphasis on alternative rock, indie rock, and a rich history of counterculture music.
+    states: ['CA']
+
+  - name: South Bay & Silicon Valley (SF-SouthBay)
+    description: San Jose, Fremont, Richmond - Diverse scene with a mix of electronic dance music (EDM), indie rock, and a growing hip-hop scene.
+    states: ['CA']
+
+  - name: Sacramento & Valley (SAC-City)
+    description: Sacramento - Blend of Americana and a developing hip-hop scene.
+    states: ['CA']
+
+  - name: Fresno & Central Valley (SAC-Fresno)
+    description: Fresno, Bakersfield - Leans towards Americana and country music, with a touch of Latin influences in the agricultural Central Valley.
+    states: ['CA']
+
+  - name: Riverside & Inland Empire (IE-Riverside)
+    description: Riverside, San Bernardino, Ontario - Mix of hip-hop and electronic dance music (EDM) influenced by the urban landscape.
+    states: ['CA']
+
+  - name: High Desert & Coachella Valley (IE-HighDesert)
+    description: Palm Springs, Coachella Valley - Diverse scene with electronic dance music (EDM) (especially around Coachella) and some roots rock influenced by the desert environment.
+    states: ['CA']

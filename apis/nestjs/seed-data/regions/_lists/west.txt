@@ -1,0 +1,70 @@
+Los Angeles Basin & SoCal Beaches -- Los Angeles & Hollywood -- Downtown LA & Historic Core (includes cultural attractions & music venues)
+Los Angeles Basin & SoCal Beaches -- Los Angeles & Hollywood -- Hollywood & West Hollywood (includes iconic landmarks & nightlife scene)
+Los Angeles Basin & SoCal Beaches -- Los Angeles & Hollywood -- Silver Lake & Echo Park (includes trendy neighborhoods with music venues)
+
+Los Angeles Basin & SoCal Beaches -- Orange County & SoCal Beaches -- Santa Monica & Venice Beach (includes beaches, boardwalk, & performance spaces)
+Los Angeles Basin & SoCal Beaches -- Orange County & SoCal Beaches -- Anaheim & Disneyland Resort (includes family-friendly entertainment & nearby music venues)
+Los Angeles Basin & SoCal Beaches -- Orange County & SoCal Beaches -- Costa Mesa & Huntington Beach (includes surf culture & music venues)
+
+Los Angeles Basin & SoCal Beaches -- San Fernando Valley -- North Hollywood & Burbank (includes film studios & music venues)
+Los Angeles Basin & SoCal Beaches -- San Fernando Valley -- Glendale & Pasadena (includes historic areas & cultural centers with music events)
+Los Angeles Basin & SoCal Beaches -- San Fernando Valley -- Woodland Hills & Calabasas (includes affluent communities with music venues)
+
+San Diego & Baja California -- San Diego City & Beaches -- Gaslamp Quarter & Downtown (includes historic district & nightlife scene)
+San Diego & Baja California -- San Diego City & Beaches -- Pacific Beach & Mission Beach (includes beaches & entertainment areas)
+San Diego & Baja California -- San Diego City & Beaches -- North Park & South Park (includes trendy neighborhoods with music venues)
+
+San Diego & Baja California -- Tijuana, Baja California [Mexico] -- Zona Centro & Tijuana Cultural Center (includes historic city center & cultural attractions)
+San Diego & Baja California -- Tijuana, Baja California [Mexico] -- Playas de Tijuana (Tijuana Beaches) & Rosarito (includes beaches & nightlife)
+
+Inland Empire & Deserts -- Riverside & San Bernardino -- Downtown Riverside & Fox Performing Arts Center (includes historic core & performing arts venue)
+Inland Empire & Deserts -- Riverside & San Bernardino -- Montclair & Ontario (includes cultural centers & music venues)
+Inland Empire & Deserts -- Riverside & San Bernardino -- Moreno Valley & Corona (includes suburban areas with event spaces)
+
+Inland Empire & Deserts -- Palm Springs & Coachella Valley -- Palm Springs & Uptown Design District (includes desert resort town & music venues)
+Inland Empire & Deserts -- Palm Springs & Coachella Valley -- Indio & Coachella Valley Music and Arts Festival (includes location of major music festival)
+Inland Empire & Deserts -- Palm Springs & Coachella Valley -- Cathedral City & Desert Hot Springs (includes resorts & opportunities for outdoor events)
+
+Central Coast -- Santa Barbara & American Riviera -- Santa Barbara & Funk Zone (includes beaches, historic architecture, & art galleries with music events)
+Central Coast -- Santa Barbara & American Riviera -- Goleta & University of California Santa Barbara (includes college town & cultural events)
+Central Coast -- Santa Barbara & American Riviera -- Montecito & Carpinteria (includes affluent communities & music venues)
+
+Central Coast -- San Luis Obispo & Pismo Beach -- San Luis Obispo Downtown & Fremont Street (includes historic mission & nightlife scene)
+Central Coast -- San Luis Obispo & Pismo Beach -- Pismo Beach & Avila Beach (includes beaches & family-friendly attractions)
+Central Coast -- San Luis Obispo & Pismo Beach -- Arroyo Grande Village (includes charming town & performing arts venues)
+
+Central Coast -- Monterey Bay & Carmel -- Monterey Fisherman's Wharf & Cannery Row (includes historic waterfront & tourist attractions)
+Central Coast -- Monterey Bay & Carmel -- Carmel-by-the-Sea & Carmel Mission (includes charming village & performing arts venues)
+Central Coast -- Monterey Bay & Carmel -- Pacific Grove & Asilomar State Beach (includes beaches & natural beauty)
+
+Sacramento & Central Valley -- Sacramento & Downtown -- Golden 1 Center & K Street (includes sports & entertainment complex & nightlife scene)
+Sacramento & Central Valley -- Sacramento & Downtown -- Midtown & East Sacramento (includes historic neighborhoods & music venues)
+Sacramento & Central Valley -- Sacramento & Downtown -- West Sacramento & Raley Field (includes baseball stadium & surrounding entertainment)
+
+Sacramento & Central Valley -- Fresno & Clovis -- Downtown Fresno & Fulton Mall (includes historic core & cultural attractions)
+Sacramento & Central Valley -- Fresno & Clovis -- Clovis & Old Town Clovis (includes charming town & music venues)
+Sacramento & Central Valley -- Fresno & Clovis -- Fig Garden Village (includes upscale shopping center & performance venues)
+
+San Francisco Bay Area -- San Francisco -- SoMa & Union Square (includes trendy neighborhoods & music venues)
+San Francisco Bay Area -- San Francisco -- North Beach & Chinatown (includes historic districts & cultural events)
+San Francisco Bay Area -- San Francisco -- Golden Gate Park & Haight-Ashbury (includes iconic park & legacy of music scene)
+
+San Francisco Bay Area -- East Bay [Oakland, Berkeley] -- Downtown Oakland & Jack London Square (includes waterfront district & entertainment)
+San Francisco Bay Area -- East Bay [Oakland, Berkeley] -- Telegraph Avenue & UC Berkeley (includes college town & music venues)
+San Francisco Bay Area -- East Bay [Oakland, Berkeley] -- Walnut Creek & Concord (includes affluent communities & performing arts centers)
+
+San Francisco Bay Area -- South Bay [San Jose] -- Downtown San Jose & San Pedro Square (includes historic core & nightlife scene)
+San Francisco Bay Area -- South Bay [San Jose] -- Santa Clara & Levi's Stadium (includes sports complex & surrounding entertainment)
+San Francisco Bay Area -- South Bay [San Jose] -- Campbell & Los Gatos (includes charming towns & music venues)
+
+Redwood Empire & North Coast -- Eureka & Humboldt County -- Eureka & Old Town (includes historic seaport town & cultural attractions)
+Redwood Empire & North Coast -- Eureka & Humboldt County -- Arcata & Humboldt State University (includes college town & music venues)
+Redwood Empire & North Coast -- Eureka & Humboldt County -- Redwood National and State Parks (includes access to world-famous redwood forests)
+
+Redwood Empire & North Coast -- Santa Rosa & Sonoma County Wine Country -- Santa Rosa & Downtown (includes historic core & cultural attractions)
+Redwood Empire & North Coast -- Santa Rosa & Sonoma County Wine Country -- Sonoma & Sonoma Plaza (includes historic town square & wineries)
+Redwood Empire & North Coast -- Santa Rosa & Sonoma County Wine Country -- Healdsburg & Russian River Valley (includes wineries & charming towns)
+
+Redwood Empire & North Coast -- Napa Valley -- Napa & Oxbow District (includes wineries & upscale restaurants)
+Redwood Empire & North Coast -- Napa Valley -- Yountville & Stags Leap District (includes wineries & renowned restaurants)
+Redwood Empire & North Coast -- Napa Valley -- St. Helena & Calistoga (includes wineries & hot springs resorts)
