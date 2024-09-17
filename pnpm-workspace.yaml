@@ -1,6 +1,6 @@
 packages:
   - "apps/*"
-  - "lib/*"
+  - "libs/*"
   - "packages/*"
   - "tooling/*"
 

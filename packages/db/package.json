@@ -4,6 +4,7 @@
   "exports": {
     ".": "./src/client.ts",
     "./v1": "./src/client.v1.ts",
+    "./v1-edge": "./src/client.v1-edge.ts",
     "./v2": {
       "types": "./dist/v2/index.d.ts",
       "default": "./dist/v2/index.js"
@@ -29,5 +30,8 @@
     "prisma": "^5.19.1",
     "tsx": "^4.19.1",
     "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@prisma/extension-accelerate": "^1.1.0"
   }
 }

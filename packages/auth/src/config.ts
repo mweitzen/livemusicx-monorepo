@@ -5,11 +5,11 @@ import type {
 } from "next-auth";
 import { skipCSRFCheck } from "@auth/core";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import Discord from "next-auth/providers/discord";
 
-import { prisma, Account, Session, User } from "@repo/db/v1";
+import { prisma } from "@repo/db/v1";
 
 import { env } from "../env";
+import { providers } from "./providers";
 
 declare module "next-auth" {
   interface Session {
@@ -32,8 +32,8 @@ export const authConfig = {
         trustHost: true,
       }
     : {}),
+  providers,
   secret: env.AUTH_SECRET,
-  providers: [Discord],
   callbacks: {
     session: (opts) => {
       if (!("user" in opts))

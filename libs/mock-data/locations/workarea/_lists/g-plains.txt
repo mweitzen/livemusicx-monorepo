@@ -1,0 +1,50 @@
+Oklahoma City & Tulsa Metro -- Oklahoma City & Bricktown -- Downtown OKC & Bricktown Entertainment District (includes sports & entertainment complex, historic district, & nightlife scene)
+Oklahoma City & Tulsa Metro -- Oklahoma City & Bricktown -- Paseo Arts District & Midtown (includes trendy neighborhoods with art galleries & music venues)
+Oklahoma City & Tulsa Metro -- Oklahoma City & Bricktown -- Norman & University of Oklahoma (includes college town with vibrant music scene)
+
+Oklahoma City & Tulsa Metro -- Tulsa & Downtown Arts District -- Brady Arts District & Tulsa Performing Arts Center (includes museums, theaters, & music venues)
+Oklahoma City & Tulsa Metro -- Tulsa & Downtown Arts District -- Blue Dome District & Route 66 (includes historic district & entertainment)
+Oklahoma City & Tulsa Metro -- Tulsa & Downtown Arts District -- Broken Arrow & Woodland Hills Mall (includes suburban area with event spaces)
+
+Kansas City & Flint Hills -- Kansas City & Power & Light District -- Downtown Kansas City & Power & Light District (includes entertainment complex, sports venues, & nightlife)
+Kansas City & Flint Hills -- Kansas City & Power & Light District -- Crossroads Arts District & Westport (includes trendy neighborhoods with art galleries & music venues)
+Kansas City & Flint Hills -- Kansas City & Power & Light District -- Lawrence & University of Kansas (includes college town with vibrant music scene)
+
+Kansas City & Flint Hills -- Flint Hills & Tallgrass Prairie National Preserve
+
+Wichita & Central Plains -- Wichita & Old Town -- Downtown Wichita & Century II Performing Arts Center (includes performing arts venue & potential for outdoor events)
+Wichita & Central Plains -- Wichita & Old Town -- Old Town & Delano District (includes historic district & trendy neighborhood with music venues)
+Wichita & Central Plains -- Wichita & Old Town -- Bradley Fair & Towne East (includes upscale shopping areas with event spaces)
+
+Nebraska Sandhills & Prairies -- Lincoln & Haymarket District -- Downtown Lincoln & Haymarket District (includes historic district & entertainment area with music venues)
+Nebraska Sandhills & Prairies -- Lincoln & Haymarket District -- University of Nebraska-Lincoln (includes college town with potential events)
+Nebraska Sandhills & Prairies -- Lincoln & Haymarket District -- Papillion & La Vista (includes suburban areas with event spaces)
+
+Nebraska Sandhills & Prairies -- Omaha & Old Market -- Downtown Omaha & Old Market (includes historic district with music venues & nightlife)
+Nebraska Sandhills & Prairies -- Omaha & Old Market -- Midtown & Creighton University (includes college town & potential events)
+Nebraska Sandhills & Prairies -- Omaha & Old Market -- West Omaha & Aksarben Village (includes upscale shopping area with event spaces)
+
+Black Hills & Western South Dakota -- Rapid City & Downtown -- Main Street Square & Civic Center (includes performing arts center & potential for outdoor events)
+Black Hills & Western South Dakota -- Rapid City & Downtown -- Art Alley & Dinosaur Park (includes art scene & historic attractions)
+Black Hills & Western South Dakota -- Rapid City & Downtown -- Rapid City Rush (minor league hockey team with events)
+
+Black Hills & Western South Dakota -- Deadwood & Historic Main Street Limited options, primarily focused on tourism and historic attractions. Consider day trips to Rapid City for e
+
+Eastern South Dakota & North Dakota -- Sioux Falls & Downtown -- Falls Park & Washington Avenue (includes scenic park & historic district with music venues)
+Eastern South Dakota & North Dakota -- Sioux Falls & Downtown -- Sanford Pentagon & Sioux Falls Arena (includes sports & entertainment complex)
+Eastern South Dakota & North Dakota -- Sioux Falls & Downtown -- East Sioux Falls & Empire Mall (includes suburban area with event spaces)
+
+Eastern South Dakota & North Dakota -- Fargo & North Dakota State University
+
+Texas Panhandle & High Plains -- Amarillo & Downtown -- West Texas A&M University & Hodgetown (includes college town & historic district with events)
+Texas Panhandle & High Plains -- Amarillo & Downtown -- Civic Center & Amarillo Symphony (includes performing arts venue & cultural events)
+Texas Panhandle & High Plains -- Amarillo & Downtown -- Wolflin District & Westgate Mall (includes entertainment district & suburban area with event spaces)
+
+Texas Panhandle & High Plains -- Lubbock & Texas Tech University
+
+Eastern Montana & Prairies -- Billings & MetraPark -- Downtown Billings & MetraPark (includes entertainment complex with fairgrounds & potential events)
+Eastern Montana & Prairies -- Billings & MetraPark -- Rimrock & Montana State University Billings (includes college town & potential events)
+Eastern Montana & Prairies -- Billings & MetraPark -- West End & Zoo Montana (includes suburban area & zoo with potential events)
+
+Wyoming Basins & High Plains -- Cheyenne & Downtown -- State Capitol & Frontier Mall (includes historic landmarks & shopping area with event spaces)
+Wyoming Basins & High Plains -- Cheyenne & Downtown -- Clay Center & Botanic Gardens (includes performing arts venue & botanical gardens)

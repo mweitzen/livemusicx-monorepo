@@ -1,0 +1,38 @@
+subsection:
+  - name: South Atlantic
+    regions:
+      - name: Virginia Beach & Hampton Roads (VA - coastal)
+        subregions:
+          - name: Virginia Beach & Oceanfront (beach resort with entertainment district & music venues)
+          - name: Norfolk & Downtown (historic district & Chrysler Hall performing arts center)
+          - name: Virginia Beach &  University of Virginia at  Lynchburg (regional campus with potential events)
+      - name: Outer Banks & Coastal North Carolina (NC - coastal)
+        subregions:
+          - name: Nags Head & Kill Devil Hills (potential for events & summer concert series)
+          - name: Duck & Southern Shores (upscale communities with potential for cultural events)
+          - name: Roanoke Island & Manteo (historic district with potential for cultural events)
+      - name: Charlotte & Piedmont North Carolina (NC - piedmont)
+        subregions:
+          - name: Charlotte & Uptown (vibrant entertainment district with music venues)
+          - name: Davidson & Davidson College (charming college town with potential events)
+          - name: Matthews &  Carowinds amusement park (suburban area with event space)
+      - name: Columbia & South Carolina Midlands (SC - midlands)
+        subregions:
+          - name: Columbia & Five Points (entertainment district with music venues)
+          - name: Forest Acres &  Columbia Museum of Art (suburban area & cultural attraction with events)
+          - name: Irmo &  Lake Murray (suburban area & lake with potential for outdoor events)
+      - name: Charleston & Lowcountry (SC - lowcountry)
+        subregions:
+          - name: Charleston & Historic District (vibrant city with music venues & cultural events)
+          - name: Mount Pleasant &  Mount Pleasant Towne Centre (suburban area with shopping & event spaces)
+          - name: Isle of Palms & Sullivan's Island (beach communities with limited event options)
+      - name: Savannah & Coastal Georgia (GA - coastal)
+        subregions:
+          - name: Savannah & Historic District (vibrant city with music venues & cultural events)
+          - name: Wilmington Island &  Savannah International Trade Center (potential for events)
+          - name: Tybee Island (beach community with limited event options)
+      - name: Atlanta & Georgia Piedmont (GA - piedmont)
+        subregions:
+          - name: Atlanta & Downtown (vibrant entertainment district with music venues)
+          - name: Decatur & Emory University (college town with trendy atmosphere & music venues)
+          - name: Buckhead &  Lenox Square Mall (upscale shopping district with event spaces)

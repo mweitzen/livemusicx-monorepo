@@ -1,0 +1,94 @@
+subsection:
+  - name: Great Plains
+    regions:
+      - name: Oklahoma City & Tulsa Metro (OK)
+        subregions:
+          - name: Oklahoma City & Bricktown
+            areas:
+              - Downtown OKC & Bricktown Entertainment District (includes sports & entertainment complex, historic district, & nightlife scene)
+              - Paseo Arts District & Midtown (includes trendy neighborhoods with art galleries & music venues)
+              - Norman & University of Oklahoma (includes college town with vibrant music scene)
+          - name: Tulsa & Downtown Arts District
+            areas:
+              - Brady Arts District & Tulsa Performing Arts Center (includes museums, theaters, & music venues)
+              - Blue Dome District & Route 66 (includes historic district & entertainment)
+              - Broken Arrow & Woodland Hills Mall (includes suburban area with event spaces)
+
+      - name: Kansas City & Flint Hills (eastern KS) - [KS - eastern]
+        subregions:
+          - name: Kansas City & Power & Light District
+            areas:
+              - Downtown Kansas City & Power & Light District (includes entertainment complex, sports venues, & nightlife)
+              - Crossroads Arts District & Westport (includes trendy neighborhoods with art galleries & music venues)
+              - Lawrence & University of Kansas (includes college town with vibrant music scene)
+          - name: Flint Hills & Tallgrass Prairie National Preserve
+            areas:
+              - Limited options in rural areas, consider day trips to Kansas City for e
+
+      - name: Wichita & Central Plains (central KS) - [KS - central]
+        subregions:
+          - name: Wichita & Old Town
+            areas:
+              - Downtown Wichita & Century II Performing Arts Center (includes performing arts venue & potential for outdoor events)
+              - Old Town & Delano District (includes historic district & trendy neighborhood with music venues)
+              - Bradley Fair & Towne East (includes upscale shopping areas with event spaces)
+
+      - name: Nebraska Sandhills & Prairies (NE)
+        subregions:
+          - name: Lincoln & Haymarket District
+            areas:
+              - Downtown Lincoln & Haymarket District (includes historic district & entertainment area with music venues)
+              - University of Nebraska-Lincoln (includes college town with potential events)
+              - Papillion & La Vista (includes suburban areas with event spaces)
+          - name: Omaha & Old Market
+            areas:
+              - Downtown Omaha & Old Market (includes historic district with music venues & nightlife)
+              - Midtown & Creighton University (includes college town & potential events)
+              - West Omaha & Aksarben Village (includes upscale shopping area with event spaces)
+
+      - name: Black Hills & Western South Dakota (west SD) - [SD - west]
+        subregions:
+          - name: Rapid City & Downtown
+            areas:
+              - Main Street Square & Civic Center (includes performing arts center & potential for outdoor events)
+              - Art Alley & Dinosaur Park (includes art scene & historic attractions)
+              - Rapid City Rush (minor league hockey team with events)
+          - name: Deadwood & Historic Main Street
+            areas: Limited options, primarily focused on tourism and historic attractions. Consider day trips to Rapid City for e
+
+      - name: Eastern South Dakota & North Dakota (east SD, ND) - [SD - east, ND]
+        subregions:
+          - name: Sioux Falls & Downtown
+            areas:
+              - Falls Park & Washington Avenue (includes scenic park & historic district with music venues)
+              - Sanford Pentagon & Sioux Falls Arena (includes sports & entertainment complex)
+              - East Sioux Falls & Empire Mall (includes suburban area with event spaces)
+          - name: Fargo & North Dakota State University (ND)
+            areas:
+              - Limited options outside of Fargo, consider day trips for events. Fargo offers a college town atmosphere with potential music venues and cultural e
+
+      - name: Texas Panhandle & High Plains (TX - panhandle) - [TX - panhandle]
+        subregions:
+          - name: Amarillo & Downtown
+            areas:
+              - West Texas A&M University & Hodgetown (includes college town & historic district with events)
+              - Civic Center & Amarillo Symphony (includes performing arts venue & cultural events)
+              - Wolflin District & Westgate Mall (includes entertainment district & suburban area with event spaces)
+          - name: Lubbock & Texas Tech University
+            areas:
+              - Similar situation to Amarillo, with Lubbock offering a college town atmosphere and potential events around Texas Tech U
+
+      - name: Eastern Montana & Prairies (east MT) - [MT - east]
+        subregions:
+          - name: Billings & MetraPark
+            areas:
+              - Downtown Billings & MetraPark (includes entertainment complex with fairgrounds & potential events)
+              - Rimrock & Montana State University Billings (includes college town & potential events)
+              - West End & Zoo Montana (includes suburban area & zoo with potential events)
+
+      - name: Wyoming Basins & High Plains (east WY) - [WY - east]
+        subregions:
+          - name: Cheyenne & Downtown
+            areas:
+              - State Capitol & Frontier Mall (includes historic landmarks & shopping area with event spaces)
+              - Clay Center & Botanic Gardens (includes performing arts venue & botanical gardens
