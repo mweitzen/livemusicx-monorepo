@@ -3,7 +3,7 @@ import authConfig from "@/auth.config";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { AccountType, UserRole } from "@repo/db";
+import { AccountType, UserRole } from "@repo/db/v1";
 
 export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
   adapter: PrismaAdapter(prisma),

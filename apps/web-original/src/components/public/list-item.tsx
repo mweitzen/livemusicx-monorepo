@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import type { Genre } from "@repo/db";
+import type { Genre } from "@repo/db/v1";
 
 import { Badge } from "@/components/ui/badge";
 import { ProfileImage } from "@/components/shared/image";

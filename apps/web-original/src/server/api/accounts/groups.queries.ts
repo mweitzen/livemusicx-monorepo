@@ -1,7 +1,7 @@
 import { z } from "zod";
 // import { createSlug } from "@/lib/utils";
 import type { User } from "next-auth";
-import type { Prisma } from "@repo/db";
+import type { Prisma } from "@repo/db/v1";
 
 import {
   GetAllGroupsInputSchema,

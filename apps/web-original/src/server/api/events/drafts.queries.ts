@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Prisma } from "@repo/db";
+import type { Prisma } from "@repo/db/v1";
 
 import { SaveEventDraftInputSchema } from "@/lib/schema/events/drafts";
 import { GetDetailsInputSchema, SimpleSearchSchema } from "@/lib/schema";

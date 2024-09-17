@@ -1,4 +1,4 @@
-import type { Prisma } from "@repo/db";
+import type { Prisma } from "@repo/db/v1";
 
 export const EventSelect = {
   id: true,

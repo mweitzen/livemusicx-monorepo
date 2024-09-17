@@ -3,7 +3,7 @@ import { z } from "zod";
 import { api } from "@/lib/trpc/server";
 import { signOut, signIn } from "auth";
 
-import { AccountType } from "@repo/db";
+import { AccountType } from "@repo/db/v1";
 
 export async function upgradeUser(
   prevState: { message: string },

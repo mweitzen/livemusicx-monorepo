@@ -2,7 +2,12 @@
   "name": "@repo/db",
   "version": "1.0.0",
   "exports": {
-    ".": "./src/client.ts"
+    ".": "./src/client.ts",
+    "./v1": "./src/client.v1.ts",
+    "./v2/*": {
+      "types": "./dist/v2/*.d.ts",
+      "default": "./dist/v2/*.js"
+    }
   },
   "scripts": {
     "db:migrate:deploy": "prisma migrate deploy",
@@ -10,7 +15,6 @@
     "db:push": "prisma db push",
     "db:seed": "tsx src/seed.ts",
     "db:generate": "prisma generate",
-    "dev": "tsup src/* --watch",
     "format": "prisma format",
     "lint": "eslint . --max-warnings 0",
     "studio": "prisma studio",
@@ -22,12 +26,8 @@
     "@types/node": "^22.5.5",
     "eslint": "^9.10.0",
     "prisma": "^5.19.1",
-    "rimraf": "^6.0.1",
-    "tsup": "^8.2.4",
+    "@prisma/client": "5.9.1",
     "tsx": "^4.19.1",
     "typescript": "catalog:"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.9.1"
   }
 }

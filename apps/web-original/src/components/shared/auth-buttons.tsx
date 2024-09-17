@@ -1,5 +1,5 @@
 import { signIn, signOut } from "auth";
-import type { AccountType } from "@repo/db";
+import type { AccountType } from "@repo/db/v1";
 
 import { toast } from "sonner";
 import { Button, type ButtonProps } from "@/components/ui/button";

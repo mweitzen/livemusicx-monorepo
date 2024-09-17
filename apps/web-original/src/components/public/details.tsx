@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Genre } from "@repo/db";
+import type { Genre } from "@repo/db/v1";
 import type { GroupDetails, MusicianDetails } from "@/lib/types/outputs";
 
 import { SocialIcon } from "react-social-icons";

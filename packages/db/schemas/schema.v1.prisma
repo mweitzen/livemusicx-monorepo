@@ -1,14 +1,13 @@
-// 
-// 
-// 
-// 
+// --------------------
+//
+//
 // * CONFIG
-// 
-// 
-// 
-// 
+//
+//
+// --------------------
 generator client {
   provider = "prisma-client-js"
+  output   = "../dist/v1"
 }
 
 datasource db {
@@ -17,15 +16,71 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-// 
-// 
-// 
-// 
-// * NEXT AUTH
-// 
-// 
-// 
-// 
+// --------------------
+//
+//
+// * ENUMS
+//
+//
+// --------------------
+enum UserRole {
+  USER
+  ADMIN
+  SUPER
+}
+
+enum AccountType {
+  PUBLIC
+  PERFORMER
+  VENUE
+  ORGANIZER
+  ASSOCIATE
+}
+
+enum MediaType {
+  IMAGE
+  AUDIO
+  VIDEO
+}
+
+enum VenueType {
+  VENUE
+  RESTAURANT
+  CAFE
+  BAR
+  BREWERY
+  WINERY
+  DISTILLERY
+  CLUB
+  THEATER
+  GALLERY
+  AREA
+  CASINO
+  LOCATION
+  COMPLEX
+  STADIUM
+}
+
+enum StageType {
+  STAGE
+  ROOM
+  AREA
+}
+
+enum EventStatus {
+  CANCELLED
+  POSTPONED
+  RESCHEDULED
+  SCHEDULED
+}
+
+// --------------------
+//
+//
+// * AUTH
+//
+//
+// --------------------
 model Account {
   id                       String  @id @default(cuid())
   userId                   String
@@ -67,15 +122,13 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// 
-// 
-// 
-// 
+// --------------------
+//
+//
 // * USER
-// 
-// 
-// 
-// 
+//
+//
+// --------------------
 model User {
   // * METADATA
   id            String      @id @default(cuid())
@@ -120,30 +173,14 @@ model User {
   favoriteOrganizers Organizer[]  @relation("OrganizerFavoritedByUser")
 }
 
-enum UserRole {
-  USER
-  ADMIN
-  SUPER
-}
-
-enum AccountType {
-  PUBLIC
-  PERFORMER
-  VENUE
-  ORGANIZER
-  ASSOCIATE
-}
-
-// 
-// 
-// 
-// 
-// * LOCATION COMPONENTS
+// --------------------
 //
 //
+// * LOCATION
 //
 //
-model ZipCode {
+// --------------------
+model Zipcode {
   id      String  @id @default(cuid())
   code    Int     @unique
   county  String
@@ -163,24 +200,33 @@ model Street {
 
 model Neighborhood {
   id                    String      @id @default(cuid())
-  uniqueName            String      @unique
   name                  String
+  uniqueName            String      @unique
+  description           String
+  boundaries            String
   cityId                String
   city                  City        @relation(fields: [cityId], references: [id])
   venues                Venue[]
+  events                Event[]
   organizersOperatingIn Organizer[]
 }
 
 model City {
   id            String         @id @default(cuid())
-  uniqueName    String         @unique
   name          String
+  uniqueName    String         @unique
+  slug          String         @unique
+  county        String
+  center        String
+  lat           Float
+  lng           Float
   regionId      String
   region        Region         @relation(fields: [regionId], references: [id])
   stateId       String
   state         State          @relation(fields: [stateId], references: [id])
   streets       Street[]
   neighborhoods Neighborhood[]
+  events        Event[]
 
   // * ACCOUNT RELATIONSHIPS
   venues                Venue[]
@@ -195,7 +241,22 @@ model City {
 model Region {
   id                    String      @id @default(cuid())
   name                  String      @unique
+  slug                  String      @unique
+  about                 String
+  center                String
+  northeast             String
+  southwest             String
+  lat                   Float
+  lng                   Float
+  north                 Float
+  east                  Float
+  south                 Float
+  west                  Float
+  stateId               String
+  state                 State       @relation(fields: [stateId], references: [id])
   cities                City[]
+  events                Event[]
+  venues                Venue[]
   organizersOperatingIn Organizer[]
 }
 
@@ -203,21 +264,24 @@ model State {
   id                    String      @id @default(cuid())
   name                  String      @unique
   shortCode             String      @unique
-  venues                Venue[]
+  lat                   Float
+  lng                   Float
+  center                String
+  regions               Region[]
   cities                City[]
-  zipCodes              ZipCode[]
+  venues                Venue[]
+  events                Event[]
+  zipcodes              Zipcode[]
   organizersOperatingIn Organizer[]
 }
 
-// 
-// 
-// 
-// 
-// * ALL PUBLIC FACING ACCOUNTS
-// 
-// 
-// 
-// 
+// --------------------
+//
+//
+// * ACCOUNTS
+//
+//
+// --------------------
 model Username {
   id         String       @id @default(cuid())
   username   String       @unique
@@ -262,21 +326,13 @@ model Media {
   genres      Genre[]
 }
 
-enum MediaType {
-  IMAGE
-  AUDIO
-  VIDEO
-}
-
-// 
-// 
-// 
-// 
-// * VENUE MODELS
-// 
-// 
-// 
-// 
+// --------------------
+//
+//
+// * VENUE
+//
+//
+// --------------------
 model Venue {
   id         String         @id @default(cuid())
   slug       String         @unique
@@ -330,12 +386,14 @@ model Venue {
   unit           String?
   streetId       String
   street         Street        @relation(fields: [streetId], references: [id])
+  zipcodeId      String
+  zipcode        Zipcode       @relation(fields: [zipcodeId], references: [id])
   neighborhoodId String?
   neighborhood   Neighborhood? @relation(fields: [neighborhoodId], references: [id])
-  zipcodeId      String
-  zipcode        ZipCode       @relation(fields: [zipcodeId], references: [id])
   cityId         String
   city           City          @relation(fields: [cityId], references: [id])
+  regionId       String
+  region         Region        @relation(fields: [regionId], references: [id])
   stateId        String
   state          State         @relation(fields: [stateId], references: [id])
 
@@ -344,24 +402,6 @@ model Venue {
   events           Event[]
   inEventTemplates EventTemplate[]
   inEventDrafts    EventDraft[]
-}
-
-enum VenueType {
-  VENUE
-  RESTAURANT
-  CAFE
-  BAR
-  BREWERY
-  WINERY
-  DISTILLERY
-  CLUB
-  THEATER
-  GALLERY
-  AREA
-  CASINO
-  LOCATION
-  COMPLEX
-  STADIUM
 }
 
 model Stage {
@@ -377,27 +417,19 @@ model Stage {
   inEventDrafts    EventDraft[]
 }
 
-enum StageType {
-  STAGE
-  ROOM
-  AREA
-}
-
 model VenueKeyword {
   id     String  @id @default(cuid())
   name   String
   venues Venue[]
 }
 
-// 
-// 
-// 
-// 
-// * PERFORMER MODELS
-// 
-// 
-// 
-// 
+// --------------------
+//
+//
+// * PERFORMER
+//
+//
+// --------------------
 model Musician {
   id            String       @id @default(cuid())
   slug          String       @unique
@@ -490,15 +522,13 @@ model MusicGroup {
   inEventDrafts    EventDraft[]
 }
 
-// 
-// 
-// 
-// 
-// * ORGANIZER MODELS
-// 
-// 
-// 
-// 
+// --------------------
+//
+//
+// * ORGANIZER
+//
+//
+// --------------------
 model Organizer {
   id            String         @id @unique @default(cuid())
   slug          String         @unique
@@ -545,15 +575,13 @@ model Organizer {
   inEventDrafts    EventDraft[]
 }
 
-// 
-// 
-// 
-// 
-// * EVENT MODELS
-// 
-// 
-// 
-// 
+// --------------------
+//
+//
+// * EVENT
+//
+//
+// --------------------
 model TicketLink {
   id           String      @id @default(cuid())
   url          String
@@ -677,23 +705,25 @@ model Event {
   requiresTicket  Boolean      @default(false)
   ticketLinks     TicketLink[]
 
-  venueId     String
-  venue       Venue        @relation(fields: [venueId], references: [id])
-  stageId     String
-  stage       Stage        @relation(fields: [stageId], references: [id])
+  venueId        String
+  venue          Venue         @relation(fields: [venueId], references: [id])
+  stageId        String
+  stage          Stage         @relation(fields: [stageId], references: [id])
+  neighborhoodId String?
+  neighborhood   Neighborhood? @relation(fields: [neighborhoodId], references: [id])
+  cityId         String?
+  city           City?         @relation(fields: [cityId], references: [id])
+  regionId       String?
+  region         Region?       @relation(fields: [regionId], references: [id])
+  stateId        String?
+  state          State?        @relation(fields: [stateId], references: [id])
+
   musicians   Musician[]
   groups      MusicGroup[]
   organizerId String?
   organizer   Organizer?   @relation(fields: [organizerId], references: [id])
 
   bookmarkedBy User[] @relation("EventBookmarkedByUser")
-}
-
-enum EventStatus {
-  CANCELLED
-  POSTPONED
-  RESCHEDULED
-  SCHEDULED
 }
 
 model EventKeyword {

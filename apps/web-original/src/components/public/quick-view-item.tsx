@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
 
-import type { Genre } from "@repo/db";
+import type { Genre } from "@repo/db/v1";
 import type { QuickViewEvents } from "@/server/api/events/main";
 import type { QuickViewVenues } from "@/server/api/accounts/venues";
 import type { QuickViewPerformers } from "@/server/api/accounts/performers";

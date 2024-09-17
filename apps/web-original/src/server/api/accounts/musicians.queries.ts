@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import type { User } from "next-auth";
-import type { Prisma } from "@repo/db";
+import type { Prisma } from "@repo/db/v1";
 
 import { GetAllMusiciansInputSchema } from "@/lib/schema/accounts/musicians";
 import { GetAllPerformersWhere } from "./performers.queries";

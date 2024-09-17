@@ -26,10 +26,8 @@
     "db:push": {},
     "db:seed": {},
     "db:generate": {},
-    "ui:add": {
-      "cache": false,
-      "interactive": true
-    },
+    "db:studio": {},
+    "ui:add": {},
     "generate": {
       "dependsOn": ["^generate"]
     }

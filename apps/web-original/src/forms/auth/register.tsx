@@ -1,6 +1,6 @@
 import { api } from "@/lib/trpc/server";
 import { redirect } from "next/navigation";
-import type { AccountType } from "@repo/db";
+import type { AccountType } from "@repo/db/v1";
 
 import {
   Select,

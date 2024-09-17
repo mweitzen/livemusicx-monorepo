@@ -1,4 +1,4 @@
-import type { UserRole, AccountType } from "@repo/db";
+import type { UserRole, AccountType } from "@repo/db/v1";
 
 declare module "next-auth" {
   interface User {

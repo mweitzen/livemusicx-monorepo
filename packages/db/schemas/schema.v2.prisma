@@ -1,12 +1,13 @@
 // --------------------
 //
 //
-// * PRISMA
+// * CONFIG
 //
 //
 // --------------------
 generator client {
   provider = "prisma-client-js"
+  output   = "../dist/v2"
 }
 
 datasource db {
