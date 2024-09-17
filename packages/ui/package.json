@@ -11,9 +11,10 @@
       "default": "./src/index.ts"
     },
     "./helpers": "./src/utils.ts",
-    "./hooks/*": "./src/hooks/*.ts",
+    "./theme": "./src/theme.tsx",
     "./styles.css": "./src/globals.css",
-    "./components/*": "./src/components/base/*.tsx"
+    "./components/*": "./src/components/base/*.tsx",
+    "./hooks/*": "./src/hooks/*.ts"
   },
   "scripts": {
     "build": "tsc",
