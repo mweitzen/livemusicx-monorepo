@@ -1,10 +1,14 @@
 import { z } from "zod";
 
-import { VenueType } from "@livemusicx/db";
 import { EventInputSchemaBase } from "./shared";
 import { GetDetailsInputSchema, NoInputSchema } from "../shared";
 
-import { SearchSchemaBase, defaultPaginationValues, groupSizes } from "../shared";
+import {
+  SearchSchemaBase,
+  defaultPaginationValues,
+  groupSizes,
+} from "../shared";
+import { VenueType } from "../accounts/venues";
 
 export const GetEventsQuickViewInputSchema = NoInputSchema;
 export const EventCountOutputSchema = z.number().nullable();
@@ -14,7 +18,7 @@ export const GetEventDetailsInputSchema = GetDetailsInputSchema;
 export const GetUpcomingEventsInputSchema = SearchSchemaBase.extend({
   bookmarked: z.boolean().optional(), // off, include, exclude
   groupSizes: z.array(groupSizes).optional(),
-  venueTypes: z.array(z.nativeEnum(VenueType)).optional(),
+  venueTypes: z.array(VenueType).optional(),
   servesAlcohol: z.boolean().optional(), // off, include, exclude
   servesFood: z.boolean().optional(), // off, include, exclude
   minimumAge: z.number().optional(), // off, include, exclude

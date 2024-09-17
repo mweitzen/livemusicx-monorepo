@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { VenueType, StageType } from "@livemusicx/db";
+// import { VenueType, StageType } from "@livemusicx/db";
 
 import { CreateAccountSchema } from "./shared";
 import {
@@ -9,8 +9,12 @@ import {
   defaultPaginationValues,
 } from "../shared";
 
+export const VenueType = z.enum(["VENUE", "THEATER"]);
+export const StageType = z.enum(["STAGE", "ROOM", "AREA"]);
+
 export const GetAllVenuesInputSchema = SearchSchemaBase.extend({
-  venueTypes: z.array(z.nativeEnum(VenueType)).optional(),
+  // venueTypes: z.array(z.nativeEnum(VenueType)).optional(),
+  venueTypes: z.array(VenueType).optional(),
   servesAlcohol: z.boolean().optional(), // off, include, exclude
   servesFood: z.boolean().optional(), // off, include, exclude
   minimumAge: z.number().optional(),
@@ -52,15 +56,21 @@ export const GetVenueQuickViewOutputSchema = z.array(
 );
 
 export const CreateVenueBaseSchema = CreateAccountSchema.extend({
-  type: z.nativeEnum(VenueType),
+  type: VenueType,
   phone: z.string(),
   website: z.string().optional(),
   phoneBooking: z.string().optional(),
   emailBooking: z.string().optional(),
   businessYelp: z.string().url("Please provide a full, valid URL").optional(),
-  businessTripAdvisor: z.string().url("Please provide a full, valid URL").optional(),
+  businessTripAdvisor: z
+    .string()
+    .url("Please provide a full, valid URL")
+    .optional(),
   businessGoogle: z.string().url("Please provide a full, valid URL").optional(),
-  businessOpenTable: z.string().url("Please provide a full, valid URL").optional(),
+  businessOpenTable: z
+    .string()
+    .url("Please provide a full, valid URL")
+    .optional(),
   servesAlcohol: z.boolean().optional().default(false),
   servesFood: z.boolean().optional().default(false),
   addressLong: z.string(),
@@ -72,7 +82,7 @@ export const CreateVenueBaseSchema = CreateAccountSchema.extend({
   city: z.string(),
   state: z.string(),
   stages: z
-    .array(z.object({ name: z.string(), type: z.nativeEnum(StageType) }))
+    .array(z.object({ name: z.string(), type: StageType }))
     .optional()
     .default([{ name: "Main Stage", type: "STAGE" }]),
 });
@@ -116,7 +126,8 @@ export const ClaimVenueInputSchema = CreateVenueBaseSchema.omit({
   })
   .refine(
     (schema) =>
-      (schema.ageRestriction === undefined && schema.minimumAge === undefined) ||
+      (schema.ageRestriction === undefined &&
+        schema.minimumAge === undefined) ||
       (schema.ageRestriction && schema.minimumAge !== undefined) ||
       (!schema.ageRestriction && schema.minimumAge === undefined)
   );

@@ -4,9 +4,9 @@
   "exports": {
     ".": "./src/client.ts",
     "./v1": "./src/client.v1.ts",
-    "./v2/*": {
-      "types": "./dist/v2/*.d.ts",
-      "default": "./dist/v2/*.js"
+    "./v2": {
+      "types": "./dist/v2/index.d.ts",
+      "default": "./dist/v2/index.js"
     }
   },
   "scripts": {
@@ -21,12 +21,12 @@
     "clean": "git clean -xdf .cache .turbo dist node_modules"
   },
   "devDependencies": {
+    "@prisma/client": "5.19.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.5.5",
     "eslint": "^9.10.0",
     "prisma": "^5.19.1",
-    "@prisma/client": "5.9.1",
     "tsx": "^4.19.1",
     "typescript": "catalog:"
   }
