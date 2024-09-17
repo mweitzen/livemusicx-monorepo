@@ -1,6 +1,8 @@
-// Learn more https://docs.expo.dev/guides/monorepos
+// Learn more: https://docs.expo.dev/guides/monorepos/
 const { getDefaultConfig } = require("expo/metro-config");
 const { FileStore } = require("metro-cache");
+const { withNativeWind } = require("nativewind/metro");
+
 const path = require("path");
 
 const config = withTurborepoManagedCache(
@@ -8,9 +10,13 @@ const config = withTurborepoManagedCache(
     withNativeWind(getDefaultConfig(__dirname), {
       input: "./src/styles.css",
       configPath: "./tailwind.config.ts",
-    })
-  )
+    }),
+  ),
 );
+
+// XXX: Resolve our exports in workspace packages
+// https://github.com/expo/expo/issues/26926
+config.resolver.unstable_enablePackageExports = true;
 
 module.exports = config;
 
