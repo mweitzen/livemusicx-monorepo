@@ -25,7 +25,7 @@ const BreadcrumbList = React.forwardRef<
   <ol
     ref={ref}
     className={cn(
-      "flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5",
+      "ui-flex ui-flex-wrap ui-items-center ui-gap-1.5 ui-break-words ui-text-sm ui-text-muted-foreground sm:ui-gap-2.5",
       className
     )}
     {...props}
@@ -39,7 +39,7 @@ const BreadcrumbItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <li
     ref={ref}
-    className={cn("inline-flex items-center gap-1.5", className)}
+    className={cn("ui-inline-flex ui-items-center ui-gap-1.5", className)}
     {...props}
   />
 ));
@@ -56,7 +56,7 @@ const BreadcrumbLink = React.forwardRef<
   return (
     <Comp
       ref={ref}
-      className={cn("transition-colors hover:text-foreground", className)}
+      className={cn("ui-transition-colors hover:ui-text-foreground", className)}
       {...props}
     />
   );
@@ -72,7 +72,7 @@ const BreadcrumbPage = React.forwardRef<
     role='link'
     aria-disabled='true'
     aria-current='page'
-    className={cn("font-normal text-foreground", className)}
+    className={cn("ui-font-normal ui-text-foreground", className)}
     {...props}
   />
 ));
@@ -86,7 +86,7 @@ const BreadcrumbSeparator = ({
   <li
     role='presentation'
     aria-hidden='true'
-    className={cn("[&>svg]:size-3.5", className)}
+    className={cn("[&>svg]:ui-size-3.5", className)}
     {...props}
   >
     {children ?? <ChevronRightIcon />}
@@ -101,11 +101,14 @@ const BreadcrumbEllipsis = ({
   <span
     role='presentation'
     aria-hidden='true'
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
+    className={cn(
+      "ui-flex ui-h-9 ui-w-9 ui-items-center ui-justify-center",
+      className
+    )}
     {...props}
   >
-    <DotsHorizontalIcon className='h-4 w-4' />
-    <span className='sr-only'>More</span>
+    <DotsHorizontalIcon className='ui-h-4 ui-w-4' />
+    <span className='ui-sr-only'>More</span>
   </span>
 );
 BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";

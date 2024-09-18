@@ -26,6 +26,7 @@ import {
 } from "../../../lib-tmp/schema/shared";
 
 import { PublishEventInputSchema } from "../../../lib-tmp/schema/events/main";
+import { TRPCRouterRecord } from "@trpc/server";
 
 /*
  *
@@ -49,7 +50,7 @@ type GetUsersFavoriteEventsInput = EventsInputs["getBookmarked"];
  *
  *
  * ROUTER */
-const mainRouter = createTRPCRouter({
+const mainRouter = {
   /*
    *
    * PUBLIC */
@@ -159,7 +160,7 @@ const mainRouter = createTRPCRouter({
   cancel: authorizedProcedure.mutation(() => {}),
   archive: authorizedProcedure.mutation(() => {}),
   addParticipation: authorizedProcedure.mutation(() => {}),
-});
+} satisfies TRPCRouterRecord;
 
 export { mainRouter };
 export type {

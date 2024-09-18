@@ -9,6 +9,7 @@ import { Toaster } from "@repo/ui/components/toaster";
 import { TRPCReactProvider } from "@repo/trpc/react";
 
 import "~/app/globals.css";
+import "@repo/ui/ui.css";
 
 import { env } from "~/env";
 

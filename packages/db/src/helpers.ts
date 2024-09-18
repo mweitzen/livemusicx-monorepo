@@ -12,10 +12,12 @@ export function createSlug(input: string): string {
 
 export async function generateUniqueSlug(
   text: string,
-  type: "musicGroup" | "musician" | "venue" | "organizer" | "event"
+  type: "band" | "musician" | "venue" | "organizer" | "event"
 ) {
+  if (!["band", "musician", "venue", "organizer", "event"].includes(type))
+    return "";
   let slug = createSlug(text);
-  const where = { slug } as const;
+  const where = { slug };
   // prisma
   let exists = await prisma[type].findUnique({ where });
   let x = 1;

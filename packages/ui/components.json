@@ -7,11 +7,12 @@
     "config": "./tailwind.config.ts",
     "css": "unused.css",
     "baseColor": "slate",
-    "cssVariables": true
+    "cssVariables": true,
+    "prefix": "ui-"
   },
   "aliases": {
     "utils": "@repo/ui/helpers",
     "components": "src/components",
-    "ui": "src/components/base"
+    "ui": "."
   }
 }

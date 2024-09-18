@@ -12,7 +12,7 @@ const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
     role='navigation'
     aria-label='pagination'
-    className={cn("mx-auto flex w-full justify-center", className)}
+    className={cn("ui-mx-auto ui-flex ui-w-full ui-justify-center", className)}
     {...props}
   />
 );
@@ -24,7 +24,7 @@ const PaginationContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ul
     ref={ref}
-    className={cn("flex flex-row items-center gap-1", className)}
+    className={cn("ui-flex ui-flex-row ui-items-center ui-gap-1", className)}
     {...props}
   />
 ));
@@ -36,7 +36,7 @@ const PaginationItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <li
     ref={ref}
-    className={cn("", className)}
+    className={cn("ui-", className)}
     {...props}
   />
 ));
@@ -74,10 +74,10 @@ const PaginationPrevious = ({
   <PaginationLink
     aria-label='Go to previous page'
     size='default'
-    className={cn("gap-1 pl-2.5", className)}
+    className={cn("ui-gap-1 ui-pl-2.5", className)}
     {...props}
   >
-    <ChevronLeftIcon className='h-4 w-4' />
+    <ChevronLeftIcon className='ui-h-4 ui-w-4' />
     <span>Previous</span>
   </PaginationLink>
 );
@@ -90,11 +90,11 @@ const PaginationNext = ({
   <PaginationLink
     aria-label='Go to next page'
     size='default'
-    className={cn("gap-1 pr-2.5", className)}
+    className={cn("ui-gap-1 ui-pr-2.5", className)}
     {...props}
   >
     <span>Next</span>
-    <ChevronRightIcon className='h-4 w-4' />
+    <ChevronRightIcon className='ui-h-4 ui-w-4' />
   </PaginationLink>
 );
 PaginationNext.displayName = "PaginationNext";
@@ -105,11 +105,14 @@ const PaginationEllipsis = ({
 }: React.ComponentProps<"span">) => (
   <span
     aria-hidden
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
+    className={cn(
+      "ui-flex ui-h-9 ui-w-9 ui-items-center ui-justify-center",
+      className
+    )}
     {...props}
   >
-    <DotsHorizontalIcon className='h-4 w-4' />
-    <span className='sr-only'>More pages</span>
+    <DotsHorizontalIcon className='ui-h-4 ui-w-4' />
+    <span className='ui-sr-only'>More pages</span>
   </span>
 );
 PaginationEllipsis.displayName = "PaginationEllipsis";
