@@ -1,4 +1,4 @@
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { cookies } from "next/headers";
 import { convertSearchParamsToQuery } from "@/lib/utils";
 
@@ -27,15 +27,19 @@ import { FavoriteButton } from "@/components/public/interactions";
 
 import { GetAllGroupsInputSchema } from "@/lib/schema/accounts/groups";
 
-export default async function GroupsPage({ searchParams }: { searchParams: SearchParams }) {
+export default async function GroupsPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const cookieString = cookies().toString();
 
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = GetAllGroupsInputSchema.parse(conversion);
 
-  const groups = await api.accounts.groups.getAll.query(query);
+  const groups = await api.v1.accounts.groups.getAll(query);
   const favoriteGroups: any[] = [];
-  // const favoriteGroups = await api.users.public.getFavoriteAccounts.query({
+  // const favoriteGroups = await api.v1.users.public.getFavoriteAccounts({
   //   accountType: "groups",
   // });
 
@@ -57,10 +61,17 @@ export default async function GroupsPage({ searchParams }: { searchParams: Searc
           {groups.length
             ? groups.map((group) => (
                 <ListItem key={group.id} href={`/groups/${group.slug}`}>
-                  <ListItemImage imageSrc={group.avatar} imageAlt={group.name} />
+                  <ListItemImage
+                    imageSrc={group.avatar}
+                    imageAlt={group.name}
+                  />
                   <ListItemContent>
                     <ListItemTitle>{group.name}</ListItemTitle>
-                    <FavoriteButton id={group.id} type="group" favorites={favoriteGroups} />
+                    <FavoriteButton
+                      id={group.id}
+                      type="group"
+                      favorites={favoriteGroups}
+                    />
                   </ListItemContent>
                 </ListItem>
               ))

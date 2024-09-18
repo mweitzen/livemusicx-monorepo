@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { auth } from "@repo/auth";
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import {
 
 export default async function UserAccountPage() {
   const session = await auth();
-  const currentUser = await api.users.internal.getCurrent.query();
+  const currentUser = await api.v1.users.internal.getCurrent();
 
   if (!session || !session.user || !currentUser) return "Error";
 
@@ -37,10 +37,10 @@ export default async function UserAccountPage() {
 
       <div>
         <Label>Account Type</Label>
-        <Input readOnly defaultValue={session.user.accountType} />
+        <Input readOnly defaultValue={session.user.type} />
       </div>
 
-      {session.user.accountType === "PUBLIC" ? (
+      {session.user.type === "PUBLIC" ? (
         <Button variant="outline" asChild>
           <Link href="/account/upgrade">Upgrade</Link>
         </Button>

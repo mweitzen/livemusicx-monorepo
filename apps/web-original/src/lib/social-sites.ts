@@ -9,13 +9,13 @@ export const socialSites = {
     name: "Instagram",
     baseUrl: "https://www.instagram.com/",
     apiBaseUrl: "https://graph.instagram.com/",
-    apiAuthorizeUrl: "https://api.instagram.com/oauth/authorize",
+    apiAuthorizeUrl: "https://api.v1.instagram.com/oauth/authorize",
   },
   twitter: {
     name: "Twitter",
     baseUrl: "https://twitter.com/",
-    apiBaseUrl: "https://api.twitter.com/",
-    apiAuthorizeUrl: "https://api.twitter.com/oauth/authorize",
+    apiBaseUrl: "https://api.v1.twitter.com/",
+    apiAuthorizeUrl: "https://api.v1.twitter.com/oauth/authorize",
   },
   youtube: {
     name: "YouTube",
@@ -26,25 +26,25 @@ export const socialSites = {
   soundcloud: {
     name: "Sound Cloud",
     baseUrl: "https://soundcloud.com/",
-    apiBaseUrl: "https://api.soundcloud.com/",
+    apiBaseUrl: "https://api.v1.soundcloud.com/",
     apiAuthorizeUrl: "https://soundcloud.com/connect",
   },
   spotify: {
     name: "Spotify",
     baseUrl: "https://open.spotify.com/",
-    apiBaseUrl: "https://api.spotify.com/",
+    apiBaseUrl: "https://api.v1.spotify.com/",
     apiAuthorizeUrl: "https://accounts.spotify.com/authorize",
   },
   tiktok: {
     name: "TikTok",
     baseUrl: "https://www.tiktok.com/",
-    apiBaseUrl: "https://api.tiktok.com/",
-    apiAuthorizeUrl: "https://open-api.tiktok.com/oauth/authorize",
+    apiBaseUrl: "https://api.v1.tiktok.com/",
+    apiAuthorizeUrl: "https://open-api.v1.tiktok.com/oauth/authorize",
   },
   bandcamp: {
     name: "Bandcamp",
     baseUrl: "https://bandcamp.com/",
-    apiBaseUrl: "https://api.bandcamp.com/",
+    apiBaseUrl: "https://api.v1.bandcamp.com/",
     apiAuthorizeUrl: "https://bandcamp.com/oauth/authorize",
   },
 } as const;

@@ -7,50 +7,50 @@ import { z } from "zod";
 // import { CreateVenueForm } from "@/forms/accounts/create-venue";}
 
 export default function TestPage() {
-  // const { data: organizers } = api.accounts.organizers.getAll.useQuery();
-  // const { data: groups } = api.accounts.groups.getAll.useQuery();
-  // const { data: accounts } = api.accounts.musicians.getAll.useQuery();
-  // const { data: venues } = api.accounts.venues.getAll.useQuery();
+  // const { data: organizers } = api.v1.accounts.organizers.getAll.useQuery();
+  // const { data: groups } = api.v1.accounts.groups.getAll.useQuery();
+  // const { data: accounts } = api.v1.accounts.musicians.getAll.useQuery();
+  // const { data: venues } = api.v1.accounts.venues.getAll.useQuery();
 
   // // Create API Calls
-  // const { mutate: createOrganizer } = api.accounts.organizers.createAccount.useMutation({
+  // const { mutate: createOrganizer } = api.v1.accounts.organizers.createAccount.useMutation({
   //   onSuccess: (data) => {
   //     console.log(data);
   //   },
   // });
-  // const { mutate: createGroup } = api.accounts.groups.createAccount.useMutation({
+  // const { mutate: createGroup } = api.v1.accounts.groups.createAccount.useMutation({
   //   onSuccess: (data) => {
   //     console.log(data);
   //   },
   // });
-  // const { mutate: createMusician } = api.accounts.musicians.createAccount.useMutation({
+  // const { mutate: createMusician } = api.v1.accounts.musicians.createAccount.useMutation({
   //   onSuccess: (data) => {
   //     console.log(data);
   //   },
   // });
-  // const { mutate: createVenue } = api.accounts.venues.createAccount.useMutation({
+  // const { mutate: createVenue } = api.v1.accounts.venues.createAccount.useMutation({
   //   onSuccess: (data) => {
   //     console.log(data);
   //   },
   // });
 
   // // Claim API Calls
-  // const { mutate: claimOrganizer } = api.accounts.organizers.claimAccount.useMutation({
+  // const { mutate: claimOrganizer } = api.v1.accounts.organizers.claimAccount.useMutation({
   //   onSuccess: (data) => {
   //     console.log(data);
   //   },
   // });
-  // const { mutate: claimGroup } = api.accounts.groups.claimAccount.useMutation({
+  // const { mutate: claimGroup } = api.v1.accounts.groups.claimAccount.useMutation({
   //   onSuccess: (data) => {
   //     console.log(data);
   //   },
   // });
-  // const { mutate: claimMusician } = api.accounts.musicians.claimAccount.useMutation({
+  // const { mutate: claimMusician } = api.v1.accounts.musicians.claimAccount.useMutation({
   //   onSuccess: (data) => {
   //     console.log(data);
   //   },
   // });
-  // const { mutate: claimVenue } = api.accounts.venues.claimAccount.useMutation({
+  // const { mutate: claimVenue } = api.v1.accounts.venues.claimAccount.useMutation({
   //   onSuccess: (data) => {
   //     console.log(data);
   //   },
@@ -224,8 +224,8 @@ export default function TestPage() {
   // }
 
   return (
-    <div className="max-w-2xl mx-auto py-12">
-      <h1 className="text-center font-semibold tracking-tight text-xl mb-2">
+    <div className="mx-auto max-w-2xl py-12">
+      <h1 className="mb-2 text-center text-xl font-semibold tracking-tight">
         Account Creation Demos
       </h1>
       <Tabs defaultValue="venue">

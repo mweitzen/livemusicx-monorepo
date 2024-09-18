@@ -1,4 +1,4 @@
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -21,16 +21,20 @@ import {
   AffiliatedAccounts,
 } from "@/components/public/details";
 
-export async function generateMetadata({ params }: PublicDetailPageProps): Promise<Metadata> {
-  const group = await api.accounts.groups.getDetails.query({
+export async function generateMetadata({
+  params,
+}: PublicDetailPageProps): Promise<Metadata> {
+  const group = await api.v1.accounts.groups.getDetails({
     slug: params.slug,
   });
   if (!group) return notFound();
   return generateGroupPageMetadata(group);
 }
 
-export default async function GroupDetailPage({ params }: PublicDetailPageProps) {
-  const group = await api.accounts.groups.getDetails.query({
+export default async function GroupDetailPage({
+  params,
+}: PublicDetailPageProps) {
+  const group = await api.v1.accounts.groups.getDetails({
     slug: params.slug,
   });
   if (!group) return notFound();
@@ -51,7 +55,10 @@ export default async function GroupDetailPage({ params }: PublicDetailPageProps)
       <LocationInformation location={group.basedIn} />
       <WebsiteLink link={group.website} />
       <SocialIcons links={getSocialLinks(group)} />
-      <UpcomingEvents href={`/groups/${group.slug}/events`} events={group.events} />
+      <UpcomingEvents
+        href={`/groups/${group.slug}/events`}
+        events={group.events}
+      />
       <GroupMembers members={group.members} />
       <AdditionalResources />
       <AffiliatedAccounts />

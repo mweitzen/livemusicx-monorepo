@@ -1,4 +1,4 @@
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -21,16 +21,20 @@ import {
   AffiliatedAccounts,
 } from "@/components/public/details";
 
-export async function generateMetadata({ params }: PublicDetailPageProps): Promise<Metadata> {
-  const venue = await api.accounts.venues.getDetails.query({
+export async function generateMetadata({
+  params,
+}: PublicDetailPageProps): Promise<Metadata> {
+  const venue = await api.v1.accounts.venues.getDetails({
     slug: params.slug,
   });
   if (!venue) return notFound();
   return generateVenuePageMetadata(venue);
 }
 
-export default async function VenueDetailPage({ params }: PublicDetailPageProps) {
-  const venue = await api.accounts.venues.getDetails.query({
+export default async function VenueDetailPage({
+  params,
+}: PublicDetailPageProps) {
+  const venue = await api.v1.accounts.venues.getDetails({
     slug: params.slug,
   });
   if (!venue) return notFound();
@@ -44,7 +48,9 @@ export default async function VenueDetailPage({ params }: PublicDetailPageProps)
       <DetailsHeader>
         <DetailsImage src={venue.avatar} />
         <div className="flex-shrink overflow-hidden">
-          <p className="text-sm uppercase text-muted-foreground">{venue.type}</p>
+          <p className="text-sm uppercase text-muted-foreground">
+            {venue.type}
+          </p>
           <AboutInformation about={venue.about} />
         </div>
       </DetailsHeader>
@@ -52,7 +58,10 @@ export default async function VenueDetailPage({ params }: PublicDetailPageProps)
       <LocationInformation location={{ name: venue.addressShort }} />
       <WebsiteLink link={venue.website} />
       <SocialIcons links={getSocialLinks(venue)} />
-      <UpcomingEvents href={`/venues/${venue.slug}/events`} events={venue.events} />
+      <UpcomingEvents
+        href={`/venues/${venue.slug}/events`}
+        events={venue.events}
+      />
       <AdditionalResources />
       <AffiliatedAccounts />
     </>

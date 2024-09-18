@@ -14,7 +14,7 @@ import {
   QuickViewTake,
   QuickViewAccountsSelect,
   QuickViewAccountsWhere,
-} from "@/server/api/shared.queries";
+} from "../shared.queries";
 
 import {
   GetAllVenuesInputSchema,
@@ -78,7 +78,7 @@ export const venuesRouter = createTRPCRouter({
             },
           },
         },
-      })
+      }),
     ),
   getDetails: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/accounts/venues/{id}", tags: ["accounts"] } })
@@ -154,7 +154,8 @@ export const venuesRouter = createTRPCRouter({
       });
       console.log("venues", venues);
       return venues.sort(
-        (a, b) => (a.events[0].timeStart as any) - (b.events[0].timeStart as any)
+        (a, b) =>
+          (a.events[0].timeStart as any) - (b.events[0].timeStart as any),
       );
     }),
 

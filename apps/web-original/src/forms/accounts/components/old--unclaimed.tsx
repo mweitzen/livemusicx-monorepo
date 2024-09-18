@@ -1,6 +1,6 @@
 "use client";
 
-import { api } from "@/lib/trpc/client";
+import { api } from "@repo/trpc/react";
 
 import { useState } from "react";
 import { useDebounce } from "use-debounce";
@@ -39,10 +39,11 @@ export default function SelectUnclaimedAccount({
 
   const [newItemText, setNewItemText] = useState("");
   const [query] = useDebounce(newItemText, 300);
-  const { data: accounts, isLoading } = api.users.authorized.checkForExistingAccounts.useQuery(
-    { accountType, name: query },
-    { refetchOnWindowFocus: false }
-  );
+  const { data: accounts, isLoading } =
+    api.v1.users.authorized.checkForExistingAccounts.useQuery(
+      { accountType, name: query },
+      { refetchOnWindowFocus: false },
+    );
 
   // TODO: Remove this when i finally get rid of 'pages'
   if (!searchParams) return null;
@@ -61,13 +62,16 @@ export default function SelectUnclaimedAccount({
             onChange={(e) => setNewItemText(e.target.value)}
           />
           <TypographyMuted>
-            Enter a publicly displayed name for your {accountType} (or search for different
-            variations if you think you may already have been added).
+            Enter a publicly displayed name for your {accountType} (or search
+            for different variations if you think you may already have been
+            added).
           </TypographyMuted>
         </div>
         <Button
           onClick={() =>
-            router.replace(`${pathname}?${searchParams.toString()}&submitType=create`)
+            router.replace(
+              `${pathname}?${searchParams.toString()}&submitType=create`,
+            )
           }
         >
           Create New Account
@@ -76,61 +80,66 @@ export default function SelectUnclaimedAccount({
       <section>
         <TypographyH3>Unclaimed Accounts</TypographyH3>
         <TypographyMuted>
-          Accounts can be created by other users referencing you in their events. Unclaimed
-          accounts that match your search will appear below.
+          Accounts can be created by other users referencing you in their
+          events. Unclaimed accounts that match your search will appear below.
         </TypographyMuted>
         <ul className="space-y-4 py-4">
           {isLoading
             ? "Loading baby..."
             : accounts && accounts.length
-            ? accounts.map((account) => (
-                <li key={account.id} className="flex items-center justify-between">
-                  <span>
-                    <TypographyLarge>{account.name}</TypographyLarge>
-                    <TypographyMuted className="items-center text-sm">
-                      <MapPinIcon className="h-4 w-4" />{" "}
-                      {account.basedIn?.name || "undesignated"}
-                    </TypographyMuted>
-                  </span>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button>Claim</Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]">
-                      <DialogHeader>
-                        <DialogTitle>Claim Account</DialogTitle>
-                        <DialogDescription>
-                          Verify you have selected the correct acccount, and click cliam to
-                          continue.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div className="grid gap-4 py-4">
-                        <TypographyLarge>{account.name}</TypographyLarge>
-                        {account.basedIn ? (
-                          <TypographyMuted>{account.basedIn.name}</TypographyMuted>
-                        ) : null}
-                      </div>
-                      <DialogFooter>
-                        <DialogClose asChild>
-                          <Button
-                            type="button"
-                            onClick={() =>
-                              router.replace(
-                                `${pathname}?${searchParams.toString()}&submitType=claim&claimId=${
-                                  account.id
-                                }`
-                              )
-                            }
-                          >
-                            Claim
-                          </Button>
-                        </DialogClose>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
-                </li>
-              ))
-            : "No accounts."}
+              ? accounts.map((account) => (
+                  <li
+                    key={account.id}
+                    className="flex items-center justify-between"
+                  >
+                    <span>
+                      <TypographyLarge>{account.name}</TypographyLarge>
+                      <TypographyMuted className="items-center text-sm">
+                        <MapPinIcon className="h-4 w-4" />{" "}
+                        {account.basedIn?.name || "undesignated"}
+                      </TypographyMuted>
+                    </span>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button>Claim</Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                          <DialogTitle>Claim Account</DialogTitle>
+                          <DialogDescription>
+                            Verify you have selected the correct acccount, and
+                            click cliam to continue.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                          <TypographyLarge>{account.name}</TypographyLarge>
+                          {account.basedIn ? (
+                            <TypographyMuted>
+                              {account.basedIn.name}
+                            </TypographyMuted>
+                          ) : null}
+                        </div>
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button
+                              type="button"
+                              onClick={() =>
+                                router.replace(
+                                  `${pathname}?${searchParams.toString()}&submitType=claim&claimId=${
+                                    account.id
+                                  }`,
+                                )
+                              }
+                            >
+                              Claim
+                            </Button>
+                          </DialogClose>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </li>
+                ))
+              : "No accounts."}
         </ul>
       </section>
     </div>

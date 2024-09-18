@@ -1,4 +1,4 @@
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { cookies } from "next/headers";
 import { convertSearchParamsToQuery } from "@/lib/utils";
 
@@ -18,18 +18,25 @@ import {
   ListItemTitle,
 } from "@/components/public/list-item";
 import { TypographyH2 } from "@/components/shared/typography";
-import { ToggleFilter, ToggleWithUpcomingEvents } from "@/components/public/filters";
+import {
+  ToggleFilter,
+  ToggleWithUpcomingEvents,
+} from "@/components/public/filters";
 import { FavoriteButton } from "@/components/public/interactions";
 
 import { GetAllOrganizersInputSchema } from "@/lib/schema/accounts/organizers";
 
-export default async function OrganizersPage({ searchParams }: { searchParams: SearchParams }) {
+export default async function OrganizersPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const cookieString = cookies().toString();
 
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = GetAllOrganizersInputSchema.parse(conversion);
 
-  const organizers = await api.accounts.organizers.getAll.query(query);
+  const organizers = await api.v1.accounts.organizers.getAll(query);
 
   return (
     <ListPage cookies={cookieString}>
@@ -45,7 +52,10 @@ export default async function OrganizersPage({ searchParams }: { searchParams: S
         <ListContent>
           {organizers && organizers.length
             ? organizers.map((organizer) => (
-                <ListItem key={organizer.id} href={`/organizers/${organizer.slug}`}>
+                <ListItem
+                  key={organizer.id}
+                  href={`/organizers/${organizer.slug}`}
+                >
                   <ListItemImage imageSrc={organizer.avatar} />
                   <ListItemContent>
                     <ListItemTitle>{organizer.name}</ListItemTitle>

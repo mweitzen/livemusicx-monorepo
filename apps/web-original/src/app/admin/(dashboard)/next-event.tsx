@@ -1,5 +1,5 @@
 "use client";
-import { api } from "@/lib/trpc/client";
+import { api } from "@repo/trpc/react";
 import {
   Card,
   CardContent,
@@ -10,13 +10,14 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 
 const NextEvent = () => {
-  const { data: event, status } = api.users.authorized.getNextEvent.useQuery();
+  const { data: event, status } =
+    api.v1.users.authorized.getNextEvent.useQuery();
 
   if (status === "loading")
     return (
       <CardContent>
-        <Skeleton className="w-1/2 h-4" />
-        <Skeleton className="w-3/4 h-3" />
+        <Skeleton className="h-4 w-1/2" />
+        <Skeleton className="h-3 w-3/4" />
       </CardContent>
     );
   if (status === "error") return <CardContent>Error</CardContent>;

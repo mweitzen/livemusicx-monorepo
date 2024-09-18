@@ -3,14 +3,12 @@ import { routes } from "@/routes";
 import { AdminLink } from "@/components/admin/link";
 import { MainWrapper } from "@/components/shared/main-wrapper";
 import { BasicFooter } from "@/components/shared/footer-basic";
-import { cookies } from "next/headers";
-import { TRPCContextProvider } from "@/lib/trpc/client";
+
+import { TRPCReactProvider } from "@repo/trpc/react";
 
 export default function AdminLayout({ children }: LayoutProps) {
-  const cookieString = cookies().toString();
-
   return (
-    <TRPCContextProvider cookies={cookieString}>
+    <TRPCReactProvider>
       <MainWrapper>
         <div className="fixed inset-x-0 top-14 flex gap-4 overflow-auto border-b  border-border/40 bg-background/60 px-6 py-2 backdrop-blur-md lg:px-8">
           {routes
@@ -24,6 +22,6 @@ export default function AdminLayout({ children }: LayoutProps) {
         </div>
       </MainWrapper>
       <BasicFooter />
-    </TRPCContextProvider>
+    </TRPCReactProvider>
   );
 }

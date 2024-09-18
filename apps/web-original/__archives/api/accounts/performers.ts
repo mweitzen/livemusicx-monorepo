@@ -1,6 +1,10 @@
 import { z } from "zod";
 import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
-import { createTRPCRouter, publicProcedure, protectedProcedure } from "@/server/trpc";
+import {
+  createTRPCRouter,
+  publicProcedure,
+  protectedProcedure,
+} from "@/server/trpc";
 
 import {
   GetAllPerformersInputSchema,
@@ -10,7 +14,10 @@ import {
 } from "@/lib/schema/accounts/performers";
 import { GetAllMusiciansQuery } from "./musicians.queries";
 import { GetAllGroupsQuery } from "./groups.queries";
-import { QuickViewAccountsWhere, QuickViewAccountsSelect } from "@/server/api/shared.queries";
+import {
+  QuickViewAccountsWhere,
+  QuickViewAccountsSelect,
+} from "../shared.queries";
 
 type PerformersOutputs = RouterOutputs["accounts"]["performers"];
 
@@ -21,7 +28,8 @@ export type FavoritePerformers = PerformersOutputs["getUsersFavorites"];
 type PerformersInputs = RouterInputs["accounts"]["performers"];
 
 export type GetAllPerformersInput = PerformersInputs["getAll"];
-export type GetUsersFavoritePerformersInput = PerformersInputs["getUsersFavorites"];
+export type GetUsersFavoritePerformersInput =
+  PerformersInputs["getUsersFavorites"];
 
 export const performersRouter = createTRPCRouter({
   getTotalCount: publicProcedure
@@ -40,13 +48,15 @@ export const performersRouter = createTRPCRouter({
     // .output(GetAllPerformersOutputSchema)
     .query(async ({ ctx, input }) => {
       const musicians = await ctx.prisma.musician.findMany(
-        GetAllMusiciansQuery(input, ctx.session?.user)
+        GetAllMusiciansQuery(input, ctx.session?.user),
       );
 
       const groups = await ctx.prisma.musicGroup.findMany(
-        GetAllGroupsQuery(input, ctx.session?.user)
+        GetAllGroupsQuery(input, ctx.session?.user),
       );
-      return [...musicians, ...groups].sort((a, b) => a.name.localeCompare(b.name));
+      return [...musicians, ...groups].sort((a, b) =>
+        a.name.localeCompare(b.name),
+      );
     }),
   getQuickView: publicProcedure
     // .meta({
@@ -72,7 +82,8 @@ export const performersRouter = createTRPCRouter({
       const groups = await ctx.prisma.musicGroup.findMany(query);
 
       return [...musicians, ...groups].sort(
-        (a, b) => (a.events[0].timeStart as any) - (b.events[0].timeStart as any)
+        (a, b) =>
+          (a.events[0].timeStart as any) - (b.events[0].timeStart as any),
       );
     }),
   getUsersFavorites: protectedProcedure.query(async ({ ctx }) => {

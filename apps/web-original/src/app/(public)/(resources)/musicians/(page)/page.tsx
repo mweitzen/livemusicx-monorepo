@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { cookies } from "next/headers";
 import { convertSearchParamsToQuery } from "@/lib/utils";
 
@@ -29,13 +29,17 @@ import { FavoriteButton } from "@/components/public/interactions";
 
 import { GetAllMusiciansInputSchema } from "@/lib/schema/accounts/musicians";
 
-export default async function MusiciansPage({ searchParams }: { searchParams: SearchParams }) {
+export default async function MusiciansPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const cookieString = cookies().toString();
 
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = GetAllMusiciansInputSchema.parse(conversion);
 
-  const musicians = await api.accounts.musicians.getAll.query(query);
+  const musicians = await api.v1.accounts.musicians.getAll(query);
 
   return (
     <ListPage cookies={cookieString}>
@@ -54,8 +58,14 @@ export default async function MusiciansPage({ searchParams }: { searchParams: Se
         <ListContent>
           {musicians.length
             ? musicians.map((musician) => (
-                <ListItem key={musician.id} href={`/musicians/${musician.slug}`}>
-                  <ListItemImage imageSrc={musician.avatar} imageAlt={musician.name} />
+                <ListItem
+                  key={musician.id}
+                  href={`/musicians/${musician.slug}`}
+                >
+                  <ListItemImage
+                    imageSrc={musician.avatar}
+                    imageAlt={musician.name}
+                  />
                   <ListItemContent>
                     <ListItemTitle>{musician.name}</ListItemTitle>
                   </ListItemContent>

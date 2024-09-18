@@ -1,6 +1,6 @@
 "use server";
 import { z } from "zod";
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { signOut, signIn } from "@repo/auth";
 
 import { AccountType } from "@repo/db/v1";
@@ -25,7 +25,7 @@ export async function upgradeUser(
 
   let success = false;
   try {
-    const user = await api.users.internal.upgrade.mutate({
+    const user = await api.v1.users.internal.upgrade.mutate({
       verificationCode: "555-555",
       accountType: data.accountType,
     });

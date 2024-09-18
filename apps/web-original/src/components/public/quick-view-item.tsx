@@ -3,10 +3,10 @@ import Image from "next/image";
 import { format } from "date-fns";
 
 import type { Genre } from "@repo/db/v1";
-import type { QuickViewEvents } from "@/server/api/events/main";
-import type { QuickViewVenues } from "@/server/api/accounts/venues";
-import type { QuickViewPerformers } from "@/server/api/accounts/performers";
-import type { QuickViewOrganizers } from "@/server/api/accounts/organizers";
+import type { QuickViewEvents } from "../../../__archives/api/events/main";
+import type { QuickViewVenues } from "../../../__archives/api/accounts/venues";
+import type { QuickViewPerformers } from "../../../__archives/api/accounts/performers";
+import type { QuickViewOrganizers } from "../../../__archives/api/accounts/organizers";
 
 import { Skeleton } from "../ui/skeleton";
 import { Badge } from "@/components/ui/badge";

@@ -1,4 +1,4 @@
-import { TRPCContextProvider } from "@/lib/trpc/client";
+import { TRPCContextProvider } from "@repo/trpc/react";
 
 interface ListPageProps {
   children: React.ReactNode;
@@ -6,5 +6,7 @@ interface ListPageProps {
 }
 
 export const ListPage = ({ children, cookies }: ListPageProps) => {
-  return <TRPCContextProvider cookies={cookies}>{children}</TRPCContextProvider>;
+  return (
+    <TRPCContextProvider cookies={cookies}>{children}</TRPCContextProvider>
+  );
 };

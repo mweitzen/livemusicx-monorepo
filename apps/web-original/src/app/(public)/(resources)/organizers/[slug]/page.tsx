@@ -1,4 +1,4 @@
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -21,16 +21,20 @@ import {
   AffiliatedAccounts,
 } from "@/components/public/details";
 
-export async function generateMetadata({ params }: PublicDetailPageProps): Promise<Metadata> {
-  const organizer = await api.accounts.organizers.getDetails.query({
+export async function generateMetadata({
+  params,
+}: PublicDetailPageProps): Promise<Metadata> {
+  const organizer = await api.v1.accounts.organizers.getDetails({
     slug: params.slug,
   });
   if (!organizer) return notFound();
   return generateOrganizerPageMetadata(organizer);
 }
 
-export default async function OrganizerDetailPage({ params }: PublicDetailPageProps) {
-  const organizer = await api.accounts.organizers.getDetails.query({
+export default async function OrganizerDetailPage({
+  params,
+}: PublicDetailPageProps) {
+  const organizer = await api.v1.accounts.organizers.getDetails({
     slug: params.slug,
   });
   if (!organizer) return notFound();
@@ -51,7 +55,10 @@ export default async function OrganizerDetailPage({ params }: PublicDetailPagePr
       <AboutInformation about={organizer.about} />
       <WebsiteLink link={organizer.website} />
       <SocialIcons links={getSocialLinks(organizer)} />
-      <UpcomingEvents href={`/organizers/${organizer.slug}/events`} events={organizer.events} />
+      <UpcomingEvents
+        href={`/organizers/${organizer.slug}/events`}
+        events={organizer.events}
+      />
       <AdditionalResources />
       <AffiliatedAccounts />
     </>

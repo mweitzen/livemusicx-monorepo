@@ -25,7 +25,7 @@ import { AvatarUpload } from "./components/avatar-upload";
 import { AboutTextarea } from "./components/about-textarea";
 import { UnclaimedAccountSearch } from "./components/unclaimed-search";
 import { capitalize } from "@/lib/utils";
-import { api } from "@/lib/trpc/client";
+import { api } from "@repo/trpc/react";
 
 const FormSchema = CreateMusicianInputSchema.extend({
   performerType: z.enum(["musician", "group"]).nullable(),
@@ -45,25 +45,26 @@ export const CreatePerformerForm = () => {
   const performerType = form.watch("performerType");
   const createType = form.watch("createType");
 
-  const { mutate: createMusician, status } = api.accounts.musicians.createAccount.useMutation({
-    onSuccess: (data) => {
-      console.log(data);
-    },
-  });
+  const { mutate: createMusician, status } =
+    api.v1.accounts.musicians.createAccount.useMutation({
+      onSuccess: (data) => {
+        console.log(data);
+      },
+    });
   const { mutate: claimMusician, status: claimStatus } =
-    api.accounts.musicians.claimAccount.useMutation({
+    api.v1.accounts.musicians.claimAccount.useMutation({
       onSuccess: (data) => {
         console.log(data);
       },
     });
   const { mutate: createGroup, status: groupStatus } =
-    api.accounts.groups.createAccount.useMutation({
+    api.v1.accounts.groups.createAccount.useMutation({
       onSuccess: (data) => {
         console.log(data);
       },
     });
   const { mutate: claimGroup, status: claimGroupStatus } =
-    api.accounts.groups.claimAccount.useMutation({
+    api.v1.accounts.groups.claimAccount.useMutation({
       onSuccess: (data) => {
         console.log(data);
       },
@@ -95,7 +96,10 @@ export const CreatePerformerForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} onError={(e) => console.log(e)}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        onError={(e) => console.log(e)}
+      >
         <FormStep display={!performerType}>
           <FormStepHeader>
             <FormStepTitle>Select Performer Type</FormStepTitle>
@@ -124,7 +128,9 @@ export const CreatePerformerForm = () => {
         </FormStep>
         <FormStep display={!!performerType && !createType}>
           <FormStepHeader>
-            <FormStepTitle>Enter {capitalize(performerType || "performer")} Name</FormStepTitle>
+            <FormStepTitle>
+              Enter {capitalize(performerType || "performer")} Name
+            </FormStepTitle>
             <FormStepDescription>
               Enter a publicly displayed name for your {performerType} account.
             </FormStepDescription>

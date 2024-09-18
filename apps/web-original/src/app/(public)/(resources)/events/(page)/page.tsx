@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { cookies } from "next/headers";
 import { convertSearchParamsToQuery } from "@/lib/utils";
 import { format } from "date-fns";
@@ -26,13 +26,17 @@ import { BookmarkButton } from "@/components/public/interactions";
 
 import { GetUpcomingEventsInputSchema } from "@/lib/schema/events";
 
-export default async function EventsPage({ searchParams }: { searchParams: SearchParams }) {
+export default async function EventsPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const cookieString = cookies().toString();
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = GetUpcomingEventsInputSchema.parse(conversion);
 
-  const events = await api.events.main.getUpcoming.query(query);
-  const bookmarkedEvents: any[] = []; // await api.events.main.getBookmarked.query();
+  const events = await api.v1.events.main.getUpcoming(query);
+  const bookmarkedEvents: any[] = []; // await api.v1.events.main.getBookmarked;
 
   return (
     <ListPage cookies={cookieString}>
@@ -53,7 +57,11 @@ export default async function EventsPage({ searchParams }: { searchParams: Searc
           {events.length
             ? events.map((event) => (
                 <ListItem key={event.id} href={`/events/${event.slug}`}>
-                  <ListItemImage imageSrc={event.image} imageAlt={event.name} event />
+                  <ListItemImage
+                    imageSrc={event.image}
+                    imageAlt={event.name}
+                    event
+                  />
                   <ListItemContent>
                     <ListItemTitle>{event.name}</ListItemTitle>
                     <p className="line-clamp-1 text-sm text-secondary-foreground md:text-base">
@@ -62,7 +70,10 @@ export default async function EventsPage({ searchParams }: { searchParams: Searc
                     <p className="text-sm text-secondary-foreground md:text-base">
                       {format(event.timeStart, "MMM d")} {event.venue.name}
                     </p>
-                    <BookmarkButton id={event.id} bookmarkedEvents={bookmarkedEvents} />
+                    <BookmarkButton
+                      id={event.id}
+                      bookmarkedEvents={bookmarkedEvents}
+                    />
                   </ListItemContent>
                 </ListItem>
               ))

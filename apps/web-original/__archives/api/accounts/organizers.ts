@@ -23,7 +23,7 @@ import {
   QuickViewAccountsSelect,
   QuickViewAccountsWhere,
   QuickViewTake,
-} from "@/server/api/shared.queries";
+} from "../shared.queries";
 
 type OrganizersOutputs = RouterOutputs["accounts"]["organizers"];
 
@@ -71,7 +71,7 @@ export const organizersRouter = createTRPCRouter({
             },
           },
         },
-      })
+      }),
     ),
   getQuickView: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/accounts/organizers/quick-view", tags: ["accounts"] } })
@@ -174,7 +174,9 @@ export const organizersRouter = createTRPCRouter({
       let x = 1;
       while (exists) {
         returnSlug = `${slug}-${x}`;
-        exists = await ctx.prisma.musicGroup.findUnique({ where: { slug: returnSlug } });
+        exists = await ctx.prisma.musicGroup.findUnique({
+          where: { slug: returnSlug },
+        });
         x++;
       }
       return {

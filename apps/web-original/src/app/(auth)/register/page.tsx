@@ -32,7 +32,7 @@ export default async function SignUpPage() {
   const session = await auth();
   if (!!session) {
     const user = session.user!;
-    if (user.accountType !== "PUBLIC") return redirect("/admin");
+    if (user.type !== "PUBLIC") return redirect("/admin");
 
     return redirect("/account");
   }

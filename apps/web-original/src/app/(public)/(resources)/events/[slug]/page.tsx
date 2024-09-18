@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { notFound } from "next/navigation";
 import { format, isThisYear } from "date-fns";
 
@@ -15,16 +15,20 @@ import { ProfileImage } from "@/components/shared/image";
 import { ClockIcon } from "@heroicons/react/20/solid";
 import { Card, CardContent } from "@/components/ui/card";
 
-export async function generateMetadata({ params }: PublicDetailPageProps): Promise<Metadata> {
-  const event = await api.events.main.getDetails.query({
+export async function generateMetadata({
+  params,
+}: PublicDetailPageProps): Promise<Metadata> {
+  const event = await api.v1.events.main.getDetails({
     slug: params.slug,
   });
   if (!event) return notFound();
   return generateEventPageMetadata(event);
 }
 
-export default async function EventDetailPage({ params }: PublicDetailPageProps) {
-  const event = await api.events.main.getDetails.query({
+export default async function EventDetailPage({
+  params,
+}: PublicDetailPageProps) {
+  const event = await api.v1.events.main.getDetails({
     slug: params.slug,
   });
   if (!event) return notFound();
@@ -44,7 +48,9 @@ export default async function EventDetailPage({ params }: PublicDetailPageProps)
        */}
       <section className="relative flex h-64 items-center justify-center overflow-hidden rounded-t-lg bg-gray-700">
         {!event.image ? (
-          <div className="absolute inset-0 flex items-center justify-center">No Image</div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            No Image
+          </div>
         ) : (
           <Image
             src={event.image}
@@ -60,7 +66,9 @@ export default async function EventDetailPage({ params }: PublicDetailPageProps)
           <span className="text-lg font-semibold uppercase">
             {format(event.timeStart, "MMM")}
             {!isThisYear(event.timeStart) ? (
-              <span className="font-normal">{format(event.timeStart, " yyyy")}</span>
+              <span className="font-normal">
+                {format(event.timeStart, " yyyy")}
+              </span>
             ) : null}
           </span>
         </div>
@@ -95,7 +103,9 @@ export default async function EventDetailPage({ params }: PublicDetailPageProps)
               <Badge variant="outline">Music Event</Badge>
             )}
             {event.genres.length ? (
-              event.genres.map((genre) => <Badge key={genre.id}>{genre.displayName}</Badge>)
+              event.genres.map((genre) => (
+                <Badge key={genre.id}>{genre.displayName}</Badge>
+              ))
             ) : (
               <Badge>Live Music</Badge>
             )}
@@ -114,12 +124,16 @@ export default async function EventDetailPage({ params }: PublicDetailPageProps)
           <div className="grid grid-cols-2 md:grid-cols-3">
             <span className="inline-flex items-center gap-1 text-sm uppercase">
               Start <ClockIcon className="h-4 w-4" />{" "}
-              <span className="text-base">{format(event.timeStart, "h:mm a")}</span>
+              <span className="text-base">
+                {format(event.timeStart, "h:mm a")}
+              </span>
             </span>
             {event.timeEnd ? (
               <span className="inline-flex items-center gap-1 text-sm uppercase">
                 End <ClockIcon className="h-4 w-4" />{" "}
-                <span className="text-base">{format(event.timeEnd, "h:mm a")}</span>
+                <span className="text-base">
+                  {format(event.timeEnd, "h:mm a")}
+                </span>
               </span>
             ) : null}
             <span className="inline-flex items-center gap-1 text-sm uppercase">
@@ -152,7 +166,10 @@ export default async function EventDetailPage({ params }: PublicDetailPageProps)
         <section className="mb-4">
           <h2 className="text-sm font-semibold uppercase">Venue</h2>
           <Link href={`/venues/${event.venue.slug}`} className="flex gap-2">
-            <ProfileImage src={event.venue.avatar!} className="h-16 w-16 flex-shrink-0" />
+            <ProfileImage
+              src={event.venue.avatar!}
+              className="h-16 w-16 flex-shrink-0"
+            />
             <div>
               <p className="text-lg">{event.venue.name}</p>
               <p className="text-sm">{event.venue.type}</p>

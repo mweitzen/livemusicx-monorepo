@@ -1,10 +1,14 @@
 import Link from "next/link";
 
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { convertSearchParamsToQuery } from "@/lib/utils";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { PageDescription, PageHeader, PageTitle } from "@/components/public/page";
+import {
+  PageDescription,
+  PageHeader,
+  PageTitle,
+} from "@/components/public/page";
 
 import { GetAllVenuesInputSchema } from "@/lib/schema/accounts/venues";
 
@@ -18,7 +22,9 @@ export default async function VenueEventsPage({
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = GetAllVenuesInputSchema.parse(conversion);
 
-  const venueEvents = await api.accounts.venues.getEvents.query({ slug: params.slug });
+  const venueEvents = await api.v1.accounts.venues.getEvents({
+    slug: params.slug,
+  });
 
   return (
     <>

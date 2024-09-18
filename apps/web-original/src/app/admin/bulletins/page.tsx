@@ -6,7 +6,11 @@ import { BookmarkIcon } from "@heroicons/react/24/outline";
 import { CardGrid } from "@/components/shared/card-grid";
 import { TypographyH1, TypographyLead } from "@/components/shared/typography";
 import { currentUser } from "@/lib/auth";
-import { AdminPageDescription, AdminPageHeader, AdminPageTitle } from "@/components/admin/page";
+import {
+  AdminPageDescription,
+  AdminPageHeader,
+  AdminPageTitle,
+} from "@/components/admin/page";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const BulletinCard = ({ children }: { children: React.ReactNode }) => {
@@ -37,9 +41,9 @@ export default async function AdminBulletinsPage() {
   const user = await currentUser();
   if (!user) return null;
 
-  const accountType = user.accountType;
+  const accountType = user.type;
   const otherAccounts = ["VENUE", "ORGANIZER", "PERFORMER"].filter(
-    (type) => type !== accountType
+    (type) => type !== accountType,
   );
 
   return (
@@ -55,34 +59,36 @@ export default async function AdminBulletinsPage() {
             <CardBadge>Organizers Seeking Venues</CardBadge>
             <CardTitle>Spring Music Festival</CardTitle>
             <CardDescription>
-              San Francisco, CA - Looking for a large outdoor venue in the San Francisco area
-              for a music festival in May. Expected attendance of 5,000+
+              San Francisco, CA - Looking for a large outdoor venue in the San
+              Francisco area for a music festival in May. Expected attendance of
+              5,000+
             </CardDescription>
           </BulletinCard>
           <BulletinCard>
             <Badge className="mb-2">Venues Seeking Performers</Badge>
             <h3 className="text-lg font-bold">Local Art Gallery</h3>
             <p className="line-clamp-3 text-sm text-gray-600">
-              Downtown, NY - Seeking local musicians for weekly live music nights at our
-              downtown art gallery.
+              Downtown, NY - Seeking local musicians for weekly live music
+              nights at our downtown art gallery.
             </p>
           </BulletinCard>
           <BulletinCard>
             <Badge className="mb-2">Performers Seeking Performers</Badge>
             <h3 className="text-lg font-bold">Rock Band</h3>
             <p className="line-clamp-3 text-sm text-gray-600">
-              Los Angeles, CA - Rock band seeking a new drummer. Must be available for weekly
-              rehearsals and local gigs.
+              Los Angeles, CA - Rock band seeking a new drummer. Must be
+              available for weekly rehearsals and local gigs.
             </p>
           </BulletinCard>
           <BulletinCard>
             <Badge className="mb-2">Performers Seeking Venues</Badge>
             <h3 className="text-lg font-bold">Jazz Band</h3>
             <p className="line-clamp-3 text-sm text-gray-600">
-              New York, NY - Jazz band with 7 members seeking a new venue for our performances.
-              We have a large following and require a venue that can accommodate at least 1,000
-              attendees. We perform a variety of jazz styles including bebop, cool jazz, and
-              modern jazz.
+              New York, NY - Jazz band with 7 members seeking a new venue for
+              our performances. We have a large following and require a venue
+              that can accommodate at least 1,000 attendees. We perform a
+              variety of jazz styles including bebop, cool jazz, and modern
+              jazz.
             </p>
           </BulletinCard>
           <Card className="animate-pulse">
@@ -102,7 +108,9 @@ export default async function AdminBulletinsPage() {
           <Card>
             <CardContent className="flex-grow pt-6 text-center">
               <h2 className="mb-4 text-2xl font-bold">No More Items</h2>
-              <p className="text-lg text-gray-600">Check back later for more!</p>
+              <p className="text-lg text-gray-600">
+                Check back later for more!
+              </p>
             </CardContent>
           </Card>
         </CardGrid>

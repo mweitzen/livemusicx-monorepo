@@ -12,7 +12,7 @@ import {
   GenresWhere,
   QuickViewEventsWhere,
   VenuesWhere,
-} from "@/server/api/shared.queries";
+} from "../shared.queries";
 import { EventSelect } from "./shared.queries";
 
 export const GetUpcomingEventsQuery = (

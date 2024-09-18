@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-import { api } from "@/lib/trpc/client";
+import { api } from "@repo/trpc/react";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useAuthStatus } from "@/lib/hooks/auth";
@@ -62,10 +62,16 @@ const RequiresAuth = ({
           </DialogHeader>
           <div className="py-4 text-center">
             <p> Please login to continue.</p>
-            <Button variant="outline" className="mt-4" onClick={() => signIn("google")}>
+            <Button
+              variant="outline"
+              className="mt-4"
+              onClick={() => signIn("google")}
+            >
               Google
             </Button>
-            <p>Don&apos;t have an account? Sign up for free by logging in above.</p>
+            <p>
+              Don&apos;t have an account? Sign up for free by logging in above.
+            </p>
             <p>
               Looking for an upgraded account to post events?{" "}
               <DialogClose asChild>
@@ -93,22 +99,23 @@ const FavoriteButton = ({
   const isFavorited = !!favorites.find((account) => account.id === id);
   const [selected, setSelected] = useState(isFavorited);
 
-  const { mutate: addAccountToFavorites } = api.users.public.addAccountToFavorites.useMutation({
-    onSuccess: () => {
-      toast("Success", {
-        description: "You added an account to your favorites.",
-      });
-    },
-    onError: () => {
-      setSelected(false);
-      toast("Uh oh!", {
-        description: "Something went wrong.",
-      });
-    },
-  });
+  const { mutate: addAccountToFavorites } =
+    api.v1.users.public.addAccountToFavorites.useMutation({
+      onSuccess: () => {
+        toast("Success", {
+          description: "You added an account to your favorites.",
+        });
+      },
+      onError: () => {
+        setSelected(false);
+        toast("Uh oh!", {
+          description: "Something went wrong.",
+        });
+      },
+    });
 
   const { mutate: removeAccountFromFavorites } =
-    api.users.public.removeAccountFromFavorites.useMutation({
+    api.v1.users.public.removeAccountFromFavorites.useMutation({
       onSuccess: () => {
         toast("Success", {
           description: "You removed an account from your favorites.",
@@ -146,7 +153,11 @@ const FavoriteButton = ({
       }
       signedIn={
         <Button variant="outline" size="icon" onClick={handleButtonClick}>
-          {selected ? <StarIconFilled className="h-4 w-4" /> : <StarIcon className="h-4 w-4" />}
+          {selected ? (
+            <StarIconFilled className="h-4 w-4" />
+          ) : (
+            <StarIcon className="h-4 w-4" />
+          )}
         </Button>
       }
       signedOut={
@@ -168,22 +179,23 @@ const BookmarkButton = ({
   const isBookmarked = !!bookmarkedEvents.find((event) => event.id === id);
   const [selected, setSelected] = useState(isBookmarked);
 
-  const { mutate: addEventToBookmarks } = api.users.public.addEventToBookmarks.useMutation({
-    onSuccess: () => {
-      toast("Success", {
-        description: "You added an event to your bookmarks.",
-      });
-    },
-    onError: () => {
-      setSelected(false);
-      toast("Uh oh!", {
-        description: "Something went wrong.",
-      });
-    },
-  });
+  const { mutate: addEventToBookmarks } =
+    api.v1.users.public.addEventToBookmarks.useMutation({
+      onSuccess: () => {
+        toast("Success", {
+          description: "You added an event to your bookmarks.",
+        });
+      },
+      onError: () => {
+        setSelected(false);
+        toast("Uh oh!", {
+          description: "Something went wrong.",
+        });
+      },
+    });
 
   const { mutate: removeEventFromBookmarks } =
-    api.users.public.removeEventFromBookmarks.useMutation({
+    api.v1.users.public.removeEventFromBookmarks.useMutation({
       onSuccess: () => {
         toast("Success", {
           description: "You removed an event from your bookmarks.",
@@ -396,7 +408,8 @@ const BuyTicketsButton = ({
         <DialogHeader>
           <DialogTitle>Buy Event Tickets</DialogTitle>
           <DialogDescription>
-            Select a link below to purchase a ticket from a *third-party provider.
+            Select a link below to purchase a ticket from a *third-party
+            provider.
           </DialogDescription>
           <div className="flex flex-col gap-y-2 py-4">
             {ticketLinks.map((link, i) => (
@@ -414,12 +427,16 @@ const BuyTicketsButton = ({
           </div>
           <DialogFooter className="flex flex-col gap-2 text-center">
             <TypographyMuted className="text-xs">
-              * Tickets are sold through third-party providers. Live Music X bears no
-              responsibility for ticket purchases made through external links. Review the
-              third-party provider&apos;s terms and policies before buying.
+              * Tickets are sold through third-party providers. Live Music X
+              bears no responsibility for ticket purchases made through external
+              links. Review the third-party provider&apos;s terms and policies
+              before buying.
             </TypographyMuted>
             <TypographyMuted className="text-xs">
-              <a href={`${process.env.NEXT_PUBLIC_SITE_URL}/terms`} target="_blank">
+              <a
+                href={`${process.env.NEXT_PUBLIC_SITE_URL}/terms`}
+                target="_blank"
+              >
                 Learn More
                 <ArrowUpRightIcon className="ml-1 inline-block h-3 w-3" />
               </a>

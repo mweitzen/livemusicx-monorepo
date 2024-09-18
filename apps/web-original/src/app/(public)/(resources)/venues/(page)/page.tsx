@@ -1,4 +1,4 @@
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { cookies } from "next/headers";
 import { convertSearchParamsToQuery } from "@/lib/utils";
 
@@ -23,13 +23,17 @@ import { ToggleWithUpcomingEvents } from "@/components/public/filters";
 
 import { GetAllVenuesInputSchema } from "@/lib/schema/accounts/venues";
 
-export default async function MusiciansPage({ searchParams }: { searchParams: SearchParams }) {
+export default async function MusiciansPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const cookieString = cookies().toString();
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = GetAllVenuesInputSchema.parse(conversion);
 
-  const venues = await api.accounts.venues.getAll.query(query);
-  const venuesTotal = await api.accounts.venues.getCount.query();
+  const venues = await api.v1.accounts.venues.getAll(query);
+  const venuesTotal = await api.v1.accounts.venues.getCount;
 
   return (
     <ListPage cookies={cookieString}>

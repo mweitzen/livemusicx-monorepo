@@ -1,4 +1,4 @@
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { cookies } from "next/headers";
 import { convertSearchParamsToQuery } from "@/lib/utils";
 
@@ -27,13 +27,17 @@ import { FavoriteButton } from "@/components/public/interactions";
 
 import { GetAllPerformersInputSchema } from "@/lib/schema/accounts/performers";
 
-export default async function PerformersPage({ searchParams }: { searchParams: SearchParams }) {
+export default async function PerformersPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const cookieString = cookies().toString();
 
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = GetAllPerformersInputSchema.parse(conversion);
 
-  const performers = await api.accounts.performers.getAll.query(query);
+  const performers = await api.v1.accounts.performers.getAll(query);
   const favoritePerformers: any[] = [];
 
   return (
@@ -57,7 +61,10 @@ export default async function PerformersPage({ searchParams }: { searchParams: S
                   key={performer.id}
                   href={`/${performer.performerType + "s"}/${performer.slug}`}
                 >
-                  <ListItemImage imageSrc={performer.avatar} imageAlt={performer.name} />
+                  <ListItemImage
+                    imageSrc={performer.avatar}
+                    imageAlt={performer.name}
+                  />
                   <ListItemContent>
                     <ListItemTitle>{performer.name}</ListItemTitle>
                     {/* <ListItemGenres genres={performer.genres} /> */}

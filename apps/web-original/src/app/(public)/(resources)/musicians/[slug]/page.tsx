@@ -1,4 +1,4 @@
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -23,16 +23,20 @@ import {
   RelatedMusicians,
 } from "@/components/public/details";
 
-export async function generateMetadata({ params }: PublicDetailPageProps): Promise<Metadata> {
-  const musician = await api.accounts.musicians.getDetails.query({
+export async function generateMetadata({
+  params,
+}: PublicDetailPageProps): Promise<Metadata> {
+  const musician = await api.v1.accounts.musicians.getDetails({
     slug: params.slug,
   });
   if (!musician) return notFound();
   return generateMusicianPageMetadata(musician);
 }
 
-export default async function MusicianDetailPage({ params }: PublicDetailPageProps) {
-  const musician = await api.accounts.musicians.getDetails.query({
+export default async function MusicianDetailPage({
+  params,
+}: PublicDetailPageProps) {
+  const musician = await api.v1.accounts.musicians.getDetails({
     slug: params.slug,
   });
   if (!musician) return notFound();
@@ -55,7 +59,10 @@ export default async function MusicianDetailPage({ params }: PublicDetailPagePro
       <WebsiteLink link={musician.website} />
       <SocialIcons links={getSocialLinks(musician)} />
 
-      <UpcomingEvents href={`/musicians/${musician.slug}/events`} events={musician.events} />
+      <UpcomingEvents
+        href={`/musicians/${musician.slug}/events`}
+        events={musician.events}
+      />
       <AdditionalResources />
       <MemberOfGroups groups={musician.groups} />
       <AffiliatedAccounts />

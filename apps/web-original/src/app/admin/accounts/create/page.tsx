@@ -8,7 +8,7 @@ export default async function CreateAccountPage() {
   const user = await currentUser();
   if (!user) return null;
 
-  const accountType = user.accountType;
+  const accountType = user.type;
 
   switch (accountType) {
     case "ORGANIZER":

@@ -1,10 +1,14 @@
 import Link from "next/link";
 
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 import { convertSearchParamsToQuery } from "@/lib/utils";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { PageDescription, PageHeader, PageTitle } from "@/components/public/page";
+import {
+  PageDescription,
+  PageHeader,
+  PageTitle,
+} from "@/components/public/page";
 
 import { GetGroupEventsInputSchema } from "@/lib/schema/accounts/groups";
 
@@ -18,7 +22,9 @@ export default async function GroupEventsPage({
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = GetGroupEventsInputSchema.parse(conversion);
 
-  const groupEvents = await api.accounts.groups.getEvents.query({ slug: params.slug });
+  const groupEvents = await api.v1.accounts.groups.getEvents({
+    slug: params.slug,
+  });
 
   return (
     <>

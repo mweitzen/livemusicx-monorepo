@@ -1,12 +1,16 @@
 import { siteName } from "@/lib/content/global";
-import { api } from "@/lib/trpc/server";
+import { api } from "@repo/trpc/server";
 
 // import { AdminListCard } from "@/components/admin-list-card";
 import { TypographyH1, TypographyLead } from "@/components/shared/typography";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import type { Metadata } from "next";
-import { AdminPageDescription, AdminPageHeader, AdminPageTitle } from "@/components/admin/page";
+import {
+  AdminPageDescription,
+  AdminPageHeader,
+  AdminPageTitle,
+} from "@/components/admin/page";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -17,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminEventsPage() {
-  // const usersEvents = await api.events.getUsersEvents.query();
+  // const usersEvents = await api.v1.events.getUsersEvents;
 
   return (
     <>
