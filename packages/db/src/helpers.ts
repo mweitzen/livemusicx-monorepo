@@ -1,4 +1,4 @@
-import { prisma } from "./client.v1";
+import { prisma } from "./";
 
 export function createSlug(input: string): string {
   const slug = input

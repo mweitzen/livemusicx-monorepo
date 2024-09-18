@@ -2,35 +2,23 @@
   "name": "@repo/db",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "exports": {
-    ".": "./src/client.ts",
-    "./helpers": "./src/helpers.ts",
-    "./v1": "./src/client.v1.ts",
-    "./v2": {
-      "require": {
-        "types": "./default.d.ts",
-        "node": "./default.js"
-      },
-      "import": {
-        "types": "./default.d.ts",
-        "node": "./default.js"
-      },
-      "default": "./default.js"
-    }
+    ".": "./src/index.ts",
+    "./helpers": "./src/helpers.ts"
   },
   "scripts": {
     "db:migrate:deploy": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:seed": "tsx src/seed.ts",
+    "db:studio": "prisma studio",
     "db:generate": "prisma generate",
     "format": "prisma format",
     "lint": "eslint . --max-warnings 0",
-    "studio": "prisma studio",
     "clean": "git clean -xdf .cache .turbo node_modules"
   },
   "devDependencies": {
-    "@prisma/client": "5.19.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.5.5",
@@ -40,6 +28,7 @@
     "typescript": "catalog:"
   },
   "dependencies": {
+    "@prisma/client": "5.19.1",
     "@prisma/extension-accelerate": "^1.1.0",
     "@repo/utils": "workspace:*"
   }
