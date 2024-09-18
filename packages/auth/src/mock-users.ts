@@ -1,4 +1,4 @@
-import { UserRole, AccountType } from "@repo/db/v1";
+import { UserRole, AccountType } from "@repo/db";
 
 export const users = [
   {
@@ -17,7 +17,7 @@ export const users = [
     email: "test@gmail.com",
     password: "password",
     role: UserRole.USER,
-    type: AccountType.PUBLIC,
+    type: AccountType.FAN,
     isVerified: false,
     isSetup: false,
   },

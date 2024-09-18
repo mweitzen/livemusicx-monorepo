@@ -6,7 +6,7 @@ import type {
 import { skipCSRFCheck } from "@auth/core";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
-import { prisma, AccountType, UserRole } from "@repo/db/v1";
+import { prisma, AccountType, UserRole } from "@repo/db";
 
 import { env } from "../env";
 import { providers } from "./providers";
