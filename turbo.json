@@ -23,6 +23,10 @@
     "db:start": {},
     "db:stop": {},
     "db:migrate:deploy": {},
+    "db:migrate:dev": {
+      "cache": false,
+      "interactive": true
+    },
     "db:push": {},
     "db:seed": {},
     "db:generate": {},
