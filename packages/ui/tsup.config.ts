@@ -3,7 +3,8 @@ import { defineConfig, type Options } from "tsup";
 export default defineConfig((options: Options) => ({
   entry: [
     "./src/components/**/*.tsx",
-    "./src/hooks/use-toast.ts",
+    "./src/hooks/**.*.ts",
+    "./src/theme.tsx",
     "./src/utils.ts",
   ],
   format: ["cjs", "esm"],
