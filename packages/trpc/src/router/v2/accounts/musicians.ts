@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@repo/db";
 
 import {
   authorizedProcedure,
@@ -232,7 +232,7 @@ export const musiciansRouter = createTRPCRouter({
     .input(MusicianInputSchema)
     .mutation(async ({ ctx, input }) => {
       const { genreIds, groupIds, ...data } = input;
-      const slug = await generateUniqueSlug(data.name, ctx.db.musician);
+      const slug = await generateUniqueSlug(data.name, "musician");
       const newMusician = await ctx.db.musician.create({
         data: {
           slug,

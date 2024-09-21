@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { VenueType } from "@repo/db/v1";
+import { VenueType } from "@repo/db";
 import { EventInputSchemaBase } from "../../schema/events/shared";
 import { GetDetailsInputSchema, NoInputSchema } from "../../schema";
 

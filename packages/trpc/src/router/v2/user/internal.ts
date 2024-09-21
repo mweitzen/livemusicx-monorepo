@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { AccountType } from "@prisma/client";
+import { AccountType } from "@repo/db";
 import { createTRPCRouter, protectedProcedure } from "../../../trpc";
 
 export const internalRouter = createTRPCRouter({

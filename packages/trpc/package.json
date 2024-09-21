@@ -4,25 +4,12 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./src/index.ts"
-    },
-    "./server": {
-      "types": "./dist/clients/server.d.ts",
-      "default": "./src/clients/server.ts"
-    },
-    "./react": {
-      "types": "./dist/clients/react.d.ts",
-      "default": "./src/clients/react.tsx"
-    },
-    "./mobile": {
-      "types": "./dist/clients/mobile.d.ts",
-      "default": "./src/clients/mobile.tsx"
-    }
+    ".": "./src/index.ts",
+    "./server": "./src/clients/server.ts",
+    "./react": "./src/clients/react.tsx",
+    "./mobile": "./src/clients/mobile.tsx"
   },
   "scripts": {
-    "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",

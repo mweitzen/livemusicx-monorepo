@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@repo/db";
 
 import {
   authorizedProcedure,
@@ -278,7 +278,7 @@ export const venuesRouter = createTRPCRouter({
         zipcode,
         ...data
       } = input;
-      const slug = await generateUniqueSlug(data.name, ctx.db.venue);
+      const slug = await generateUniqueSlug(data.name, "venue");
       // const newVenue = await ctx.db.venue.create({
       //   data: {
       //     slug,

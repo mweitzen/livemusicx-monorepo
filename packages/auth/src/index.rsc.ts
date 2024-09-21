@@ -3,7 +3,8 @@ import NextAuth from "next-auth";
 
 import { authConfig } from "./config";
 
-export type { Session } from "next-auth";
+export type { Session, User } from "next-auth";
+export { AuthError } from "next-auth";
 
 const { handlers, auth: defaultAuth, signIn, signOut } = NextAuth(authConfig);
 

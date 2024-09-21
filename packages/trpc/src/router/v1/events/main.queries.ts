@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { addDays } from "date-fns";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db";
 import type { User } from "next-auth";
 
 import {

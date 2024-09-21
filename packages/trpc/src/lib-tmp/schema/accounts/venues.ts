@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { VenueType, StageType } from "@repo/db/v1";
+import { VenueType, StageType } from "@repo/db";
 
 import { CreateAccountSchema } from "./shared";
 import {

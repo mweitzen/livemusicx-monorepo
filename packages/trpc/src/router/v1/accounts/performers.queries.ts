@@ -2,7 +2,7 @@ import { z } from "zod";
 import { addDays } from "date-fns";
 
 import type { User } from "next-auth";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db";
 
 import { GetAllGroupsInputSchema } from "../../../lib-tmp/schema/accounts/groups";
 

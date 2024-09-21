@@ -1,4 +1,4 @@
-import { prisma } from "./";
+import { db } from "./client";
 
 const DEFAULT_USERS = [
   // Add your own user to pre-populate the database with
@@ -15,6 +15,6 @@ const DEFAULT_USERS = [
     console.error(error);
     process.exit(1);
   } finally {
-    await prisma.$disconnect();
+    await db.$disconnect();
   }
 })();

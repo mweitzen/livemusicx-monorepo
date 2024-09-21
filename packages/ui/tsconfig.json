@@ -1,10 +1,8 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "@repo/typescript-config/internal-package.json",
   "compilerOptions": {
-    "lib": ["dom"],
-    "sourceMap": true,
-    "types": ["node"]
+    "lib": ["ES2022", "dom", "dom.iterable"],
+    "jsx": "preserve"
   },
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules", ".cache", ".turbo"]
+  "include": ["src"]
 }

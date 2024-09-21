@@ -1,4 +1,4 @@
-import { prisma } from "./";
+import { db } from "./client";
 
 export function createSlug(input: string): string {
   const slug = input
@@ -18,13 +18,15 @@ export async function generateUniqueSlug(
     return "";
   let slug = createSlug(text);
   const where = { slug };
-  // prisma
-  let exists = await prisma[type].findUnique({ where });
+  // db
+  // @ts-ignore
+  let exists = await db[type].findUnique({ where });
   let x = 1;
   while (exists) {
     slug = `${slug}-${x}`;
 
-    exists = await prisma[type].findUnique({ where });
+    // @ts-ignore
+    exists = await db[type].findUnique({ where });
     x++;
   }
   return slug;

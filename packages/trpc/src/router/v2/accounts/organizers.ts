@@ -7,7 +7,7 @@ import {
 import { TRPCError } from "@trpc/server";
 
 import { z } from "zod";
-import { Prisma } from "@repo/db/v1";
+import { Prisma } from "@repo/db";
 import { OrganizerInputSchema } from "@repo/validators";
 
 import { generateUniqueSlug } from "@repo/db/helpers";
@@ -201,7 +201,7 @@ export const organizersRouter = createTRPCRouter({
     .input(OrganizerInputSchema)
     .mutation(async ({ ctx, input }) => {
       const { genreIds, ...data } = input;
-      const slug = await generateUniqueSlug(data.name, ctx.db.musician);
+      const slug = await generateUniqueSlug(data.name, "musician");
       const newOrganizer = await ctx.db.organizer.create({
         data: {
           slug,

@@ -3,7 +3,7 @@ import { TRPCError } from "@trpc/server";
 
 import { z } from "zod";
 import { SearchSchemaBase } from "@repo/validators";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@repo/db";
 
 export const statesRouter = createTRPCRouter({
   getAll: publicProcedure

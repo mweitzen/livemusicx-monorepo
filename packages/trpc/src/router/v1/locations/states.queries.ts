@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db";
 
 import {
   GetStateRegionsInputSchema,

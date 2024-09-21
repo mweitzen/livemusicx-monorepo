@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { signOut, signIn, invalidateSessionToken } from "@repo/auth";
 import { TRPCError } from "@trpc/server";
-import { AccountType } from "@repo/db/v1";
+import { AccountType } from "@repo/db";
 import { createTRPCRouter, protectedProcedure } from "../../../trpc";
 
 export const internalRouter = createTRPCRouter({

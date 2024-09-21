@@ -2,19 +2,22 @@
   "name": "@repo/db",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "exports": {
-    ".": "./src/index.ts",
+    ".": "./src/client.ts",
+    "./schema": "./src/schema.ts",
     "./helpers": "./src/helpers.ts"
   },
   "scripts": {
+    "predev": "prisma generate --no-engine",
+    "prebuild": "prisma generate --no-engine",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:seed": "tsx src/seed.ts",
     "db:studio": "prisma studio",
-    "db:generate": "prisma generate",
+    "db:generate": "prisma generate --no-engine",
     "format": "prisma format",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "lint": "eslint . --max-warnings 0",
     "clean": "git clean -xdf .cache .turbo node_modules"
   },
@@ -24,6 +27,7 @@
     "@types/node": "^22.5.5",
     "eslint": "^9.10.0",
     "prisma": "^5.19.1",
+    "tsup": "8.3.0",
     "tsx": "^4.19.1",
     "typescript": "catalog:"
   },

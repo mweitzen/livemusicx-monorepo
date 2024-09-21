@@ -10,25 +10,12 @@
     "./styles.css": "./src/globals.css",
     "./ui.css": "./dist/ui.css",
     "./theme": "./src/theme.tsx",
-    "./helpers": {
-      "types": "./dist/utils.d.ts",
-      "require": "./dist/utils.js",
-      "import": "./dist/utils.mjs"
-    },
-    "./components/*": {
-      "types": "./dist/components/base/*.d.ts",
-      "require": "./dist/components/base/*.js",
-      "import": "./dist/components/base/*.mjs"
-    },
-    "./hooks/*": {
-      "types": "./dist/hooks/*.d.ts",
-      "require": "./dist/hooks/*.js",
-      "import": "./dist/hooks/*.mjs"
-    }
+    "./helpers": "./src/utils.ts",
+    "./components/*": "./src/components/base/*.tsx",
+    "./icons": "./src/icons/index.tsx",
+    "./hooks/*": "./src/hooks/*.ts"
   },
   "scripts": {
-    "dev": "tsup",
-    "build": "tsup",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",

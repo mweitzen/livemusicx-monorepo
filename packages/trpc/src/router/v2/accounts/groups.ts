@@ -11,7 +11,7 @@ import { GroupInputSchema } from "@repo/validators";
 
 import { generateUniqueSlug } from "@repo/db/helpers";
 
-import { Prisma } from "@repo/db/v1";
+import { Prisma } from "@repo/db";
 
 export const groupsRouter = createTRPCRouter({
   list: publicProcedure.query(({ ctx }) => ctx.db.musicGroup.findMany()),
@@ -192,7 +192,7 @@ export const groupsRouter = createTRPCRouter({
     .input(GroupInputSchema)
     .mutation(async ({ ctx, input }) => {
       const { genreIds, memberIds, ...data } = input;
-      const slug = await generateUniqueSlug(data.name, ctx.db.musicGroup);
+      const slug = await generateUniqueSlug(data.name, "band");
       const newGroup = await ctx.db.musicGroup.create({
         data: {
           slug,

@@ -3,31 +3,10 @@
   "type": "module",
   "private": "true",
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules"
   },
   "exports": {
-    "./add": {
-      "types": "./src/add.ts",
-      "default": "./dist/add.js"
-    },
-    "./subtract": {
-      "types": "./src/subtract.ts",
-      "default": "./dist/subtract.js"
-    },
-    "./capitalize": {
-      "types": "./src/capitalize.ts",
-      "default": "./dist/capitalize.js"
-    },
-    "./sleep": {
-      "types": "./src/sleep.ts",
-      "default": "./dist/sleep.js"
-    },
-    "./create-slug": {
-      "types": "./src/create-slug.ts",
-      "default": "./dist/create-slug.js"
-    }
+    ".": "./src/index.ts"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { VenueType } from "@prisma/client";
+import { VenueType } from "@repo/db/schema";
 
 import { EmailSchema, URLSchema, PhoneNumberSchema, IDArraySchema } from "./";
 

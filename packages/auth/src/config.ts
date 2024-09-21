@@ -6,7 +6,8 @@ import type {
 import { skipCSRFCheck } from "@auth/core";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
-import { prisma, AccountType, UserRole } from "@repo/db";
+import { db } from "@repo/db";
+import { AccountType, UserRole } from "@repo/db/schema";
 
 import { env } from "../env";
 import { providers } from "./providers";
@@ -31,7 +32,7 @@ declare module "@auth/core/jwt" {
   }
 }
 
-const adapter = PrismaAdapter(prisma);
+const adapter = PrismaAdapter(db);
 
 export const isSecureContext = env.NODE_ENV !== "development";
 
