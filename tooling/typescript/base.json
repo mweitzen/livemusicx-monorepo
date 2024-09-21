@@ -25,5 +25,6 @@
     "module": "Preserve",
     "moduleResolution": "Bundler",
     "noEmit": true
-  }
+  },
+  "exclude": ["node_modules", "build", "dist", ".next", ".expo"]
 }
