@@ -681,6 +681,12 @@ importers:
       '@repo/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@repo/constants':
+        specifier: workspace:^
+        version: link:../../libs/constants
+      '@repo/content':
+        specifier: workspace:^
+        version: link:../../libs/content
       '@repo/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -893,9 +899,26 @@ importers:
 
   libs/assets: {}
 
-  libs/constants: {}
+  libs/constants:
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      typescript:
+        specifier: 'catalog:'
+        version: 5.6.2
 
-  libs/content: {}
+  libs/content:
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      typescript:
+        specifier: 'catalog:'
+        version: 5.6.2
 
   libs/mock-data: {}
 
