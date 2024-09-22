@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { accounts } from "@/data/mock-accounts";
+import { accounts } from "~/data/mock-accounts";
 
 import { cn } from "@repo/ui/helpers";
 import { useState } from "react";

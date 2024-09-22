@@ -1,6 +1,6 @@
-import * as content from "@/content/privacy";
+import * as content from "~/content/privacy";
 import { MarketingPageBase } from "../base";
-import { typography } from "@/constants/typography";
+import { typography } from "~/constants/typography";
 
 export default function PrivacyPolicyPage() {
   return (

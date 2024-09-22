@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 
-import { links } from "@/constants/links";
+import { links } from "~/constants/links";
 import { usePathname } from "next/navigation";
 
 import Logo from "../logo";

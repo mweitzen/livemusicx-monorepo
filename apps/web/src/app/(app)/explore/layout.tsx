@@ -1,4 +1,4 @@
-import FilterBar from "@/components/features/filter-bar";
+import FilterBar from "~/components/features/filter-bar";
 
 export default function ExploreLayout({
   children,

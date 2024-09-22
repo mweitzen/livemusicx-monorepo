@@ -3,8 +3,8 @@ import * as React from "react";
 import Logo from "../logo";
 
 import { cn } from "@repo/ui/helpers";
-import { links } from "@/constants/links";
-import { content } from "@/content/NEW/app";
+import { links } from "~/constants/links";
+import { content } from "~/content/NEW/app";
 
 import {
   NavigationMenu,

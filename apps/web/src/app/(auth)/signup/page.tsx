@@ -3,8 +3,8 @@ import Link from "next/link";
 import AuthCard from "../card";
 import AuthSeparator from "../separator";
 
-import OAuthButtons from "@/components/auth/oauth";
-import CredentialsSignup from "@/components/auth/register";
+import OAuthButtons from "~/components/auth/oauth";
+import CredentialsSignup from "~/components/auth/register";
 
 import { Button } from "@repo/ui/components/button";
 import AccountType from "../account-type";

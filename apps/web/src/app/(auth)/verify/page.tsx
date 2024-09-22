@@ -1,5 +1,5 @@
 import AuthCard from "../card";
-import EnterVerification from "@/components/auth/verify-account";
+import EnterVerification from "~/components/auth/verify-account";
 
 export default function VerifyAccount() {
   return (

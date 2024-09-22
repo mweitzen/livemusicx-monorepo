@@ -5,7 +5,7 @@ import { signIn, AuthError } from "@repo/auth";
 import { Label } from "@repo/ui/components/label";
 import { Input } from "@repo/ui/components/input";
 import { Button } from "@repo/ui/components/button";
-import type { ISigninSearchParams } from "@/app/(auth)/signin/page";
+import type { ISigninSearchParams } from "~/app/(auth)/signin/page";
 
 export default function CredentialsSignin({
   email,

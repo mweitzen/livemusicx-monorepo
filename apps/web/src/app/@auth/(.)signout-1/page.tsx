@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-import Signout from "@/components/auth/signout";
+import Signout from "~/components/auth/signout";
 import {
   Dialog,
   DialogHeader,

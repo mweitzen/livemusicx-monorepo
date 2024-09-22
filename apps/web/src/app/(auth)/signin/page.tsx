@@ -1,8 +1,8 @@
 import AuthCard from "../card";
 import AuthSeparator from "../separator";
 
-import OAuthSignin from "@/components/auth/oauth";
-import CredentialsSignin from "@/components/auth/credentials";
+import OAuthSignin from "~/components/auth/oauth";
+import CredentialsSignin from "~/components/auth/credentials";
 
 export interface ISigninSearchParams {
   email?: string;

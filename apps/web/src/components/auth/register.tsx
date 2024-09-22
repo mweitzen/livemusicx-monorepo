@@ -8,7 +8,7 @@ import {
 import { Label } from "@repo/ui/components/label";
 import { Input } from "@repo/ui/components/input";
 import { Button } from "@repo/ui/components/button";
-import type { ISignupSearchParams } from "@/app/(auth)/signup/page";
+import type { ISignupSearchParams } from "~/app/(auth)/signup/page";
 
 export default function CredentialsSignup({
   type,

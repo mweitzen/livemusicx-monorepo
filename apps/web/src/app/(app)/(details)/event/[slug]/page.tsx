@@ -1,6 +1,6 @@
-import { events } from "@/data/mock/events";
-import { venues } from "@/data/mock/venues";
-import { organizers } from "@/data/mock/organizers";
+import { events } from "~/data/mock/events";
+import { venues } from "~/data/mock/venues";
+import { organizers } from "~/data/mock/organizers";
 
 import Link from "next/link";
 import { format } from "date-fns";

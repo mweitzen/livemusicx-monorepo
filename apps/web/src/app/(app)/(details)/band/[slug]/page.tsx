@@ -1,4 +1,4 @@
-import { bands } from "@/data/mock/bands";
+import { bands } from "~/data/mock/bands";
 import { notFound } from "next/navigation";
 import {
   BasicInfo,

@@ -1,5 +1,5 @@
 "use client";
-// import { events } from "@/data/mock/events";
+// import { events } from "~/data/mock/events";
 
 import { useState, useEffect } from "react";
 import { Button } from "@repo/ui/components/button";
@@ -52,7 +52,7 @@ import { useInView } from "react-intersection-observer";
 import { Map, Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Checkbox } from "@repo/ui/components/checkbox";
-import SearchBar from "@/components/search-bar";
+import SearchBar from "~/components/search-bar";
 
 // Mock data for events (expanded)
 const generateEvents = (count: number) => {

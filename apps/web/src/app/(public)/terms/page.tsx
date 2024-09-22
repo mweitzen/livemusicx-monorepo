@@ -1,6 +1,6 @@
-import * as content from "@/content/terms";
+import * as content from "~/content/terms";
 import { MarketingPageBase } from "../base";
-import { typography } from "@/constants/typography";
+import { typography } from "~/constants/typography";
 
 export default function TermsAndConditionsPage() {
   return (

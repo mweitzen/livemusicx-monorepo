@@ -1,6 +1,6 @@
 import AuthCard from "../card";
 
-import ResetPassword from "@/components/auth/forgot-password";
+import ResetPassword from "~/components/auth/forgot-password";
 
 export default function ForgotPassword() {
   return (

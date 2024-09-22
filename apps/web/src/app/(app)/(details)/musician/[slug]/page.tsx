@@ -1,4 +1,4 @@
-import { musicians } from "@/data/mock/musicians";
+import { musicians } from "~/data/mock/musicians";
 import { notFound } from "next/navigation";
 import {
   BasicInfo,

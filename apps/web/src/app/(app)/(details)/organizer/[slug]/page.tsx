@@ -1,4 +1,4 @@
-import { organizers } from "@/data/mock/organizers";
+import { organizers } from "~/data/mock/organizers";
 import { notFound } from "next/navigation";
 import {
   BasicInfo,
