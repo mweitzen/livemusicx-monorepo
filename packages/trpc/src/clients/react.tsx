@@ -24,8 +24,10 @@ const getQueryClient = () => {
 
 export const api = createTRPCReact<AppRouter>();
 
+// TODO: Handle in environment variables
+const BASE_URL = "http://localhost:3000"
+
 export function TRPCReactProvider(props: { children: React.ReactNode }) {
-  console.log(getBaseUrl());
   const queryClient = getQueryClient();
 
   const [trpcClient] = useState(() =>
@@ -38,7 +40,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
         }),
         unstable_httpBatchStreamLink({
           transformer: SuperJSON,
-          url: "http://localhost:3000/api/trpc",
+          url: BASE_URL + "/api/trpc",
           headers() {
             const headers = new Headers();
             headers.set("x-trpc-source", "nextjs-react");
