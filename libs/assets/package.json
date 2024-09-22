@@ -1,0 +1,8 @@
+{
+  "name": "@repo/assets",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "./pwa": "./apple-images.ts"
+  }
+}
