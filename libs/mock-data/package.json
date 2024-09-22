@@ -1,5 +1,21 @@
 {
   "name": "@repo/mock-data",
   "version": "1.0.0",
-  "private": true
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsc",
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./index.ts"
+    }
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "catalog:"
+  }
 }
