@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Facebook } from "lucide-react";
+import { Button } from "@repo/ui/components/button";
+import { Facebook } from "@repo/ui/icons";
 
 export default function OAuthSignin() {
   const handleOauthSignin = async (formData: FormData) => {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
+import { Badge } from "@repo/ui/components/badge";
+import { Button } from "@repo/ui/components/button";
 
 export default function UnderConstruction({
   title = "Page Maintenance",

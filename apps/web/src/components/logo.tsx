@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 
 export default function Logo() {
   return (

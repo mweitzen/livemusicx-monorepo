@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import Image from "next/image";
 
 export function SectionImage({

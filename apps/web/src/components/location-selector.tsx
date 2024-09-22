@@ -4,10 +4,10 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { MapPinIcon } from "lucide-react";
+} from "@repo/ui/components/popover";
+import { Button } from "@repo/ui/components/button";
+import { Input } from "@repo/ui/components/input";
+import { MapPinIcon } from "@repo/ui/icons";
 
 export default function LocationSelector() {
   return (

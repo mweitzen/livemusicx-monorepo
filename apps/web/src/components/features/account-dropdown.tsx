@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { accounts } from "@/data/mock-accounts";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import { useState } from "react";
 
 import {
@@ -12,10 +12,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Settings, ChevronDown, LogOut, User } from "lucide-react";
-import { Button } from "../ui/button";
+} from "@repo/ui/components/dropdown-menu";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@repo/ui/components/avatar";
+import { Settings, ChevronDown, LogOut, User } from "@repo/ui/icons";
+import { Button } from "@repo/ui/components/button";
 
 export default function AccountDropdown() {
   const [currentAccount, setCurrentAccount] = useState(accounts[0]);

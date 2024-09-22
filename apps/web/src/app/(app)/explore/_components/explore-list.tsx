@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { Button } from "@repo/ui/components/button";
+import { ChevronDown } from "@repo/ui/icons";
 
 export function ExploreList() {
   return (

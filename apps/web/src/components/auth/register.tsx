@@ -4,10 +4,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+} from "@repo/ui/components/select";
+import { Label } from "@repo/ui/components/label";
+import { Input } from "@repo/ui/components/input";
+import { Button } from "@repo/ui/components/button";
 import type { ISignupSearchParams } from "@/app/(auth)/signup/page";
 
 export default function CredentialsSignup({

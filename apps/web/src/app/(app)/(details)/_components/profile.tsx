@@ -1,9 +1,13 @@
 import Link from "next/link";
 
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@repo/ui/components/avatar";
+import { Badge } from "@repo/ui/components/badge";
+import { Button } from "@repo/ui/components/button";
+import { Card } from "@repo/ui/components/card";
 import { BaseShape } from "@/data/mock/bands";
 import {
   Airplay,
@@ -16,7 +20,7 @@ import {
   Star,
   Twitter,
   Play,
-} from "lucide-react";
+} from "@repo/ui/icons";
 
 export function ProfilePage({
   children,

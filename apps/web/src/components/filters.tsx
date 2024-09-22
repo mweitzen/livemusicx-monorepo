@@ -1,22 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@repo/ui/components/button";
+import { Input } from "@repo/ui/components/input";
+import { Label } from "@repo/ui/components/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@repo/ui/components/select";
 
-import { Slider } from "@/components/ui/slider";
-// import { Switch } from "@/components/ui/switch";
+import { Slider } from "@repo/ui/components/slider";
+// import { Switch } from "@repo/ui/components/switch";
 
-import { List, Map as MapIcon } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
+import { List, Map as MapIcon } from "@repo/ui/icons";
+import { Checkbox } from "@repo/ui/components/checkbox";
 
 export const GenreFilter = () => {
   const [selectedGenre, setSelectedGenre] = useState("");

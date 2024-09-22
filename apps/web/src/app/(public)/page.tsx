@@ -1,9 +1,13 @@
 import Link from "next/link";
-
 import { MarketingSection, SectionImage } from "./section";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Calendar, Music2, Share, Ticket, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@repo/ui/components/avatar";
+import { Calendar, Music2, Share, Ticket, Users } from "@repo/ui/icons";
+import { Button } from "@repo/ui/components/button";
 
 function HeroSection() {
   const heroTitle = "Connecting the Music Community";
@@ -301,7 +305,7 @@ function SignupSection() {
   );
 }
 
-export default function LandingPage() {
+export default async function LandingPage() {
   return (
     <main>
       <HeroSection />

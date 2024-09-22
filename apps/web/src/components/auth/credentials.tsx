@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { AuthError } from "next-auth";
-import { signIn } from "@repo/auth";
+import { signIn, AuthError } from "@repo/auth";
 
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Label } from "@repo/ui/components/label";
+import { Input } from "@repo/ui/components/input";
+import { Button } from "@repo/ui/components/button";
 import type { ISigninSearchParams } from "@/app/(auth)/signin/page";
 
 export default function CredentialsSignin({

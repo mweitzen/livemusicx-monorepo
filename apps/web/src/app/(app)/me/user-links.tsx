@@ -1,5 +1,5 @@
-import { Bookmark, Star, Ticket } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Bookmark, Star, Ticket } from "@repo/ui/icons";
+import { Button } from "@repo/ui/components/button";
 
 export default function UserLinks() {
   return (

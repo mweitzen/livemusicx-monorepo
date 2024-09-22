@@ -1,6 +1,6 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Search } from "lucide-react";
+import { Input } from "@repo/ui/components/input";
+import { Label } from "@repo/ui/components/label";
+import { Search } from "@repo/ui/icons";
 import { ComponentProps } from "react";
 
 type SearchBarProps = ComponentProps<typeof Input> & { label: string };

@@ -1,17 +1,10 @@
 "use client";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@repo/utils";
 
-import { useTheme } from "next-themes";
+import { useTheme } from "@repo/ui/theme";
 
-import { Button } from "@/components/ui/button";
-import { Sun, Moon, Monitor } from "lucide-react";
-
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { type ThemeProviderProps } from "next-themes/dist/types";
-
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
-}
+import { Button } from "@repo/ui/components/button";
+import { Sun, Moon, Monitor } from "@repo/ui/icons";
 
 export default function ThemeSwitcher() {
   const { setTheme, theme } = useTheme();

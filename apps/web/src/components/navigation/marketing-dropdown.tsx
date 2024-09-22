@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Logo from "../logo";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import { links } from "@/constants/links";
 import { content } from "@/content/NEW/app";
 
@@ -13,7 +13,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+} from "@repo/ui/components/navigation-menu";
 
 export function NavigationMenuDemo() {
   return (

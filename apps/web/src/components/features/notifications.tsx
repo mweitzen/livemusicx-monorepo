@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Bell } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Bell } from "@repo/ui/icons";
+import { Button } from "@repo/ui/components/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { cn } from "@/lib/utils";
-import { CircularIconButton } from "../ui/circular-icon-button";
+} from "@repo/ui/components/popover";
+import { ScrollArea } from "@repo/ui/components/scroll-area";
+import { cn } from "@repo/ui/helpers";
+import { CircularIconButton } from "@repo/ui/components/circular-icon-button";
 
 type Notification = {
   id: string;

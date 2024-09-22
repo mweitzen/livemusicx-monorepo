@@ -3,10 +3,10 @@
 import { useState, useCallback, useEffect, createElement } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@repo/ui/components/button";
+import { Input } from "@repo/ui/components/input";
+import { Label } from "@repo/ui/components/label";
+import { Textarea } from "@repo/ui/components/textarea";
 import {
   Card,
   CardContent,
@@ -14,17 +14,17 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/ui/components/card";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
+} from "@repo/ui/components/select";
+import { Checkbox } from "@repo/ui/components/checkbox";
 import { toast } from "@/hooks/use-toast";
-import { Progress } from "@/components/ui/progress";
+import { Progress } from "@repo/ui/components/progress";
 import {
   Loader2,
   ChevronLeft,
@@ -38,9 +38,9 @@ import {
   Calendar,
   Music,
   Users,
-} from "lucide-react";
-import { Combobox } from "@/components/ui/combobox";
-import { Switch } from "@/components/ui/switch";
+} from "@repo/ui/icons";
+import { Combobox } from "@repo/ui/components/combobox";
+import { Switch } from "@repo/ui/components/switch";
 
 const genres = [
   "Rock",

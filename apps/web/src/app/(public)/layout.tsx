@@ -1,5 +1,5 @@
 import Footer from "./footer";
-import { MarketingNavigation } from "@/components/navigation";
+import { MarketingNavigation } from "~/components/navigation";
 
 export default function PublicLayout({
   children,

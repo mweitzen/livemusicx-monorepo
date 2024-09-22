@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { Suspense } from "react";
 import { LoadingCard } from "./feature-card";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ScrollArea, ScrollBar } from "@repo/ui/components/scroll-area";
+import { Button } from "@repo/ui/components/button";
+import { ChevronRight } from "@repo/ui/icons";
 
 interface FeatureSectionProps {
   title: string;

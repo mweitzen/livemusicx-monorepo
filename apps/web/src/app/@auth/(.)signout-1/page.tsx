@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogTitle,
   DialogClose,
-} from "@/components/ui/dialog";
+} from "@repo/ui/components/dialog";
 
 export default function SignOutDialog() {
   const router = useRouter();

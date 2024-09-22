@@ -8,8 +8,8 @@ import Logo from "../logo";
 import SidebarLink from "./sidebar-link";
 import ThemeSwitcher from "../features/theme-switcher";
 
-import { Separator } from "../ui/separator";
-import { CircularIconButton } from "../ui/circular-icon-button";
+import { Separator } from "@repo/ui/components/separator";
+import { CircularIconButton } from "@repo/ui/components/circular-icon-button";
 import {
   Sheet,
   SheetClose,
@@ -17,9 +17,9 @@ import {
   SheetDescription,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
+} from "@repo/ui/components/sheet";
 
-import { Menu } from "lucide-react";
+import { Menu } from "@repo/ui/icons";
 
 export function SidebarDesktop() {
   return <Sidebar persistent />;

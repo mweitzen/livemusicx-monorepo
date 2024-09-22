@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 
 import {
   Search,
@@ -15,25 +15,25 @@ import {
   Navigation,
   List,
   Map,
-} from "lucide-react";
+} from "@repo/ui/icons";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
+} from "@repo/ui/components/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { ScrollArea } from "../ui/scroll-area";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Toggle } from "../ui/toggle";
+} from "@repo/ui/components/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@repo/ui/components/sheet";
+import { ScrollArea } from "@repo/ui/components/scroll-area";
+import { Button } from "@repo/ui/components/button";
+import { Input } from "@repo/ui/components/input";
+import { Toggle } from "@repo/ui/components/toggle";
 
 // Mock data for locations
 const locationOptions = [

@@ -1,9 +1,9 @@
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@repo/utils/capitalize";
 
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
-import { ChevronLeft } from "lucide-react";
+import { Badge } from "@repo/ui/components/badge";
+import { ChevronLeft } from "@repo/ui/icons";
 
 export default function AccountType({ type }: { type: "fan" | "admin" }) {
   return (

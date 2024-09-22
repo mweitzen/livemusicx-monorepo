@@ -1,11 +1,11 @@
 "use client";
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
-import { Calendar, Youtube } from "lucide-react";
+import { Calendar, Youtube } from "@repo/ui/icons";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/button";
 
-import { Input } from "@/components/ui/input";
+import { Input } from "@repo/ui/components/input";
 import {
   Table,
   TableBody,
@@ -13,15 +13,20 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "@repo/ui/components/table";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@repo/ui/components/tabs";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/ui/components/card";
 
 const streamingData = [
   { name: "Jan", spotify: 4000, youtube: 2400, appleMusic: 2400 },

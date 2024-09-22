@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { auth } from "@repo/auth";
-import { Button } from "../ui/button";
+import { Button } from "@repo/ui/components/button";
 
 import Notifications from "../features/notifications";
 import AccountDropdown from "../features/account-dropdown";

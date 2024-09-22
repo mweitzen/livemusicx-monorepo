@@ -1,6 +1,6 @@
-import { Button } from "../ui/button";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+import { Button } from "@repo/ui/components/button";
+import { Label } from "@repo/ui/components/label";
+import { Input } from "@repo/ui/components/input";
 
 export default function ResetPassword() {
   const handleResetPassword = async () => {

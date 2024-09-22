@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/button";
 
 import {
   AlertDialog,
@@ -10,8 +10,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Download, LogOut, ShieldAlert, UserCog } from "lucide-react";
+} from "@repo/ui/components/alert-dialog";
+import { Download, LogOut, ShieldAlert, UserCog } from "@repo/ui/icons";
 
 export default function UserButtons() {
   return (

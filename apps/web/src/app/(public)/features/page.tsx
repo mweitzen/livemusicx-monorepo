@@ -5,7 +5,7 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-} from "@/components/ui/card";
+} from "@repo/ui/components/card";
 import {
   Bookmark,
   Calendar,
@@ -13,7 +13,7 @@ import {
   MapPin,
   MessageCircle,
   User,
-} from "lucide-react";
+} from "@repo/ui/icons";
 
 export default function Component() {
   return (

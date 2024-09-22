@@ -13,7 +13,7 @@ import {
   Ticket,
   UserCog,
   Users2,
-} from "lucide-react";
+} from "@repo/ui/icons";
 
 export const links = {
   marketing: [

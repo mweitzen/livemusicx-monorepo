@@ -2,10 +2,10 @@
 import * as React from "react";
 
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 
-import { SheetClose } from "../ui/sheet";
-// import { Button } from "../ui/button";
+import { SheetClose } from "@repo/ui/components/sheet";
+// import { Button } from "@repo/ui/components/button";
 
 interface SidebarLinkProps extends React.ComponentProps<typeof Link> {
   icon: React.ReactElement;

@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import { auth } from "@repo/auth";
-import { UserRole } from "@/auth";
+import { UserRole } from "@repo/db/schema";
 
 const marketingPages = ["/", "/about", "/pricing", "/features"];
 const appPages = ["/manage", "/explore", "/me"];
 
+export { auth as middleware };
 // export default auth(({ auth, nextUrl, cookies }) => {
 //   const { pathname } = nextUrl;
 //   const hasVisitedApp = cookies.get("visitedApp")?.value === "true";
@@ -66,6 +67,43 @@ const appPages = ["/manage", "/explore", "/me"];
 //     return response;
 //   }
 // });
+
+// authorized({ request, auth }) {
+//   const { pathname } = request.nextUrl;
+
+//   // NOT AUTHENTICATED
+//   if (!auth) {
+//     // Protect app pages
+//     const signInPage = "/api/auth/signin";
+//     const signInUrl = request.nextUrl.clone();
+//     signInUrl.pathname = signInPage;
+//     signInUrl.searchParams.set("callbackUrl", request.nextUrl.pathname);
+
+//     if (pathname.startsWith("/manage") || pathname.startsWith("/me")) {
+//       return NextResponse.redirect(signInUrl);
+//     }
+//   } else {
+//     // AUTHENTICATED
+//     const adminUser = auth.user.role === "ADMIN";
+//     const redirectToPage = adminUser ? "/manage" : "/me";
+
+//     // Hide auth pages
+//     if (["/signin", "/signup", "/verify"].includes(pathname)) {
+//       return NextResponse.redirect(
+//         new URL(redirectToPage, request.nextUrl)
+//       );
+//     }
+
+//     // Protect admin pages
+//     if (pathname.startsWith("/manage") && !adminUser) {
+//       return NextResponse.redirect(
+//         new URL(redirectToPage, request.nextUrl)
+//       );
+//     }
+//   }
+
+//   return true;
+// },
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|assets|avatars).*)"],

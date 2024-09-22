@@ -5,7 +5,7 @@ import Topbar from "./topbar";
 import { auth } from "@repo/auth";
 import { Suspense } from "react";
 
-import { Button } from "../ui/button";
+import { Button } from "@repo/ui/components/button";
 import { SidebarMobile } from "./sidebar";
 import { NavigationMenuDemo } from "./marketing-dropdown";
 

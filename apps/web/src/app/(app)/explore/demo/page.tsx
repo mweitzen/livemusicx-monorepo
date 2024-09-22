@@ -2,16 +2,16 @@
 // import { events } from "@/data/mock/events";
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@repo/ui/components/button";
+import { Input } from "@repo/ui/components/input";
+import { Label } from "@repo/ui/components/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@repo/ui/components/select";
 import {
   Card,
   CardContent,
@@ -19,9 +19,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Slider } from "@/components/ui/slider";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "@repo/ui/components/card";
+import { Slider } from "@repo/ui/components/slider";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@repo/ui/components/tabs";
 import {
   Sheet,
   SheetContent,
@@ -29,7 +34,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@repo/ui/components/sheet";
 import {
   Calendar,
   MapPin,
@@ -40,13 +45,13 @@ import {
   Star,
   DollarSign,
   Users,
-} from "lucide-react";
+} from "@repo/ui/icons";
 import { format } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Map, Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@repo/ui/components/checkbox";
 import SearchBar from "@/components/search-bar";
 
 // Mock data for events (expanded)

@@ -6,7 +6,7 @@ import AuthSeparator from "../separator";
 import OAuthButtons from "@/components/auth/oauth";
 import CredentialsSignup from "@/components/auth/register";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/button";
 import AccountType from "../account-type";
 
 export interface ISignupSearchParams {

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { handleSignOut } from "./signout-action";
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, ButtonProps } from "@repo/ui/components/button";
 
 const Signout = React.forwardRef<
   HTMLButtonElement,

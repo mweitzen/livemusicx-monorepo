@@ -7,7 +7,7 @@
 // import { venues } from "@/data/mock/venues";
 
 import { searchItems } from "@/data/mock-search-items";
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import { useDebounce } from "use-debounce";
 import { useState, useEffect, useRef } from "react";
 import {
@@ -15,17 +15,17 @@ import {
   ArrowLeft,
   X as CloseIcon,
   Search as SearchIcon,
-} from "lucide-react";
+} from "@repo/ui/icons";
 import {
   Dialog,
   DialogClose,
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { CircularIconButton } from "../ui/circular-icon-button";
+} from "@repo/ui/components/dialog";
+import { Input } from "@repo/ui/components/input";
+import { Button } from "@repo/ui/components/button";
+import { CircularIconButton } from "@repo/ui/components/circular-icon-button";
 
 type SearchResult = {
   id: string;

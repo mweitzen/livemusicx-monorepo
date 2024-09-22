@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Logo from "@/components/logo";
+import Logo from "~/components/logo";
 import { ComponentProps, HtmlHTMLAttributes, ReactElement } from "react";
-import { siteConfig } from "@/content/site-config";
+import { siteConfig } from "~/content/site-config";
 
 export default function Footer() {
   return (

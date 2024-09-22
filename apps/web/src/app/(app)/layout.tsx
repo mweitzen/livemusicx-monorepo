@@ -1,8 +1,8 @@
-import { Toaster } from "@/components/ui/sonner";
-import { Toaster as OtherToaster } from "@/components/ui/toaster";
+import { Toaster } from "@repo/ui/components/sonner";
+import { Toaster as OtherToaster } from "@repo/ui/components/toaster";
 
-import { AppNavigation } from "@/components/navigation";
-import { SidebarDesktop } from "@/components/navigation/sidebar";
+import { AppNavigation } from "~/components/navigation";
+import { SidebarDesktop } from "~/components/navigation/sidebar";
 
 export default function AppLayout({
   children,

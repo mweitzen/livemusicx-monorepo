@@ -7,10 +7,10 @@ import { Band } from "@/data/mock/bands";
 import { Musician } from "@/data/mock/musicians";
 import { Organizer } from "@/data/mock/organizers";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Badge } from "@/components/ui/badge";
-import { MapPin, Music, Star } from "lucide-react";
+import { Card, CardContent } from "@repo/ui/components/card";
+import { Skeleton } from "@repo/ui/components/skeleton";
+import { Badge } from "@repo/ui/components/badge";
+import { MapPin, Music, Star } from "@repo/ui/icons";
 
 export function FeatureCard({
   children,

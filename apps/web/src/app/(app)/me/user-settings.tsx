@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "~/hooks/use-toast";
 import {
   Card,
   CardContent,
@@ -8,20 +8,25 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/ui/components/card";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Slider } from "@/components/ui/slider";
+} from "@repo/ui/components/select";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@repo/ui/components/tabs";
+import { Input } from "@repo/ui/components/input";
+import { Label } from "@repo/ui/components/label";
+import { Button } from "@repo/ui/components/button";
+import { Switch } from "@repo/ui/components/switch";
+import { Slider } from "@repo/ui/components/slider";
 
 export default function UserSettings() {
   const [emailNotifications, setEmailNotifications] = useState({
