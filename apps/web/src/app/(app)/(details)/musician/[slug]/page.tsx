@@ -1,4 +1,4 @@
-import { musicians } from "~/data/mock/musicians";
+import { musicians } from "@repo/mock-data";
 import { notFound } from "next/navigation";
 import {
   BasicInfo,

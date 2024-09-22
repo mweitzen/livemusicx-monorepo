@@ -1,4 +1,4 @@
-// import { bands } from "~/data/mock/bands";
+// import { bands } from "@repo/mock-data";
 
 import UnderConstruction from "~/components/under-construction";
 

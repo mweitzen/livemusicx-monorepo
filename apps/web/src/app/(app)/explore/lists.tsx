@@ -1,8 +1,8 @@
-import { events } from "~/data/mock/events";
-import { musicians } from "~/data/mock/musicians";
-import { bands } from "~/data/mock/bands";
-import { venues } from "~/data/mock/venues";
-import { organizers } from "~/data/mock/organizers";
+import { events } from "@repo/mock-data";
+import { musicians } from "@repo/mock-data";
+import { bands } from "@repo/mock-data";
+import { venues } from "@repo/mock-data";
+import { organizers } from "@repo/mock-data";
 
 import { FeaturedContent } from "./_components/feature-section";
 import {

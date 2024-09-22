@@ -1,6 +1,7 @@
+import { ComponentProps, HtmlHTMLAttributes, ReactElement } from "react";
+
 import Link from "next/link";
 import Logo from "~/components/logo";
-import { ComponentProps, HtmlHTMLAttributes, ReactElement } from "react";
 import { appConfig } from "@repo/constants";
 
 export default function Footer() {

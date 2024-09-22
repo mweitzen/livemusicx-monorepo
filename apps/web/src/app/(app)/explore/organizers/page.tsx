@@ -1,4 +1,4 @@
-// import { organizers } from "~/data/mock/organizers";
+// import { organizers } from "@repo/mock-data";
 
 import UnderConstruction from "~/components/under-construction";
 

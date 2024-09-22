@@ -1,4 +1,4 @@
-// import { events } from "~/data/mock/events";
+// import { events } from "@repo/mock-data";
 import UnderConstruction from "~/components/under-construction";
 
 export default function ExploreMusiciansPage() {

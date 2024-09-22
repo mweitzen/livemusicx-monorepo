@@ -1,4 +1,4 @@
-import { venues } from "~/data/mock/venues";
+import { venues } from "@repo/mock-data";
 import { notFound } from "next/navigation";
 import {
   BasicInfo,

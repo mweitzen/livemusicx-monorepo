@@ -1,5 +1,5 @@
 "use client";
-// import { events } from "~/data/mock/events";
+// import { events } from "@repo/mock-data";
 
 import { useState, useEffect } from "react";
 import { Button } from "@repo/ui/components/button";

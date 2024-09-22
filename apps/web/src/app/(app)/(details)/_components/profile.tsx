@@ -8,7 +8,7 @@ import {
 import { Badge } from "@repo/ui/components/badge";
 import { Button } from "@repo/ui/components/button";
 import { Card } from "@repo/ui/components/card";
-import { BaseShape } from "~/data/mock/bands";
+import { BaseShape } from "@repo/mock-data";
 import {
   Airplay,
   Apple,

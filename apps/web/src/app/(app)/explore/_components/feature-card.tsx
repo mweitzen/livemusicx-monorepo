@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { MyEvent } from "~/data/mock/events";
-import { Venue, venues } from "~/data/mock/venues";
-import { Band } from "~/data/mock/bands";
-import { Musician } from "~/data/mock/musicians";
-import { Organizer } from "~/data/mock/organizers";
+import { MyEvent } from "@repo/mock-data";
+import { Venue, venues } from "@repo/mock-data";
+import { Band } from "@repo/mock-data";
+import { Musician } from "@repo/mock-data";
+import { Organizer } from "@repo/mock-data";
 
 import { Card, CardContent } from "@repo/ui/components/card";
 import { Skeleton } from "@repo/ui/components/skeleton";

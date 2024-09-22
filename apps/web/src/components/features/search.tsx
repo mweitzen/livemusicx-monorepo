@@ -1,12 +1,12 @@
 "use client";
 
-// import { events } from "~/data/mock/events";
-// import { musicians } from "~/data/mock/musicians";
-// import { bands } from "~/data/mock/bands";
-// import { organizers } from "~/data/mock/organizers";
-// import { venues } from "~/data/mock/venues";
+// import { events } from "@repo/mock-data";
+// import { musicians } from "@repo/mock-data";
+// import { bands } from "@repo/mock-data";
+// import { organizers } from "@repo/mock-data";
+// import { venues } from "@repo/mock-data";
 
-import { searchItems } from "~/data/mock-search-items";
+import { searchItems } from "@repo/mock-data";
 import { cn } from "@repo/ui/helpers";
 import { useDebounce } from "use-debounce";
 import { useState, useEffect, useRef } from "react";

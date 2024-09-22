@@ -1,5 +1,5 @@
-// import { musicians } from "~/data/mock/musicians";
-// import { bands } from "~/data/mock/bands";
+// import { musicians } from "@repo/mock-data";
+// import { bands } from "@repo/mock-data";
 
 import UnderConstruction from "~/components/under-construction";
 

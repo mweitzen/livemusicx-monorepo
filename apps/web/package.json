@@ -13,9 +13,10 @@
   },
   "dependencies": {
     "@repo/auth": "workspace:*",
-    "@repo/constants": "workspace:^",
-    "@repo/content": "workspace:^",
+    "@repo/constants": "workspace:*",
+    "@repo/content": "workspace:*",
     "@repo/db": "workspace:*",
+    "@repo/mock-data": "workspace:*",
     "@repo/trpc": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",

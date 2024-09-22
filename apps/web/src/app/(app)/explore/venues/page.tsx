@@ -1,4 +1,4 @@
-// import { venues } from "~/data/mock/venues";
+// import { venues } from "@repo/mock-data";
 
 import UnderConstruction from "~/components/under-construction";
 
