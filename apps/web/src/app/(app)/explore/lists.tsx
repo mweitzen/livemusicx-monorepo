@@ -1,16 +1,12 @@
-import { events } from "@repo/mock-data";
-import { musicians } from "@repo/mock-data";
-import { bands } from "@repo/mock-data";
-import { venues } from "@repo/mock-data";
-import { organizers } from "@repo/mock-data";
+import { api } from "@repo/trpc/server";
 
-import { FeaturedContent } from "./_components/feature-section";
 import {
   FeaturedEventCard,
   FeaturedOrganizerCard,
   FeaturedPerformerCard,
   FeaturedVenueCard,
 } from "./_components/feature-card";
+import { FeaturedContent } from "./_components/feature-section";
 
 export async function FeaturedEventsList() {
   // Fetch featured events
@@ -24,9 +20,11 @@ export async function FeaturedEventsList() {
 
   await longWait();
 
+  const events = await api.v1.events.main.getQuickView();
+
   return (
     <FeaturedContent>
-      {events.slice(0, 5).map((event) => (
+      {events.map((event) => (
         <FeaturedEventCard
           key={event.id}
           event={event}
@@ -37,18 +35,14 @@ export async function FeaturedEventsList() {
 }
 
 export async function FeaturedPerformersList() {
+  const performers = await api.v1.accounts.performers.getQuickView();
+
   return (
     <FeaturedContent>
-      {musicians.map((musician) => (
+      {performers.map((performer) => (
         <FeaturedPerformerCard
-          key={musician.id}
-          performer={musician}
-        />
-      ))}
-      {bands.map((band) => (
-        <FeaturedPerformerCard
-          key={band.id}
-          performer={band}
+          key={performer.id}
+          performer={performer}
         />
       ))}
     </FeaturedContent>
@@ -56,6 +50,8 @@ export async function FeaturedPerformersList() {
 }
 
 export async function FeaturedVenuesList() {
+  const venues = await api.v1.accounts.venues.getQuickView();
+
   return (
     <FeaturedContent>
       {venues.map((venue) => (
@@ -68,6 +64,8 @@ export async function FeaturedVenuesList() {
   );
 }
 export async function FeaturedOrganizersList() {
+  const organizers = await api.v1.accounts.organizers.getQuickView();
+
   return (
     <FeaturedContent>
       {organizers.map((organizer) => (

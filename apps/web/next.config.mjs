@@ -78,6 +78,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "assets-global.website-files.com",
       },
+      // hold-my-ticket amp concerts
+      {
+        protocol: "https",
+        hostname: "holdmyticket-res.cloudinary.com",
+      },
     ],
   },
 };

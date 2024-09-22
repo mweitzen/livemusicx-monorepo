@@ -113,10 +113,7 @@ export default function Search() {
             onClick={handleOpen}
           />
         </DialogTrigger>
-        <DialogContent
-          className='p-0 h-full flex flex-col max-w-full md:hidden'
-          closeButton={false}
-        >
+        <DialogContent className='p-0 h-full flex flex-col max-w-full md:hidden'>
           <DialogTitle className='sr-only'>Search Site</DialogTitle>
           <div className='flex items-center p-4 border-b'>
             <DialogClose asChild>

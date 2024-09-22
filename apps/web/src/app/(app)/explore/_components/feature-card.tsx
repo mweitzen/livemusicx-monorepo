@@ -38,7 +38,7 @@ export function FeatureCardContent({
         alt={"Featured event image"}
         height={280}
         width={280}
-        className='group-hover:scale-105 transition-transform duration-300 object-cover'
+        className='group-hover:scale-105 transition-transform duration-300 object-cover object-top h-full'
       />
       <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
       {children}
@@ -87,7 +87,7 @@ export function FeaturedEventCard({ event }: { event: MyEvent }) {
   return (
     <Link href={`/event/${event.slug}`}>
       <FeatureCard>
-        <FeatureCardContent>
+        <FeatureCardContent image={event.image ?? undefined}>
           <div className='absolute top-2 right-2 rounded-lg p-4 text-white bg-black/30 w-1/2'>
             <p className='font-semibold tracking-tighter'>
               {date.slice(0, date.indexOf(","))}
@@ -127,7 +127,7 @@ export function FeaturedPerformerCard({
   return (
     <Link href={`/performer/${performer.slug}`}>
       <FeatureCard>
-        <FeatureCardContent>
+        <FeatureCardContent image={performer.avatar ?? undefined}>
           <div className='absolute bottom-0 left-0 right-0 p-4'>
             <h3 className='font-bold text-xl text-white truncate'>
               {performer.name}
@@ -148,7 +148,7 @@ export function FeaturedVenueCard({ venue }: { venue: Venue }) {
   return (
     <Link href={`/venue/${venue.slug}`}>
       <FeatureCard>
-        <FeatureCardContent>
+        <FeatureCardContent image={venue.avatar ?? undefined}>
           <div className='absolute bottom-0 left-0 right-0 p-4'>
             <h3 className='font-bold text-xl text-white truncate'>
               {venue.name}
@@ -178,7 +178,7 @@ export function FeaturedOrganizerCard({ organizer }: { organizer: Organizer }) {
   return (
     <Link href={`/organizer/${organizer.slug}`}>
       <FeatureCard>
-        <FeatureCardContent>
+        <FeatureCardContent image={organizer.avatar ?? undefined}>
           <div className='absolute bottom-0 left-0 right-0 p-4'>
             <h3 className='font-bold text-xl text-white truncate'>
               {organizer.name}
