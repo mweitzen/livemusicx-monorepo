@@ -23,5 +23,5 @@ catalogs:
     "@types/react-dom": ^18.3.0
   expo51:
     expo: ~51.0.32
-    react-native: 0.75.3
+    react-native: 0.74.5
     nativewind: ~4.0.36
