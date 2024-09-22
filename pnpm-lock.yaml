@@ -718,6 +718,9 @@ importers:
       '@repo/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
       '@types/node':
         specifier: ^20
         version: 20.16.5
