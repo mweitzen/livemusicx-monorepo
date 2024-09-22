@@ -1,5 +1,5 @@
 {
-  "name": "@repo/{{ name }}",
+  "name": "@repo/mail",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -20,5 +20,8 @@
     "@repo/typescript-config": "workspace:*",
     "eslint": "catalog:",
     "typescript": "catalog:"
+  },
+  "dependencies": {
+    "resend": "^4.0.0"
   }
 }
