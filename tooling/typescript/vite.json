@@ -1,5 +1,6 @@
 {
   "extends": "./base.json",
+  "display": "Vite",
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,

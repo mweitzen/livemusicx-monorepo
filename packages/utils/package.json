@@ -3,10 +3,15 @@
   "type": "module",
   "private": "true",
   "scripts": {
+    "dev": "tsc",
+    "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./src/index.ts"
+    }
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
