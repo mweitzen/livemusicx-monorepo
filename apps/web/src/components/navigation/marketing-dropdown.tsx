@@ -3,8 +3,7 @@ import * as React from "react";
 import Logo from "../logo";
 
 import { cn } from "@repo/ui/helpers";
-import { links } from "~/constants/links";
-import { content } from "~/content/NEW/app";
+import { appConfig, links } from "@repo/constants";
 
 import {
   NavigationMenu,
@@ -31,10 +30,10 @@ export function NavigationMenuDemo() {
                   >
                     <Logo />
                     <div className='mb-2 mt-4 text-lg font-medium'>
-                      {content.title}
+                      {appConfig.title}
                     </div>
                     <p className='text-sm leading-tight text-muted-foreground'>
-                      {content.slogan}
+                      {appConfig.slogan}
                     </p>
                   </a>
                 </NavigationMenuLink>

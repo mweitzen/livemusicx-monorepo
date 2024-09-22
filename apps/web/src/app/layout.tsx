@@ -1,8 +1,8 @@
 import "@repo/ui/ui.css";
 import "@repo/ui/styles.css";
+import { appConfig } from "@repo/constants";
 import localFont from "next/font/local";
 import type { Metadata, Viewport } from "next";
-import { content } from "~/content/NEW/app";
 import { ThemeProvider } from "@repo/ui/theme";
 
 const geistSans = localFont({
@@ -22,8 +22,8 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 export const metadata: Metadata = {
-  title: content.title,
-  description: content.description,
+  title: appConfig.title,
+  description: appConfig.description,
 };
 
 export default function RootLayout({

@@ -1,24 +1,24 @@
-import * as content from "~/content/terms";
 import { MarketingPageBase } from "../base";
-import { typography } from "~/constants/typography";
+import { typography } from "@repo/constants";
+import { termsAndConditions } from "@repo/content";
 
 export default function TermsAndConditionsPage() {
   return (
     <>
-      <MarketingPageBase {...content}>
+      <MarketingPageBase {...termsAndConditions}>
         <div className='text-center mb-8'>
           <p className={typography.p}>
             <strong>Effective Date: </strong>
-            {content.effectiveDate}
+            {termsAndConditions.effectiveDate}
           </p>
-          <p className={typography.small}>{content.p}</p>
+          <p className={typography.small}>{termsAndConditions.p}</p>
         </div>
       </MarketingPageBase>
       <div className='text-center mt-8'>
-        <p className={typography.muted}>{content.disclaimer}</p>
+        <p className={typography.muted}>{termsAndConditions.disclaimer}</p>
         <p className={typography.small}>
-          {content.p}
-          {content.contact}
+          {termsAndConditions.p}
+          {termsAndConditions.contact}
         </p>
       </div>
     </>

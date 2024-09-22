@@ -1,6 +1,6 @@
-import * as content from "~/content/help-out";
+import { supportUs } from "@repo/content";
 import { MarketingPageBase } from "../base";
 
 export default function HelpOutPage() {
-  return <MarketingPageBase {...content} />;
+  return <MarketingPageBase {...supportUs} />;
 }

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Logo from "~/components/logo";
 import { ComponentProps, HtmlHTMLAttributes, ReactElement } from "react";
-import { siteConfig } from "~/content/site-config";
+import { appConfig } from "@repo/constants";
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
         <div className='flex flex-col md:flex-row items-center justify-between'>
           <Logo />
           <div className='flex gap-4 mt-4 md:mt-0'>
-            {siteConfig.socialLinks.map((link) => (
+            {appConfig.socialLinks.map((link) => (
               <SocialLink
                 key={link.site}
                 {...link}
@@ -47,7 +47,7 @@ export default function Footer() {
         </div>
 
         <p className='text-xs text-muted-foreground'>
-          &copy; 2024 {siteConfig.name}. All rights reserved.
+          &copy; 2024 {appConfig.title}. All rights reserved.
         </p>
       </div>
     </footer>

@@ -1,8 +1,9 @@
-import { Fragment } from "react";
-import { Button } from "@repo/ui/components/button";
 import Link from "next/link";
-import { typography } from "~/constants/typography";
+import { Fragment } from "react";
+
 import { cn } from "@repo/ui/helpers";
+import { Button } from "@repo/ui/components/button";
+import { typography } from "@repo/constants";
 
 interface MarketingSectionProps {
   header: string;
