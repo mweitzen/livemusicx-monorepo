@@ -19,12 +19,14 @@
     "format": "prisma format",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "lint": "eslint . --max-warnings 0",
-    "clean": "git clean -xdf .cache .turbo node_modules"
+    "clean": "git clean -xdf .cache .turbo node_modules",
+    "with-env": "dotenv -e ../../.env --"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.5.5",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^9.10.0",
     "prisma": "^5.19.1",
     "tsup": "8.3.0",
