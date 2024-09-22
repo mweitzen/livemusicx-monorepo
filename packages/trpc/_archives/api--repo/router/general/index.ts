@@ -1,5 +1,5 @@
-import { RouterOutputs } from "@/lib/trpc/shared";
-import { createTRPCRouter, publicProcedure } from "@/server/trpc";
+import { RouterOutputs } from "~/lib/trpc/shared";
+import { createTRPCRouter, publicProcedure } from "~/server/trpc";
 
 import { GetGenresInputSchema, GetGenresOutputSchema } from "@livemusicx/schema";
 

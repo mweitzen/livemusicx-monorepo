@@ -6,9 +6,9 @@ import type { User } from "next-auth";
 import {
   GetUpcomingEventsInputSchema,
   GetEventDetailsInputSchema,
-} from "@/lib/schema/events/main";
+} from "~/lib/schema/events/main";
 
-import { GenresWhere, QuickViewEventsWhere, VenuesWhere } from "@/server/api/shared.queries";
+import { GenresWhere, QuickViewEventsWhere, VenuesWhere } from "~/server/api/shared.queries";
 import { EventSelect } from "./shared.queries";
 
 export const GetUpcomingEventsQuery = (

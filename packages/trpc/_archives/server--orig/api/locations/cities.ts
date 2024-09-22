@@ -1,4 +1,4 @@
-import { createTRPCRouter, publicProcedure } from "@/server/trpc";
+import { createTRPCRouter, publicProcedure } from "~/server/trpc";
 import { TRPCError } from "@trpc/server";
 
 import {
@@ -10,7 +10,7 @@ import {
   GetCityVenuesOutputSchema,
   GetCityEventsInputSchema,
   GetCityEventsOutputSchema,
-} from "@/lib/schema/locations/city";
+} from "~/lib/schema/locations/city";
 
 import {
   GetAllCitiesQuery,

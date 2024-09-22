@@ -1,11 +1,11 @@
 import { z } from "zod";
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+import type { RouterInputs, RouterOutputs } from "~/lib/trpc/shared";
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
   authorizedProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 
 import { createSlug, generateUniqueSlug } from "@repo/utils/create-slug";
 
@@ -18,7 +18,7 @@ import {
   GetGroupEventsOutputSchema,
   CreateGroupInputSchema,
   ClaimGroupInputSchema,
-} from "@/lib/schema/accounts/groups";
+} from "~/lib/schema/accounts/groups";
 
 import { GetAllGroupsQuery } from "./groups.queries";
 

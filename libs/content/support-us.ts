@@ -1,4 +1,7 @@
 export const supportUs = {
+  title: "Want to Help Out?",
+  description:
+    "Join us in our journey to make live, local music accessible and visible online.",
   sections: [
     {
       name: "Invest in Live Music",

@@ -3,7 +3,7 @@ import { z } from "zod";
 import type { User } from "next-auth";
 import type { Prisma } from "@prisma/client";
 
-import { GetAllMusiciansInputSchema } from "@/lib/schema/accounts/musicians";
+import { GetAllMusiciansInputSchema } from "~/lib/schema/accounts/musicians";
 import { GetAllPerformersWhere } from "./performers.queries";
 
 export const GetAllMusiciansQuery = (

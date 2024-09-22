@@ -1,4 +1,4 @@
-import { createTRPCRouter } from "@/server/trpc";
+import { createTRPCRouter } from "~/server/trpc";
 
 import { internalRouter } from "./internal";
 import { publicRouter } from "./public";

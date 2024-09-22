@@ -1,4 +1,4 @@
-import { createTRPCRouter, publicProcedure } from "@/server/trpc";
+import { createTRPCRouter, publicProcedure } from "~/server/trpc";
 import { TRPCError } from "@trpc/server";
 
 import {
@@ -8,7 +8,7 @@ import {
   GetNeighborhoodVenuesOutputSchema,
   GetNeighborhoodEventsInputSchema,
   GetNeighborhoodEventsOutputSchema,
-} from "@/lib/schema/locations/neighborhood";
+} from "~/lib/schema/locations/neighborhood";
 
 import {
   GetAllNeighborhoodsQuery,

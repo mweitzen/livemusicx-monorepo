@@ -6,7 +6,7 @@ import type { Prisma } from "@prisma/client";
 import {
   GetAllGroupsInputSchema,
   CreateGroupInputSchema,
-} from "@/lib/schema/accounts/groups";
+} from "~/lib/schema/accounts/groups";
 import { GetAllPerformersWhere } from "./performers.queries";
 
 export const GetAllGroupsQuery = (

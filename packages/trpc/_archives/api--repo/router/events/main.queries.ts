@@ -8,7 +8,7 @@ import {
   GetEventDetailsInputSchema,
 } from "@livemusicx/schema/events";
 
-import { GenresWhere, QuickViewEventsWhere, VenuesWhere } from "@/server/api/shared.queries";
+import { GenresWhere, QuickViewEventsWhere, VenuesWhere } from "~/server/api/shared.queries";
 import { EventSelect } from "./shared.queries";
 
 export const GetUpcomingEventsQuery = (

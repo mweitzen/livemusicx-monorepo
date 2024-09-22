@@ -1,10 +1,10 @@
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+import type { RouterInputs, RouterOutputs } from "~/lib/trpc/shared";
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
   authorizedProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 import { z } from "zod";
 
 import { createSlug } from "@repo/utils/create-slug";
@@ -23,7 +23,7 @@ import {
   GetMusicianEventsOutputSchema,
   GetRelatedMusiciansInputSchema,
   GetRelatedMusiciansOutputSchema,
-} from "@/lib/schema/accounts/musicians";
+} from "~/lib/schema/accounts/musicians";
 
 type MusiciansOutputs = RouterOutputs["accounts"]["musicians"];
 

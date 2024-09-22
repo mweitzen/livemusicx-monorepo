@@ -1,11 +1,11 @@
-import type { RouterOutputs, RouterInputs } from "@/lib/trpc/shared";
+import type { RouterOutputs, RouterInputs } from "~/lib/trpc/shared";
 
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
   authorizedProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 
 import {
   GetEventDetailsQuery,
@@ -17,11 +17,11 @@ import {
   EventCountOutputSchema,
   GetEventDetailsInputSchema,
   GetUpcomingEventsInputSchema,
-} from "@/lib/schema/events";
+} from "~/lib/schema/events";
 
-import { NoInputSchema, SimpleSearchSchema, IDInputSchema } from "@/lib/schema/shared";
+import { NoInputSchema, SimpleSearchSchema, IDInputSchema } from "~/lib/schema/shared";
 
-import { PublishEventInputSchema } from "@/lib/schema/events/main";
+import { PublishEventInputSchema } from "~/lib/schema/events/main";
 
 /*
  *

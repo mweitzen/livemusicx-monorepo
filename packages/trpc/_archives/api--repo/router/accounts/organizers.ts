@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { createSlug } from "@repo/utils/create-slug";
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+import type { RouterInputs, RouterOutputs } from "~/lib/trpc/shared";
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
   authorizedProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 
 import {
   GetAllOrganizersInputSchema,
@@ -23,7 +23,7 @@ import {
   QuickViewAccountsSelect,
   QuickViewAccountsWhere,
   QuickViewTake,
-} from "@/server/api/shared.queries";
+} from "~/server/api/shared.queries";
 
 type OrganizersOutputs = RouterOutputs["accounts"]["organizers"];
 

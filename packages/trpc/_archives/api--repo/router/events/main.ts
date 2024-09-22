@@ -1,11 +1,11 @@
-import type { RouterOutputs, RouterInputs } from "@/lib/trpc/shared";
+import type { RouterOutputs, RouterInputs } from "~/lib/trpc/shared";
 
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
   authorizedProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 
 import {
   GetEventDetailsQuery,

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createTRPCRouter, authorizedProcedure } from "@/server/trpc";
+import { createTRPCRouter, authorizedProcedure } from "~/server/trpc";
 
 export const authorizedRouter = createTRPCRouter({
   /**

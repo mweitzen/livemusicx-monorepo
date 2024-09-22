@@ -1,4 +1,4 @@
-import { createTRPCRouter } from "@/server/trpc";
+import { createTRPCRouter } from "~/server/trpc";
 
 import { accountsRouter } from "./accounts";
 import { eventsRouter } from "./events";

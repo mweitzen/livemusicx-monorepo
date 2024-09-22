@@ -6,7 +6,7 @@ import {
   GetStateCitiesInputSchema,
   GetStateVenuesInputSchema,
   GetStateEventsInputSchema,
-} from "@/lib/schema/locations/state";
+} from "~/lib/schema/locations/state";
 
 /*
  *

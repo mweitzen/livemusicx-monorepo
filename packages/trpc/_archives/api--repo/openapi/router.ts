@@ -1,12 +1,12 @@
 import { z } from "zod";
 
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "@/server/trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "~/server/trpc";
 
-import { accountsRouter } from "@/server/api/accounts";
-import { eventsRouter } from "@/server/api/events";
-import { bulletinsRouter } from "@/server/api/bulletins";
-import { generalRouter } from "@/server/api/general";
-import { locationsRouter } from "@/server/api/locations";
+import { accountsRouter } from "~/server/api/accounts";
+import { eventsRouter } from "~/server/api/events";
+import { bulletinsRouter } from "~/server/api/bulletins";
+import { generalRouter } from "~/server/api/general";
+import { locationsRouter } from "~/server/api/locations";
 
 export const openApiRouter = createTRPCRouter({
   accounts: accountsRouter,

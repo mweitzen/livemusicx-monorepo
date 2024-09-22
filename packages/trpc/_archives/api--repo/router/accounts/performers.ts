@@ -1,6 +1,6 @@
 import { z } from "zod";
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
-import { createTRPCRouter, publicProcedure, protectedProcedure } from "@/server/trpc";
+import type { RouterInputs, RouterOutputs } from "~/lib/trpc/shared";
+import { createTRPCRouter, publicProcedure, protectedProcedure } from "~/server/trpc";
 
 import {
   GetAllPerformersInputSchema,
@@ -10,7 +10,7 @@ import {
 } from "@livemusicx/schema/accounts/performers";
 import { GetAllMusiciansQuery } from "./musicians.queries";
 import { GetAllGroupsQuery } from "./groups.queries";
-import { QuickViewAccountsWhere, QuickViewAccountsSelect } from "@/server/api/shared.queries";
+import { QuickViewAccountsWhere, QuickViewAccountsSelect } from "~/server/api/shared.queries";
 
 type PerformersOutputs = RouterOutputs["accounts"]["performers"];
 

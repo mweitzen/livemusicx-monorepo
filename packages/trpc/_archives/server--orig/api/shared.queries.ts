@@ -3,7 +3,7 @@ import { addDays } from "date-fns";
 import type { User } from "next-auth";
 import type { Prisma } from "@prisma/client";
 
-import { GetUpcomingEventsInputSchema } from "@/lib/schema/events/main";
+import { GetUpcomingEventsInputSchema } from "~/lib/schema/events/main";
 
 export const QuickViewTake = 10;
 export const QuickViewEventsWhere = {

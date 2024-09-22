@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure } from "@/server/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/trpc";
 
 const accountType = z.object({
   accountType: z.enum(["venues", "performers", "musicians", "groups", "organizers"]),

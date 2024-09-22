@@ -4,7 +4,7 @@ import { addDays } from "date-fns";
 import type { User } from "next-auth";
 import type { Prisma } from "@prisma/client";
 
-import { GetAllGroupsInputSchema } from "@/lib/schema/accounts/groups";
+import { GetAllGroupsInputSchema } from "~/lib/schema/accounts/groups";
 
 export const GetAllPerformersWhere = (
   input: z.infer<typeof GetAllGroupsInputSchema>,

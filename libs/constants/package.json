@@ -2,6 +2,24 @@
   "name": "@repo/constants",
   "version": "1.0.0",
   "private": true,
-  "main": "index.ts",
-  "types": "index.ts"
+  "type": "module",
+  "scripts": {
+    "dev": "tsc",
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "catalog:",
+    "@repo/ui": "workspace:*"
+  },
+  "peerDependencies": {
+    "@repo/ui": "workspace:*"
+  }
 }

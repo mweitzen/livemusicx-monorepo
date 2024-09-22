@@ -1,8 +1,21 @@
 {
   "name": "@repo/content",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
-  "files": [
-    "*.ts"
-  ]
+  "scripts": {
+    "dev": "tsc",
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "catalog:"
+  }
 }

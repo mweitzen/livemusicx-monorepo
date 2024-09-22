@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { createSlug } from "@repo/utils/create-slug";
 
-import { authorizedProcedure, createTRPCRouter } from "@/server/trpc";
+import { authorizedProcedure, createTRPCRouter } from "~/server/trpc";
 import { TRPCError } from "@trpc/server";
 
 import {

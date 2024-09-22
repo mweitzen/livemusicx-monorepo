@@ -6,7 +6,7 @@ import {
   GetRegionCitiesInputSchema,
   GetRegionVenuesInputSchema,
   GetRegionEventsInputSchema,
-} from "@/lib/schema/locations/region";
+} from "~/lib/schema/locations/region";
 
 export const GetAllRegionsQuery = (
   input: z.infer<typeof GetRegionsInputSchema>

@@ -1,7 +1,7 @@
 {
   "name": "@repo/utils",
   "type": "module",
-  "private": "true",
+  "private": true,
   "scripts": {
     "dev": "tsc",
     "build": "tsc",

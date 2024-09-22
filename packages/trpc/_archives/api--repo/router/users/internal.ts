@@ -2,7 +2,7 @@ import { z } from "zod";
 import { unstable_update, signOut, signIn } from "auth";
 import { TRPCError } from "@trpc/server";
 import { AccountType } from "@livemusicx/db";
-import { createTRPCRouter, protectedProcedure } from "@/server/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/trpc";
 
 export const internalRouter = createTRPCRouter({
   getCurrent: protectedProcedure.query(({ ctx }) => {

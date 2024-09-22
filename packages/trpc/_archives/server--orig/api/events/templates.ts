@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { authorizedProcedure, createTRPCRouter } from "@/server/trpc";
+import { authorizedProcedure, createTRPCRouter } from "~/server/trpc";
 
 export const templatesRouter = createTRPCRouter({
   get: authorizedProcedure.input(z.string()).query(({ ctx, input }) =>
