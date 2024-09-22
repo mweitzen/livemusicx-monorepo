@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Prisma } from "@repo/db";
+import { Prisma } from "@repo/db/schema";
 
 import {
   authorizedProcedure,

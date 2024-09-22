@@ -11,7 +11,7 @@ import { GroupInputSchema } from "@repo/validators";
 
 import { generateUniqueSlug } from "@repo/db/helpers";
 
-import { Prisma } from "@repo/db";
+import { Prisma } from "@repo/db/schema";
 
 export const groupsRouter = createTRPCRouter({
   list: publicProcedure.query(({ ctx }) => ctx.db.musicGroup.findMany()),

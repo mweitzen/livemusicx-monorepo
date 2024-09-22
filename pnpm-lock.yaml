@@ -454,6 +454,12 @@ importers:
       '@babel/core':
         specifier: ^7.20.0
         version: 7.25.2
+      '@repo/tailwind-config':
+        specifier: workspace:*
+        version: link:../../tooling/tailwind
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.13
@@ -760,6 +766,9 @@ importers:
       '@repo/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../../libs/constants
       '@repo/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -881,31 +890,6 @@ importers:
   libs/content: {}
 
   libs/mock-data: {}
-
-  packages/api:
-    dependencies:
-      '@nestjs/mapped-types':
-        specifier: '*'
-        version: 2.0.5(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../tooling/eslint
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../tooling/typescript
-      '@types/node':
-        specifier: ^20.3.1
-        version: 20.16.5
-      ts-loader:
-        specifier: ^9.4.3
-        version: 9.5.1(typescript@5.6.2)(webpack@5.94.0(@swc/core@1.7.26(@swc/helpers@0.5.5)))
-      ts-node:
-        specifier: ^10.9.1
-        version: 10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.2)
-      typescript:
-        specifier: 'catalog:'
-        version: 5.6.2
 
   packages/auth:
     dependencies:
