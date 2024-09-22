@@ -69,7 +69,3 @@ This monorepo houses the codebase for the My Music App, a platform for live musi
 - Prisma is used for database interactions with PostgreSQL.
 - Authentication is handled by NextAuth.js.
 - tRPC is used for type-safe API communication.
-
-Feel free to customize and expand this README as your project evolves! You can include more detailed instructions, project-specific information, or contribution guidelines.
-
-Please let me know if you'd like help fleshing out any specific sections or adding more advanced features to your README.
