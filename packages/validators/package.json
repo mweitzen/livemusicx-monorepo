@@ -7,7 +7,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./src/index.ts"
-    }
+    },
+    "./events": "./src/events.ts",
+    "./accounts": "./src/accounts.ts",
+    "./general": "./src/general.ts"
   },
   "scripts": {
     "build": "tsc",

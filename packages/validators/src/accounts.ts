@@ -3,6 +3,9 @@ import { VenueType } from "@repo/db/schema";
 
 import { EmailSchema, URLSchema, PhoneNumberSchema, IDArraySchema } from "./";
 
+export const SearchAccountsInput = z.object({});
+export const CreateAccountInput = z.object({});
+
 const AccountSchemaBase = {
   name: z.string(),
   about: z.string().optional(),
