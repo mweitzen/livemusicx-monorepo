@@ -2,20 +2,62 @@ import type { TRPCRouterRecord } from "@trpc/server";
 
 import { authorizedProcedure, publicProcedure } from "../trpc";
 
-import { __PLACEHOLDER__ } from "@repo/validators/general";
+import { CreateKeywordInput, __PLACEHOLDER__ } from "@repo/validators/general";
+import { createSlug } from "@repo/utils";
 
 export const generalRouter = {
-  getGenres: publicProcedure.query(async () => {}),
+  getGenres: publicProcedure.query(
+    async ({ ctx }) => await ctx.db.genre.findMany()
+  ),
 
-  getVenueKeywords: publicProcedure.query(async () => {}),
+  getVenueKeywords: publicProcedure.query(
+    async ({ ctx }) => await ctx.db.venueKeyword.findMany()
+  ),
 
-  getEventKeywords: publicProcedure.query(async () => {}),
+  getEventKeywords: publicProcedure.query(
+    async ({ ctx }) => await ctx.db.eventKeyword.findMany()
+  ),
 
-  addVenueKeyword: authorizedProcedure
-    .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+  createNewVenueKeyword: authorizedProcedure
+    .input(CreateKeywordInput)
+    .mutation(async ({ ctx, input }) => {
+      // Get user adding the keyword
+      const user = ctx.session.user.id;
 
-  addEventKeyword: authorizedProcedure
-    .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+      // Check for innapropriate content
+
+      // Report innapropriate content
+
+      // Format Keyword
+      const slug = createSlug(input.name);
+
+      // Create Keyword
+      const result = await ctx.db.venueKeyword.create({
+        data: {
+          name: input.name,
+        },
+      });
+    }),
+
+  createNewEventKeyword: authorizedProcedure
+    .input(CreateKeywordInput)
+    .mutation(async ({ ctx, input }) => {
+      // Get user adding the keyword
+      const user = ctx.session.user.id;
+
+      // Check for innapropriate content
+
+      // Report innapropriate content
+
+      // Format Keyword
+      const slug = createSlug(input.name);
+
+      // Create Keyword
+      const result = await ctx.db.eventKeyword.create({
+        data: {
+          name: slug,
+          displayName: input.name,
+        },
+      });
+    }),
 } satisfies TRPCRouterRecord;

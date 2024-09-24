@@ -1,25 +1,92 @@
-import { db } from "../client";
+import { Prisma } from "../schema";
 
-export async function getAllEvents() {
-  return await db.event.findMany();
-}
+const now = new Date();
+const anHourAgo = new Date(now.getTime() - 3600 * 1000);
 
-export async function getEventDetails() {
-  return await db.event.findUnique({ where: {} });
-}
+// Time start is less than now
+// Time end is not null and greater than now OR Time start greater than 1 hour ago
+export const GetCurrentQuery = {
+  timeStart: {
+    lte: now,
+  },
+  OR: [
+    {
+      timeEnd: {
+        not: null,
+        gte: now,
+      },
+    },
+    {
+      timeStart: {
+        gte: anHourAgo,
+      },
+    },
+  ],
+} satisfies Prisma.EventWhereInput;
 
-export async function createEvent() {
-  return await db.event.create({ data: {} });
-}
+// Time start is greater than now OR Time end is not null and greater than now
+export const GetFutureDatesQuery = {
+  OR: [
+    {
+      timeStart: {
+        gte: now,
+      },
+    },
+    {
+      timeEnd: {
+        not: null,
+        gte: now,
+      },
+    },
+  ],
+} satisfies Prisma.EventWhereInput;
 
-export async function deleteEvent() {
-  return await db.event.create({ data: {} });
-}
+// Time start is less than now AND time end is null
+export const GetPreviousDatesQuery = {
+  OR: [
+    {
+      AND: [
+        {
+          timeStart: {
+            lte: now,
+          },
+        },
+        {
+          timeEnd: {
+            equals: null,
+          },
+        },
+      ],
+    },
+    {
+      timeEnd: {
+        not: null,
+        lte: now,
+      },
+    },
+  ],
+} satisfies Prisma.EventWhereInput;
 
-export async function updateEvent() {
-  return await db.event.update({ where: {}, data: {} });
-}
+export const EventIncludePublicQuery = {
+  _count: true,
+  city: true,
+  genres: true,
+  groups: true,
+  keywords: true,
+  musicians: true,
+  neighborhood: true,
+  organizer: true,
+  region: true,
+  state: true,
+  stage: true,
+  ticketLinks: true,
+  venue: true,
+} satisfies Prisma.EventInclude;
 
-export async function updateEventParticipants() {
-  return await db.event.update({ where: {}, data: {} });
-}
+export const OrderByDateAscending = {
+  timeStart: "asc",
+} satisfies Prisma.EventOrderByWithRelationInput;
+
+export const OrderByDateDescending = {
+  timeStart: "desc",
+} satisfies Prisma.EventOrderByWithRelationInput;

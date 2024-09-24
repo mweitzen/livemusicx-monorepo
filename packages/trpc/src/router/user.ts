@@ -4,7 +4,10 @@ import { protectedProcedure } from "../trpc";
 import { __PLACEHOLDER__ } from "@repo/validators/general";
 
 export const userRouter = {
-  current: protectedProcedure.query(async ({ ctx }) => {}),
+  current: protectedProcedure.query(
+    async ({ ctx }) =>
+      await ctx.db.user.findFirst({ where: { id: ctx.session.user.id } })
+  ),
 
   get: protectedProcedure
     .input(__PLACEHOLDER__)

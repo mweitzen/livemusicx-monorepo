@@ -5,7 +5,8 @@
   "exports": {
     ".": "./src/client.ts",
     "./schema": "./src/schema.ts",
-    "./helpers": "./src/helpers.ts"
+    "./helpers": "./src/helpers.ts",
+    "./queries": "./src/queries/index.ts"
   },
   "scripts": {
     "predev": "prisma generate --no-engine",

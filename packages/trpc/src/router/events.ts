@@ -16,18 +16,58 @@ import {
 
 import { __PLACEHOLDER__ } from "@repo/validators/general";
 
-export const eventsRouter = {
-  getCount: publicProcedure
-    .input(SearchEventsInput)
-    .query(async ({ ctx, input }) => {}),
+import {
+  GetCurrentQuery,
+  GetFutureDatesQuery,
+  GetPreviousDatesQuery,
+  OrderByDateAscending,
+  OrderByDateDescending,
+} from "@repo/db/queries";
 
+export const eventsRouter = {
   getUpcoming: publicProcedure
     .input(SearchEventsInput)
-    .query(async ({ ctx, input }) => {}),
+    .query(async ({ ctx, input }) => {
+      // Input represents filter options
+
+      // Format Filters
+
+      // Return Upcoming Events
+      return await ctx.db.event.findMany({
+        where: {
+          ...GetFutureDatesQuery,
+        },
+        orderBy: OrderByDateAscending,
+      });
+    }),
+
+  getCurrent: publicProcedure
+    .input(SearchEventsInput)
+    .query(async ({ ctx, input }) => {
+      // Input represents filter options
+
+      // Format Filters
+
+      // Return Current Events
+      return await ctx.db.event.findMany({
+        where: {
+          ...GetCurrentQuery,
+        },
+        orderBy: OrderByDateAscending,
+      });
+    }),
 
   getPast: authorizedProcedure
     .input(SearchEventsInput)
-    .query(async ({ ctx, input }) => {}),
+    .query(async ({ ctx, input }) => {
+      // Return Past Events
+      return await ctx.db.event.findMany({
+        where: {
+          ...GetPreviousDatesQuery,
+        },
+        orderBy: OrderByDateDescending,
+      });
+    }),
 
   getDrafts: authorizedProcedure
     .input(SearchEventsInput)
@@ -85,11 +125,27 @@ export const eventsRouter = {
     .input(__PLACEHOLDER__)
     .mutation(async ({ ctx, input }) => {}),
 
-  addParticipant: authorizedProcedure
+  addKeywords: authorizedProcedure
+    .input(__PLACEHOLDER__)
+    .mutation(async ({ ctx, input }) => {}),
+
+  removeKeywords: authorizedProcedure
+    .input(__PLACEHOLDER__)
+    .mutation(async ({ ctx, input }) => {}),
+
+  addGenres: authorizedProcedure
+    .input(__PLACEHOLDER__)
+    .mutation(async ({ ctx, input }) => {}),
+
+  removeGenres: authorizedProcedure
+    .input(__PLACEHOLDER__)
+    .mutation(async ({ ctx, input }) => {}),
+
+  addParticipants: authorizedProcedure
     .input(UpdateEventParticipantInput)
     .mutation(async ({ ctx, input }) => {}),
 
-  removePartipant: authorizedProcedure
+  removeParticipants: authorizedProcedure
     .input(UpdateEventParticipantInput)
     .mutation(async ({ ctx, input }) => {}),
 
