@@ -17,10 +17,13 @@ export const PhoneNumberSchema = z
 
 export const IDArraySchema = z.array(z.object({ id: z.string() }));
 
+const DEFAULT_PAGE = 1;
+const DEFAULT_TAKE = 20;
+
 export const SearchSchemaBase = {
-  page: z.number().optional().default(1),
-  take: z.number().optional().default(20),
   query: z.string().optional(),
+  page: z.number().optional().default(DEFAULT_PAGE),
+  take: z.number().optional().default(DEFAULT_TAKE),
 };
 
 const AccountSchemaBase = {

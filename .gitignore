@@ -41,3 +41,6 @@ dist/
 
 # local caching
 .cache
+
+# personal dev archives
+__archives

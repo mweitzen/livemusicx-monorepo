@@ -8,9 +8,11 @@
       "types": "./dist/index.d.ts",
       "default": "./src/index.ts"
     },
+    "./enums": "./src/enums.ts",
+    "./shared": "./src/shared.ts",
+    "./general": "./src/general.ts",
     "./events": "./src/events.ts",
-    "./accounts": "./src/accounts.ts",
-    "./general": "./src/general.ts"
+    "./accounts": "./src/accounts.ts"
   },
   "scripts": {
     "build": "tsc",

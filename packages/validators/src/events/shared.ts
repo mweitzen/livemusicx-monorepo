@@ -8,7 +8,7 @@ export const TicketLinksSchema = z.array(TicketLinkSchema);
 
 export const EventInputSchemaBase = z.object({
   name: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "Event name must be at least 2 characters.",
   }),
   description: z.string(),
   image: z.any(),

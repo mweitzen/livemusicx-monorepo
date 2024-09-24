@@ -13,6 +13,7 @@ import {
   UpdateEventDateInput,
   UpdateEventParticipantInput,
 } from "@repo/validators/events";
+import { GetDetailsInput } from "@repo/validators/shared";
 
 import { __PLACEHOLDER__ } from "@repo/validators/general";
 
@@ -74,8 +75,14 @@ export const eventsRouter = {
     .query(async ({ ctx, input }) => {}),
 
   getDetails: publicProcedure
-    .input(__PLACEHOLDER__)
-    .query(async ({ ctx, input }) => {}),
+    .input(GetDetailsInput)
+    .query(
+      async ({ ctx, input }) =>
+        await ctx.db.event.findUnique({
+          where: { id: input.id!, slug: input.slug! },
+          select: {},
+        })
+    ),
 
   getFeatured: publicProcedure
     .input(__PLACEHOLDER__)
