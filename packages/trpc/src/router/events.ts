@@ -18,9 +18,13 @@ import { GetDetailsInput } from "@repo/validators/shared";
 import { __PLACEHOLDER__ } from "@repo/validators/general";
 
 import {
+  EventIncludePublicQuery,
   GetCurrentQuery,
+  GetDetailsQuery,
+  GetDraftsQuery,
   GetFutureDatesQuery,
   GetPreviousDatesQuery,
+  GetPublishedQuery,
   OrderByDateAscending,
   OrderByDateDescending,
 } from "@repo/db/queries";
@@ -37,6 +41,7 @@ export const eventsRouter = {
       return await ctx.db.event.findMany({
         where: {
           ...GetFutureDatesQuery,
+          ...GetPublishedQuery,
         },
         orderBy: OrderByDateAscending,
       });
@@ -53,6 +58,7 @@ export const eventsRouter = {
       return await ctx.db.event.findMany({
         where: {
           ...GetCurrentQuery,
+          ...GetPublishedQuery,
         },
         orderBy: OrderByDateAscending,
       });
@@ -65,6 +71,7 @@ export const eventsRouter = {
       return await ctx.db.event.findMany({
         where: {
           ...GetPreviousDatesQuery,
+          ...GetPublishedQuery,
         },
         orderBy: OrderByDateDescending,
       });
@@ -72,17 +79,27 @@ export const eventsRouter = {
 
   getDrafts: authorizedProcedure
     .input(SearchEventsInput)
-    .query(async ({ ctx, input }) => {}),
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.event.findMany({
+        where: {
+          ...GetPreviousDatesQuery,
+          ...GetDraftsQuery,
+        },
+        orderBy: OrderByDateDescending,
+      });
+    }),
 
-  getDetails: publicProcedure
-    .input(GetDetailsInput)
-    .query(
-      async ({ ctx, input }) =>
-        await ctx.db.event.findUnique({
-          where: { id: input.id!, slug: input.slug! },
-          select: {},
-        })
-    ),
+  getDetails: publicProcedure.input(GetDetailsInput).query(
+    async ({ ctx, input }) =>
+      await ctx.db.event.findUnique({
+        where: {
+          ...GetDetailsQuery(input),
+        },
+        include: {
+          ...EventIncludePublicQuery,
+        },
+      })
+  ),
 
   getFeatured: publicProcedure
     .input(__PLACEHOLDER__)

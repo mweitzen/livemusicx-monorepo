@@ -1,4 +1,4 @@
-import { Prisma } from "../schema";
+import { Prisma, EventStatus } from "../schema";
 
 const now = new Date();
 const anHourAgo = new Date(now.getTime() - 3600 * 1000);
@@ -65,6 +65,39 @@ export const GetPreviousDatesQuery = {
       },
     },
   ],
+} satisfies Prisma.EventWhereInput;
+
+export const GetDateRangeQuery = ({
+  dateBegin,
+  dateEnd,
+}: {
+  dateBegin?: Date;
+  dateEnd?: Date;
+}) =>
+  ({
+    AND: [
+      {
+        timeStart: {
+          gte: dateBegin ?? now,
+        },
+      },
+      {
+        timeStart: {
+          lte: dateEnd,
+        },
+      },
+    ],
+  }) satisfies Prisma.EventWhereInput;
+
+export const GetPublishedQuery = {
+  status: {
+    in: [EventStatus.SCHEDULED, EventStatus.RESCHEDULED],
+  },
+} satisfies Prisma.EventWhereInput;
+
+export const GetDraftsQuery = {
+  // TODO: Make UNSCHEDULED
+  status: EventStatus.SCHEDULED,
 } satisfies Prisma.EventWhereInput;
 
 export const EventIncludePublicQuery = {
