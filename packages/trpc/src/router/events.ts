@@ -13,7 +13,12 @@ import {
   UpdateEventDateInput,
   UpdateEventParticipantInput,
 } from "@repo/validators/events";
-import { GetDetailsInput } from "@repo/validators/shared";
+import {
+  AddTagInput,
+  FEATURED_TAKE,
+  GetDetailsInput,
+  GetFeaturedInput,
+} from "@repo/validators/shared";
 
 import { __PLACEHOLDER__ } from "@repo/validators/general";
 
@@ -22,26 +27,32 @@ import {
   GetCurrentQuery,
   GetDetailsQuery,
   GetDraftsQuery,
+  GetFeatureDatesQuery,
   GetFutureDatesQuery,
   GetPreviousDatesQuery,
   GetPublishedQuery,
   OrderByDateAscending,
   OrderByDateDescending,
+  SearchEventsQuery,
 } from "@repo/db/queries";
 
 export const eventsRouter = {
   getUpcoming: publicProcedure
     .input(SearchEventsInput)
     .query(async ({ ctx, input }) => {
-      // Input represents filter options
-
-      // Format Filters
-
-      // Return Upcoming Events
       return await ctx.db.event.findMany({
+        take: input.take,
+        skip: (input.page - 1) * input.take,
         where: {
-          ...GetFutureDatesQuery,
-          ...GetPublishedQuery,
+          AND: [
+            {
+              ...GetFutureDatesQuery,
+              ...GetPublishedQuery,
+            },
+            {
+              ...SearchEventsQuery(input.query),
+            },
+          ],
         },
         orderBy: OrderByDateAscending,
       });
@@ -50,15 +61,19 @@ export const eventsRouter = {
   getCurrent: publicProcedure
     .input(SearchEventsInput)
     .query(async ({ ctx, input }) => {
-      // Input represents filter options
-
-      // Format Filters
-
-      // Return Current Events
       return await ctx.db.event.findMany({
+        take: input.take,
+        skip: (input.page - 1) * input.take,
         where: {
-          ...GetCurrentQuery,
-          ...GetPublishedQuery,
+          AND: [
+            {
+              ...GetCurrentQuery,
+              ...GetPublishedQuery,
+            },
+            {
+              ...SearchEventsQuery(input.query),
+            },
+          ],
         },
         orderBy: OrderByDateAscending,
       });
@@ -67,8 +82,9 @@ export const eventsRouter = {
   getPast: authorizedProcedure
     .input(SearchEventsInput)
     .query(async ({ ctx, input }) => {
-      // Return Past Events
       return await ctx.db.event.findMany({
+        take: input.take,
+        skip: (input.page - 1) * input.take,
         where: {
           ...GetPreviousDatesQuery,
           ...GetPublishedQuery,
@@ -81,6 +97,8 @@ export const eventsRouter = {
     .input(SearchEventsInput)
     .query(async ({ ctx, input }) => {
       return await ctx.db.event.findMany({
+        take: input.take,
+        skip: (input.page - 1) * input.take,
         where: {
           ...GetPreviousDatesQuery,
           ...GetDraftsQuery,
@@ -101,21 +119,71 @@ export const eventsRouter = {
       })
   ),
 
-  getFeatured: publicProcedure
-    .input(__PLACEHOLDER__)
-    .query(async ({ ctx, input }) => {}),
+  getFeatured: publicProcedure.input(GetFeaturedInput).query(
+    async ({ ctx, input }) =>
+      await ctx.db.event.findMany({
+        take: FEATURED_TAKE,
+        where: {
+          ...GetFeatureDatesQuery,
+          ...GetPublishedQuery,
+        },
+      })
+  ),
 
   getBookmarked: protectedProcedure
     .input(SearchEventsInput)
-    .query(async ({ ctx, input }) => {}),
+    .query(async ({ ctx, input }) => {
+      const user = await ctx.db.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+        select: {
+          eventsBookmarked: {
+            take: input.take,
+            skip: (input.page - 1) * input.take,
+            where: {
+              ...SearchEventsQuery(input.query),
+            },
+          },
+        },
+      });
+      if (!user) return [];
+      return user.eventsBookmarked;
+    }),
 
-  addToBookmarked: protectedProcedure
-    .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+  addToBookmarked: protectedProcedure.input(GetDetailsInput).mutation(
+    async ({ ctx, input }) =>
+      await ctx.db.user.update({
+        where: {
+          id: ctx.session.user.id,
+        },
+        data: {
+          eventsBookmarked: {
+            connect: {
+              id: input.id!,
+              slug: input.slug!,
+            },
+          },
+        },
+      })
+  ),
 
-  removeFromBookmarked: protectedProcedure
-    .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+  removeFromBookmarked: protectedProcedure.input(GetDetailsInput).mutation(
+    async ({ ctx, input }) =>
+      await ctx.db.user.update({
+        where: {
+          id: ctx.session.user.id,
+        },
+        data: {
+          eventsBookmarked: {
+            disconnect: {
+              id: input.id!,
+              slug: input.slug!,
+            },
+          },
+        },
+      })
+  ),
 
   create: authorizedProcedure
     .input(CreateEventInput)
@@ -150,20 +218,76 @@ export const eventsRouter = {
     .mutation(async ({ ctx, input }) => {}),
 
   addKeywords: authorizedProcedure
-    .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+    .input(AddTagInput)
+    .mutation(async ({ ctx, input }) => {
+      // TODO: Ensure User can Edit Event
+      await ctx.db.event.update({
+        where: {
+          id: input.resourceId,
+        },
+        data: {
+          keywords: {
+            connect: {
+              id: input.tagId,
+            },
+          },
+        },
+      });
+    }),
 
   removeKeywords: authorizedProcedure
-    .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+    .input(AddTagInput)
+    .mutation(async ({ ctx, input }) => {
+      // TODO: Ensure User can Edit Event
+      await ctx.db.event.update({
+        where: {
+          id: input.resourceId,
+        },
+        data: {
+          keywords: {
+            connect: {
+              id: input.tagId,
+            },
+          },
+        },
+      });
+    }),
 
   addGenres: authorizedProcedure
-    .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+    .input(AddTagInput)
+    .mutation(async ({ ctx, input }) => {
+      // TODO: Ensure User can Edit Event
+      await ctx.db.event.update({
+        where: {
+          id: input.resourceId,
+        },
+        data: {
+          genres: {
+            connect: {
+              id: input.tagId,
+            },
+          },
+        },
+      });
+    }),
 
   removeGenres: authorizedProcedure
-    .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+    .input(AddTagInput)
+    .mutation(async ({ ctx, input }) => {
+      // TODO: Ensure User can Edit Event
+      await ctx.db.event.update({
+        where: {
+          id: input.resourceId,
+        },
+        data: {
+          genres: {
+            connect: {
+              id: input.tagId,
+            },
+          },
+        },
+      });
+    }),
 
   addParticipants: authorizedProcedure
     .input(UpdateEventParticipantInput)

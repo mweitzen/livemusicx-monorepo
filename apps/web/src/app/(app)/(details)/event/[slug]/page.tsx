@@ -1,8 +1,6 @@
-import { events } from "@repo/mock-data";
-import { venues } from "@repo/mock-data";
-import { organizers } from "@repo/mock-data";
-
 import Link from "next/link";
+import { api } from "@repo/trpc/server";
+
 import { format } from "date-fns";
 import { notFound } from "next/navigation";
 
@@ -37,19 +35,15 @@ import {
   AvatarImage,
 } from "@repo/ui/components/avatar";
 
-export default function EventDetailsPage({
+export default async function EventDetailsPage({
   params,
 }: {
   params: { slug: string };
 }) {
   // Return event details
-  const event = events.find((event) => event.slug === params.slug);
-  const venue = venues.find((venue) => venue?.id === event?.venue);
-  const organizer = organizers.find(
-    (organizer) => organizer?.id === event?.organizer
-  );
+  const event = await api.events.getDetails({ slug: params.slug });
 
-  // Profile not found
+  // Event not found
   if (!event) return notFound();
 
   // Generate structured data
@@ -59,7 +53,7 @@ export default function EventDetailsPage({
     <div className='space-y-8'>
       {/* Hero Section */}
       <PageHeader
-        imageUrl={undefined}
+        imageUrl={event.image ?? undefined}
         title={event.name}
       >
         <div className='flex items-center'>
@@ -69,11 +63,11 @@ export default function EventDetailsPage({
         <div className='flex items-center'>
           <Clock className='mr-2 h-5 w-5' />
           {format(event.timeStart, "h:mm a")} -{" "}
-          {format(event.timeEnd, "h:mm a")}
+          {format(event.timeEnd!, "h:mm a")}
         </div>
         <div className='flex items-center'>
           <MapPin className='mr-2 h-5 w-5' />
-          {venue?.name}
+          {event.venue.name}
         </div>
       </PageHeader>
 
@@ -83,7 +77,7 @@ export default function EventDetailsPage({
           className='flex-1 w-full order-1 sm:order-none'
           asChild
         >
-          <Link href={event.ticketLinks[0] ?? "https://example.com"}>
+          <Link href={event.ticketLinks[0]?.url ?? "https://example.com"}>
             <Ticket className='mr-2 h-4 w-4' />
             Buy Tickets
           </Link>
@@ -150,11 +144,11 @@ export default function EventDetailsPage({
                   <div className='mt-6 flex flex-wrap gap-2'>
                     {event.keywords.map((keyword) => (
                       <Badge
-                        key={keyword}
+                        key={keyword.id}
                         variant='secondary'
                         className='text-sm'
                       >
-                        {keyword}
+                        {keyword.displayName}
                       </Badge>
                     ))}
                   </div>
@@ -201,8 +195,10 @@ export default function EventDetailsPage({
               <div className='flex items-start space-x-4 mb-4'>
                 <MapPin className='mt-1 h-5 w-5 text-primary' />
                 <div>
-                  <h3 className='font-semibold'>{venue?.name}</h3>
-                  <p className='text-muted-foreground'>{venue?.location}</p>
+                  <h3 className='font-semibold'>{event.venue.name}</h3>
+                  <p className='text-muted-foreground'>
+                    {event.venue.addressShort}
+                  </p>
                 </div>
               </div>
               <div className='h-[300px] bg-muted rounded-md overflow-hidden'>
@@ -222,14 +218,18 @@ export default function EventDetailsPage({
               <div className='flex items-center space-x-4'>
                 <Avatar className='h-16 w-16'>
                   <AvatarImage
-                    src={organizer?.avatar}
-                    alt={organizer?.name}
+                    src={event.organizer?.avatar ?? undefined}
+                    alt={event.organizer?.name}
                   />
-                  <AvatarFallback>{organizer?.name[0]}</AvatarFallback>
+                  <AvatarFallback>{event.organizer?.name[0]}</AvatarFallback>
                 </Avatar>
                 <div>
-                  <h3 className='font-semibold text-lg'>{organizer?.name}</h3>
-                  <p className='text-muted-foreground'>{organizer?.about}</p>
+                  <h3 className='font-semibold text-lg'>
+                    {event.organizer?.name}
+                  </h3>
+                  <p className='text-muted-foreground'>
+                    {event.organizer?.about}
+                  </p>
                 </div>
               </div>
             </CardContent>

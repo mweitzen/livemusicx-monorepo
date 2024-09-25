@@ -6,7 +6,7 @@ import { __PLACEHOLDER__ } from "@repo/validators/general";
 export const userRouter = {
   current: protectedProcedure.query(
     async ({ ctx }) =>
-      await ctx.db.user.findFirst({ where: { id: ctx.session.user.id } })
+      await ctx.db.user.findUnique({ where: { id: ctx.session.user.id } })
   ),
 
   get: protectedProcedure

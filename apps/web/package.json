@@ -20,6 +20,7 @@
     "@repo/trpc": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
+    "@repo/validators": "workspace:^",
     "date-fns": "^3.6.0",
     "framer-motion": "^11.5.4",
     "mapbox-gl": "^3.6.0",

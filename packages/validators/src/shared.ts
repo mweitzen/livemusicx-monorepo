@@ -16,7 +16,19 @@ export const PhoneNumberSchema = z
   )
   .min(10)
   .transform((val) => (val ? val.replace(/\D/g, "") : undefined));
-export const IDArraySchema = z.array(z.object({ id: z.string() }));
+export const SimpleIDSchema = z.object({ id: z.string() });
+export const IDArraySchema = z.array(SimpleIDSchema);
+
+/**
+ * Featured Schema
+ *
+ */
+export const FEATURED_TAKE = 10;
+export const GetFeaturedInput = z
+  .object({
+    location: z.string(),
+  })
+  .optional();
 
 /**
  * Search Schema
@@ -66,3 +78,8 @@ export const GetDetailsInput = z
   .refine(({ id, slug }) => !!id || !!slug, {
     message: "Either an ID or a Slug must be provided to retrieve details.",
   });
+
+export const AddTagInput = z.object({
+  resourceId: z.string(),
+  tagId: z.string(),
+});

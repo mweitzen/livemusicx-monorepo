@@ -40,7 +40,7 @@ export function FeatureCardContent({
         width={280}
         className='group-hover:scale-105 transition-transform duration-300 object-cover object-top h-full'
       />
-      <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
+      <div className='absolute inset-0 bg-gradient-to-t from-black/90 to-transparent' />
       {children}
     </div>
   );
@@ -100,7 +100,7 @@ export function FeaturedEventCard({ event }: { event: MyEvent }) {
             </h3>
             <p className='text-sm text-white/80 flex items-center mt-1'>
               <Music className='w-4 h-4 mr-1' />
-              {event.genres[0]}
+              {"event.genres[0]"}
             </p>
           </div>
         </FeatureCardContent>

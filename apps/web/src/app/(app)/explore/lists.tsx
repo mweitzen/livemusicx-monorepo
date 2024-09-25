@@ -20,7 +20,7 @@ export async function FeaturedEventsList() {
 
   await longWait();
 
-  const events = await api.v1.events.main.getQuickView();
+  const events = await api.events.getFeatured();
 
   return (
     <FeaturedContent>

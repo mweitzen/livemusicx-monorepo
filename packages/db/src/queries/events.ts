@@ -1,7 +1,8 @@
 import { Prisma, EventStatus } from "../schema";
 
 const now = new Date();
-const anHourAgo = new Date(now.getTime() - 3600 * 1000);
+const anHourAgo = new Date(now.getTime() - 1000 * 3600);
+const oneWeekFromNow = new Date(now.getTime() + 1000 * 3600 * 24 * 7);
 
 // Time start is less than now
 // Time end is not null and greater than now OR Time start greater than 1 hour ago
@@ -36,6 +37,22 @@ export const GetFutureDatesQuery = {
       timeEnd: {
         not: null,
         gte: now,
+      },
+    },
+  ],
+} satisfies Prisma.EventWhereInput;
+
+// Time start is greater than now OR Time end is not null and greater than now
+export const GetFeatureDatesQuery = {
+  AND: [
+    {
+      timeStart: {
+        gte: now,
+      },
+    },
+    {
+      timeStart: {
+        lte: oneWeekFromNow,
       },
     },
   ],
