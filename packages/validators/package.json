@@ -10,6 +10,7 @@
     },
     "./enums": "./src/enums.ts",
     "./shared": "./src/shared.ts",
+    "./user": "./src/user.ts",
     "./general": "./src/general.ts",
     "./events": "./src/events.ts",
     "./accounts": "./src/accounts.ts"
