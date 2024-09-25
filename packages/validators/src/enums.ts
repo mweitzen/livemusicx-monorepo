@@ -5,6 +5,7 @@ import {
   UserRole as NativeUserRole,
   AccountType as NativeAccountType,
   EventStatus as NativeEventStatus,
+  // ProfileType as NativeProfileType,
 } from "@repo/db/schema";
 
 export const GroupSize = z.enum([
@@ -14,11 +15,9 @@ export const GroupSize = z.enum([
 ]);
 
 export const VenueType = z.nativeEnum(NativeVenueType);
-
 export const StageType = z.nativeEnum(NativeStageType);
-
 export const UserRole = z.nativeEnum(NativeUserRole);
-
 export const AccountType = z.nativeEnum(NativeAccountType);
-
 export const EventStatus = z.nativeEnum(NativeEventStatus);
+// export const ProfileType = z.nativeEnum(NativeProfileType);
+export const ProfileType = z.enum(["MUSICIAN", "BAND", "VENUE", "ORGANIZER"]);

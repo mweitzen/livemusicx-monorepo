@@ -22,28 +22,32 @@ datasource db {
 // --------------------
 //
 //
+//
+//
 // * ENUMS
+//
+//
 //
 //
 // --------------------
 enum UserRole {
   USER
+  MANAGER
   ADMIN
-  SUPER
 }
 
 enum AccountType {
-  PUBLIC
+  FAN
   PERFORMER
   VENUE
   ORGANIZER
-  ASSOCIATE
 }
 
-enum MediaType {
-  IMAGE
-  AUDIO
-  VIDEO
+enum ProfileType {
+  MUSICIAN
+  BAND
+  VENUE
+  ORGANIZER
 }
 
 enum VenueType {
@@ -73,14 +77,67 @@ enum StageType {
 enum EventStatus {
   CANCELLED
   POSTPONED
-  RESCHEDULED
   SCHEDULED
+  RESCHEDULED
+  UNSCHEDULED
+}
+
+enum EventType {
+  PERFORMANCE
+  EXPERIENCE
+  MEETUP
+}
+
+enum NetworkType {
+  REGION
+  CITY
+  NEIGHBORHOOD
+  GROUP
+}
+
+enum MediaType {
+  VIDEO
+  AUDIO
+  IMAGE
+}
+
+enum PostType {
+  STATEMENT
+  OPINION
+  REVIEW
+  NEWSLETTER
+  ANNOUNCEMENT
+  BROADCAST
+  BULLETIN
+}
+
+enum AnnouncementType {
+  PRESS_RELEASE
+  MEDIA_RELEASE
+  EVENT_UPDATE
+  GENERAL
+}
+
+enum BroadcastAudience {
+  VENUE
+  ORGANIZER
+  PERFORMER
+}
+
+enum BulletinType {
+  VENUE_SEEKING
+  ORGANIZER_SEEKING
+  PERFORMER_SEEKING
 }
 
 // --------------------
 //
 //
+//
+//
 // * AUTH
+//
+//
 //
 //
 // --------------------
@@ -128,7 +185,11 @@ model VerificationToken {
 // --------------------
 //
 //
+//
+//
 // * USER
+//
+//
 //
 //
 // --------------------
@@ -136,7 +197,7 @@ model User {
   // * METADATA
   id            String      @id @default(cuid())
   role          UserRole    @default(USER)
-  accountType   AccountType @default(PUBLIC)
+  accountType   AccountType @default(FAN)
   createdAt     DateTime    @default(now())
   emailVerified DateTime?
   userVerified  Boolean?    @default(false)
@@ -179,7 +240,11 @@ model User {
 // --------------------
 //
 //
+//
+//
 // * LOCATION
+//
+//
 //
 //
 // --------------------
@@ -281,7 +346,11 @@ model State {
 // --------------------
 //
 //
+//
+//
 // * ACCOUNTS
+//
+//
 //
 //
 // --------------------
@@ -332,7 +401,11 @@ model Media {
 // --------------------
 //
 //
+//
+//
 // * VENUE
+//
+//
 //
 //
 // --------------------
@@ -342,6 +415,7 @@ model Venue {
   name       String
   avatar     String?
   usernameId String?
+  // profileType ProfileType?
   username   Username?      @relation(fields: [usernameId], references: [id])
   type       VenueType?     @default(VENUE)
   about      String?
@@ -429,7 +503,11 @@ model VenueKeyword {
 // --------------------
 //
 //
+//
+//
 // * PERFORMER
+//
+//
 //
 //
 // --------------------
@@ -528,7 +606,11 @@ model MusicGroup {
 // --------------------
 //
 //
+//
+//
 // * ORGANIZER
+//
+//
 //
 //
 // --------------------
@@ -581,7 +663,11 @@ model Organizer {
 // --------------------
 //
 //
+//
+//
 // * EVENT
+//
+//
 //
 //
 // --------------------

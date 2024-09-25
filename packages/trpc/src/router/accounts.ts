@@ -6,14 +6,22 @@ import {
   publicProcedure,
 } from "../trpc";
 
-import { SearchAccountsInput } from "@repo/validators/accounts";
+import {
+  GetFeaturedAccountsInput,
+  SearchAccountsInput,
+} from "@repo/validators/accounts";
 
 import { __PLACEHOLDER__ } from "@repo/validators/general";
+import { FEATURED_TAKE } from "@repo/validators/shared";
+import { GetFeaturedAccountsQuery } from "@repo/db/queries";
 
 export const accountsRouter = {
   getAll: publicProcedure
     .input(SearchAccountsInput)
-    .query(async ({ ctx, input }) => {}),
+    .query(async ({ ctx, input }) => {
+      switch (input.type) {
+      }
+    }),
 
   getDetails: publicProcedure
     .input(__PLACEHOLDER__)
@@ -24,8 +32,27 @@ export const accountsRouter = {
     .query(async ({ ctx, input }) => {}),
 
   getFeatured: publicProcedure
-    .input(__PLACEHOLDER__)
-    .query(async ({ ctx, input }) => {}),
+    .input(GetFeaturedAccountsInput)
+    .query(async ({ ctx, input }) => {
+      switch (input.type) {
+        case "MUSICIAN":
+          return await ctx.db.musician.findMany({
+            ...GetFeaturedAccountsQuery(input.location),
+          });
+        case "BAND":
+          return await ctx.db.musicGroup.findMany({
+            ...GetFeaturedAccountsQuery(input.location),
+          });
+        case "VENUE":
+          return await ctx.db.venue.findMany({
+            ...GetFeaturedAccountsQuery(input.location),
+          });
+        case "ORGANIZER":
+          return await ctx.db.organizer.findMany({
+            ...GetFeaturedAccountsQuery(input.location),
+          });
+      }
+    }),
 
   getFavorites: protectedProcedure
     .input(SearchAccountsInput)

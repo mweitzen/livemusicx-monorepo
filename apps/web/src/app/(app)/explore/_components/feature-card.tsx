@@ -134,7 +134,7 @@ export function FeaturedPerformerCard({
             </h3>
             <p className='text-sm text-white/80 flex items-center mt-1'>
               <Music className='w-4 h-4 mr-1' />
-              {performer.genres[0]}
+              {"performer.genres[0]"}
             </p>
           </div>
         </FeatureCardContent>
@@ -155,7 +155,7 @@ export function FeaturedVenueCard({ venue }: { venue: Venue }) {
             </h3>
             <p className='text-sm text-white/80 flex items-center mt-1'>
               <Music className='w-4 h-4 mr-1' />
-              {venue.genres[0]}
+              {"venue.genres[0]"}
             </p>
           </div>
         </FeatureCardContent>
@@ -185,7 +185,7 @@ export function FeaturedOrganizerCard({ organizer }: { organizer: Organizer }) {
             </h3>
             <p className='text-sm text-white/80 flex items-center mt-1'>
               <Music className='w-4 h-4 mr-1' />
-              {organizer.genres[0]}
+              {"organizer.genres[0]"}
             </p>
           </div>
         </FeatureCardContent>

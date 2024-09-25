@@ -1,10 +1,27 @@
 import { z } from "zod";
-import { VenueType } from "@repo/db/schema";
 
-import { EmailSchema, URLSchema, PhoneNumberSchema, IDArraySchema } from "./";
+import { ProfileType, VenueType } from "./enums";
+import {
+  EmailSchema,
+  URLSchema,
+  PhoneNumberSchema,
+  IDArraySchema,
+  SearchSchema,
+  FilterSchema,
+  SortSchema,
+} from "./shared";
 
-export const SearchAccountsInput = z.object({});
+export const SearchAccountsInput = z.object({
+  ...SearchSchema,
+  ...FilterSchema,
+  ...SortSchema,
+  type: ProfileType,
+});
 export const CreateAccountInput = z.object({});
+export const GetFeaturedAccountsInput = z.object({
+  type: ProfileType,
+  location: z.string().optional(),
+});
 
 const AccountSchemaBase = {
   name: z.string(),
@@ -56,7 +73,7 @@ export const OrganizerInputSchema = z.object({
 export const VenueInputSchema = z
   .object({
     ...AccountSchemaBase,
-    type: z.nativeEnum(VenueType),
+    type: VenueType,
     keywordIds: IDArraySchema.optional(),
     ageRestriction: z.boolean().optional().default(false),
     servesAlcohol: z.boolean().optional(),

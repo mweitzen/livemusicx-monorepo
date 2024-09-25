@@ -35,7 +35,19 @@ export async function FeaturedEventsList() {
 }
 
 export async function FeaturedPerformersList() {
-  const performers = await api.v1.accounts.performers.getQuickView();
+  const musicians = await api.accounts.getFeatured({ type: "MUSICIAN" });
+  const bands = await api.accounts.getFeatured({ type: "BAND" });
+  const performers = [...musicians, ...bands]
+    .sort((a, b) => {
+      console.log(a.name);
+      console.log(a.events[0]!.timeStart);
+      console.log(b.name);
+      console.log(b.events[0]!.timeStart);
+      return (
+        a.events[0]!.timeStart.getTime() - b.events[0]!.timeStart.getTime()
+      );
+    })
+    .slice(0, 5);
 
   return (
     <FeaturedContent>
@@ -50,7 +62,7 @@ export async function FeaturedPerformersList() {
 }
 
 export async function FeaturedVenuesList() {
-  const venues = await api.v1.accounts.venues.getQuickView();
+  const venues = await api.accounts.getFeatured({ type: "VENUE" });
 
   return (
     <FeaturedContent>
@@ -64,7 +76,7 @@ export async function FeaturedVenuesList() {
   );
 }
 export async function FeaturedOrganizersList() {
-  const organizers = await api.v1.accounts.organizers.getQuickView();
+  const organizers = await api.accounts.getFeatured({ type: "ORGANIZER" });
 
   return (
     <FeaturedContent>
