@@ -1,4 +1,4 @@
-import { Prisma } from "../schema";
+import { Prisma, VenueType } from "../schema";
 import { GetFeatureDatesQuery } from "./events";
 
 export const GetFeaturedAccountsQuery = (location?: string) =>
@@ -40,3 +40,12 @@ export const FavoritedQuery = (userId?: string, include?: boolean) =>
         | Prisma.MusicGroupWhereInput
         | Prisma.VenueWhereInput
         | Prisma.OrganizerWhereInput);
+
+export const VenueTypesQuery = (types?: VenueType | VenueType[]) =>
+  !types || types.length === 0
+    ? undefined
+    : ({
+        type: {
+          in: typeof types === "object" ? types : [types],
+        },
+      } satisfies Prisma.VenueWhereInput);

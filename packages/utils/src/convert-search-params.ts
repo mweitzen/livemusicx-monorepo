@@ -1,5 +1,5 @@
-function isEmpty(value?: string) {
-  return value === "" || value === undefined;
+function isEmpty(value?: any) {
+  return value === "" || value === undefined || value.length === 0;
 }
 
 function isSearchQuery(key: string) {
@@ -22,23 +22,34 @@ function isBoolean(value: string) {
   return ["include", "true", "false", "exclude"].includes(value);
 }
 
+function isExpectingArray(key: string) {
+  return ["venueTypes", "genres"].includes(key);
+}
+
 export function convertSearchParamsToQuery(searchParams: {
   [key: string]: string | string[] | undefined;
 }) {
   let conversion: { [key: string]: any } = {};
 
   for (let key in searchParams) {
-    const value = searchParams[key];
+    let value = searchParams[key];
+
+    /**
+     * Skip search params with empty values
+     */
+    if (isEmpty(value)) continue;
+
+    /**
+     * Check if tRPC or zod validator is expecting an array
+     */
+    if (isExpectingArray(key) && typeof value !== "object") {
+      value = [value!];
+    }
 
     /**
      * Handle single value, non-arrays
      */
     if (typeof value === "string") {
-      /**
-       * Skip search params with empty values
-       */
-      if (isEmpty(value)) continue;
-
       /**
        * Skip checks for query strings
        */
@@ -89,5 +100,8 @@ export function convertSearchParamsToQuery(searchParams: {
     }
   }
 
+  /**
+   * Return converted query
+   */
   return conversion;
 }

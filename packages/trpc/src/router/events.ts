@@ -37,6 +37,7 @@ import {
   OrderByDateAscending,
   OrderByDateDescending,
   SearchEventsQuery,
+  VenueTypesQuery,
 } from "@repo/db/queries";
 
 export const eventsRouter = {
@@ -51,6 +52,7 @@ export const eventsRouter = {
         where: {
           AND: [
             { ...SearchEventsQuery(input.query) },
+            { venue: { ...VenueTypesQuery(input.venueTypes) } },
             {
               ...GetFutureDatesQuery,
               ...GetPublishedQuery,
