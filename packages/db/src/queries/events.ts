@@ -1,4 +1,5 @@
 import { Prisma, EventStatus } from "../schema";
+import { FavoritedQuery } from "./accounts";
 
 const now = new Date();
 const anHourAgo = new Date(now.getTime() - 1000 * 3600);
@@ -113,9 +114,61 @@ export const GetPublishedQuery = {
 } satisfies Prisma.EventWhereInput;
 
 export const GetDraftsQuery = {
-  // TODO: Make UNSCHEDULED
-  status: EventStatus.SCHEDULED,
+  status: EventStatus.UNSCHEDULED,
 } satisfies Prisma.EventWhereInput;
+
+export const FilterEventsQuery = () => ({}) satisfies Prisma.EventWhereInput;
+
+export const BookmarkedQuery = (userId?: string, include?: boolean) =>
+  !include
+    ? undefined
+    : ({
+        bookmarkedBy: {
+          some: {
+            id: userId,
+          },
+        },
+      } satisfies Prisma.EventWhereInput);
+
+export const BookmarkedIncludeQuery = (userId?: string) => ({
+  bookmarkedBy: {
+    where: {
+      id: userId,
+    },
+  },
+});
+
+export const FavoritedAccountsQuery = (userId?: string, include?: boolean) =>
+  !include
+    ? undefined
+    : ({
+        AND: [
+          {
+            OR: [
+              {
+                venue: {
+                  ...FavoritedQuery(userId, include),
+                },
+              },
+              {
+                organizer: {
+                  ...FavoritedQuery(userId, include),
+                },
+              },
+              {
+                musicians: {
+                  some: { ...FavoritedQuery(userId, include) },
+                },
+              },
+              {
+                groups: {
+                  some: { ...FavoritedQuery(userId, include) },
+                },
+              },
+            ],
+          },
+        ],
+      } satisfies Prisma.EventWhereInput);
 
 export const EventIncludePublicQuery = (userId?: string) =>
   ({

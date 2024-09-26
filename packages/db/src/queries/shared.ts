@@ -42,5 +42,3 @@ export const SearchAccountsQuery = (query?: string) =>
     | Prisma.MusicianWhereInput
     | Prisma.MusicGroupWhereInput
     | Prisma.OrganizerWhereInput;
-
-export const FilterEventsQuery = () => ({});

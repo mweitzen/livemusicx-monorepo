@@ -14,6 +14,7 @@ export const SearchEventsInput = z
     ...FilterSchema,
     ...SortSchema,
     bookmarked: z.boolean().optional(), // off, include, exclude
+    favorites: z.boolean().optional(), // off, include, exclude
     groupSizes: z.array(GroupSize).optional(),
     venueTypes: z.array(VenueType).optional(),
     servesAlcohol: z.boolean().optional(), // off, include, exclude

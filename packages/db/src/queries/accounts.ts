@@ -25,3 +25,18 @@ export const GetFeaturedAccountsQuery = (location?: string) =>
     | Prisma.MusicGroupFindManyArgs
     | Prisma.VenueFindManyArgs
     | Prisma.OrganizerFindManyArgs;
+
+export const FavoritedQuery = (userId?: string, include?: boolean) =>
+  !include
+    ? undefined
+    : ({
+        favoritedBy: {
+          some: {
+            id: userId,
+          },
+        },
+      } satisfies
+        | Prisma.MusicianWhereInput
+        | Prisma.MusicGroupWhereInput
+        | Prisma.VenueWhereInput
+        | Prisma.OrganizerWhereInput);

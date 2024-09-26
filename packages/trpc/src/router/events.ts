@@ -1,4 +1,5 @@
 import type { TRPCRouterRecord } from "@trpc/server";
+import { __PLACEHOLDER__ } from "@repo/validators/general";
 
 import {
   protectedProcedure,
@@ -13,6 +14,7 @@ import {
   UpdateEventDateInput,
   UpdateEventParticipantInput,
 } from "@repo/validators/events";
+
 import {
   AddTagInput,
   FEATURED_TAKE,
@@ -20,10 +22,11 @@ import {
   GetFeaturedInput,
 } from "@repo/validators/shared";
 
-import { __PLACEHOLDER__ } from "@repo/validators/general";
-
 import {
+  BookmarkedIncludeQuery,
+  BookmarkedQuery,
   EventIncludePublicQuery,
+  FavoritedAccountsQuery,
   GetCurrentQuery,
   GetDetailsQuery,
   GetDraftsQuery,
@@ -37,29 +40,32 @@ import {
 } from "@repo/db/queries";
 
 export const eventsRouter = {
+  // TODO: Combine get upcoming and get current + date search
   getUpcoming: publicProcedure
     .input(SearchEventsInput)
     .query(async ({ ctx, input }) => {
+      const userId = ctx.session?.user.id;
       return await ctx.db.event.findMany({
         take: input.take,
         skip: (input.page - 1) * input.take,
         where: {
           AND: [
+            { ...SearchEventsQuery(input.query) },
             {
               ...GetFutureDatesQuery,
               ...GetPublishedQuery,
-            },
-            {
-              ...SearchEventsQuery(input.query),
+              ...BookmarkedQuery(userId, input.bookmarked),
+              ...FavoritedAccountsQuery(userId, input.favorites),
+              isFree: input.isFree,
+              isChildFriendly: input.isChildFriendly,
+              isHoliday: input.isHoliday,
+              servesAlcohol: input.servesAlcohol,
+              servesFood: input.servesFood,
             },
           ],
         },
         include: {
-          bookmarkedBy: {
-            where: {
-              id: ctx.session?.user.id,
-            },
-          },
+          ...BookmarkedIncludeQuery(userId),
         },
         orderBy: OrderByDateAscending,
       });
@@ -68,26 +74,28 @@ export const eventsRouter = {
   getCurrent: publicProcedure
     .input(SearchEventsInput)
     .query(async ({ ctx, input }) => {
+      const userId = ctx.session?.user.id;
       return await ctx.db.event.findMany({
         take: input.take,
         skip: (input.page - 1) * input.take,
         where: {
           AND: [
+            { ...SearchEventsQuery(input.query) },
             {
               ...GetCurrentQuery,
               ...GetPublishedQuery,
-            },
-            {
-              ...SearchEventsQuery(input.query),
+              ...BookmarkedQuery(userId, input.bookmarked),
+              ...FavoritedAccountsQuery(userId, input.favorites),
+              isFree: input.isFree,
+              isChildFriendly: input.isChildFriendly,
+              isHoliday: input.isHoliday,
+              servesAlcohol: input.servesAlcohol,
+              servesFood: input.servesFood,
             },
           ],
         },
         include: {
-          bookmarkedBy: {
-            where: {
-              id: ctx.session?.user.id,
-            },
-          },
+          ...BookmarkedIncludeQuery(userId),
         },
         orderBy: OrderByDateAscending,
       });
@@ -101,12 +109,10 @@ export const eventsRouter = {
         skip: (input.page - 1) * input.take,
         where: {
           AND: [
+            { ...SearchEventsQuery(input.query) },
             {
               ...GetPreviousDatesQuery,
               ...GetPublishedQuery,
-            },
-            {
-              ...SearchEventsQuery(input.query),
             },
           ],
         },
@@ -122,12 +128,10 @@ export const eventsRouter = {
         skip: (input.page - 1) * input.take,
         where: {
           AND: [
+            { ...SearchEventsQuery(input.query) },
             {
               ...GetFutureDatesQuery,
               ...GetDraftsQuery,
-            },
-            {
-              ...SearchEventsQuery(input.query),
             },
           ],
         },
@@ -171,12 +175,10 @@ export const eventsRouter = {
             skip: (input.page - 1) * input.take,
             where: {
               AND: [
+                { ...SearchEventsQuery(input.query) },
                 {
                   ...GetFutureDatesQuery,
                   ...GetPublishedQuery,
-                },
-                {
-                  ...SearchEventsQuery(input.query),
                 },
               ],
             },
