@@ -117,21 +117,27 @@ export const GetDraftsQuery = {
   status: EventStatus.SCHEDULED,
 } satisfies Prisma.EventWhereInput;
 
-export const EventIncludePublicQuery = {
-  _count: true,
-  city: true,
-  genres: true,
-  groups: true,
-  keywords: true,
-  musicians: true,
-  neighborhood: true,
-  organizer: true,
-  region: true,
-  state: true,
-  stage: true,
-  ticketLinks: true,
-  venue: true,
-} satisfies Prisma.EventInclude;
+export const EventIncludePublicQuery = (userId?: string) =>
+  ({
+    _count: true,
+    city: true,
+    genres: true,
+    groups: true,
+    keywords: true,
+    musicians: true,
+    neighborhood: true,
+    organizer: true,
+    region: true,
+    state: true,
+    stage: true,
+    ticketLinks: true,
+    venue: true,
+    bookmarkedBy: {
+      where: {
+        id: userId,
+      },
+    },
+  }) satisfies Prisma.EventInclude;
 
 export const OrderByDateAscending = {
   timeStart: "asc",

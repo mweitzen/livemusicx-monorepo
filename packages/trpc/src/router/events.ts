@@ -54,6 +54,13 @@ export const eventsRouter = {
             },
           ],
         },
+        include: {
+          bookmarkedBy: {
+            where: {
+              id: ctx.session?.user.id,
+            },
+          },
+        },
         orderBy: OrderByDateAscending,
       });
     }),
@@ -75,6 +82,13 @@ export const eventsRouter = {
             },
           ],
         },
+        include: {
+          bookmarkedBy: {
+            where: {
+              id: ctx.session?.user.id,
+            },
+          },
+        },
         orderBy: OrderByDateAscending,
       });
     }),
@@ -86,8 +100,15 @@ export const eventsRouter = {
         take: input.take,
         skip: (input.page - 1) * input.take,
         where: {
-          ...GetPreviousDatesQuery,
-          ...GetPublishedQuery,
+          AND: [
+            {
+              ...GetPreviousDatesQuery,
+              ...GetPublishedQuery,
+            },
+            {
+              ...SearchEventsQuery(input.query),
+            },
+          ],
         },
         orderBy: OrderByDateDescending,
       });
@@ -100,8 +121,15 @@ export const eventsRouter = {
         take: input.take,
         skip: (input.page - 1) * input.take,
         where: {
-          ...GetPreviousDatesQuery,
-          ...GetDraftsQuery,
+          AND: [
+            {
+              ...GetFutureDatesQuery,
+              ...GetDraftsQuery,
+            },
+            {
+              ...SearchEventsQuery(input.query),
+            },
+          ],
         },
         orderBy: OrderByDateDescending,
       });
@@ -114,7 +142,7 @@ export const eventsRouter = {
           ...GetDetailsQuery(input),
         },
         include: {
-          ...EventIncludePublicQuery,
+          ...EventIncludePublicQuery(ctx.session?.user.id),
         },
       })
   ),
@@ -142,13 +170,37 @@ export const eventsRouter = {
             take: input.take,
             skip: (input.page - 1) * input.take,
             where: {
-              ...SearchEventsQuery(input.query),
+              AND: [
+                {
+                  ...GetFutureDatesQuery,
+                  ...GetPublishedQuery,
+                },
+                {
+                  ...SearchEventsQuery(input.query),
+                },
+              ],
             },
           },
         },
       });
       if (!user) return [];
       return user.eventsBookmarked;
+    }),
+
+  isBookmarked: protectedProcedure
+    .input(GetDetailsInput)
+    .query(async ({ ctx, input }) => {
+      const check = await ctx.db.event.findUnique({
+        where: {
+          id: input.id,
+          bookmarkedBy: {
+            some: {
+              id: ctx.session.user.id,
+            },
+          },
+        },
+      });
+      return !!check;
     }),
 
   addToBookmarked: protectedProcedure.input(GetDetailsInput).mutation(
