@@ -95,7 +95,7 @@ export default async function EventDetailsPage({
             className='flex-1'
           >
             <Heart className='mr-2 h-4 w-4' />
-            Interested
+            {event.bookmarkedBy.length ? "Un-Bookmark" : "Bookmark"}
           </Button>
           <Button
             variant='outline'
