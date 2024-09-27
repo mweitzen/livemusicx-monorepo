@@ -27,7 +27,6 @@ export default async function ExploreEventsPage({
 }) {
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = SearchEventsInput.parse(conversion);
-  console.log(query);
 
   const events = await api.events.getUpcoming(query);
 

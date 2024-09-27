@@ -1,12 +1,17 @@
 import { api } from "@repo/trpc/server";
-import { Button } from "@repo/ui/components/button";
-import { Card, CardContent } from "@repo/ui/components/card";
 import { convertSearchParamsToQuery } from "@repo/utils";
-import { SearchEventsInput } from "@repo/validators/events";
-import Link from "next/link";
-import { Suspense } from "react";
+
+import { Card, CardContent } from "@repo/ui/components/card";
 import { BookmarkButton } from "~/actions/events-components";
-import { SearchInput } from "~/components/features/filters";
+
+import {
+  ResetFilters,
+  SearchInput,
+  ToggleFilter,
+} from "~/components/features/filters";
+import { SearchEventsInput } from "@repo/validators/events";
+import { VenueTypeFilter } from "./filter";
+import { Button } from "@repo/ui/components/button";
 
 export default async function DemoPage({
   searchParams,
@@ -18,35 +23,69 @@ export default async function DemoPage({
 
   const events = await api.events.getUpcoming(query);
 
-  if (!events.length) {
-    return <p>Nothing found.</p>;
-  }
-
   return (
     <div>
       <p className='mt-4 text-2xl'>Demos</p>
       <SearchInput />
-      {events.map((event) => (
-        <Link
-          key={event.id}
-          href={`/event/${event.slug}`}
-          className='rounded-xl'
-        >
+      <VenueTypeFilter />
+      <ToggleFilter
+        name='isFree'
+        label='Free Events'
+      />
+      <ToggleFilter
+        name='bookmarked'
+        label='Bookmarked Events'
+      />
+      <ToggleFilter
+        name='favorites'
+        label='Favorites'
+      />
+      <ToggleFilter
+        name='isChildFriendly'
+        label='Child Friendly'
+      />
+      <ToggleFilter
+        name='isHoliday'
+        label='Holday Events'
+      />
+      <ToggleFilter
+        name='servesAlcohol'
+        label='Serves Alcohol'
+      />
+      <ToggleFilter
+        name='servesFood'
+        label='Serves Food'
+      />
+      <ResetFilters />
+      {!events.length ? (
+        <p>Nothing Found</p>
+      ) : (
+        events.map((event) => (
           <Card>
-            <Suspense fallback={<p>Loading...</p>}>
-              <BookmarkButton
-                id={event.id}
-                bookmarked={!!event.bookmarkedBy.length}
-              />
-            </Suspense>
+            <BookmarkButton
+              id={event.id}
+              bookmarked={!!event.bookmarkedBy.length}
+            />
+            <form
+              action={async () => {
+                "use server";
+                await api.events.addGenres({
+                  resourceId: event.id,
+                  tagId: "clsa0ngym000feg5fvjucc7ug",
+                });
+              }}
+            >
+              <Button>Add Jazz as Genre</Button>
+            </form>
             <CardContent>
               <p>{event.name}</p>
               <p>{event.timeStart.toString()}</p>
               <p>{event.timeEnd?.toString()}</p>
+              {event.genres?.map((genre) => <p>{genre.id}</p>)}
             </CardContent>
           </Card>
-        </Link>
-      ))}
+        ))
+      )}
     </div>
   );
 }
