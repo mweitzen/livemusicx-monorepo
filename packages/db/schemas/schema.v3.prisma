@@ -62,15 +62,20 @@ enum VenueType {
   GALLERY
   AREA
   CASINO
-  LOCATION
   COMPLEX
   STADIUM
+  HOTEL
+  MUSEUM
+  COMMUNITY_CENTER
+  PARK
+  FAIRGROUNDS
 }
 
 enum StageType {
   STAGE
   ROOM
   AREA
+  PATIO
 }
 
 enum EventStatus {
@@ -85,6 +90,17 @@ enum EventType {
   PERFORMANCE
   EXPERIENCE
   MEETUP
+  // OPEN_MIC
+  // JAM_SESSION
+  // WORKSHOP
+  // CLASS
+}
+
+enum LocationType {
+  REGION
+  STATE
+  CITY
+  NEIGHBORHOOD
 }
 
 enum NetworkType {
@@ -203,18 +219,19 @@ model User {
   lastUpdatedAt DateTime    @updatedAt
 
   // * AUTH / CREDENTIALS
-  password     String
+  password     String?
   authAccounts AuthAccount[]
   sessions     AuthSession[]
 
   // * BASIC INFO
-  email     String  @unique
-  username  String? @unique
-  name      String?
-  firstName String?
-  lastName  String?
-  image     String?
-  phone     String?
+  email    String  @unique
+  username String? @unique
+  name     String?
+  image    String?
+  phone    String?
+
+  homeLocationId String
+  homeLocation   Location @relation(fields: [homeLocationId], references: [id])
 
   // * ACCOUNT RELATIONS
   managedAccounts    Account[]
@@ -251,105 +268,33 @@ model User {
 //
 //
 //
-// * LOCATION (V1)
+// * LOCATION (V2)
 //
 //
 //
 //
 // --------------------
-model Zipcode {
-  id      String  @id @default(cuid())
-  code    Int     @unique
-  county  String
-  stateId String
-  state   State   @relation(fields: [stateId], references: [code])
-  venues  Venue[]
-}
+model Location {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  name        String
+  uniqueName  String       @unique
+  description String?
+  type        LocationType
 
-model Street {
-  id         String  @id @default(cuid())
-  uniqueName String  @unique
-  name       String
-  cityId     String
-  city       City    @relation(fields: [cityId], references: [id])
+  parentId String?
+  parent   Location?  @relation("LocationChildren", fields: [parentId], references: [id])
+  children Location[] @relation("LocationChildren")
+
+  latitude  Float
+  longitude Float
+
+  users      User[]
+  events     Event[]
   venues     Venue[]
-}
-
-model Neighborhood {
-  id                    String      @id @default(cuid())
-  name                  String
-  uniqueName            String      @unique
-  description           String
-  boundaries            String
-  cityId                String
-  city                  City        @relation(fields: [cityId], references: [id])
-  venues                Venue[]
-  events                Event[]
-  organizersOperatingIn Organizer[]
-}
-
-model City {
-  id            String         @id @default(cuid())
-  name          String
-  uniqueName    String         @unique
-  slug          String         @unique
-  county        String
-  center        String
-  lat           Float
-  lng           Float
-  regionId      String
-  region        Region         @relation(fields: [regionId], references: [id])
-  stateId       String
-  state         State          @relation(fields: [stateId], references: [code])
-  streets       Street[]
-  neighborhoods Neighborhood[]
-  events        Event[]
-
-  // * ACCOUNT RELATIONSHIPS
-  venues                Venue[]
-  musiciansBasedIn      Musician[]
-  musiciansOperatingIn  Musician[]  @relation("MusiciansPerformInCities")
-  groupsBasedIn         Band[]
-  groupsOperatingIn     Band[]      @relation("MusicGroupsPerformInCities")
-  organizersBasedIn     Organizer[]
-  organizersOperatingIn Organizer[] @relation("OrganizersCitiesServed")
-}
-
-model Region {
-  id                    String      @id @default(cuid())
-  name                  String      @unique
-  slug                  String      @unique
-  about                 String
-  center                String
-  northeast             String
-  southwest             String
-  lat                   Float
-  lng                   Float
-  north                 Float
-  east                  Float
-  south                 Float
-  west                  Float
-  stateId               String
-  state                 State       @relation(fields: [stateId], references: [code])
-  cities                City[]
-  events                Event[]
-  venues                Venue[]
-  organizersOperatingIn Organizer[]
-}
-
-model State {
-  code                  String      @id @unique
-  name                  String      @unique
-  lat                   Float
-  lng                   Float
-  center                String
-  regions               Region[]
-  cities                City[]
-  venues                Venue[]
-  events                Event[]
-  zipcodes              Zipcode[]
-  organizersOperatingIn Organizer[]
-  networks              Network[]
+  musicians  Musician[]
+  bands      Band[]
+  organizers Organizer[]
 }
 
 // --------------------
@@ -449,12 +394,8 @@ model Musician {
   bands       Band[]
 
   // * LOCATION
-  basedIn       Network   @relation(fields: [basedInId], references: [id])
-  basedInId     String
-  basedInOld    City      @relation(fields: [basedInOldId], references: [id])
-  basedInOldId  String
-  operatesIn    Network[] @relation("MusiciansOperatingInNetwork")
-  operatesInOld City[]    @relation("MusiciansPerformInCities")
+  basedIn   Location @relation(fields: [basedInId], references: [id])
+  basedInId String
 
   // * EVENTS
   events           Event[]
@@ -479,12 +420,8 @@ model Band {
   members Musician[]
 
   // * LOCATION
-  basedIn       Network   @relation(fields: [basedInId], references: [id])
-  basedInId     String
-  basedInOld    City      @relation(fields: [basedInOldId], references: [id])
-  basedInOldId  String
-  operatesIn    Network[] @relation("BandsOperatingInNetwork")
-  operatesInOld City[]    @relation("MusicGroupsPerformInCities")
+  basedIn   Location @relation(fields: [basedInId], references: [id])
+  basedInId String
 
   // * EVENTS
   events           Event[]
@@ -517,24 +454,12 @@ model Venue {
   privateAccess       Boolean   @default(false)
 
   // * LOCATION
-  network        Network       @relation(fields: [networkId], references: [id])
-  networkId      String
-  addressLong    String
-  addressShort   String
-  streetNumber   String?
-  unit           String?
-  streetId       String
-  street         Street        @relation(fields: [streetId], references: [id])
-  zipcodeId      String
-  zipcode        Zipcode       @relation(fields: [zipcodeId], references: [id])
-  neighborhoodId String?
-  neighborhood   Neighborhood? @relation(fields: [neighborhoodId], references: [id])
-  cityId         String
-  city           City          @relation(fields: [cityId], references: [id])
-  regionId       String
-  region         Region        @relation(fields: [regionId], references: [id])
-  stateId        String
-  state          State         @relation(fields: [stateId], references: [code])
+  network      Network  @relation(fields: [networkId], references: [id])
+  networkId    String
+  addressLong  String
+  addressShort String
+  locationId   String
+  location     Location @relation(fields: [locationId], references: [id])
 
   // * BUSINESS CONTACT
   googleBusinessUrl String?
@@ -579,15 +504,8 @@ model Organizer {
   accountId String  @unique
 
   // * LOCATION
-  basedIn       Network        @relation(fields: [basedInId], references: [id])
-  basedInId     String
-  basedInOld    City           @relation(fields: [basedInOldId], references: [id])
-  basedInOldId  String
-  operatesIn    Network[]      @relation("OrganizersOperatingInNetwork")
-  operatesInOld City[]         @relation("OrganizersCitiesServed")
-  states        State[]
-  regions       Region[]
-  neighborhoods Neighborhood[]
+  basedIn   Location @relation(fields: [basedInId], references: [id])
+  basedInId String
 
   // * DETAILS
   experienceSummary String?
@@ -685,16 +603,10 @@ model Event {
   ticketLinks          TicketLink[]
 
   // * LOCATION
-  network        Network       @relation(fields: [networkId], references: [id])
-  networkId      String
-  neighborhoodId String?
-  neighborhood   Neighborhood? @relation(fields: [neighborhoodId], references: [id])
-  cityId         String?
-  city           City?         @relation(fields: [cityId], references: [id])
-  regionId       String?
-  region         Region?       @relation(fields: [regionId], references: [id])
-  stateId        String?
-  state          State?        @relation(fields: [stateId], references: [code])
+  network    Network  @relation(fields: [networkId], references: [id])
+  networkId  String
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId String
 
   // * PARTICIPANTS
   venue       Venue?     @relation(fields: [venueId], references: [id])
@@ -896,22 +808,13 @@ model Network {
   parentId String?
   children Network[] @relation("NetworkHeirarchy")
 
-  // * STATES
-  states State[]
-
   // * BASIC INFO
   name     String
   about    String?
   imageUrl String?
 
   // * ACCOUNTS
-  venues                Venue[]
-  organizers            Organizer[]
-  organizersOperatingIn Organizer[] @relation("OrganizersOperatingInNetwork")
-  musicians             Musician[]
-  musiciansOperatingIn  Musician[]  @relation("MusiciansOperatingInNetwork")
-  bands                 Band[]
-  bandsOperatingIn      Band[]      @relation("BandsOperatingInNetwork")
+  venues Venue[]
 
   // * EVENTS
   events     Event[]

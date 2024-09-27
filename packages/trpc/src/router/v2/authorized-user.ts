@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { createTRPCRouter, authorizedProcedure } from "../../../trpc";
+import { createTRPCRouter, authorizedProcedure } from "../../trpc";
 
 export const authorizedRouter = createTRPCRouter({
   getManagedAccounts: authorizedProcedure.query(async ({ ctx }) => {

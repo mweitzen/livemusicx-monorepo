@@ -1,31 +1,39 @@
+import { z } from "zod";
+import { Prisma } from "@repo/db/schema";
+
 import {
   authorizedProcedure,
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
-} from "../../../trpc";
-import { TRPCError } from "@trpc/server";
+} from "../../trpc";
 
-import { z } from "zod";
-import { Prisma } from "@repo/db/schema";
-import { OrganizerInputSchema } from "@repo/validators";
+import { VenueInputSchema } from "@repo/validators";
 
 import { generateUniqueSlug } from "@repo/db/helpers";
 
 /**
  *
- *
- *  Initialize the Organizers Router
- *
+ *  Initialize the Venues Router
  *
  */
-export const organizersRouter = createTRPCRouter({
-  list: publicProcedure.query(({ ctx }) => ctx.db.organizer.findMany()),
+export const venuesRouter = createTRPCRouter({
+  /**
+   *
+   * List all venues
+   *
+   */
+  list: publicProcedure.query(({ ctx }) => ctx.db.venue.findMany()),
 
+  /**
+   *
+   * Search venues with a query parameter
+   *
+   */
   search: publicProcedure
     .input(z.object({ query: z.string().optional() }).optional())
     .query(async ({ ctx, input }) => {
-      let where = {} as Prisma.OrganizerWhereInput;
+      let where = {} as Prisma.VenueWhereInput;
 
       if (input && input.query) {
         const searchProperties = {
@@ -37,27 +45,36 @@ export const organizersRouter = createTRPCRouter({
           { name: searchProperties },
           { about: searchProperties },
           { genres: { some: { name: searchProperties } } },
+          { keywords: { some: { name: searchProperties } } },
         ];
       }
 
-      return await ctx.db.organizer.findMany({
+      return await ctx.db.venue.findMany({
         where,
         select: {
           id: true,
           name: true,
+          addressShort: true,
           avatar: true,
           genres: true,
+          keywords: true,
           slug: true,
+          type: true,
         },
       });
     }),
 
+  /**
+   *
+   * Search unclaimed venues
+   *
+   */
   searchUnclaimed: authorizedProcedure
     .input(z.object({ name: z.string().optional() }).optional())
     .query(async ({ ctx, input }) => {
       if (!input || !input.name) return [];
 
-      return await ctx.db.organizer.findMany({
+      return await ctx.db.venue.findMany({
         where: {
           name: {
             contains: input.name,
@@ -69,61 +86,100 @@ export const organizersRouter = createTRPCRouter({
         select: {
           id: true,
           name: true,
+          addressShort: true,
         },
       });
     }),
 
+  /**
+   *
+   * Get public facing details for a single venue
+   * given the provided "slug" as a paramter.
+   *
+   */
   getPublicDetails: publicProcedure
     .input(z.object({ slug: z.string() }))
     .query(({ ctx, input }) =>
-      ctx.db.organizer.findFirst({
+      ctx.db.venue.findFirst({
         where: { slug: input.slug },
         select: {
           about: true,
-          basedIn: true,
-          affiliatedMusicians: true,
+          addressLong: true,
+          addressShort: true,
           affiliatedGroups: true,
-          affiliatedVenues: true,
+          affiliatedMusicians: true,
+          affiliatedOrganizers: true,
+          ageRestriction: true,
           avatar: true,
+          businessGoogle: true,
+          businessOpentable: true,
+          businessTripadvisor: true,
+          businessYelp: true,
           canCall: true,
           canText: true,
           canEmail: true,
-          emailInquiries: true,
+          city: true,
+          email: true,
+          emailBooking: true,
           genres: true,
           id: true,
+          keywords: true,
+          minimumAge: true,
           name: true,
+          neighborhood: true,
           phone: true,
-          phoneInquiries: true,
+          phoneBooking: true,
+          region: true,
+          requiresReservation: true,
+          reservationLink: true,
+          servesAlcohol: true,
+          servesFood: true,
           slug: true,
           socialFacebook: true,
           socialInstagram: true,
           socialTwitter: true,
           socialYouTube: true,
+          stages: true,
+          state: true,
+          street: true,
+          streetNumber: true,
+          type: true,
+          unit: true,
           username: {
             select: {
               username: true,
             },
           },
           website: true,
+          zipcode: true,
         },
       })
     ),
 
-  getAuthorizedDetails: authorizedProcedure
+  /**
+   *
+   * GET ADMIN DETAILS
+   *
+   * Get public facing details for a single venue
+   * given the provided "slug" as a paramter.
+   *
+   */
+  getAdminDetails: authorizedProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      // check if musician exists
+      // check if venue exists
       // return NOT FOUND
       // check if user manages the account
       // return UNAUTHORIZED
-      // return musician
-      const organizer = await ctx.db.organizer.findFirst({
+      // return venue
+      const venue = await ctx.db.venue.findFirst({
         where: {
           id: input.id,
           // accountManagerId: ctx.session.user.id,
         },
         include: {
           accountManager: true,
+          city: true,
           favoritedBy: {
             select: {
               _count: true,
@@ -135,21 +191,33 @@ export const organizersRouter = createTRPCRouter({
             },
           },
           genres: true,
+          keywords: true,
+          neighborhood: true,
+          region: true,
+          stages: true,
+          street: true,
+          state: true,
           username: true,
+          zipcode: true,
         },
       });
 
-      if (!organizer) {
+      if (!venue) {
         return null;
       }
 
-      return organizer;
+      return venue;
     }),
 
+  /**
+   *
+   * Get events for a given venue
+   *
+   */
   getEvents: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      const organizer = await ctx.db.organizer.findFirst({
+      const venue = await ctx.db.venue.findFirst({
         where: { id: input.id },
         select: {
           events: {
@@ -159,8 +227,8 @@ export const organizersRouter = createTRPCRouter({
           },
         },
       });
-      if (!organizer) return [];
-      return [...organizer.events];
+      if (!venue) return [];
+      return [...venue.events];
     }),
 
   // getAffiliatedMusicians: publicProcedure.query(()=>{}),
@@ -170,7 +238,7 @@ export const organizersRouter = createTRPCRouter({
   favorite: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(({ ctx, input }) =>
-      ctx.db.organizer.update({
+      ctx.db.venue.update({
         where: { id: input.id },
         data: {
           favoritedBy: {
@@ -185,7 +253,7 @@ export const organizersRouter = createTRPCRouter({
   unfavorite: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(({ ctx, input }) =>
-      ctx.db.organizer.update({
+      ctx.db.venue.update({
         where: { id: input.id },
         data: {
           favoritedBy: {
@@ -198,106 +266,40 @@ export const organizersRouter = createTRPCRouter({
     ),
 
   create: authorizedProcedure
-    .input(OrganizerInputSchema)
+    .input(VenueInputSchema)
     .mutation(async ({ ctx, input }) => {
-      const { genreIds, ...data } = input;
-      const slug = await generateUniqueSlug(data.name, "musician");
-      const newOrganizer = await ctx.db.organizer.create({
-        data: {
-          slug,
-          active: true,
-          accountManagerId: ctx.session.user.id,
-          genres: {
-            connect: genreIds,
-          },
-          ...data,
-        },
-      });
+      const {
+        genreIds,
+        keywordIds,
+        state,
+        street,
+        city,
+        neighborhood,
+        zipcode,
+        ...data
+      } = input;
+      const slug = await generateUniqueSlug(data.name, "venue");
+      // const newVenue = await ctx.db.venue.create({
+      //   data: {
+      //     slug,
+      //     active: true,
+      //     accountManagerId: ctx.session.user.id,
+      //     genres: {
+      //       connect: genreIds,
+      //     },
+      //     keywords: {
+      //       connect: keywordIds,
+      //     },
+      //     ...data,
+      //   },
+      // });
 
-      return newOrganizer;
+      // return newVenue;
     }),
-
-  claim: authorizedProcedure
-    .input(z.object({ id: z.string(), data: OrganizerInputSchema }))
-    .mutation(async ({ ctx, input }) => {
-      // check that the account is not already claimed
-      const accountClaimed = await ctx.db.organizer.findFirst({
-        where: {
-          id: input.id,
-          active: true,
-          accountManagerId: {
-            not: null,
-          },
-        },
-      });
-
-      if (accountClaimed) {
-        throw new TRPCError({
-          message: "Error trying to claim account. Account already claimed.",
-          code: "FORBIDDEN",
-        });
-      }
-      const { genreIds, ...data } = input.data;
-
-      const updatedOrganizer = await ctx.db.organizer.update({
-        where: {
-          id: input.id,
-        },
-        data: {
-          active: true,
-          accountManagerId: ctx.session.user.id,
-          genres: {
-            connect: genreIds,
-          },
-          ...data,
-        },
-      });
-
-      return updatedOrganizer;
-    }),
-
-  update: authorizedProcedure
-    .input(z.object({ id: z.string(), data: OrganizerInputSchema }))
-    .mutation(async ({ ctx, input }) => {
-      // check that user manages the account they are updating
-      // if not return UNAUTHORIZED
-      // update Organizer
-      const { genreIds, ...data } = input.data;
-
-      const updatedOrganizer = await ctx.db.organizer.update({
-        where: {
-          id: input.id,
-        },
-        data: {
-          genres: {
-            connect: genreIds,
-          },
-          ...data,
-        },
-      });
-
-      return updatedOrganizer;
-    }),
-
-  deactivate: authorizedProcedure
-    .input(z.object({ id: z.string() }))
-    .mutation(async ({ ctx, input }) => {
-      const updatedOrganizer = await ctx.db.organizer.update({
-        where: {
-          id: input.id,
-        },
-        data: {
-          active: false,
-          accountManager: {
-            disconnect: {
-              id: ctx.session.user.id,
-            },
-          },
-        },
-      });
-      return "success";
-    }),
-  // transfer: authorizedProcedure.mutation(() => {}),
+  claim: authorizedProcedure.mutation(() => {}),
+  update: authorizedProcedure.mutation(() => {}),
+  deactivate: authorizedProcedure.mutation(() => {}),
+  transfer: authorizedProcedure.mutation(() => {}),
 
   requestAffiliation: authorizedProcedure.mutation(() => {}),
   acceptAffiliation: authorizedProcedure.mutation(() => {}),
@@ -306,4 +308,8 @@ export const organizersRouter = createTRPCRouter({
 
   sendInquiry: authorizedProcedure.mutation(() => {}),
   message: authorizedProcedure.mutation(() => {}),
+
+  createStage: authorizedProcedure.mutation(() => {}),
+  updateStage: authorizedProcedure.mutation(() => {}),
+  deleteStage: authorizedProcedure.mutation(() => {}),
 });

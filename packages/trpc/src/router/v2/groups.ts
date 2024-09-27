@@ -1,25 +1,25 @@
 import { z } from "zod";
-import { Prisma } from "@repo/db/schema";
-
 import {
-  authorizedProcedure,
   createTRPCRouter,
-  protectedProcedure,
   publicProcedure,
-} from "../../../trpc";
-
-import { MusicianInputSchema } from "@repo/validators";
+  protectedProcedure,
+  authorizedProcedure,
+} from "../../trpc";
 import { TRPCError } from "@trpc/server";
+
+import { GroupInputSchema } from "@repo/validators";
 
 import { generateUniqueSlug } from "@repo/db/helpers";
 
-export const musiciansRouter = createTRPCRouter({
-  list: publicProcedure.query(({ ctx }) => ctx.db.musician.findMany()),
+import { Prisma } from "@repo/db/schema";
+
+export const groupsRouter = createTRPCRouter({
+  list: publicProcedure.query(({ ctx }) => ctx.db.musicGroup.findMany()),
 
   search: publicProcedure
     .input(z.object({ query: z.string().optional() }).optional())
     .query(async ({ ctx, input }) => {
-      let where = {} as Prisma.MusicianWhereInput;
+      let where = {} as Prisma.MusicGroupWhereInput;
 
       if (input && input.query) {
         const searchProperties = {
@@ -34,7 +34,7 @@ export const musiciansRouter = createTRPCRouter({
         ];
       }
 
-      return await ctx.db.musician.findMany({
+      return await ctx.db.musicGroup.findMany({
         where,
         select: {
           id: true,
@@ -51,7 +51,7 @@ export const musiciansRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       if (!input || !input.name) return [];
 
-      return await ctx.db.musician.findMany({
+      return await ctx.db.musicGroup.findMany({
         where: {
           name: {
             contains: input.name,
@@ -70,14 +70,14 @@ export const musiciansRouter = createTRPCRouter({
   getPublicDetails: publicProcedure
     .input(z.object({ slug: z.string() }))
     .query(({ ctx, input }) =>
-      ctx.db.musician.findFirst({
+      ctx.db.musicGroup.findFirst({
         where: { slug: input.slug },
         select: {
           about: true,
           basedIn: true,
           affiliatedOrganizers: true,
           affiliatedVenues: true,
-          groups: true,
+          members: true,
           avatar: true,
           canCall: true,
           canText: true,
@@ -112,7 +112,7 @@ export const musiciansRouter = createTRPCRouter({
       // check if user manages the account
       // return UNAUTHORIZED
       // return musician
-      const musician = await ctx.db.musician.findFirst({
+      const musician = await ctx.db.musicGroup.findFirst({
         where: {
           id: input.id,
           // accountManagerId: ctx.session.user.id,
@@ -144,7 +144,7 @@ export const musiciansRouter = createTRPCRouter({
   getEvents: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      const musician = await ctx.db.musician.findFirst({
+      const group = await ctx.db.musicGroup.findFirst({
         where: { id: input.id },
         select: {
           events: {
@@ -154,54 +154,14 @@ export const musiciansRouter = createTRPCRouter({
           },
         },
       });
-      if (!musician) return [];
-      return [...musician.events];
+      if (!group) return [];
+      return [...group.events];
     }),
-
-  getRelatedMusicians: publicProcedure
-    .input(z.object({ id: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const musician = await ctx.db.musician.findUnique({
-        where: {
-          id: input.id,
-        },
-        select: {
-          groups: {
-            select: {
-              members: true,
-            },
-          },
-          affiliatedVenues: {
-            select: {
-              affiliatedMusicians: true,
-            },
-          },
-        },
-      });
-      if (!musician) return [];
-      const relatedMusicians = new Set<any>();
-      for (const group of musician.groups) {
-        for (const member of group.members) {
-          relatedMusicians.add(member);
-        }
-      }
-      for (const venue of musician.affiliatedVenues) {
-        for (const affiliatedMusician of venue.affiliatedMusicians) {
-          relatedMusicians.add(affiliatedMusician);
-        }
-      }
-
-      return Array.from(relatedMusicians);
-    }),
-
-  // getAffiliatedMusicians: publicProcedure.query(()=>{}),
-  // getAffiliatedGroups: publicProcedure.query(()=>{}),
-  // getAffiliatedOrganizers: publicProcedure.query(()=>{}),
 
   favorite: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(({ ctx, input }) =>
-      ctx.db.musician.update({
+      ctx.db.musicGroup.update({
         where: { id: input.id },
         data: {
           favoritedBy: {
@@ -216,7 +176,7 @@ export const musiciansRouter = createTRPCRouter({
   unfavorite: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(({ ctx, input }) =>
-      ctx.db.musician.update({
+      ctx.db.musicGroup.update({
         where: { id: input.id },
         data: {
           favoritedBy: {
@@ -229,34 +189,34 @@ export const musiciansRouter = createTRPCRouter({
     ),
 
   create: authorizedProcedure
-    .input(MusicianInputSchema)
+    .input(GroupInputSchema)
     .mutation(async ({ ctx, input }) => {
-      const { genreIds, groupIds, ...data } = input;
-      const slug = await generateUniqueSlug(data.name, "musician");
-      const newMusician = await ctx.db.musician.create({
+      const { genreIds, memberIds, ...data } = input;
+      const slug = await generateUniqueSlug(data.name, "band");
+      const newGroup = await ctx.db.musicGroup.create({
         data: {
           slug,
           active: true,
           accountManagerId: ctx.session.user.id,
-          performerType: "musician",
+          performerType: "group",
           genres: {
             connect: genreIds,
           },
-          groups: {
-            connect: groupIds,
+          members: {
+            connect: memberIds,
           },
           ...data,
         },
       });
 
-      return newMusician;
+      return newGroup;
     }),
 
   claim: authorizedProcedure
-    .input(z.object({ id: z.string(), data: MusicianInputSchema }))
+    .input(z.object({ id: z.string(), data: GroupInputSchema }))
     .mutation(async ({ ctx, input }) => {
       // check that the account is not already claimed
-      const accountClaimed = await ctx.db.musician.findFirst({
+      const accountClaimed = await ctx.db.musicGroup.findFirst({
         where: {
           id: input.id,
           active: true,
@@ -272,9 +232,9 @@ export const musiciansRouter = createTRPCRouter({
           code: "FORBIDDEN",
         });
       }
-      const { genreIds, groupIds, ...data } = input.data;
+      const { genreIds, memberIds, ...data } = input.data;
 
-      const updatedMusician = await ctx.db.musician.update({
+      const updatedGroup = await ctx.db.musicGroup.update({
         where: {
           id: input.id,
         },
@@ -284,25 +244,25 @@ export const musiciansRouter = createTRPCRouter({
           genres: {
             connect: genreIds,
           },
-          groups: {
-            connect: groupIds,
+          members: {
+            connect: memberIds,
           },
           ...data,
         },
       });
 
-      return updatedMusician;
+      return updatedGroup;
     }),
 
   update: authorizedProcedure
-    .input(z.object({ id: z.string(), data: MusicianInputSchema }))
+    .input(z.object({ id: z.string(), data: GroupInputSchema }))
     .mutation(async ({ ctx, input }) => {
       // check that user manages the account they are updating
       // if not return UNAUTHORIZED
-      // update musician
-      const { genreIds, groupIds, ...data } = input.data;
+      // update Group
+      const { genreIds, memberIds, ...data } = input.data;
 
-      const updatedMusician = await ctx.db.musician.update({
+      const updatedGroup = await ctx.db.musicGroup.update({
         where: {
           id: input.id,
         },
@@ -310,20 +270,20 @@ export const musiciansRouter = createTRPCRouter({
           genres: {
             connect: genreIds,
           },
-          groups: {
-            connect: groupIds,
+          members: {
+            connect: memberIds,
           },
           ...data,
         },
       });
 
-      return updatedMusician;
+      return updatedGroup;
     }),
 
   deactivate: authorizedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const updatedMusician = await ctx.db.musician.update({
+      const updatedGroup = await ctx.db.musicGroup.update({
         where: {
           id: input.id,
         },
@@ -339,7 +299,6 @@ export const musiciansRouter = createTRPCRouter({
       return "success";
     }),
   // transfer: authorizedProcedure.mutation(() => {}),
-
   requestAffiliation: authorizedProcedure.mutation(() => {}),
   acceptAffiliation: authorizedProcedure.mutation(() => {}),
   denyAffiliation: authorizedProcedure.mutation(() => {}),

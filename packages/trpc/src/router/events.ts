@@ -34,6 +34,7 @@ import {
   GetFutureDatesQuery,
   GetPreviousDatesQuery,
   GetPublishedQuery,
+  MultiKeywordQuery,
   OrderByDateAscending,
   OrderByDateDescending,
   SearchEventsQuery,
@@ -53,6 +54,8 @@ export const eventsRouter = {
           AND: [
             { ...SearchEventsQuery(input.query) },
             { venue: { ...VenueTypesQuery(input.venueTypes) } },
+            { genres: { ...MultiKeywordQuery(input.genres) } },
+            { keywords: { ...MultiKeywordQuery(input.keywords) } },
             {
               ...GetFutureDatesQuery,
               ...GetPublishedQuery,
@@ -63,11 +66,17 @@ export const eventsRouter = {
               isHoliday: input.isHoliday,
               servesAlcohol: input.servesAlcohol,
               servesFood: input.servesFood,
+              // Price range query
+              // location query
+              // event type query
+              // age restriction query
+              // performer type / group size query
             },
           ],
         },
         include: {
           ...BookmarkedIncludeQuery(userId),
+          genres: true,
         },
         orderBy: OrderByDateAscending,
       });
@@ -83,6 +92,9 @@ export const eventsRouter = {
         where: {
           AND: [
             { ...SearchEventsQuery(input.query) },
+            { venue: { ...VenueTypesQuery(input.venueTypes) } },
+            { genres: { ...MultiKeywordQuery(input.genres) } },
+            { keywords: { ...MultiKeywordQuery(input.keywords) } },
             {
               ...GetCurrentQuery,
               ...GetPublishedQuery,
@@ -129,6 +141,7 @@ export const eventsRouter = {
         take: input.take,
         skip: (input.page - 1) * input.take,
         where: {
+          // createdBy: ctx.session.user.id,
           AND: [
             { ...SearchEventsQuery(input.query) },
             {
@@ -160,6 +173,7 @@ export const eventsRouter = {
         where: {
           ...GetFeatureDatesQuery,
           ...GetPublishedQuery,
+          // location query
         },
       })
   ),
@@ -312,6 +326,7 @@ export const eventsRouter = {
   addGenres: authorizedProcedure
     .input(AddTagInput)
     .mutation(async ({ ctx, input }) => {
+      console.log(input);
       // TODO: Ensure User can Edit Event
       await ctx.db.event.update({
         where: {

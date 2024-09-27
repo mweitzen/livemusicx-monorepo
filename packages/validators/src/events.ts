@@ -17,6 +17,7 @@ export const SearchEventsInput = z
     favorites: z.boolean().optional(), // off, include, exclude
     groupSizes: z.array(GroupSize).optional(),
     venueTypes: z.array(VenueType).optional(),
+    keywords: z.array(z.string()).optional(),
     servesAlcohol: z.boolean().optional(), // off, include, exclude
     servesFood: z.boolean().optional(), // off, include, exclude
     minimumAge: z.number().optional(), // off, include, exclude

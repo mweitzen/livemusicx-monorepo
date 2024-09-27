@@ -1,13 +1,15 @@
 import type { TRPCRouterRecord } from "@trpc/server";
+import { __PLACEHOLDER__ } from "@repo/validators/general";
 
 import { protectedProcedure } from "../trpc";
-import { __PLACEHOLDER__ } from "@repo/validators/general";
 import { SetHomeLocationInput } from "@repo/validators/user";
 
 export const userRouter = {
   current: protectedProcedure.query(
     async ({ ctx }) =>
-      await ctx.db.user.findUnique({ where: { id: ctx.session.user.id } })
+      await ctx.db.user.findUnique({
+        where: { id: ctx.session.user.id },
+      })
   ),
 
   get: protectedProcedure
@@ -20,7 +22,13 @@ export const userRouter = {
         where: {
           id: ctx.session.user.id,
         },
-        data: {},
+        data: {
+          // homeLocation: {
+          //   connect: {
+          //     id: input.id
+          //   }
+          // }
+        },
       })
   ),
 

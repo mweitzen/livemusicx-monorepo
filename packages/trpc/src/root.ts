@@ -3,6 +3,7 @@ import { createTRPCRouter } from "./trpc";
 import { v1Router } from "./router/v1";
 
 import { authRouter } from "./router/auth";
+import { userRouter } from "./router/user";
 import { eventsRouter } from "./router/events";
 import { generalRouter } from "./router/general";
 import { accountsRouter } from "./router/accounts";
@@ -10,6 +11,7 @@ import { accountsRouter } from "./router/accounts";
 export const appRouter = createTRPCRouter({
   v1: v1Router,
   auth: authRouter,
+  user: userRouter,
   general: generalRouter,
   events: eventsRouter,
   accounts: accountsRouter,

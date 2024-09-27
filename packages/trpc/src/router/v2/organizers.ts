@@ -1,25 +1,31 @@
-import { z } from "zod";
 import {
-  createTRPCRouter,
-  publicProcedure,
-  protectedProcedure,
   authorizedProcedure,
-} from "../../../trpc";
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "../../trpc";
 import { TRPCError } from "@trpc/server";
 
-import { GroupInputSchema } from "@repo/validators";
+import { z } from "zod";
+import { Prisma } from "@repo/db/schema";
+import { OrganizerInputSchema } from "@repo/validators";
 
 import { generateUniqueSlug } from "@repo/db/helpers";
 
-import { Prisma } from "@repo/db/schema";
-
-export const groupsRouter = createTRPCRouter({
-  list: publicProcedure.query(({ ctx }) => ctx.db.musicGroup.findMany()),
+/**
+ *
+ *
+ *  Initialize the Organizers Router
+ *
+ *
+ */
+export const organizersRouter = createTRPCRouter({
+  list: publicProcedure.query(({ ctx }) => ctx.db.organizer.findMany()),
 
   search: publicProcedure
     .input(z.object({ query: z.string().optional() }).optional())
     .query(async ({ ctx, input }) => {
-      let where = {} as Prisma.MusicGroupWhereInput;
+      let where = {} as Prisma.OrganizerWhereInput;
 
       if (input && input.query) {
         const searchProperties = {
@@ -34,7 +40,7 @@ export const groupsRouter = createTRPCRouter({
         ];
       }
 
-      return await ctx.db.musicGroup.findMany({
+      return await ctx.db.organizer.findMany({
         where,
         select: {
           id: true,
@@ -51,7 +57,7 @@ export const groupsRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       if (!input || !input.name) return [];
 
-      return await ctx.db.musicGroup.findMany({
+      return await ctx.db.organizer.findMany({
         where: {
           name: {
             contains: input.name,
@@ -70,26 +76,25 @@ export const groupsRouter = createTRPCRouter({
   getPublicDetails: publicProcedure
     .input(z.object({ slug: z.string() }))
     .query(({ ctx, input }) =>
-      ctx.db.musicGroup.findFirst({
+      ctx.db.organizer.findFirst({
         where: { slug: input.slug },
         select: {
           about: true,
           basedIn: true,
-          affiliatedOrganizers: true,
+          affiliatedMusicians: true,
+          affiliatedGroups: true,
           affiliatedVenues: true,
-          members: true,
           avatar: true,
           canCall: true,
           canText: true,
           canEmail: true,
-          email: true,
+          emailInquiries: true,
           genres: true,
           id: true,
           name: true,
           phone: true,
+          phoneInquiries: true,
           slug: true,
-          socialBandcamp: true,
-          socialSpotify: true,
           socialFacebook: true,
           socialInstagram: true,
           socialTwitter: true,
@@ -112,7 +117,7 @@ export const groupsRouter = createTRPCRouter({
       // check if user manages the account
       // return UNAUTHORIZED
       // return musician
-      const musician = await ctx.db.musicGroup.findFirst({
+      const organizer = await ctx.db.organizer.findFirst({
         where: {
           id: input.id,
           // accountManagerId: ctx.session.user.id,
@@ -134,17 +139,17 @@ export const groupsRouter = createTRPCRouter({
         },
       });
 
-      if (!musician) {
+      if (!organizer) {
         return null;
       }
 
-      return musician;
+      return organizer;
     }),
 
   getEvents: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      const group = await ctx.db.musicGroup.findFirst({
+      const organizer = await ctx.db.organizer.findFirst({
         where: { id: input.id },
         select: {
           events: {
@@ -154,14 +159,18 @@ export const groupsRouter = createTRPCRouter({
           },
         },
       });
-      if (!group) return [];
-      return [...group.events];
+      if (!organizer) return [];
+      return [...organizer.events];
     }),
+
+  // getAffiliatedMusicians: publicProcedure.query(()=>{}),
+  // getAffiliatedGroups: publicProcedure.query(()=>{}),
+  // getAffiliatedOrganizers: publicProcedure.query(()=>{}),
 
   favorite: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(({ ctx, input }) =>
-      ctx.db.musicGroup.update({
+      ctx.db.organizer.update({
         where: { id: input.id },
         data: {
           favoritedBy: {
@@ -176,7 +185,7 @@ export const groupsRouter = createTRPCRouter({
   unfavorite: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(({ ctx, input }) =>
-      ctx.db.musicGroup.update({
+      ctx.db.organizer.update({
         where: { id: input.id },
         data: {
           favoritedBy: {
@@ -189,34 +198,30 @@ export const groupsRouter = createTRPCRouter({
     ),
 
   create: authorizedProcedure
-    .input(GroupInputSchema)
+    .input(OrganizerInputSchema)
     .mutation(async ({ ctx, input }) => {
-      const { genreIds, memberIds, ...data } = input;
-      const slug = await generateUniqueSlug(data.name, "band");
-      const newGroup = await ctx.db.musicGroup.create({
+      const { genreIds, ...data } = input;
+      const slug = await generateUniqueSlug(data.name, "musician");
+      const newOrganizer = await ctx.db.organizer.create({
         data: {
           slug,
           active: true,
           accountManagerId: ctx.session.user.id,
-          performerType: "group",
           genres: {
             connect: genreIds,
-          },
-          members: {
-            connect: memberIds,
           },
           ...data,
         },
       });
 
-      return newGroup;
+      return newOrganizer;
     }),
 
   claim: authorizedProcedure
-    .input(z.object({ id: z.string(), data: GroupInputSchema }))
+    .input(z.object({ id: z.string(), data: OrganizerInputSchema }))
     .mutation(async ({ ctx, input }) => {
       // check that the account is not already claimed
-      const accountClaimed = await ctx.db.musicGroup.findFirst({
+      const accountClaimed = await ctx.db.organizer.findFirst({
         where: {
           id: input.id,
           active: true,
@@ -232,9 +237,9 @@ export const groupsRouter = createTRPCRouter({
           code: "FORBIDDEN",
         });
       }
-      const { genreIds, memberIds, ...data } = input.data;
+      const { genreIds, ...data } = input.data;
 
-      const updatedGroup = await ctx.db.musicGroup.update({
+      const updatedOrganizer = await ctx.db.organizer.update({
         where: {
           id: input.id,
         },
@@ -244,25 +249,22 @@ export const groupsRouter = createTRPCRouter({
           genres: {
             connect: genreIds,
           },
-          members: {
-            connect: memberIds,
-          },
           ...data,
         },
       });
 
-      return updatedGroup;
+      return updatedOrganizer;
     }),
 
   update: authorizedProcedure
-    .input(z.object({ id: z.string(), data: GroupInputSchema }))
+    .input(z.object({ id: z.string(), data: OrganizerInputSchema }))
     .mutation(async ({ ctx, input }) => {
       // check that user manages the account they are updating
       // if not return UNAUTHORIZED
-      // update Group
-      const { genreIds, memberIds, ...data } = input.data;
+      // update Organizer
+      const { genreIds, ...data } = input.data;
 
-      const updatedGroup = await ctx.db.musicGroup.update({
+      const updatedOrganizer = await ctx.db.organizer.update({
         where: {
           id: input.id,
         },
@@ -270,20 +272,17 @@ export const groupsRouter = createTRPCRouter({
           genres: {
             connect: genreIds,
           },
-          members: {
-            connect: memberIds,
-          },
           ...data,
         },
       });
 
-      return updatedGroup;
+      return updatedOrganizer;
     }),
 
   deactivate: authorizedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const updatedGroup = await ctx.db.musicGroup.update({
+      const updatedOrganizer = await ctx.db.organizer.update({
         where: {
           id: input.id,
         },
@@ -299,6 +298,7 @@ export const groupsRouter = createTRPCRouter({
       return "success";
     }),
   // transfer: authorizedProcedure.mutation(() => {}),
+
   requestAffiliation: authorizedProcedure.mutation(() => {}),
   acceptAffiliation: authorizedProcedure.mutation(() => {}),
   denyAffiliation: authorizedProcedure.mutation(() => {}),
