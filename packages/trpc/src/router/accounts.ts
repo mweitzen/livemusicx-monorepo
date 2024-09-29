@@ -40,7 +40,7 @@ export const accountsRouter = {
             ...GetFeaturedAccountsQuery(input.location),
           });
         case "BAND":
-          return await ctx.db.musicGroup.findMany({
+          return await ctx.db.band.findMany({
             ...GetFeaturedAccountsQuery(input.location),
           });
         case "VENUE":

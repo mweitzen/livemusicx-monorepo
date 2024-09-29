@@ -3,7 +3,28 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const profileRouter = createTRPCRouter({
   musicians: {
-    getAll: publicProcedure.input(() => {}).query(async ({ ctx, input }) => {}),
+    getAll: publicProcedure
+      .input(() => {})
+      .query(
+        async ({ ctx, input }) =>
+          await ctx.db.musician.findUnique({
+            where: { id: "" },
+            include: { profile: true },
+          })
+      ),
+    test: publicProcedure.query(async ({ ctx }) => {
+      const musician = await ctx.db.musician.findUnique({
+        where: { id: "" },
+        include: {
+          profile: true,
+        },
+      });
+      if (!musician) return musician;
+      return {
+        ...musician,
+        ...musician.profile,
+      };
+    }),
   } satisfies TRPCRouterRecord,
 
   bands: {

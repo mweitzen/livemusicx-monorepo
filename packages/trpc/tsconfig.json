@@ -1,6 +1,6 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {},
-  "include": ["src"],
+  "include": ["src", "__archives/v1", "__archives/v2"],
   "exclude": ["node_modules", "__archives"]
 }

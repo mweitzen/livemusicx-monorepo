@@ -34,7 +34,8 @@ export const generalRouter = {
       // Create Keyword
       const result = await ctx.db.venueKeyword.create({
         data: {
-          name: input.name,
+          id: createSlug(input.name),
+          displayName: input.name,
         },
       });
     }),
@@ -49,13 +50,10 @@ export const generalRouter = {
 
       // Report innapropriate content
 
-      // Format Keyword
-      const slug = createSlug(input.name);
-
       // Create Keyword
       const result = await ctx.db.eventKeyword.create({
         data: {
-          name: slug,
+          id: createSlug(input.name),
           displayName: input.name,
         },
       });

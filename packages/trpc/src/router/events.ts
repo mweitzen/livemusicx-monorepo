@@ -56,11 +56,11 @@ export const eventsRouter = {
             { venue: { ...VenueTypesQuery(input.venueTypes) } },
             { genres: { ...MultiKeywordQuery(input.genres) } },
             { keywords: { ...MultiKeywordQuery(input.keywords) } },
+            { ...FavoritedAccountsQuery(userId, input.favorites) },
             {
               ...GetFutureDatesQuery,
               ...GetPublishedQuery,
               ...BookmarkedQuery(userId, input.bookmarked),
-              ...FavoritedAccountsQuery(userId, input.favorites),
               isFree: input.isFree,
               isChildFriendly: input.isChildFriendly,
               isHoliday: input.isHoliday,
@@ -77,6 +77,15 @@ export const eventsRouter = {
         include: {
           ...BookmarkedIncludeQuery(userId),
           genres: true,
+          venue: {
+            select: {
+              profile: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          },
         },
         orderBy: OrderByDateAscending,
       });
@@ -175,6 +184,14 @@ export const eventsRouter = {
           ...GetPublishedQuery,
           // location query
         },
+        include: {
+          venue: {
+            include: {
+              profile: true,
+            },
+          },
+        },
+        orderBy: OrderByDateAscending,
       })
   ),
 
@@ -186,7 +203,7 @@ export const eventsRouter = {
           id: ctx.session.user.id,
         },
         select: {
-          eventsBookmarked: {
+          bookmarkedEvents: {
             take: input.take,
             skip: (input.page - 1) * input.take,
             where: {
@@ -202,7 +219,7 @@ export const eventsRouter = {
         },
       });
       if (!user) return [];
-      return user.eventsBookmarked;
+      return user.bookmarkedEvents;
     }),
 
   isBookmarked: protectedProcedure
@@ -228,7 +245,7 @@ export const eventsRouter = {
           id: ctx.session.user.id,
         },
         data: {
-          eventsBookmarked: {
+          bookmarkedEvents: {
             connect: {
               id: input.id!,
               slug: input.slug!,
@@ -245,7 +262,7 @@ export const eventsRouter = {
           id: ctx.session.user.id,
         },
         data: {
-          eventsBookmarked: {
+          bookmarkedEvents: {
             disconnect: {
               id: input.id!,
               slug: input.slug!,

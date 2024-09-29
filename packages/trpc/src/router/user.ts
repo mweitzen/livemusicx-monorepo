@@ -23,11 +23,11 @@ export const userRouter = {
           id: ctx.session.user.id,
         },
         data: {
-          // homeLocation: {
-          //   connect: {
-          //     id: input.id
-          //   }
-          // }
+          homeLocation: {
+            connect: {
+              id: input.id,
+            },
+          },
         },
       })
   ),
