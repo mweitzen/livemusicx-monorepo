@@ -1,16 +1,24 @@
 // Learn more https://docs.expo.dev/guides/monorepos
 const { getDefaultConfig } = require("expo/metro-config");
 const { FileStore } = require("metro-cache");
+const { withNativeWind } = require("nativewind/metro");
+
 const path = require("path");
 
 const config = withTurborepoManagedCache(
   withMonorepoPaths(
     withNativeWind(getDefaultConfig(__dirname), {
-      input: "./src/styles.css",
+      input: "../../packages/ui/src/globals.css",
       configPath: "./tailwind.config.ts",
     })
   )
 );
+
+// XXX: Resolve our exports in workspace packages
+// https://github.com/expo/expo/issues/26926
+config.resolver.unstable_enablePackageExports = true;
+// Force Metro to resolve (sub)dependencies only from the `nodeModulesPaths`
+config.resolver.disableHierarchicalLookup = true;
 
 module.exports = config;
 

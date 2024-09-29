@@ -1,3 +1,5 @@
+// import '@repo/ui/styles.css'
+
 import {
   DarkTheme,
   DefaultTheme,
@@ -9,8 +11,10 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
-// import { TRPCProvider } from "@repo/trpc";
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { TRPCProvider } from "@repo/trpc/mobile";
+import { getBaseUrl } from "~/utils/base-url";
+import { getToken } from "~/utils/session-store";
+import { useColorScheme } from "~/hooks/useColorScheme";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -20,6 +24,9 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
+
+  const baseUrl = getBaseUrl();
+  const token = getToken();
 
   useEffect(() => {
     if (loaded) {
@@ -32,14 +39,19 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen
-          name='(tabs)'
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name='+not-found' />
-      </Stack>
-    </ThemeProvider>
+    <TRPCProvider
+      baseUrl={baseUrl}
+      token={token}
+    >
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen
+            name='(tabs)'
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name='+not-found' />
+        </Stack>
+      </ThemeProvider>
+    </TRPCProvider>
   );
 }
