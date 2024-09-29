@@ -89,6 +89,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "holdmyticket-res.cloudinary.com",
       },
+      // lorem flickr
+      {
+        protocol: "https",
+        hostname: "loremflickr.com",
+      },
     ],
   },
 };

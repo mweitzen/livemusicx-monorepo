@@ -79,7 +79,7 @@ export default async function DemoPage({
             </form>
             <CardContent>
               <p>{event.name}</p>
-              <p>{event.timeStart.toString()}</p>
+              <p>{event.timeStart!.toString()}</p>
               <p>{event.timeEnd?.toString()}</p>
               {event.genres?.map((genre) => <p>{genre.id}</p>)}
             </CardContent>

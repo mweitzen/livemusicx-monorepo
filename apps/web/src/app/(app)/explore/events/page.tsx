@@ -20,6 +20,12 @@ import {
 import { Calendar, MapPin, Music, Ticket } from "@repo/ui/icons";
 import { SearchEventsInput } from "@repo/validators/events";
 
+import {
+  ResetFilters,
+  SearchInput,
+  ToggleFilter,
+} from "~/components/features/filters";
+
 export default async function ExploreEventsPage({
   searchParams,
 }: {
@@ -32,6 +38,35 @@ export default async function ExploreEventsPage({
 
   return (
     <div className='space-y-6'>
+      <ToggleFilter
+        name='isFree'
+        label='Free Events'
+      />
+      <ToggleFilter
+        name='bookmarked'
+        label='Bookmarked Events'
+      />
+      <ToggleFilter
+        name='favorites'
+        label='Favorites'
+      />
+      <ToggleFilter
+        name='isChildFriendly'
+        label='Child Friendly'
+      />
+      <ToggleFilter
+        name='isHoliday'
+        label='Holday Events'
+      />
+      <ToggleFilter
+        name='servesAlcohol'
+        label='Serves Alcohol'
+      />
+      <ToggleFilter
+        name='servesFood'
+        label='Serves Food'
+      />
+      <ResetFilters />
       <Tabs
         defaultValue='grid'
         className='w-full'
@@ -52,14 +87,14 @@ export default async function ExploreEventsPage({
                 >
                   <CardHeader className='p-0'>
                     <img
-                      src={event.image ?? ""}
+                      src={event.imageUrl ?? ""}
                       alt={event.name}
                       className='h-[200px] w-full object-cover'
                     />
                   </CardHeader>
                   <CardContent className='p-4'>
                     <CardTitle>{event.name}</CardTitle>
-                    <CardDescription>
+                    <div>
                       <div className='flex items-center mt-2'>
                         <Calendar className='mr-2 h-4 w-4' />
                         {"event.date"} at {"event.time"}
@@ -75,7 +110,7 @@ export default async function ExploreEventsPage({
                       <div className='flex items-center mt-1'>
                         <Ticket className='mr-2 h-4 w-4' />${"event.price"}
                       </div>
-                    </CardDescription>
+                    </div>
                   </CardContent>
                   <CardFooter className='p-4 pt-0'>
                     <Button className='w-full'>Get Tickets</Button>
@@ -95,7 +130,7 @@ export default async function ExploreEventsPage({
                 <Card key={event.id}>
                   <div className='flex items-center p-4'>
                     <img
-                      src={event.image ?? ""}
+                      src={event.imageUrl ?? ""}
                       alt={event.name}
                       className='h-24 w-24 object-cover rounded-md mr-4'
                     />

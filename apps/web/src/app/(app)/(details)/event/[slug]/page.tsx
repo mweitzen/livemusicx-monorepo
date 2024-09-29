@@ -53,21 +53,21 @@ export default async function EventDetailsPage({
     <div className='space-y-8'>
       {/* Hero Section */}
       <PageHeader
-        imageUrl={event.image ?? undefined}
+        imageUrl={event.imageUrl ?? undefined}
         title={event.name}
       >
         <div className='flex items-center'>
           <Calendar className='mr-2 h-5 w-5' />
-          {format(event.timeStart, "MMMM d, yyyy")}
+          {format(event.timeStart!, "MMMM d, yyyy")}
         </div>
         <div className='flex items-center'>
           <Clock className='mr-2 h-5 w-5' />
-          {format(event.timeStart, "h:mm a")} -{" "}
+          {format(event.timeStart!, "h:mm a")} -{" "}
           {format(event.timeEnd!, "h:mm a")}
         </div>
         <div className='flex items-center'>
           <MapPin className='mr-2 h-5 w-5' />
-          {event.venue.name}
+          {event.venue?.profile.name}
         </div>
       </PageHeader>
 
@@ -159,26 +159,54 @@ export default async function EventDetailsPage({
                 >
                   <ScrollArea className='h-[300px] pr-4'>
                     <ul className='space-y-4'>
-                      {/* {event.lineup.map((artist) => (
+                      {event.musicians.map((artist) => (
                         <li
-                          key={artist.name}
+                          key={artist.profile.name}
                           className='flex items-center space-x-4 p-2 rounded-md hover:bg-muted transition-colors'
                         >
                           <Avatar className='h-12 w-12'>
                             <AvatarImage
-                              src={artist.imageUrl}
-                              alt={artist.name}
+                              src={artist.profile.imageUrl || ""}
+                              alt={artist.profile.name}
                             />
-                            <AvatarFallback>{artist.name[0]}</AvatarFallback>
+                            <AvatarFallback>
+                              {artist.profile.name[0]}
+                            </AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className='font-semibold'>{artist.name}</p>
+                            <p className='font-semibold'>
+                              {artist.profile.name}
+                            </p>
                             <p className='text-sm text-muted-foreground'>
-                              {artist.time}
+                              {"time"}
                             </p>
                           </div>
                         </li>
-                      ))} */}
+                      ))}
+                      {event.bands.map((artist) => (
+                        <li
+                          key={artist.profile.name}
+                          className='flex items-center space-x-4 p-2 rounded-md hover:bg-muted transition-colors'
+                        >
+                          <Avatar className='h-12 w-12'>
+                            <AvatarImage
+                              src={artist.profile.imageUrl || ""}
+                              alt={artist.profile.name}
+                            />
+                            <AvatarFallback>
+                              {artist.profile.name[0]}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <p className='font-semibold'>
+                              {artist.profile.name}
+                            </p>
+                            <p className='text-sm text-muted-foreground'>
+                              {"time"}
+                            </p>
+                          </div>
+                        </li>
+                      ))}
                     </ul>
                   </ScrollArea>
                 </TabsContent>
@@ -195,9 +223,9 @@ export default async function EventDetailsPage({
               <div className='flex items-start space-x-4 mb-4'>
                 <MapPin className='mt-1 h-5 w-5 text-primary' />
                 <div>
-                  <h3 className='font-semibold'>{event.venue.name}</h3>
+                  <h3 className='font-semibold'>{event.venue?.profile.name}</h3>
                   <p className='text-muted-foreground'>
-                    {event.venue.addressShort}
+                    {event.venue?.addressShort}
                   </p>
                 </div>
               </div>
@@ -218,17 +246,19 @@ export default async function EventDetailsPage({
               <div className='flex items-center space-x-4'>
                 <Avatar className='h-16 w-16'>
                   <AvatarImage
-                    src={event.organizer?.avatar ?? undefined}
-                    alt={event.organizer?.name}
+                    src={event.organizer?.profile.avatarUrl ?? undefined}
+                    alt={event.organizer?.profile.name}
                   />
-                  <AvatarFallback>{event.organizer?.name[0]}</AvatarFallback>
+                  <AvatarFallback>
+                    {event.organizer?.profile.name}
+                  </AvatarFallback>
                 </Avatar>
                 <div>
                   <h3 className='font-semibold text-lg'>
-                    {event.organizer?.name}
+                    {event.organizer?.profile.name}
                   </h3>
                   <p className='text-muted-foreground'>
-                    {event.organizer?.about}
+                    {event.organizer?.profile.about}
                   </p>
                 </div>
               </div>

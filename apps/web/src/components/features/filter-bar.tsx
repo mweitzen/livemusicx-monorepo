@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
+import { api } from "@repo/trpc/react";
 import { cn } from "@repo/ui/helpers";
 
 import {
@@ -34,20 +35,7 @@ import { ScrollArea } from "@repo/ui/components/scroll-area";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Toggle } from "@repo/ui/components/toggle";
-
-// Mock data for locations
-const locationOptions = [
-  "New York",
-  "Los Angeles",
-  "Chicago",
-  "Houston",
-  "Phoenix",
-  "Philadelphia",
-  "San Antonio",
-  "San Diego",
-  "Dallas",
-  "San Jose",
-];
+import { SearchInput } from "./filters";
 
 export default function FilterBar() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
@@ -60,13 +48,6 @@ export default function FilterBar() {
     if (isSearchExpanded) {
       setSearchQuery("");
     }
-  };
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Implement search logic here
-    console.log("Searching for:", searchQuery);
-    setIsSearchExpanded(false);
   };
 
   useEffect(() => {
@@ -107,20 +88,7 @@ export default function FilterBar() {
       </div>
       {isSearchExpanded && (
         <div className='border-b border-border px-gutter md:px-gutter-lg py-2 transition-all duration-300 ease-in-out'>
-          <form
-            onSubmit={handleSearchSubmit}
-            className='flex items-center'
-          >
-            <Input
-              ref={searchInputRef}
-              type='search'
-              placeholder='Search events...'
-              className='flex-grow'
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              aria-label='Search events'
-            />
-          </form>
+          <SearchInput ref={searchInputRef} />
         </div>
       )}
     </div>
@@ -128,14 +96,18 @@ export default function FilterBar() {
 }
 
 function SelectLocation() {
+  const { data: cities, isLoading } = api.location.getCities.useQuery();
+
   const [location, setLocation] = useState("Select Location");
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const [locationSearchQuery, setLocationSearchQuery] = useState("");
   const [isLocationDialogOpen, setIsLocationDialogOpen] = useState(false);
 
-  const filteredLocations = locationOptions.filter((loc) =>
-    loc.toLowerCase().includes(locationSearchQuery.toLowerCase())
-  );
+  const filteredLocations = cities
+    ? cities.filter((city) =>
+        city.name.toLowerCase().includes(locationSearchQuery.toLowerCase())
+      )
+    : [];
 
   const handleLocationSelect = (selectedLocation: string) => {
     if (selectedLocation === "Current") {
@@ -202,14 +174,14 @@ function SelectLocation() {
                 <Home className='h-4 w-4 mr-2' />
                 Use Home Location
               </Button>
-              {filteredLocations.map((loc) => (
+              {filteredLocations.map((city) => (
                 <Button
-                  key={loc}
+                  key={city.id}
                   variant='ghost'
                   className='w-full justify-start'
-                  onClick={() => handleLocationSelect(loc)}
+                  onClick={() => handleLocationSelect(city.name)}
                 >
-                  {loc}
+                  {city.name}
                 </Button>
               ))}
             </div>

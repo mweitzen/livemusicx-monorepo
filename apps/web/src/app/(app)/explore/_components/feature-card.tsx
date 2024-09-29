@@ -1,11 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-
-import { MyEvent } from "@repo/mock-data";
-import { Venue, venues } from "@repo/mock-data";
-import { Band } from "@repo/mock-data";
-import { Musician } from "@repo/mock-data";
-import { Organizer } from "@repo/mock-data";
+// import { Event as MyEvent,Venue, } from "@repo/db/schema";
+import { RouterOutputs } from "@repo/trpc";
 
 import { Card, CardContent } from "@repo/ui/components/card";
 import { Skeleton } from "@repo/ui/components/skeleton";
@@ -77,17 +73,21 @@ export function LoadingCard() {
   );
 }
 
-export function FeaturedEventCard({ event }: { event: MyEvent }) {
+export function FeaturedEventCard({
+  event,
+}: {
+  event: RouterOutputs["events"]["getFeatured"][number];
+}) {
   const date = new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(
-    new Date(event.timeStart)
+    event.timeStart!
   );
   const time = new Intl.DateTimeFormat("en-US", { timeStyle: "short" }).format(
-    new Date(event.timeStart)
+    event.timeStart!
   );
   return (
     <Link href={`/event/${event.slug}`}>
       <FeatureCard>
-        <FeatureCardContent image={event.image ?? undefined}>
+        <FeatureCardContent image={event.imageUrl ?? undefined}>
           <div className='absolute top-2 right-2 rounded-lg p-4 text-white bg-black/30 w-1/2'>
             <p className='font-semibold tracking-tighter'>
               {date.slice(0, date.indexOf(","))}
@@ -111,7 +111,7 @@ export function FeaturedEventCard({ event }: { event: MyEvent }) {
           </div>
           <Badge variant='secondary'>
             <MapPin className='h-4 w-4' />
-            {venues.find((venue) => venue.id === event.venue)?.name}
+            {event.venue?.profile.name}
           </Badge>
         </FeatureCardFooter>
       </FeatureCard>
@@ -122,15 +122,15 @@ export function FeaturedEventCard({ event }: { event: MyEvent }) {
 export function FeaturedPerformerCard({
   performer,
 }: {
-  performer: Musician | Band;
+  performer: RouterOutputs["accounts"]["getFeatured"][number];
 }) {
   return (
-    <Link href={`/performer/${performer.slug}`}>
+    <Link href={`/${performer.profile.type}/${performer.profile.slug}`}>
       <FeatureCard>
-        <FeatureCardContent image={performer.avatar ?? undefined}>
+        <FeatureCardContent image={performer.profile.imageUrl ?? undefined}>
           <div className='absolute bottom-0 left-0 right-0 p-4'>
             <h3 className='font-bold text-xl text-white truncate'>
-              {performer.name}
+              {performer.profile.name}
             </h3>
             <p className='text-sm text-white/80 flex items-center mt-1'>
               <Music className='w-4 h-4 mr-1' />
@@ -144,14 +144,18 @@ export function FeaturedPerformerCard({
   );
 }
 
-export function FeaturedVenueCard({ venue }: { venue: Venue }) {
+export function FeaturedVenueCard({
+  venue,
+}: {
+  venue: RouterOutputs["accounts"]["getFeatured"][number];
+}) {
   return (
-    <Link href={`/venue/${venue.slug}`}>
+    <Link href={`/${venue.profile.type}/${venue.profile.slug}`}>
       <FeatureCard>
-        <FeatureCardContent image={venue.avatar ?? undefined}>
+        <FeatureCardContent image={venue.profile.imageUrl ?? undefined}>
           <div className='absolute bottom-0 left-0 right-0 p-4'>
             <h3 className='font-bold text-xl text-white truncate'>
-              {venue.name}
+              {venue.profile.name}
             </h3>
             <p className='text-sm text-white/80 flex items-center mt-1'>
               <Music className='w-4 h-4 mr-1' />
@@ -174,18 +178,22 @@ export function FeaturedVenueCard({ venue }: { venue: Venue }) {
   );
 }
 
-export function FeaturedOrganizerCard({ organizer }: { organizer: Organizer }) {
+export function FeaturedOrganizerCard({
+  organizer,
+}: {
+  organizer: RouterOutputs["accounts"]["getFeatured"][number];
+}) {
   return (
-    <Link href={`/organizer/${organizer.slug}`}>
+    <Link href={`/organizer/${organizer.profile.slug}`}>
       <FeatureCard>
-        <FeatureCardContent image={organizer.avatar ?? undefined}>
+        <FeatureCardContent image={organizer.profile.imageUrl ?? undefined}>
           <div className='absolute bottom-0 left-0 right-0 p-4'>
             <h3 className='font-bold text-xl text-white truncate'>
-              {organizer.name}
+              {organizer.profile.name}
             </h3>
             <p className='text-sm text-white/80 flex items-center mt-1'>
               <Music className='w-4 h-4 mr-1' />
-              {"organizer.genres[0]"}
+              {"organizer.profile.genres[0]"}
             </p>
           </div>
         </FeatureCardContent>

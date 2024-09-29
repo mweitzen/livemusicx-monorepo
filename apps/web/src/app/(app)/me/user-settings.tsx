@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { toast } from "~/hooks/use-toast";
+import { toast } from "@repo/ui/hooks/use-toast";
 import {
   Card,
   CardContent,
@@ -212,7 +212,7 @@ export default function UserSettings() {
                 max={100}
                 step={1}
                 value={[volumeLevel]}
-                onValueChange={([value]) => setVolumeLevel(value)}
+                onValueChange={([value]) => setVolumeLevel(value || 0)}
               />
               <p className='text-sm text-muted-foreground'>{volumeLevel}%</p>
             </div>

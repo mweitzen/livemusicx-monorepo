@@ -3,7 +3,7 @@
 import { cn } from "@repo/ui/helpers";
 import { format, addMonths } from "date-fns";
 
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
@@ -11,43 +11,53 @@ import { Input } from "@repo/ui/components/input";
 import { Toggle } from "@repo/ui/components/toggle";
 import { Button } from "@repo/ui/components/button";
 
-const SearchInput = ({
-  className,
-  name = "query",
-  autoComplete = "off",
-  placeholder = "Search",
-  ...props
-}: Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams()!;
+const SearchInput = React.forwardRef<
+  HTMLInputElement,
+  Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">
+>(
+  (
+    {
+      className,
+      name = "query",
+      autoComplete = "off",
+      placeholder = "Search",
+      ...props
+    },
+    ref
+  ) => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams()!;
 
-  const debouncedSearchQuery = useDebouncedCallback(handleSearchChange, 300);
+    const debouncedSearchQuery = useDebouncedCallback(handleSearchChange, 300);
 
-  function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const newSearchParams = new URLSearchParams(searchParams);
-    if (e.target.value !== "") {
-      newSearchParams.set("query", e.target.value);
-    } else {
-      newSearchParams.delete("query");
+    function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+      const newSearchParams = new URLSearchParams(searchParams);
+      if (e.target.value !== "") {
+        newSearchParams.set("query", e.target.value);
+      } else {
+        newSearchParams.delete("query");
+      }
+      router.replace(`${pathname}?${newSearchParams.toString()}`);
     }
-    router.replace(`${pathname}?${newSearchParams.toString()}`);
-  }
 
-  return (
-    <Input
-      id='query'
-      type='search'
-      name={name}
-      autoComplete={autoComplete}
-      placeholder={placeholder}
-      defaultValue={searchParams.get("query") || undefined}
-      onChange={debouncedSearchQuery}
-      className={cn(className)}
-      {...props}
-    />
-  );
-};
+    return (
+      <Input
+        ref={ref}
+        id='query'
+        type='search'
+        name={name}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+        defaultValue={searchParams.get("query") || undefined}
+        onChange={debouncedSearchQuery}
+        className={cn(className)}
+        {...props}
+      />
+    );
+  }
+);
+SearchInput.displayName = "SearchInput";
 
 const ToggleFilter = ({
   name,

@@ -9,17 +9,6 @@ import {
 import { FeaturedContent } from "./_components/feature-section";
 
 export async function FeaturedEventsList() {
-  // Fetch featured events
-  async function longWait() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(null);
-      }, 4000);
-    });
-  }
-
-  await longWait();
-
   const events = await api.events.getFeatured();
 
   return (
@@ -39,12 +28,8 @@ export async function FeaturedPerformersList() {
   const bands = await api.accounts.getFeatured({ type: "BAND" });
   const performers = [...musicians, ...bands]
     .sort((a, b) => {
-      console.log(a.name);
-      console.log(a.events[0]!.timeStart);
-      console.log(b.name);
-      console.log(b.events[0]!.timeStart);
       return (
-        a.events[0]!.timeStart.getTime() - b.events[0]!.timeStart.getTime()
+        a.events[0]!.timeStart!.getTime() - b.events[0]!.timeStart!.getTime()
       );
     })
     .slice(0, 5);

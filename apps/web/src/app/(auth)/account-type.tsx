@@ -1,4 +1,4 @@
-import { capitalize } from "@repo/utils/capitalize";
+import { capitalize } from "@repo/utils";
 
 import Link from "next/link";
 
