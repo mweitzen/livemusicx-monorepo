@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "clean": "turbo run clean && git clean -xdf .cache .turbo dist node_modules",
+    "clean": "turbo run clean && git clean -xdf .cache .turbo dist node_modules && rm pnpm-lock.yaml",
     "dev": "turbo watch dev",
     "dev:client": "turbo run dev:client",
     "dev:server": "turbo run dev:server",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@turbo/gen": "^2.1.2",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "turbo": "^2.1.2",
     "typescript": "catalog:"
   },
