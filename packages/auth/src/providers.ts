@@ -36,9 +36,8 @@ export const providers: Provider[] = [
         emailVerified: profile.email_verified,
         image: profile.picture,
         role: "USER",
-        accountType: "PUBLIC",
-        userVerified: false,
-        // isOAuth: true,
+        type: "FAN",
+        isVerified: false,
       };
     },
   }),
