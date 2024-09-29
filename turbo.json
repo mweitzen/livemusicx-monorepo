@@ -20,16 +20,22 @@
     "clean": {
       "cache": false
     },
-    "db:start": {},
-    "db:stop": {},
     "db:migrate:deploy": {},
     "db:migrate:dev": {
       "cache": false,
       "interactive": true
     },
+    "db:reset": {
+      "cache": false,
+      "interactive": true
+    },
     "db:push": {},
-    "db:seed": {},
-    "db:generate": {},
+    "db:seed": {
+      "cache": false
+    },
+    "db:generate": {
+      "cache": false
+    },
     "db:studio": {},
     "ui:add": {},
     "generate": {
