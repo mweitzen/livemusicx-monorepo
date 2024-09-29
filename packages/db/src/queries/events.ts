@@ -145,26 +145,10 @@ export const FavoritedAccountsQuery = (userId?: string, include?: boolean) =>
         AND: [
           {
             OR: [
-              {
-                venue: {
-                  ...FavoritedQuery(userId, include),
-                },
-              },
-              {
-                organizer: {
-                  ...FavoritedQuery(userId, include),
-                },
-              },
-              {
-                musicians: {
-                  some: { ...FavoritedQuery(userId, include) },
-                },
-              },
-              {
-                groups: {
-                  some: { ...FavoritedQuery(userId, include) },
-                },
-              },
+              { venue: { ...FavoritedQuery(userId, include) } },
+              { organizer: { ...FavoritedQuery(userId, include) } },
+              { musicians: { some: { ...FavoritedQuery(userId, include) } } },
+              { bands: { some: { ...FavoritedQuery(userId, include) } } },
             ],
           },
         ],
@@ -173,18 +157,15 @@ export const FavoritedAccountsQuery = (userId?: string, include?: boolean) =>
 export const EventIncludePublicQuery = (userId?: string) =>
   ({
     _count: true,
-    city: true,
     genres: true,
-    groups: true,
     keywords: true,
-    musicians: true,
-    neighborhood: true,
-    organizer: true,
-    region: true,
-    state: true,
-    stage: true,
+    location: true,
     ticketLinks: true,
-    venue: true,
+    bands: { include: { profile: true } },
+    musicians: { include: { profile: true } },
+    organizer: { include: { profile: true } },
+    venue: { include: { profile: true } },
+    stage: true,
     bookmarkedBy: {
       where: {
         id: userId,

@@ -12,6 +12,7 @@ export const GetFeaturedAccountsQuery = (location?: string) =>
       },
     },
     include: {
+      profile: true,
       events: {
         take: 1,
         where: {
@@ -22,7 +23,7 @@ export const GetFeaturedAccountsQuery = (location?: string) =>
     },
   }) satisfies
     | Prisma.MusicianFindManyArgs
-    | Prisma.MusicGroupFindManyArgs
+    | Prisma.BandFindManyArgs
     | Prisma.VenueFindManyArgs
     | Prisma.OrganizerFindManyArgs;
 
@@ -30,14 +31,16 @@ export const FavoritedQuery = (userId?: string, include?: boolean) =>
   !include
     ? undefined
     : ({
-        favoritedBy: {
-          some: {
-            id: userId,
+        profile: {
+          favoritedBy: {
+            some: {
+              id: userId,
+            },
           },
         },
       } satisfies
         | Prisma.MusicianWhereInput
-        | Prisma.MusicGroupWhereInput
+        | Prisma.BandWhereInput
         | Prisma.VenueWhereInput
         | Prisma.OrganizerWhereInput);
 

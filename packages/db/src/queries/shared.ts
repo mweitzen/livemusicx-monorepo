@@ -21,7 +21,7 @@ export const SearchEventsQuery = (query?: string) =>
           { venue: SearchAccountsQuery(query) },
           { organizer: SearchAccountsQuery(query) },
           { musicians: { some: SearchAccountsQuery(query) } },
-          { groups: { some: SearchAccountsQuery(query) } },
+          { bands: { some: SearchAccountsQuery(query) } },
         ],
       } satisfies Prisma.EventWhereInput);
 
@@ -32,13 +32,15 @@ export const SearchGenresQuery = (query?: string) =>
 
 export const SearchAccountsQuery = (query?: string) =>
   ({
-    OR: [
-      { name: SearchQuery(query) },
-      { about: SearchQuery(query) },
-      { genres: { some: SearchGenresQuery(query) } },
-    ],
+    profile: {
+      OR: [
+        { name: SearchQuery(query) },
+        { about: SearchQuery(query) },
+        { genres: { some: SearchGenresQuery(query) } },
+      ],
+    },
   }) satisfies
-    | Prisma.VenueWhereInput
     | Prisma.MusicianWhereInput
-    | Prisma.MusicGroupWhereInput
+    | Prisma.BandWhereInput
+    | Prisma.VenueWhereInput
     | Prisma.OrganizerWhereInput;
