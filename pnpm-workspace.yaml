@@ -5,23 +5,35 @@ packages:
   - "tooling/*"
 
 catalog:
-  "@tanstack/react-query": ^5.56.2
-  "@trpc/client": ^11.0.0-rc.477
-  "@trpc/react-query": ^11.0.0-rc.477
-  "@trpc/server": ^11.0.0-rc.477
-  eslint: ^9.10.0
+  "@tanstack/react-query": ^5.58.1
+  "@tanstack/react-query-devtools": ^5.58.0
+  "@trpc/client": ^11.0.0-rc.552
+  "@trpc/next": "11.0.0-rc.552"
+  "@trpc/react-query": ^11.0.0-rc.552
+  "@trpc/server": ^11.0.0-rc.552
   tailwindcss: ^3.4.11
   typescript: ^5.6.2
   zod: ^3.23.8
-  next: ^14.2.11
+  next: ^14.2.13
+  "@types/node": ^20.4.1
 
 catalogs:
   react18:
-    react: 18.3.1
-    react-dom: 18.3.1
-    "@types/react": ^18.3.3
-    "@types/react-dom": ^18.3.0
+    react: 18.2.0
+    react-dom: 18.2.0
+    "@types/react": ^18.2.14
+    "@types/react-dom": ^18.2.6
   expo51:
     expo: ~51.0.32
-    react-native: 0.74.5
+    react-native: 0.75.3
     nativewind: ~4.0.36
+  eslint9:
+    eslint: ^8.56.0
+    eslint-config-next: ^14.2.13
+    eslint-plugin-react-hooks: ^4.6.0
+    eslint-plugin-react-refresh: ^0.4.12
+    typescript-eslint: ^8.7.0
+    "@eslint/js": ^8.56.0
+    "@types/eslint": ^9.6.0
+    "@typescript-eslint/eslint-plugin": ^8.7.0
+    "@typescript-eslint/parser": ^8.7.0
