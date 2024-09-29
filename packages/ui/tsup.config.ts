@@ -1,6 +1,7 @@
 import { defineConfig, type Options } from "tsup";
 
 export default defineConfig((options: Options) => ({
+  clean: true,
   entry: [
     "./src/components/**/*.tsx",
     "./src/hooks/**.*.ts",
@@ -9,11 +10,8 @@ export default defineConfig((options: Options) => ({
   ],
   format: ["cjs", "esm"],
   external: ["react"],
-  clean: true,
   dts: true,
+  sourcemap: true,
   onSuccess: "npx tailwindcss -i ./src/ui.css -o ./dist/ui.css --minify",
-  banner: {
-    js: "'use client'",
-  },
   ...options,
 }));

@@ -1,10 +1,10 @@
 {
-  "extends": "@repo/typescript-config/internal-package.json",
+  "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "lib": ["ES2022", "dom", "dom.iterable"],
     "jsx": "preserve",
     "rootDir": "./src",
     "outDir": "./dist"
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts"]
 }
