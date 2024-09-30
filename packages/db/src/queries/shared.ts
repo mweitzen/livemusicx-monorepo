@@ -1,5 +1,14 @@
 import { Prisma } from "../schema";
 
+/**
+ *
+ *
+ *
+ * QUERIES
+ *
+ *
+ *
+ */
 export const GetDetailsQuery = (input: { id?: string; slug?: string }) => ({
   id: input.id!,
   slug: input.slug!,
@@ -44,3 +53,15 @@ export const SearchAccountsQuery = (query?: string) =>
     | Prisma.BandWhereInput
     | Prisma.VenueWhereInput
     | Prisma.OrganizerWhereInput;
+
+/**
+ *
+ *
+ *
+ * CREATE / CONNECT
+ *
+ *
+ *
+ */
+export const ManyToManyConnect = (ids: string[]) =>
+  ({ connect: ids.map((id) => ({ id })) }) as const;

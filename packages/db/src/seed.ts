@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "./generated";
 
 export const db = new PrismaClient();
 
@@ -16,7 +16,15 @@ import {
   organizers,
 } from "./seed-data/profiles";
 import { events, ticketLinks } from "./seed-data/events";
-import { faker } from "@faker-js/faker";
+
+import {
+  addRelationshipsToEvents,
+  addGenresToProfiles,
+  addMusiciansToBands,
+  addRelationshipsToUsers,
+  addAffiliatedProfiles,
+  addKeywordsToVenues,
+} from "./seed-data/_many-to-many";
 
 (async () => {
   try {
@@ -77,85 +85,29 @@ import { faker } from "@faker-js/faker";
     });
 
     /**
-     * Retrieve the created resources
-     */
-    const createdEvents = await db.event.findMany({
-      include: {
-        createdBy: { include: { managedProfiles: true } },
-        venue: { include: { profile: true } },
-        organizer: { include: { profile: true } },
-      },
-    });
-    // const createdProfiles = await db.profile.findMany();
-
-    /**
      * Assign many-to-many relationships
      */
 
     // Add performers to events, adjust event name
-    for (let event of createdEvents) {
-      let performer: {
-        id: string;
-        name: string;
-        type: "MUSICIAN" | "BAND" | "VENUE" | "ORGANIZER";
-      };
-      if (event.createdBy.type === "PERFORMER") {
-        performer = event.createdBy.managedProfiles.find((p) =>
-          event.name.includes(p.name)
-        )!;
-        if (!performer) console.log("PROFILE MISSING", event.createdBy.type);
-      } else {
-        performer = faker.helpers.arrayElement(
-          profiles.filter((p) => p.type === "MUSICIAN" || p.type === "BAND")
-        );
-      }
-      const eventNameFormats = [
-        `${performer.name} at ${event.venue?.profile.name}`,
-        `${event.organizer?.profile.name} Presents: ${performer.name}`,
-        `${performer.name} Live in Concert`,
-        `${performer.name} - ${faker.lorem.words(3)} Tour`,
-        `An Evening with ${performer.name}`,
-        `${event.venue?.profile.name} Summer Concert Series: ${performer.name}`,
-      ];
-      await db.event.update({
-        where: {
-          id: event.id,
-        },
-        data: {
-          name: faker.helpers.arrayElement(eventNameFormats),
-          musicians: {
-            connect:
-              performer.type === "MUSICIAN"
-                ? {
-                    id: performer.id,
-                  }
-                : undefined,
-          },
-          bands: {
-            connect:
-              performer.type === "BAND"
-                ? {
-                    id: performer.id,
-                  }
-                : undefined,
-          },
-        },
-      });
-    }
+    await addRelationshipsToEvents(db);
 
     // Add musicians to bands
+    await addMusiciansToBands(db);
 
     // Add bookmarked events to fan users
-
     // Add favorite profiles to fan users
+    await addRelationshipsToUsers(db);
 
     // Add affiliated profiles
+    await addAffiliatedProfiles(db);
 
     // Add associate users
 
     // Add Keywords to Venues
+    await addKeywordsToVenues(db);
 
-    // Add Genres to All
+    // Add Genres to Profiles
+    await addGenresToProfiles(db);
   } catch (error) {
     console.error(error);
     process.exit(1);

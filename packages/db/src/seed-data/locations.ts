@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { $Enums, Prisma } from "@prisma/client";
+import { $Enums, Prisma } from "../generated";
 
 export const locations = [
   // Regions (2)

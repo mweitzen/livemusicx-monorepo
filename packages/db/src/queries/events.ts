@@ -5,6 +5,37 @@ const now = new Date();
 const anHourAgo = new Date(now.getTime() - 1000 * 3600);
 const oneWeekFromNow = new Date(now.getTime() + 1000 * 3600 * 24 * 7);
 
+/**
+ *
+ *
+ *
+ * WHERE
+ *
+ *
+ *
+ */
+export const GetDateRangeQuery = ({
+  dateBegin,
+  dateEnd,
+}: {
+  dateBegin?: Date;
+  dateEnd?: Date;
+}) =>
+  ({
+    AND: [
+      {
+        timeStart: {
+          gte: dateBegin ?? now,
+        },
+      },
+      {
+        timeStart: {
+          lte: dateEnd,
+        },
+      },
+    ],
+  }) satisfies Prisma.EventWhereInput;
+
 // Time start is less than now
 // Time end is not null and greater than now OR Time start greater than 1 hour ago
 export const GetCurrentQuery = {
@@ -85,39 +116,62 @@ export const GetPreviousDatesQuery = {
   ],
 } satisfies Prisma.EventWhereInput;
 
-export const GetDateRangeQuery = ({
-  dateBegin,
-  dateEnd,
-}: {
-  dateBegin?: Date;
-  dateEnd?: Date;
-}) =>
-  ({
-    AND: [
-      {
-        timeStart: {
-          gte: dateBegin ?? now,
-        },
-      },
-      {
-        timeStart: {
-          lte: dateEnd,
-        },
-      },
-    ],
-  }) satisfies Prisma.EventWhereInput;
-
 export const GetPublishedQuery = {
+  isPublished: true,
   status: {
     in: [EventStatus.SCHEDULED, EventStatus.RESCHEDULED],
   },
 } satisfies Prisma.EventWhereInput;
 
 export const GetDraftsQuery = {
-  status: EventStatus.UNSCHEDULED,
+  isPublished: false,
 } satisfies Prisma.EventWhereInput;
 
-export const FilterEventsQuery = () => ({}) satisfies Prisma.EventWhereInput;
+export const FilterEventsQuery = (input: {
+  isFree?: boolean;
+  isChildFriendly?: boolean;
+  isHoliday?: boolean;
+  servesAlcohol?: boolean;
+  servesFood?: boolean;
+  // type?: string;
+  // types?: string[];
+  genres?: string[];
+  keywords?: string[];
+}) =>
+  ({
+    isFree: input.isFree,
+    isChildFriendly: input.isChildFriendly,
+    isHoliday: input.isHoliday,
+    servesAlcohol: input.servesAlcohol,
+    servesFood: input.servesFood,
+    // type: input.type,
+    // types: !input.types
+    //   ? undefined
+    //   : {
+    //       some: {
+    //         id: { in: input.types },
+    //       },
+    //     },
+    genres: !input.genres
+      ? undefined
+      : {
+          some: {
+            id: { in: input.genres },
+          },
+        },
+    keywords: !input.keywords
+      ? undefined
+      : {
+          some: {
+            id: { in: input.keywords },
+          },
+        },
+    // event type query
+    // Price range query
+    // location query
+    // age restriction query
+    // performer type / group size query
+  }) satisfies Prisma.EventWhereInput;
 
 export const BookmarkedQuery = (userId?: string, include?: boolean) =>
   !include
@@ -130,6 +184,15 @@ export const BookmarkedQuery = (userId?: string, include?: boolean) =>
         },
       } satisfies Prisma.EventWhereInput);
 
+/**
+ *
+ *
+ *
+ * INCLUDES
+ *
+ *
+ *
+ */
 export const BookmarkedIncludeQuery = (userId?: string) => ({
   bookmarkedBy: {
     where: {
@@ -154,6 +217,40 @@ export const FavoritedAccountsQuery = (userId?: string, include?: boolean) =>
         ],
       } satisfies Prisma.EventWhereInput);
 
+const SelectProfile = {
+  profile: {
+    select: {
+      name: true,
+    },
+  },
+} satisfies
+  | Prisma.MusicianSelect
+  | Prisma.BandSelect
+  | Prisma.VenueSelect
+  | Prisma.OrganizerSelect;
+
+export const FindManyEventsInclude = {
+  _count: true,
+  genres: true,
+  keywords: true,
+  venue: { select: SelectProfile },
+  organizer: { select: SelectProfile },
+  musicians: { select: SelectProfile },
+  bands: { select: SelectProfile },
+} satisfies Prisma.EventInclude;
+
+export const GetEventDetailsInclude = {
+  genres: true,
+  keywords: true,
+  location: true,
+  ticketLinks: true,
+  bands: { include: { profile: true } },
+  musicians: { include: { profile: true } },
+  organizer: { include: { profile: true } },
+  venue: { include: { profile: true } },
+  stage: true,
+} satisfies Prisma.EventInclude;
+
 export const EventIncludePublicQuery = (userId?: string) =>
   ({
     _count: true,
@@ -173,6 +270,15 @@ export const EventIncludePublicQuery = (userId?: string) =>
     },
   }) satisfies Prisma.EventInclude;
 
+/**
+ *
+ *
+ *
+ * ORDER BY
+ *
+ *
+ *
+ */
 export const OrderByDateAscending = {
   timeStart: "asc",
 } satisfies Prisma.EventOrderByWithRelationInput;

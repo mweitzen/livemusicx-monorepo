@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Prisma, $Enums } from "@prisma/client";
+import { Prisma, $Enums } from "../generated";
 import { users } from "./users";
 import { locations } from "./locations";
 import { bandNames, organizerNames, venueNames } from "./_helpers";

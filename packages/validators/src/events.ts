@@ -33,15 +33,21 @@ export const TicketLinkInput = z.object({
 });
 
 export const CreateEventInput = z.object({
+  // BASIC INFO
   name: z.string().min(2, {
     message: "Event name must be at least 2 characters.",
   }),
   description: z.string(),
   image: z.any(),
+
+  // DATE / TIME
   dateStart: z.date().min(new Date(), "Event must be in the future."),
   timeDoor: z.string().optional(),
   timeStart: z.string(),
   timeEnd: z.string().optional(),
+
+  // DETAILS
+  isPublished: z.boolean(),
   isPrivate: z.boolean(),
   isFree: z.boolean(),
   servesAlcohol: z.boolean(),
@@ -50,15 +56,21 @@ export const CreateEventInput = z.object({
   isHoliday: z.boolean(),
   ageRestriction: z.boolean(),
   minimumAge: z.number().optional(),
+
+  // REGISTRATION / TICKETS
   requiresRsvp: z.boolean(),
   rsvpLink: z.string().optional(),
   requiresTicket: z.boolean(),
+  ticketLinks: z.array(TicketLinkInput).optional(),
+
+  // PARTICIPANTS
   venueId: z.string(),
   stageId: z.string(),
   organizerId: z.string().optional(),
-  ticketLinks: z.array(TicketLinkInput).optional(),
   musicianIds: z.array(z.string()).optional(),
-  groupIds: z.array(z.string()).optional(),
+  bandIds: z.array(z.string()).optional(),
+
+  // TAGS
   genreIds: z.array(z.string()).optional(),
   keywordIds: z.array(z.string()).optional(),
 });

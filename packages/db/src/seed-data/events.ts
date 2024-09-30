@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Prisma, $Enums } from "@prisma/client";
+import { Prisma, $Enums } from "../generated";
 import { locations } from "../seed-data/locations";
 import { users } from "../seed-data/users";
 import { profiles, venues, stages, organizers } from "../seed-data/profiles";
@@ -40,7 +40,7 @@ function generateEvents(count: number) {
     const status = isPublished
       ? "SCHEDULED"
       : faker.helpers.enumValue($Enums.EventStatus);
-    const name = `${profile.name} ${faker.word.words()}`;
+
     const venue =
       profile.type === "VENUE" ? profile : faker.helpers.arrayElement(venues);
 
@@ -53,8 +53,10 @@ function generateEvents(count: number) {
       publishedById: isPublished ? user.id : undefined,
       managedById: user.id,
       status,
-      name: `${profile.name} ${faker.word.words()}`,
-      slug: faker.helpers.slugify(name.toLowerCase()),
+      name: `${profile.name}`,
+      slug: faker.helpers.slugify(
+        profile.name.toLowerCase() + " " + faker.word.words()
+      ),
       imageUrl: faker.image.urlLoremFlickr({ category: "music" }),
       description: faker.lorem.paragraph(),
       websiteUrl: "#",

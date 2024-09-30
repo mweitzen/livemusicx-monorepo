@@ -92,10 +92,11 @@ enum EventStatus {
 enum EventType {
   PERFORMANCE
   EXPERIENCE
+  AMBIANCE
   MEETUP
-  // OPEN_MIC
-  // JAM_SESSION
-  // WORKSHOP
+  OPEN_MIC
+  JAM_SESSION
+  WORKSHOP
   // CLASS
 }
 
@@ -563,8 +564,8 @@ model Event {
   createdBy       User     @relation(name: "UserCreatedEvents", fields: [createdById], references: [id])
   createdById     String
   lastUpdatedAt   DateTime @updatedAt
-  lastUpdatedBy   User     @relation(name: "UserEventEdits", fields: [lastUpdatedById], references: [id])
-  lastUpdatedById String
+  lastUpdatedBy   User?    @relation(name: "UserEventEdits", fields: [lastUpdatedById], references: [id])
+  lastUpdatedById String?
 
   // * PUBLISHED / DRAFT
   isPublished   Boolean @default(false)
@@ -602,6 +603,7 @@ model Event {
   timeEnd           DateTime?
 
   // * DETAILS
+  type                 EventType    @default(PERFORMANCE)
   isPrivate            Boolean      @default(false)
   isFree               Boolean      @default(true)
   isChildFriendly      Boolean      @default(false)
@@ -616,10 +618,10 @@ model Event {
   ticketLinks          TicketLink[]
 
   // * LOCATION
-  network    Network? @relation(fields: [networkId], references: [id])
+  network    Network?  @relation(fields: [networkId], references: [id])
   networkId  String?
-  location   Location @relation(fields: [locationId], references: [id])
-  locationId String
+  location   Location? @relation(fields: [locationId], references: [id])
+  locationId String?
 
   // * PARTICIPANTS
   venue       Venue?     @relation(fields: [venueId], references: [id])

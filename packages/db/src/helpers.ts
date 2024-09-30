@@ -1,24 +1,16 @@
-import { db } from "./client";
-
-export function createSlug(input: string): string {
-  const slug = input
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "") // Remove special characters
-    .replace(/\s+/g, "-") // Replace spaces with "-"
-    .replace(/--+/g, "-"); // Replace multiple "-" with a single "-"
-
-  return slug;
-}
+import { PrismaClient } from "./generated";
+import { createSlug } from "@repo/utils";
 
 export async function generateUniqueSlug(
+  db: PrismaClient,
   text: string,
-  type: "band" | "musician" | "venue" | "organizer" | "event"
+  type: "band" | "musician" | "venue" | "organizer"
 ) {
-  if (!["band", "musician", "venue", "organizer", "event"].includes(type))
-    return "";
+  if (!(type in ["band", "musician", "venue", "organizer"])) return "";
+
   let slug = createSlug(text);
-  const where = { slug };
-  // db
+  const where = { slug } as const;
+
   // @ts-ignore
   let exists = await db[type].findUnique({ where });
   let x = 1;
