@@ -8,7 +8,7 @@ import {
   CONTACT_NAME,
   CONTACT_URL,
   REST_API_VERSION,
-} from '@app/constants';
+} from '~/constants';
 
 import { SWAGGER_DESCRIPTION, SWAGGER_PATHNAME } from './swagger.constants';
 import { customOptions, documentOptions } from './swagger.options';

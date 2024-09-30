@@ -1,13 +1,13 @@
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+import type { RouterInputs, RouterOutputs } from "~/lib/trpc/shared";
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
   authorizedProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 import { z } from "zod";
 
-import { createSlug } from "@/lib/utils";
+import { createSlug } from "@repo/utils";
 
 import { GetAllMusiciansQuery } from "./musicians.queries";
 import {
@@ -23,7 +23,7 @@ import {
   GetMusicianEventsOutputSchema,
   GetRelatedMusiciansInputSchema,
   GetRelatedMusiciansOutputSchema,
-} from "@/lib/schema/accounts/musicians";
+} from "~/lib/schema/accounts/musicians";
 
 type MusiciansOutputs = RouterOutputs["accounts"]["musicians"];
 
@@ -49,7 +49,9 @@ export const musiciansRouter = createTRPCRouter({
     .input(GetAllMusiciansInputSchema)
     // .output(GetAllMusiciansOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.musician.findMany(GetAllMusiciansQuery(input, ctx.session?.user))
+      ctx.prisma.musician.findMany(
+        GetAllMusiciansQuery(input, ctx.session?.user),
+      ),
     ),
   getDetails: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/accounts/musicians/{id}", tags: ["accounts"] } })
@@ -80,7 +82,7 @@ export const musiciansRouter = createTRPCRouter({
             },
           },
         },
-      })
+      }),
     ),
   getEvents: publicProcedure
     // .meta({

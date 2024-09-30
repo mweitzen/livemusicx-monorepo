@@ -5,7 +5,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@repo/ui/components/form";
 import {
   Select,
   SelectContent,
@@ -15,7 +15,7 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@repo/ui/components/select";
 
 import { useFormContext } from "react-hook-form";
 
@@ -58,7 +58,9 @@ export const DoorTimePicker = () => {
               </SelectContent>
             </Select>
           </FormControl>
-          <FormDescription>When guests can start arriving for the event.</FormDescription>
+          <FormDescription>
+            When guests can start arriving for the event.
+          </FormDescription>
           <FormMessage />
         </FormItem>
       )}

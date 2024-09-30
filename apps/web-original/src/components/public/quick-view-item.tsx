@@ -2,22 +2,28 @@ import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
 
-import type { Genre } from "@repo/db/v1";
-import type { QuickViewEvents } from "../../../__archives/api/events/main";
-import type { QuickViewVenues } from "../../../__archives/api/accounts/venues";
-import type { QuickViewPerformers } from "../../../__archives/api/accounts/performers";
-import type { QuickViewOrganizers } from "../../../__archives/api/accounts/organizers";
+import type { Genre } from "@repo/db/schema";
+import { RouterOutputs, RouterInputs } from "@repo/trpc";
 
-import { Skeleton } from "../ui/skeleton";
-import { Badge } from "@/components/ui/badge";
-import { ProfileImage } from "@/components/shared/image";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card, CardFooter, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@repo/ui/components/skeleton";
+import { Badge } from "@repo/ui/components/badge";
+import { ProfileImage } from "~/components/shared/image";
+import { AspectRatio } from "@repo/ui/components/aspect-ratio";
+import { Card, CardFooter, CardContent } from "@repo/ui/components/card";
 import {
   TypographyMuted,
   TypographySmall,
-} from "@/components/shared/typography";
+} from "~/components/shared/typography";
 import { CalendarIcon, ClockIcon, MapPinIcon } from "@heroicons/react/20/solid";
+
+type EventsOutputs = RouterOutputs["v1"]["events"]["main"];
+type QuickViewEvents = EventsOutputs["getQuickView"];
+type VenuesOutputs = RouterOutputs["v1"]["accounts"]["venues"];
+type QuickViewVenues = VenuesOutputs["getQuickView"];
+type PerformersOutputs = RouterOutputs["v1"]["accounts"]["performers"];
+type QuickViewPerformers = PerformersOutputs["getQuickView"];
+type OrganizersOutputs = RouterOutputs["v1"]["accounts"]["organizers"];
+type QuickViewOrganizers = OrganizersOutputs["getQuickView"];
 
 function QuickViewItem({
   children,

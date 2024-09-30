@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createTRPCRouter, authorizedProcedure } from "@/server/trpc";
+import { createTRPCRouter, authorizedProcedure } from "~/server/trpc";
 
 export const authorizedRouter = createTRPCRouter({
   /**
@@ -14,7 +14,7 @@ export const authorizedRouter = createTRPCRouter({
       z.object({
         name: z.string(),
         accountType: z.enum(["musician", "group", "organizer"]),
-      })
+      }),
     )
     .query(async ({ ctx, input }) => {
       if (!input.name || input.name === "") return null;
@@ -76,7 +76,7 @@ export const authorizedRouter = createTRPCRouter({
           cityId: z.string(),
           genres: z.array(z.object({ id: z.string() })),
         }),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const query = {
@@ -118,7 +118,7 @@ export const authorizedRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       // const userAccountType = ctx.session.user.accountType;
       const userAccountType = ["PERFORMER", "VENUE", "ORGANIZER"].at(
-        Math.floor(Math.random() * 3)
+        Math.floor(Math.random() * 3),
       );
       const query = input ? input.query : undefined;
       const queryPartial = {
@@ -147,10 +147,16 @@ export const authorizedRouter = createTRPCRouter({
                   },
                 }
               : undefined,
-          accountsGroups: userAccountType === "PERFORMER" ? (selectPartial as any) : undefined,
-          accountsVenues: userAccountType === "VENUE" ? (selectPartial as any) : undefined,
+          accountsGroups:
+            userAccountType === "PERFORMER"
+              ? (selectPartial as any)
+              : undefined,
+          accountsVenues:
+            userAccountType === "VENUE" ? (selectPartial as any) : undefined,
           accountsOrganizers:
-            userAccountType === "ORGANIZER" ? (selectPartial as any) : undefined,
+            userAccountType === "ORGANIZER"
+              ? (selectPartial as any)
+              : undefined,
         },
       });
 
@@ -159,7 +165,9 @@ export const authorizedRouter = createTRPCRouter({
       switch (userAccountType) {
         case "PERFORMER":
           const musicians = currentUser.accountsMusicians;
-          const groups = musicians.flatMap((musician) => (musician as any).groups);
+          const groups = musicians.flatMap(
+            (musician) => (musician as any).groups,
+          );
           return [...musicians, ...groups].sort(function (a, b) {
             return a.name - b.name;
           });

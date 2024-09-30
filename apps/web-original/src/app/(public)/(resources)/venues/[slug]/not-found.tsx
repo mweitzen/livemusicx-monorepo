@@ -1,6 +1,10 @@
-import PublicFooter from "@/components/public/footer";
-import { TypographyH1, TypographyLead, TypographyLarge } from "@/components/shared/typography";
-import { Button } from "@/components/ui/button";
+import PublicFooter from "~/components/public/footer";
+import {
+  TypographyH1,
+  TypographyLead,
+  TypographyLarge,
+} from "~/components/shared/typography";
+import { Button } from "@repo/ui/components/button";
 import Link from "next/link";
 
 export default function EventNotFound() {

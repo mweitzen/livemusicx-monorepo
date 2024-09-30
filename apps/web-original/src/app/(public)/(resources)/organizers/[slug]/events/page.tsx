@@ -1,16 +1,16 @@
 import Link from "next/link";
 
 import { api } from "@repo/trpc/server";
-import { convertSearchParamsToQuery } from "@/lib/utils";
+import { convertSearchParamsToQuery } from "@repo/utils";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@repo/ui/components/card";
 import {
   PageDescription,
   PageHeader,
   PageTitle,
-} from "@/components/public/page";
+} from "~/components/public/page";
 
-import { GetAllOrganizersInputSchema } from "@/lib/schema/accounts/organizers";
+import { GetAllOrganizersInputSchema } from "~/lib/schema/accounts/organizers";
 
 export default async function OrganizerEventsPage({
   params,

@@ -3,17 +3,22 @@ import Image from "next/image";
 
 import { ArrowRightIcon, CheckCircleIcon } from "@heroicons/react/20/solid";
 
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
-import { TypographyH2, TypographyMuted } from "@/components/shared/typography";
+import { Button } from "@repo/ui/components/button";
+import { Separator } from "@repo/ui/components/separator";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@repo/ui/components/card";
+import { TypographyH2, TypographyMuted } from "~/components/shared/typography";
 import {
   Disclaimer,
   HomepageCTA,
   HomepageDescription,
   HomepageTitle,
   PageHeader,
-} from "@/components/public/page";
+} from "~/components/public/page";
 import {
   ctaLink,
   ctaText,
@@ -28,7 +33,7 @@ import {
   publicP,
   authorizedH2,
   authorizedP,
-} from "@/lib/content/homepage";
+} from "~/lib/content/homepage";
 import {
   QuickView,
   QuickViewDescription,
@@ -37,9 +42,17 @@ import {
   QuickViewLinks,
   QuickViewList,
   QuickViewTitle,
-} from "@/components/public/quick-view";
-import { EventLoadingItem, AccountLoadingItem } from "@/components/public/quick-view-item";
-import { EventsItems, OrganizersItems, PerformersItems, VenuesItems } from "./quick-views";
+} from "~/components/public/quick-view";
+import {
+  EventLoadingItem,
+  AccountLoadingItem,
+} from "~/components/public/quick-view-item";
+import {
+  EventsItems,
+  OrganizersItems,
+  PerformersItems,
+  VenuesItems,
+} from "./quick-views";
 import { cookies } from "next/headers";
 
 export default async function Home() {
@@ -49,7 +62,8 @@ export default async function Home() {
     <>
       <PageHeader>
         <Disclaimer href="/help-out">
-          {disclaimerIcon} <Separator orientation="vertical" className="mx-2 h-4" />
+          {disclaimerIcon}{" "}
+          <Separator orientation="vertical" className="mx-2 h-4" />
           <span className="sm:hidden">{disclaimerShort}</span>
           <span className="hidden sm:inline">{disclaimerLong}</span>
           <ArrowRightIcon className="ml-1 h-4 w-4" />
@@ -57,10 +71,10 @@ export default async function Home() {
         <HomepageTitle>{h1}</HomepageTitle>
         <HomepageDescription>{p}</HomepageDescription>
         <HomepageCTA className="md:py-4">
-          <Button size="sm" className="px-4 md:hidden" asChild>
+          <Button size="sm" className="bg-green-700 px-4 md:hidden" asChild>
             <Link href={ctaLink}>{ctaText}</Link>
           </Button>
-          <Button className="px-4 hidden md:block" asChild>
+          <Button className="hidden px-4 md:block" asChild>
             <Link href={ctaLink}>{ctaText}</Link>
           </Button>
         </HomepageCTA>
@@ -68,7 +82,9 @@ export default async function Home() {
 
       <TypographyH2 className="mt-0">
         <span className="sm:hidden">Events happening soon</span>
-        <span className="hidden sm:inline-block">Check out events happening soon</span>
+        <span className="hidden sm:inline-block">
+          Check out events happening soon
+        </span>
       </TypographyH2>
 
       <QuickView>
@@ -87,7 +103,9 @@ export default async function Home() {
 
       <TypographyH2>
         <span className="sm:hidden">Discover new events</span>
-        <span className="hidden sm:inline-block">Discover new events around town</span>
+        <span className="hidden sm:inline-block">
+          Discover new events around town
+        </span>
       </TypographyH2>
 
       <QuickView>
@@ -143,7 +161,10 @@ export default async function Home() {
         <TypographyMuted className="text-lg">{publicP}</TypographyMuted>
         <ul className="space-y-2 py-4">
           {publicFeatures.map((item, i) => (
-            <li key={`x-${item}`} className="flex items-center  gap-4 leading-7">
+            <li
+              key={`x-${item}`}
+              className="flex items-center  gap-4 leading-7"
+            >
               <CheckCircleIcon className="h-6 w-6 flex-shrink-0" />
               {item}
             </li>
@@ -161,7 +182,10 @@ export default async function Home() {
         <TypographyMuted className="text-lg">{authorizedP}</TypographyMuted>
         <ul className="space-y-2 py-4">
           {authorizedFeatures.map((item, i) => (
-            <li key={`x-${item}`} className="flex items-center  gap-4 leading-7">
+            <li
+              key={`x-${item}`}
+              className="flex items-center  gap-4 leading-7"
+            >
               <CheckCircleIcon className="h-6 w-6 flex-shrink-0" />
               {item}
             </li>

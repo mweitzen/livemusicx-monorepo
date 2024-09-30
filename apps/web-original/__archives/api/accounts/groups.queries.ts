@@ -1,12 +1,12 @@
 import { z } from "zod";
-// import { createSlug } from "@/lib/utils";
+// import { createSlug } from "@repo/utils";
 import type { User } from "next-auth";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db/schema";
 
 import {
   GetAllGroupsInputSchema,
   CreateGroupInputSchema,
-} from "@/lib/schema/accounts/groups";
+} from "~/lib/schema/accounts/groups";
 import { GetAllPerformersWhere } from "./performers.queries";
 
 export const GetAllGroupsQuery = (

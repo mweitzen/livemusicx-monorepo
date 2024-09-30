@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 import { useState, useCallback, useMemo, ChangeEvent } from "react";
-import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardTitle } from "~/components/ui/card";
 
 async function uploadImage() {
   // fetch("/api/upload", {
@@ -34,7 +34,9 @@ export const ImageUploadPage = () => {
       const file = event.currentTarget.files && event.currentTarget.files[0];
       if (file) {
         if (file.size > maxFileSize) {
-          toast("Upload error!", { description: "File size too big (max 50MB)" });
+          toast("Upload error!", {
+            description: "File size too big (max 50MB)",
+          });
         } else {
           setFile(file);
           const reader = new FileReader();
@@ -101,18 +103,23 @@ export const ImageUploadPage = () => {
   };
 
   return (
-    <form className="grid gap-6" onSubmit={handleFormSubmit}>
+    <form
+      className='grid gap-6'
+      onSubmit={handleFormSubmit}
+    >
       <div>
-        <div className="space-y-1 mb-4">
+        <div className='space-y-1 mb-4'>
           <CardTitle>Upload a file</CardTitle>
-          <CardDescription>Accepted formats: .png, .jpg, .gif, .mp4</CardDescription>
+          <CardDescription>
+            Accepted formats: .png, .jpg, .gif, .mp4
+          </CardDescription>
         </div>
         <label
-          htmlFor="image-upload"
-          className="group relative mt-2 flex h-96 cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50"
+          htmlFor='image-upload'
+          className='group relative mt-2 flex h-96 cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50'
         >
           <div
-            className="absolute z-[5] h-full w-full rounded-md"
+            className='absolute z-[5] h-full w-full rounded-md'
             onDragOver={handleOnDragOver}
             onDragEnter={handleOnDragEnter}
             onDragLeave={handleOnDragLeave}
@@ -131,41 +138,43 @@ export const ImageUploadPage = () => {
               className={`${
                 dragActive ? "scale-110" : "scale-100"
               } h-7 w-7 text-gray-500 transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
             >
-              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
-              <path d="M12 12v9"></path>
-              <path d="m16 16-4-4-4 4"></path>
+              <path d='M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242'></path>
+              <path d='M12 12v9'></path>
+              <path d='m16 16-4-4-4 4'></path>
             </svg>
-            <p className="mt-2 text-center text-sm text-gray-500">
+            <p className='mt-2 text-center text-sm text-gray-500'>
               Drag and drop or click to upload.
             </p>
-            <p className="mt-2 text-center text-sm text-gray-500">Max file size: 50MB</p>
-            <span className="sr-only">Photo upload</span>
+            <p className='mt-2 text-center text-sm text-gray-500'>
+              Max file size: 50MB
+            </p>
+            <span className='sr-only'>Photo upload</span>
           </div>
           {data.image && (
             <img
               src={data.image}
-              alt="Preview"
-              className="h-full w-full rounded-md object-cover"
+              alt='Preview'
+              className='h-full w-full rounded-md object-cover'
             />
           )}
         </label>
-        <div className="mt-1 flex rounded-md shadow-sm">
+        <div className='mt-1 flex rounded-md shadow-sm'>
           <input
-            id="image-upload"
-            name="image"
-            type="file"
-            accept="image/*"
-            className="sr-only"
+            id='image-upload'
+            name='image'
+            type='file'
+            accept='image/*'
+            className='sr-only'
             onChange={onChangePicture}
           />
         </div>
@@ -179,7 +188,7 @@ export const ImageUploadPage = () => {
             : "border-black bg-black text-white hover:bg-white hover:text-black"
         } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
       >
-        {saving ? <>Loading....</> : <p className="text-sm">Confirm upload</p>}
+        {saving ? <>Loading....</> : <p className='text-sm'>Confirm upload</p>}
       </button>
     </form>
   );

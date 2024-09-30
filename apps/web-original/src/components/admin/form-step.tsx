@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
+import { cn } from "@repo/ui/helpers";
+import { Card } from "@repo/ui/components/card";
 
 interface FormStepProps extends React.HTMLAttributes<HTMLDivElement> {
   display?: boolean;

@@ -2,9 +2,9 @@ import Link from "next/link";
 import { auth } from "@repo/auth";
 import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { PageHeader, PageTitle } from "@/components/public/page";
+import { Button } from "@repo/ui/components/button";
+import { Card, CardContent, CardHeader } from "@repo/ui/components/card";
+import { PageHeader, PageTitle } from "~/components/public/page";
 export default async function UserAccountLayout({ children }: LayoutProps) {
   const session = await auth();
   if (!session) return redirect("/login");

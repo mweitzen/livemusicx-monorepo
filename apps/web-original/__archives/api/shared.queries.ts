@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { addDays } from "date-fns";
 import type { User } from "next-auth";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db/schema";
 
-import { GetUpcomingEventsInputSchema } from "@/lib/schema/events/main";
+import { GetUpcomingEventsInputSchema } from "~/lib/schema/events/main";
 
 export const QuickViewTake = 10;
 export const QuickViewEventsWhere = {

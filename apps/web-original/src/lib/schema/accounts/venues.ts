@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { VenueType, StageType } from "@repo/db/v1";
+import { VenueType, StageType } from "@repo/db/schema";
 
 import { CreateAccountSchema } from "./shared";
 import {
@@ -7,7 +7,7 @@ import {
   NoInputSchema,
   SearchSchemaBase,
   defaultPaginationValues,
-} from "@/lib/schema";
+} from "~/lib/schema";
 
 export const GetAllVenuesInputSchema = SearchSchemaBase.extend({
   venueTypes: z.array(z.nativeEnum(VenueType)).optional(),

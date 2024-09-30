@@ -1,7 +1,11 @@
 import { Fragment } from "react";
-import { PageDescription, PageHeader, PageTitle } from "@/components/public/page";
-import { TypographyH2, TypographyP } from "@/components/shared/typography";
-import { Button } from "@/components/ui/button";
+import {
+  PageDescription,
+  PageHeader,
+  PageTitle,
+} from "~/components/public/page";
+import { TypographyH2, TypographyP } from "~/components/shared/typography";
+import { Button } from "@repo/ui/components/button";
 import Link from "next/link";
 
 interface MarketingSectionProps {
@@ -37,9 +41,14 @@ export function MarketingPageBase({
       {children ?? null}
       {sections.map((section, index) => (
         <Fragment key={index}>
-          <TypographyH2 className={index === 0 ? "mt-0" : ""}>{section.header}</TypographyH2>
+          <TypographyH2 className={index === 0 ? "mt-0" : ""}>
+            {section.header}
+          </TypographyH2>
           <SectionContent content={section.content} />
-          <MarketingSectionList ordered={section.ordered ?? false} list={section.list} />
+          <MarketingSectionList
+            ordered={section.ordered ?? false}
+            list={section.list}
+          />
           <CTAButton cta={section.cta} ctaLink={section.ctaLink} />
           {/* {section.image && (
               <img
@@ -54,13 +63,18 @@ export function MarketingPageBase({
   );
 }
 
-const SectionContent = ({ content }: Pick<MarketingSectionProps, "content">) => {
+const SectionContent = ({
+  content,
+}: Pick<MarketingSectionProps, "content">) => {
   if (!content) return null;
 
   return <TypographyP>{content}</TypographyP>;
 };
 
-const CTAButton = ({ cta, ctaLink }: Pick<MarketingSectionProps, "cta" | "ctaLink">) => {
+const CTAButton = ({
+  cta,
+  ctaLink,
+}: Pick<MarketingSectionProps, "cta" | "ctaLink">) => {
   if (!cta || !ctaLink) return null;
 
   return (
@@ -80,7 +94,7 @@ const MarketingSectionList = ({
 
   if (ordered) {
     return (
-      <ol className="ml-6 list-inside list-letter space-y-2 py-6 [&>li]:mt-2">
+      <ol className="list-letter ml-6 list-inside space-y-2 py-6 [&>li]:mt-2">
         {list.map((item, index) => (
           <li key={index}>{item}</li>
         ))}

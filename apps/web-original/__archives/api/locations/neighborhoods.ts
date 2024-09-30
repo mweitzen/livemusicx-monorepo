@@ -1,4 +1,4 @@
-import { createTRPCRouter, publicProcedure } from "@/server/trpc";
+import { createTRPCRouter, publicProcedure } from "~/server/trpc";
 import { TRPCError } from "@trpc/server";
 
 import {
@@ -8,7 +8,7 @@ import {
   GetNeighborhoodVenuesOutputSchema,
   GetNeighborhoodEventsInputSchema,
   GetNeighborhoodEventsOutputSchema,
-} from "@/lib/schema/locations/neighborhood";
+} from "~/lib/schema/locations/neighborhood";
 
 import {
   GetAllNeighborhoodsQuery,
@@ -18,11 +18,17 @@ import {
 
 export const neighborhoodsRouter = createTRPCRouter({
   list: publicProcedure
-    .meta({ openapi: { method: "GET", path: "/locations/neighborhoods", tags: ["locations"] } })
+    .meta({
+      openapi: {
+        method: "GET",
+        path: "/locations/neighborhoods",
+        tags: ["locations"],
+      },
+    })
     .input(GetNeighborhoodsInputSchema)
     .output(GetNeighborhoodsOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.neighborhood.findMany(GetAllNeighborhoodsQuery(input))
+      ctx.prisma.neighborhood.findMany(GetAllNeighborhoodsQuery(input)),
     ),
   getVenues: publicProcedure
     .meta({
@@ -36,10 +42,13 @@ export const neighborhoodsRouter = createTRPCRouter({
     .output(GetNeighborhoodVenuesOutputSchema)
     .query(async ({ ctx, input }) => {
       const neighborhood = await ctx.prisma.neighborhood.findUnique(
-        GetNeighborhoodVenuesQuery(input)
+        GetNeighborhoodVenuesQuery(input),
       );
       if (!neighborhood)
-        throw new TRPCError({ code: "NOT_FOUND", message: "Neighborhood not found" });
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Neighborhood not found",
+        });
       return neighborhood.venues;
     }),
   getEvents: publicProcedure
@@ -54,10 +63,13 @@ export const neighborhoodsRouter = createTRPCRouter({
     .output(GetNeighborhoodEventsOutputSchema)
     .query(async ({ ctx, input }) => {
       const neighborhood = await ctx.prisma.neighborhood.findUnique(
-        GetNeighborhoodEventsQuery(input)
+        GetNeighborhoodEventsQuery(input),
       );
       if (!neighborhood)
-        throw new TRPCError({ code: "NOT_FOUND", message: "Neighborhood not found" });
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Neighborhood not found",
+        });
       return [];
       // return neighborhood.events;
     }),

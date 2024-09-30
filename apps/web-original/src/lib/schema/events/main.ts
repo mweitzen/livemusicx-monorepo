@@ -1,14 +1,14 @@
 import { z } from "zod";
 
-import { VenueType } from "@repo/db/v1";
-import { EventInputSchemaBase } from "@/lib/schema/events/shared";
-import { GetDetailsInputSchema, NoInputSchema } from "@/lib/schema";
+import { VenueType } from "@repo/db/schema";
+import { EventInputSchemaBase } from "~/lib/schema/events/shared";
+import { GetDetailsInputSchema, NoInputSchema } from "~/lib/schema";
 
 import {
   SearchSchemaBase,
   defaultPaginationValues,
   groupSizes,
-} from "@/lib/schema";
+} from "~/lib/schema";
 
 export const GetEventsQuickViewInputSchema = NoInputSchema;
 export const EventCountOutputSchema = z.number().nullable();

@@ -1,7 +1,7 @@
-import { MusicianDetails } from "@/lib/types/outputs";
-// import { MusicianDetails } from "@/server/api/accounts/musicians";
+import { MusicianDetails } from "~/lib/types/outputs";
+// import { MusicianDetails } from "~/server/api/accounts/musicians";
 import { EventDetails } from "../../../__archives/api/events/main";
-import { Card, CardContent, CardHeader } from "../ui/card";
+import { Card, CardContent, CardHeader } from "@repo/ui/components/card";
 
 function EventsGrid(props: React.HTMLAttributes<HTMLDivElement>) {
   return (

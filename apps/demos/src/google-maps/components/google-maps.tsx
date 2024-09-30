@@ -1,4 +1,10 @@
-import { useState, useEffect, useRef, type Dispatch, type SetStateAction } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 import {
   Pin,
   AdvancedMarker,
@@ -9,14 +15,14 @@ import {
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
 // import { MarkerClusterer } from "@googlemaps/markerclusterer";
-import { Input } from "@/components/ui/input";
+import { Input } from "~/components/ui/input";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import {
   getAutocompleteWidget,
   getPlaceDetails,
   formatGooglePlaceResult,
   GooglePlaceResult,
-} from "@/google-maps/lib/google-maps";
+} from "~/google-maps/lib/google-maps";
 
 export const GooglePlacesAutocomplete = ({
   setSelectedPlace,
@@ -33,7 +39,10 @@ export const GooglePlacesAutocomplete = ({
     if (places && inputRef.current) {
       if (!autocompleteRef.current) {
         // create autocomplete widget
-        autocompleteRef.current = getAutocompleteWidget(places, inputRef.current);
+        autocompleteRef.current = getAutocompleteWidget(
+          places,
+          inputRef.current
+        );
 
         // add listener for place changed
         autocompleteRef.current.addListener("place_changed", () => {
@@ -53,23 +62,34 @@ export const GooglePlacesAutocomplete = ({
             setLoading(false);
           } else {
             // get additional place details
-            getPlaceDetails(place.place_id!).then(({ data: additionalDetails }) => {
-              // map place details to venue
-              const mappedVenue = formatGooglePlaceResult({ ...place, ...additionalDetails });
-              // set selected place
-              if (setSelectedPlace) {
-                setSelectedPlace(mappedVenue);
-              }
+            getPlaceDetails(place.place_id!).then(
+              ({ data: additionalDetails }) => {
+                // map place details to venue
+                const mappedVenue = formatGooglePlaceResult({
+                  ...place,
+                  ...additionalDetails,
+                });
+                // set selected place
+                if (setSelectedPlace) {
+                  setSelectedPlace(mappedVenue);
+                }
 
-              setLoading(false);
-            });
+                setLoading(false);
+              }
+            );
           }
         });
       }
     }
   }, [places, inputRef, autocompleteRef, setSelectedPlace]);
 
-  return <Input ref={inputRef} placeholder="Enter a venue" disabled={loading} />;
+  return (
+    <Input
+      ref={inputRef}
+      placeholder='Enter a venue'
+      disabled={loading}
+    />
+  );
 };
 
 interface InfoWindowProps extends InfoWindowPrimitiveProps {
@@ -81,10 +101,10 @@ const InfoWindow = ({ title, open, ...props }: InfoWindowProps) => {
   if (!open) return null;
   return (
     <InfoWindowPrimitive {...props}>
-      <div className="flex flex-col">
-        <div className="flex flex-row items-center">
-          <InformationCircleIcon className="h-6 w-6" />
-          <h1 className="ml-2 text-xl font-bold">{title}</h1>
+      <div className='flex flex-col'>
+        <div className='flex flex-row items-center'>
+          <InformationCircleIcon className='h-6 w-6' />
+          <h1 className='ml-2 text-xl font-bold'>{title}</h1>
         </div>
       </div>
     </InfoWindowPrimitive>
@@ -112,8 +132,17 @@ export const GoogleMapsMarker = ({ position, name }: GoogleMapsMarkerProps) => {
         position={position}
         onClick={() => setInfoWindowOpen(true)}
       >
-        <Pin background="#020817" borderColor="#212121" glyphColor="white" scale={1.25}>
-          <img src="https://www.livemusicx.com/brand.png" className="h-4 w-4" alt="brand" />
+        <Pin
+          background='#020817'
+          borderColor='#212121'
+          glyphColor='white'
+          scale={1.25}
+        >
+          <img
+            src='https://www.livemusicx.com/brand.png'
+            className='h-4 w-4'
+            alt='brand'
+          />
         </Pin>
       </AdvancedMarker>
       <InfoWindow

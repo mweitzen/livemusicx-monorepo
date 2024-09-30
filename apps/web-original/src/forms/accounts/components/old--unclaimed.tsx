@@ -6,15 +6,15 @@ import { useState } from "react";
 import { useDebounce } from "use-debounce";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Label } from "@repo/ui/components/label";
+import { Input } from "@repo/ui/components/input";
+import { Button } from "@repo/ui/components/button";
 import {
   TypographyH2,
   TypographyH3,
   TypographyLarge,
   TypographyMuted,
-} from "@/components/shared/typography";
+} from "~/components/shared/typography";
 import {
   Dialog,
   DialogClose,
@@ -24,9 +24,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@repo/ui/components/dialog";
 import { MapPinIcon } from "@heroicons/react/24/solid";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@repo/utils";
 
 export default function SelectUnclaimedAccount({
   accountType,

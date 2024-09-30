@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import { usePathname } from "next/navigation";
 
 export const AdminLink = ({ href, name }: { href: string; name: string }) => {

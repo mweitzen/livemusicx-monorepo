@@ -1,11 +1,11 @@
-import type { RouterOutputs, RouterInputs } from "@/lib/trpc/shared";
+import type { RouterOutputs, RouterInputs } from "@repo/trpc";
 
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
   authorizedProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 
 import {
   GetEventDetailsQuery,
@@ -17,11 +17,15 @@ import {
   EventCountOutputSchema,
   GetEventDetailsInputSchema,
   GetUpcomingEventsInputSchema,
-} from "@/lib/schema/events";
+} from "~/lib/schema/events";
 
-import { NoInputSchema, SimpleSearchSchema, IDInputSchema } from "@/lib/schema/shared";
+import {
+  NoInputSchema,
+  SimpleSearchSchema,
+  IDInputSchema,
+} from "~/lib/schema/shared";
 
-import { PublishEventInputSchema } from "@/lib/schema/events/main";
+import { PublishEventInputSchema } from "~/lib/schema/events/main";
 
 /*
  *
@@ -58,26 +62,32 @@ const mainRouter = createTRPCRouter({
       // ctx.prisma.event.count(GetUpcomingEventsQuery(input, ctx.session?.user))
       ctx.prisma.event.count({
         where: {
-          timeStart: { gte: input.dateStart ? new Date(input.dateStart) : new Date() },
+          timeStart: {
+            gte: input.dateStart ? new Date(input.dateStart) : new Date(),
+          },
           NOT: {
             status: {
               in: ["CANCELLED", "POSTPONED"],
             },
           },
         },
-      })
+      }),
     ),
 
   getUpcoming: publicProcedure
     .input(GetUpcomingEventsInputSchema)
     .query(async ({ ctx, input }) =>
-      ctx.prisma.event.findMany(GetUpcomingEventsQuery(input, ctx.session?.user))
+      ctx.prisma.event.findMany(
+        GetUpcomingEventsQuery(input, ctx.session?.user),
+      ),
     ),
 
   getDetails: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/events/{id}", tags: ["events"] } })
     .input(GetEventDetailsInputSchema)
-    .query(({ ctx, input }) => ctx.prisma.event.findUnique(GetEventDetailsQuery(input))),
+    .query(({ ctx, input }) =>
+      ctx.prisma.event.findUnique(GetEventDetailsQuery(input)),
+    ),
 
   getQuickView: publicProcedure
     // .meta({ openapi: { method: "GET", path: "/events/quick-view", tags: ["events"] } })
@@ -87,54 +97,64 @@ const mainRouter = createTRPCRouter({
   /*
    *
    * PROTECTED */
-  getBookmarked: protectedProcedure.input(SimpleSearchSchema).query(async ({ ctx, input }) => {
-    const userId = ctx.session.user.id;
-    const user = await ctx.prisma.user.findUnique({
-      where: {
-        id: userId,
-        name: input ? { contains: input.query ?? "", mode: "insensitive" } : undefined,
-      },
-      select: { eventsBookmarked: true },
-    });
-    if (!user) return [];
-    return user.eventsBookmarked;
-  }),
+  getBookmarked: protectedProcedure
+    .input(SimpleSearchSchema)
+    .query(async ({ ctx, input }) => {
+      const userId = ctx.session.user.id;
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: userId,
+          name: input
+            ? { contains: input.query ?? "", mode: "insensitive" }
+            : undefined,
+        },
+        select: { eventsBookmarked: true },
+      });
+      if (!user) return [];
+      return user.eventsBookmarked;
+    }),
 
-  addToBookmarked: protectedProcedure.input(IDInputSchema).query(({ ctx, input }) => {
-    const userId = ctx.session.user.id;
-    return ctx.prisma.event.update({
-      where: {
-        id: input.id,
-      },
-      data: {
-        bookmarkedBy: {
-          connect: {
-            id: userId,
+  addToBookmarked: protectedProcedure
+    .input(IDInputSchema)
+    .query(({ ctx, input }) => {
+      const userId = ctx.session.user.id;
+      return ctx.prisma.event.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          bookmarkedBy: {
+            connect: {
+              id: userId,
+            },
           },
         },
-      },
-    });
-  }),
-  removeFromBookmarked: protectedProcedure.input(IDInputSchema).query(({ ctx, input }) => {
-    const userId = ctx.session.user.id;
-    return ctx.prisma.event.update({
-      where: {
-        id: input.id,
-      },
-      data: {
-        bookmarkedBy: {
-          disconnect: {
-            id: userId,
+      });
+    }),
+  removeFromBookmarked: protectedProcedure
+    .input(IDInputSchema)
+    .query(({ ctx, input }) => {
+      const userId = ctx.session.user.id;
+      return ctx.prisma.event.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          bookmarkedBy: {
+            disconnect: {
+              id: userId,
+            },
           },
         },
-      },
-    });
-  }),
+      });
+    }),
 
   /*
    *
    * AUTHORIZED */
-  publish: authorizedProcedure.input(PublishEventInputSchema).mutation(() => {}),
+  publish: authorizedProcedure
+    .input(PublishEventInputSchema)
+    .mutation(() => {}),
   update: authorizedProcedure.mutation(() => {}),
   reschedule: authorizedProcedure.mutation(() => {}),
   postpone: authorizedProcedure.mutation(() => {}),

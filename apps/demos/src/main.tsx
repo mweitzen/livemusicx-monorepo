@@ -1,4 +1,3 @@
-import "@repo/ui/styles.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -16,8 +15,14 @@ import { EventCreationPage } from "./event-creation";
 import { BulletinBoardPage } from "./bulletin-board";
 import { AccountCreationPage } from "./account-creation";
 import { AffiliationManagementPage } from "./affiliation-management";
+import { BlankPage } from "./__blank-page";
 
 export const routes = [
+  {
+    path: "/blank",
+    name: "Blank Page",
+    element: <BlankPage />,
+  },
   {
     path: "/google-maps",
     name: "Google Maps",

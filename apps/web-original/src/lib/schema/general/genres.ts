@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { NoInputSchema } from "@/lib/schema";
+import { NoInputSchema } from "~/lib/schema";
 
 export const GetGenresInputSchema = NoInputSchema;
 export const GetGenresOutputSchema = z.array(
@@ -7,5 +7,5 @@ export const GetGenresOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     displayName: z.string(),
-  })
+  }),
 );

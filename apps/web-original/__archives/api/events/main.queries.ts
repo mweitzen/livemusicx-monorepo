@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { addDays } from "date-fns";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db/schema";
 import type { User } from "next-auth";
 
 import {
   GetUpcomingEventsInputSchema,
   GetEventDetailsInputSchema,
-} from "@/lib/schema/events/main";
+} from "~/lib/schema/events/main";
 
 import {
   GenresWhere,

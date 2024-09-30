@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "~/lib/utils";
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "~/components/ui/input";
+import { Button } from "~/components/ui/button";
 import { MapPinIcon } from "@heroicons/react/20/solid";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "~/components/ui/separator";
 import {
   FormControl,
   FormDescription,
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
+} from "~/components/ui/form";
 import { ClaimAccountButton } from "./claim-account";
 import axios from "axios";
 
@@ -46,7 +46,9 @@ export const UnclaimedAccountSearch = ({
   type: "musician" | "group" | "organizer" | null;
 }) => {
   const [loading, setLoading] = useState(false);
-  const [unclaimedAccounts, setUnclaimedAccounts] = useState<typeof mockAccounts>([]);
+  const [unclaimedAccounts, setUnclaimedAccounts] = useState<
+    typeof mockAccounts
+  >([]);
   const [dbData, setDbData] = useState<any[]>([]);
 
   const { control, setValue } = useFormContext();
@@ -114,10 +116,10 @@ export const UnclaimedAccountSearch = ({
   if (!type) return null;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className='flex flex-col gap-4'>
       <FormField
         control={control}
-        name="name"
+        name='name'
         render={({ field: { ...field } }) => (
           <FormItem>
             <FormLabel>{capitalize(type)} Name</FormLabel>
@@ -135,15 +137,15 @@ export const UnclaimedAccountSearch = ({
               />
             </FormControl>
             <FormDescription>
-              Hint: Try searching for different variations of the {type} name if you think it
-              may already have been added.
+              Hint: Try searching for different variations of the {type} name if
+              you think it may already have been added.
             </FormDescription>
           </FormItem>
         )}
       />
       <Button
-        type="button"
-        size="lg"
+        type='button'
+        size='lg'
         disabled={loading || inputName.length <= 2}
         onClick={async () => {
           setValue("createType", "create");
@@ -151,27 +153,27 @@ export const UnclaimedAccountSearch = ({
       >
         Create New Account
       </Button>
-      <Separator className="my-4" />
+      <Separator className='my-4' />
       <div>
-        <p className="text-lg font-semibold">Unclaimed Accounts</p>
-        <p className="text-sm text-muted-foreground">
-          Accounts can be created by other users referencing you in their events. Unclaimed
-          accounts that match your search will appear below.
+        <p className='text-lg font-semibold'>Unclaimed Accounts</p>
+        <p className='text-sm text-muted-foreground'>
+          Accounts can be created by other users referencing you in their
+          events. Unclaimed accounts that match your search will appear below.
         </p>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className='flex flex-col gap-2'>
         {inputName.length > 2
           ? loading
             ? "Loading..."
             : unclaimedAccounts.map((account) => (
                 <div
                   key={account.id}
-                  className="flex justify-between p-4 rounded-lg border items-center"
+                  className='flex justify-between p-4 rounded-lg border items-center'
                 >
                   <div>
-                    <p className="text-lg font-semibold">{account.name}</p>
-                    <span className="flex gap-2 items-center">
-                      <MapPinIcon className="h-4 w-4" /> {account.basedIn.name}
+                    <p className='text-lg font-semibold'>{account.name}</p>
+                    <span className='flex gap-2 items-center'>
+                      <MapPinIcon className='h-4 w-4' /> {account.basedIn.name}
                     </span>
                   </div>
                   <ClaimAccountButton
@@ -187,12 +189,12 @@ export const UnclaimedAccountSearch = ({
         {dbData.map((account) => (
           <div
             key={account.id}
-            className="flex justify-between p-4 rounded-lg border items-center"
+            className='flex justify-between p-4 rounded-lg border items-center'
           >
             <div>
-              <p className="text-lg font-semibold">{account.name}</p>
-              <span className="flex gap-2 items-center">
-                <MapPinIcon className="h-4 w-4" /> {account.basedIn.name}
+              <p className='text-lg font-semibold'>{account.name}</p>
+              <span className='flex gap-2 items-center'>
+                <MapPinIcon className='h-4 w-4' /> {account.basedIn.name}
               </span>
             </div>
             <ClaimAccountButton

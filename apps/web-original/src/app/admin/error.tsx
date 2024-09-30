@@ -1,9 +1,13 @@
 "use client";
 import Link from "next/link";
 
-import { MainWrapper } from "@/components/shared/main-wrapper";
-import { Button } from "@/components/ui/button";
-import { TypographyH1, TypographyLarge, TypographyMuted } from "@/components/shared/typography";
+import { MainWrapper } from "~/components/shared/main-wrapper";
+import { Button } from "@repo/ui/components/button";
+import {
+  TypographyH1,
+  TypographyLarge,
+  TypographyMuted,
+} from "~/components/shared/typography";
 
 import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
 

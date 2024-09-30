@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { routes } from "@/routes";
+import { routes } from "~/routes";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemapData = routes.map((link) => ({

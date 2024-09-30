@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Brand from "@/components/shared/brand";
-import { slogan } from "@/lib/content/global";
+import Brand from "~/components/shared/brand";
+import { slogan } from "~/lib/content/global";
 import { SocialIcon } from "react-social-icons";
 import { TypographyMuted } from "../shared/typography";
 
@@ -75,7 +75,11 @@ export default function PublicFooter() {
         </div>
         <nav className="grid grid-cols-2 gap-x-2 gap-y-6 lg:grid-cols-4">
           {navigation.map((links, i) => (
-            <NavigationSection key={`x${i}`} title={sections[i]} links={links} />
+            <NavigationSection
+              key={`x${i}`}
+              title={sections[i]}
+              links={links}
+            />
           ))}
         </nav>
       </div>

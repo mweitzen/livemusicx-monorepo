@@ -12,23 +12,23 @@ import {
   FormLabel,
   FormMessage,
   FormDescription,
-} from "@/components/ui/form";
+} from "~/components/ui/form";
 import {
   FormStep,
   FormStepContent,
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/form-step";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
+} from "~/components/form-step";
+import { Input } from "~/components/ui/input";
+import { Button } from "~/components/ui/button";
+import { Switch } from "~/components/ui/switch";
+import { Textarea } from "~/components/ui/textarea";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 
 // library specific imports
 import { PublishEventSchema } from "./lib/schema";
-import { SelectGenres } from "@/account-creation/components/select-genres";
+import { SelectGenres } from "~/account-creation/components/select-genres";
 import { DatePicker } from "./components/date-picker-single";
 import { DoorTimePicker } from "./components/door-time";
 
@@ -64,67 +64,85 @@ export const BlankEventForm = () => {
           <FormStepContent>
             <FormField
               control={form.control}
-              name="image"
+              name='image'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Event Image</FormLabel>
                   <FormControl>
-                    <Input type="file" {...field} />
+                    <Input
+                      type='file'
+                      {...field}
+                    />
                   </FormControl>
-                  <FormDescription>This is the image of your event</FormDescription>
+                  <FormDescription>
+                    This is the image of your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="name"
+              name='name'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Event Title</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>This is the title of your event</FormDescription>
+                  <FormDescription>
+                    This is the title of your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="description"
+              name='description'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Event Description</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className="resize-none" rows={7} />
+                    <Textarea
+                      {...field}
+                      className='resize-none'
+                      rows={7}
+                    />
                   </FormControl>
-                  <FormDescription>This is the description of your event</FormDescription>
+                  <FormDescription>
+                    This is the description of your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="button" onClick={() => setCurrentStep(2)}>
-              Event Scheduling <ArrowRightIcon className="h-3 w-3" />
+            <Button
+              type='button'
+              onClick={() => setCurrentStep(2)}
+            >
+              Event Scheduling <ArrowRightIcon className='h-3 w-3' />
             </Button>
           </FormStepContent>
         </FormStep>
         <FormStep display={currentStep === 2}>
           <FormStepHeader>
             <FormStepTitle>Event Scheduling</FormStepTitle>
-            <FormStepDescription>Provide the date and time for your event</FormStepDescription>
+            <FormStepDescription>
+              Provide the date and time for your event
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
             <DatePicker />
             <FormField
               control={form.control}
-              name="dateStart"
+              name='dateStart'
               render={({ field: { value, onChange, ...field } }) => (
                 <FormItem>
                   <FormLabel>Start Date</FormLabel>
                   <FormControl>
                     <Input
-                      type="date"
+                      type='date'
                       value={format(value, "yyyy-MM-dd")} // format the date to match the input type
                       onChange={(e) => onChange(new Date(e.target.value))}
                       {...field}
@@ -134,15 +152,18 @@ export const BlankEventForm = () => {
                 </FormItem>
               )}
             />
-            <div className="grid grid-cols-2 gap-4">
+            <div className='grid grid-cols-2 gap-4'>
               <FormField
                 control={form.control}
-                name="timeStart"
+                name='timeStart'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Start Time</FormLabel>
                     <FormControl>
-                      <Input type="time" {...field} />
+                      <Input
+                        type='time'
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -150,12 +171,15 @@ export const BlankEventForm = () => {
               />
               <FormField
                 control={form.control}
-                name="timeEnd"
+                name='timeEnd'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>End Time</FormLabel>
                     <FormControl>
-                      <Input type="time" {...field} />
+                      <Input
+                        type='time'
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -163,12 +187,19 @@ export const BlankEventForm = () => {
               />
             </div>
             <DoorTimePicker />
-            <div className="grid grid-cols-2 gap-2">
-              <Button type="button" variant="outline" onClick={() => setCurrentStep(1)}>
+            <div className='grid grid-cols-2 gap-2'>
+              <Button
+                type='button'
+                variant='outline'
+                onClick={() => setCurrentStep(1)}
+              >
                 Back to Event Information
               </Button>
-              <Button type="button" onClick={() => setCurrentStep(3)}>
-                Event Details <ArrowRightIcon className="h-3 w-3" />
+              <Button
+                type='button'
+                onClick={() => setCurrentStep(3)}
+              >
+                Event Details <ArrowRightIcon className='h-3 w-3' />
               </Button>
             </div>
           </FormStepContent>
@@ -176,66 +207,88 @@ export const BlankEventForm = () => {
         <FormStep display={currentStep === 3}>
           <FormStepHeader>
             <FormStepTitle>Event Details</FormStepTitle>
-            <FormStepDescription>Provide the details for your event</FormStepDescription>
+            <FormStepDescription>
+              Provide the details for your event
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
-            <div className="grid grid-cols-2 gap-4">
+            <div className='grid grid-cols-2 gap-4'>
               <FormField
                 control={form.control}
-                name="isPrivate"
+                name='isPrivate'
                 render={({ field: { value, onChange, ...field } }) => (
-                  <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
+                  <FormItem className='flex items-center justify-between rounded-lg border p-3 shadow-sm'>
                     <FormLabel>Private Event</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name="isFree"
+                name='isFree'
                 render={({ field: { value, onChange, ...field } }) => (
-                  <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
+                  <FormItem className='flex items-center justify-between rounded-lg border p-3 shadow-sm'>
                     <FormLabel>Free Event</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name="isHoliday"
+                name='isHoliday'
                 render={({ field: { value, onChange, ...field } }) => (
-                  <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
+                  <FormItem className='flex items-center justify-between rounded-lg border p-3 shadow-sm'>
                     <FormLabel>Holiday Event</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name="isChildFriendly"
+                name='isChildFriendly'
                 render={({ field: { value, onChange, ...field } }) => (
-                  <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
+                  <FormItem className='flex items-center justify-between rounded-lg border p-3 shadow-sm'>
                     <FormLabel>Child Friendly</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name="servesAlcohol"
+                name='servesAlcohol'
                 render={({ field: { value, onChange, ...field } }) => (
-                  <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
+                  <FormItem className='flex items-center justify-between rounded-lg border p-3 shadow-sm'>
                     <FormLabel>Serves Alcohol</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -243,12 +296,16 @@ export const BlankEventForm = () => {
 
               <FormField
                 control={form.control}
-                name="servesFood"
+                name='servesFood'
                 render={({ field: { value, onChange, ...field } }) => (
-                  <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
+                  <FormItem className='flex items-center justify-between rounded-lg border p-3 shadow-sm'>
                     <FormLabel>Serves Food</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -257,24 +314,33 @@ export const BlankEventForm = () => {
             <SelectGenres />
             <FormField
               control={form.control}
-              name="keywords"
+              name='keywords'
               render={() => (
                 <FormItem>
                   <FormLabel>Event Keywords</FormLabel>
                   <FormControl>
                     <Input />
                   </FormControl>
-                  <FormDescription>Keywords to help find your event</FormDescription>
+                  <FormDescription>
+                    Keywords to help find your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <div className="grid grid-cols-2 gap-2">
-              <Button type="button" variant="outline" onClick={() => setCurrentStep(2)}>
+            <div className='grid grid-cols-2 gap-2'>
+              <Button
+                type='button'
+                variant='outline'
+                onClick={() => setCurrentStep(2)}
+              >
                 Back to Scheduling
               </Button>
-              <Button type="button" onClick={() => setCurrentStep(4)}>
-                Event Participants <ArrowRightIcon className="h-3 w-3" />
+              <Button
+                type='button'
+                onClick={() => setCurrentStep(4)}
+              >
+                Event Participants <ArrowRightIcon className='h-3 w-3' />
               </Button>
             </div>
           </FormStepContent>
@@ -282,26 +348,30 @@ export const BlankEventForm = () => {
         <FormStep display={currentStep === 4}>
           <FormStepHeader>
             <FormStepTitle>Event Participants</FormStepTitle>
-            <FormStepDescription>Provide the participants for your event</FormStepDescription>
+            <FormStepDescription>
+              Provide the participants for your event
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
             <FormField
               control={form.control}
-              name="venueId"
+              name='venueId'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Venue</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>Where your event will be held</FormDescription>
+                  <FormDescription>
+                    Where your event will be held
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="organizerId"
+              name='organizerId'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Organizer</FormLabel>
@@ -315,21 +385,23 @@ export const BlankEventForm = () => {
             />
             <FormField
               control={form.control}
-              name="musicians"
+              name='musicians'
               render={() => (
                 <FormItem>
                   <FormLabel>Performers</FormLabel>
                   <FormControl>
                     <Input />
                   </FormControl>
-                  <FormDescription>Who will be performing at your event</FormDescription>
+                  <FormDescription>
+                    Who will be performing at your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="groups"
+              name='groups'
               render={() => (
                 <FormItem>
                   <FormLabel>Groups</FormLabel>
@@ -343,12 +415,19 @@ export const BlankEventForm = () => {
                 </FormItem>
               )}
             />
-            <div className="grid grid-cols-2 gap-2">
-              <Button type="button" variant="outline" onClick={() => setCurrentStep(3)}>
+            <div className='grid grid-cols-2 gap-2'>
+              <Button
+                type='button'
+                variant='outline'
+                onClick={() => setCurrentStep(3)}
+              >
                 Back to Event Details
               </Button>
-              <Button type="button" onClick={() => setCurrentStep(5)}>
-                Event Confirmation <ArrowRightIcon className="h-3 w-3" />
+              <Button
+                type='button'
+                onClick={() => setCurrentStep(5)}
+              >
+                Event Confirmation <ArrowRightIcon className='h-3 w-3' />
               </Button>
             </div>
           </FormStepContent>
@@ -356,14 +435,20 @@ export const BlankEventForm = () => {
         <FormStep display={currentStep === 5}>
           <FormStepHeader>
             <FormStepTitle>Event Confirmation</FormStepTitle>
-            <FormStepDescription>Review and confirm your event details</FormStepDescription>
+            <FormStepDescription>
+              Review and confirm your event details
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
-            <div className="grid grid-cols-2 gap-2">
-              <Button type="button" variant="outline" onClick={() => setCurrentStep(4)}>
+            <div className='grid grid-cols-2 gap-2'>
+              <Button
+                type='button'
+                variant='outline'
+                onClick={() => setCurrentStep(4)}
+              >
                 Back to Event Participants
               </Button>
-              <Button type="submit">Submit</Button>
+              <Button type='submit'>Submit</Button>
             </div>
           </FormStepContent>
         </FormStep>

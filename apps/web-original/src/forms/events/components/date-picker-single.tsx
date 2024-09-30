@@ -1,11 +1,16 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import { format } from "date-fns";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { Button } from "@repo/ui/components/button";
+import { Calendar } from "@repo/ui/components/calendar";
 import { CalendarIcon } from "@heroicons/react/20/solid";
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "@repo/ui/components/dialog";
 
 export const DatePicker = () => {
   const [date, setDate] = useState<Date>();
@@ -17,7 +22,7 @@ export const DatePicker = () => {
           variant={"outline"}
           className={cn(
             "justify-start text-left font-normal",
-            !date && "text-muted-foreground"
+            !date && "text-muted-foreground",
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
@@ -25,7 +30,7 @@ export const DatePicker = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className="w-auto p-6">
-        <p className="tracking-tight font-semibold">Select a Date</p>
+        <p className="font-semibold tracking-tight">Select a Date</p>
         <div className="rounded-md border">
           <Calendar
             mode={"single"}

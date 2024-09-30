@@ -4,23 +4,23 @@
 // import { useState } from "react";
 // import { useForm } from "react-hook-form";
 // import { zodResolver } from "@hookform/resolvers/zod";
-// import { APIProvider } from "@/google-maps/provider";
+// import { APIProvider } from "~/google-maps/provider";
 
-// import { Form } from "@/components/ui/form";
+// import { Form } from "@repo/ui/components/form";
 // import {
 //   FormStep,
 //   FormStepHeader,
 //   FormStepTitle,
 //   FormStepDescription,
 //   FormStepContent,
-// } from "@/components/admin/form-step";
-// import { Label } from "@/components/ui/label";
-// import { Button } from "@/components/ui/button";
-// import { GooglePlacesAutocomplete } from "@/google-maps/components/google-maps";
-// import type { GooglePlaceResult } from "@/google-maps/lib/google-maps";
+// } from "~/components/admin/form-step";
+// import { Label } from "@repo/ui/components/label";
+// import { Button } from "@repo/ui/components/button";
+// import { GooglePlacesAutocomplete } from "~/google-maps/components/google-maps";
+// import type { GooglePlaceResult } from "~/google-maps/lib/google-maps";
 // import { VenueAccountStatus } from "./components/venue-account-status";
-// import { Separator } from "@/components/ui/separator";
-// import { CreateVenueInuptSchema } from "@/lib/schema/accounts/venues";
+// import { Separator } from "@repo/ui/components/separator";
+// import { CreateVenueInuptSchema } from "~/lib/schema/accounts/venues";
 
 // const FormSchema = CreateVenueInuptSchema;
 

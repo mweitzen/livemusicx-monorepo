@@ -5,19 +5,19 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Form } from "@/components/ui/form";
+import { Form } from "@repo/ui/components/form";
 import {
   FormStep,
   FormStepContent,
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/admin/form-step";
+} from "~/components/admin/form-step";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@repo/ui/components/input";
+import { Label } from "@repo/ui/components/label";
+import { Button } from "@repo/ui/components/button";
+import { Textarea } from "@repo/ui/components/textarea";
 
 const FromTemplateFormSchema = z.object({
   templateId: z.string(),
@@ -52,13 +52,22 @@ export const FromTemplateForm = () => {
             <div className="space-y-2">
               <Label htmlFor="template">Template</Label>
               <div className="flex flex-col gap-2">
-                <Button variant="outline" onClick={() => form.setValue("templateId", "1")}>
+                <Button
+                  variant="outline"
+                  onClick={() => form.setValue("templateId", "1")}
+                >
                   Template 1
                 </Button>
-                <Button variant="outline" onClick={() => form.setValue("templateId", "1")}>
+                <Button
+                  variant="outline"
+                  onClick={() => form.setValue("templateId", "1")}
+                >
                   Template 2
                 </Button>
-                <Button variant="outline" onClick={() => form.setValue("templateId", "1")}>
+                <Button
+                  variant="outline"
+                  onClick={() => form.setValue("templateId", "1")}
+                >
                   Template 3
                 </Button>
               </div>
@@ -79,7 +88,7 @@ export const FromTemplateForm = () => {
                 type="text"
                 name="event-name"
                 placeholder="Event Name"
-                className="w-full p-3 border rounded-md"
+                className="w-full rounded-md border p-3"
               />
             </div>
             <div className="space-y-2">
@@ -87,7 +96,7 @@ export const FromTemplateForm = () => {
               <Textarea
                 name="event-description"
                 placeholder="Enter a description for your event"
-                className="w-full p-3 border rounded-md"
+                className="w-full rounded-md border p-3"
               />
             </div>
             <Button onClick={() => setTemplateInfoAdded(true)}>Next</Button>

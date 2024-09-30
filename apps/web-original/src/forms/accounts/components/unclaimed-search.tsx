@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@repo/utils";
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "@repo/ui/components/input";
+import { Button } from "@repo/ui/components/button";
 import { MapPinIcon } from "@heroicons/react/20/solid";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@repo/ui/components/separator";
 import {
   FormControl,
   FormDescription,
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
+} from "@repo/ui/components/form";
 import { ClaimAccountButton } from "./claim-account";
 
 const mockAccounts = [
@@ -45,7 +45,9 @@ export const UnclaimedAccountSearch = ({
   type: "musician" | "group" | "organizer" | null;
 }) => {
   const [loading, setLoading] = useState(false);
-  const [unclaimedAccounts, setUnclaimedAccounts] = useState<typeof mockAccounts>([]);
+  const [unclaimedAccounts, setUnclaimedAccounts] = useState<
+    typeof mockAccounts
+  >([]);
   const [dbData, setDbData] = useState<any[]>([]);
 
   const { control, setValue } = useFormContext();
@@ -63,8 +65,8 @@ export const UnclaimedAccountSearch = ({
                 .toLowerCase()
                 .split(" ")
                 .join("")
-                .includes(inputName.toLowerCase().split(" ").join(""))
-            )
+                .includes(inputName.toLowerCase().split(" ").join("")),
+            ),
           );
         }, 1000);
       });
@@ -134,8 +136,8 @@ export const UnclaimedAccountSearch = ({
               />
             </FormControl>
             <FormDescription>
-              Hint: Try searching for different variations of the {type} name if you think it
-              may already have been added.
+              Hint: Try searching for different variations of the {type} name if
+              you think it may already have been added.
             </FormDescription>
           </FormItem>
         )}
@@ -154,8 +156,8 @@ export const UnclaimedAccountSearch = ({
       <div>
         <p className="text-lg font-semibold">Unclaimed Accounts</p>
         <p className="text-sm text-muted-foreground">
-          Accounts can be created by other users referencing you in their events. Unclaimed
-          accounts that match your search will appear below.
+          Accounts can be created by other users referencing you in their
+          events. Unclaimed accounts that match your search will appear below.
         </p>
       </div>
       <div className="flex flex-col gap-2">
@@ -165,11 +167,11 @@ export const UnclaimedAccountSearch = ({
             : unclaimedAccounts.map((account) => (
                 <div
                   key={account.id}
-                  className="flex justify-between p-4 rounded-lg border items-center"
+                  className="flex items-center justify-between rounded-lg border p-4"
                 >
                   <div>
                     <p className="text-lg font-semibold">{account.name}</p>
-                    <span className="flex gap-2 items-center">
+                    <span className="flex items-center gap-2">
                       <MapPinIcon className="h-4 w-4" /> {account.basedIn.name}
                     </span>
                   </div>
@@ -186,11 +188,11 @@ export const UnclaimedAccountSearch = ({
         {dbData.map((account) => (
           <div
             key={account.id}
-            className="flex justify-between p-4 rounded-lg border items-center"
+            className="flex items-center justify-between rounded-lg border p-4"
           >
             <div>
               <p className="text-lg font-semibold">{account.name}</p>
-              <span className="flex gap-2 items-center">
+              <span className="flex items-center gap-2">
                 <MapPinIcon className="h-4 w-4" /> {account.basedIn.name}
               </span>
             </div>

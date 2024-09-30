@@ -1,15 +1,16 @@
+import "@repo/ui/ui.css";
 import "@repo/ui/styles.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import type { Metadata, Viewport } from "next";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import { Inter } from "next/font/google";
-import { description, siteName, slogan, title } from "@/lib/content/global";
-import { appleImages } from "@/lib/assets/apple-images";
+import { description, siteName, slogan, title } from "~/lib/content/global";
+import { appleImages } from "~/lib/assets/apple-images";
 
-import { Providers } from "@/app/providers";
-import { Navigation, navigationSpacerClass } from "@/components/navigation";
+import { Providers } from "~/app/providers";
+import { Navigation, navigationSpacerClass } from "~/components/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 

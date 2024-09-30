@@ -14,24 +14,24 @@ import {
   FormLabel,
   FormMessage,
   FormDescription,
-} from "@/components/ui/form";
+} from "@repo/ui/components/form";
 import {
   FormStep,
   FormStepContent,
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/admin/form-step";
+} from "~/components/admin/form-step";
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
-import { SelectGenres } from "@//components/shared/select-genres";
+import { Input } from "@repo/ui/components/input";
+import { Button } from "@repo/ui/components/button";
+import { Switch } from "@repo/ui/components/switch";
+import { Textarea } from "@repo/ui/components/textarea";
+import { SelectGenres } from "~//components/shared/select-genres";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 
 // library specific imports
-import { PublishEventInputSchema } from "@/lib/schema/events";
+import { PublishEventInputSchema } from "~/lib/schema/events";
 import { DatePicker } from "./components/date-picker-single";
 import { DoorTimePicker } from "./components/door-time";
 
@@ -74,7 +74,9 @@ export const BlankEventForm = () => {
                   <FormControl>
                     <Input type="file" {...field} />
                   </FormControl>
-                  <FormDescription>This is the image of your event</FormDescription>
+                  <FormDescription>
+                    This is the image of your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -88,7 +90,9 @@ export const BlankEventForm = () => {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>This is the title of your event</FormDescription>
+                  <FormDescription>
+                    This is the title of your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -102,7 +106,9 @@ export const BlankEventForm = () => {
                   <FormControl>
                     <Textarea {...field} className="resize-none" rows={7} />
                   </FormControl>
-                  <FormDescription>This is the description of your event</FormDescription>
+                  <FormDescription>
+                    This is the description of your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -115,7 +121,9 @@ export const BlankEventForm = () => {
         <FormStep display={currentStep === 2}>
           <FormStepHeader>
             <FormStepTitle>Event Scheduling</FormStepTitle>
-            <FormStepDescription>Provide the date and time for your event</FormStepDescription>
+            <FormStepDescription>
+              Provide the date and time for your event
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
             <DatePicker />
@@ -167,7 +175,11 @@ export const BlankEventForm = () => {
             </div>
             <DoorTimePicker />
             <div className="grid grid-cols-2 gap-2">
-              <Button type="button" variant="outline" onClick={() => setCurrentStep(1)}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setCurrentStep(1)}
+              >
                 Back to Event Information
               </Button>
               <Button type="button" onClick={() => setCurrentStep(3)}>
@@ -179,7 +191,9 @@ export const BlankEventForm = () => {
         <FormStep display={currentStep === 3}>
           <FormStepHeader>
             <FormStepTitle>Event Details</FormStepTitle>
-            <FormStepDescription>Provide the details for your event</FormStepDescription>
+            <FormStepDescription>
+              Provide the details for your event
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
             <div className="grid grid-cols-2 gap-4">
@@ -190,7 +204,11 @@ export const BlankEventForm = () => {
                   <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
                     <FormLabel>Private Event</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -202,7 +220,11 @@ export const BlankEventForm = () => {
                   <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
                     <FormLabel>Free Event</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -214,7 +236,11 @@ export const BlankEventForm = () => {
                   <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
                     <FormLabel>Holiday Event</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -226,7 +252,11 @@ export const BlankEventForm = () => {
                   <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
                     <FormLabel>Child Friendly</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -238,7 +268,11 @@ export const BlankEventForm = () => {
                   <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
                     <FormLabel>Serves Alcohol</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -251,7 +285,11 @@ export const BlankEventForm = () => {
                   <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
                     <FormLabel>Serves Food</FormLabel>
                     <FormControl>
-                      <Switch checked={value} onCheckedChange={onChange} {...field} />
+                      <Switch
+                        checked={value}
+                        onCheckedChange={onChange}
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -267,13 +305,19 @@ export const BlankEventForm = () => {
                   <FormControl>
                     <Input />
                   </FormControl>
-                  <FormDescription>Keywords to help find your event</FormDescription>
+                  <FormDescription>
+                    Keywords to help find your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <div className="grid grid-cols-2 gap-2">
-              <Button type="button" variant="outline" onClick={() => setCurrentStep(2)}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setCurrentStep(2)}
+              >
                 Back to Scheduling
               </Button>
               <Button type="button" onClick={() => setCurrentStep(4)}>
@@ -285,7 +329,9 @@ export const BlankEventForm = () => {
         <FormStep display={currentStep === 4}>
           <FormStepHeader>
             <FormStepTitle>Event Participants</FormStepTitle>
-            <FormStepDescription>Provide the participants for your event</FormStepDescription>
+            <FormStepDescription>
+              Provide the participants for your event
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
             <FormField
@@ -297,7 +343,9 @@ export const BlankEventForm = () => {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>Where your event will be held</FormDescription>
+                  <FormDescription>
+                    Where your event will be held
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -325,7 +373,9 @@ export const BlankEventForm = () => {
                   <FormControl>
                     <Input />
                   </FormControl>
-                  <FormDescription>Who will be performing at your event</FormDescription>
+                  <FormDescription>
+                    Who will be performing at your event
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -347,7 +397,11 @@ export const BlankEventForm = () => {
               )}
             />
             <div className="grid grid-cols-2 gap-2">
-              <Button type="button" variant="outline" onClick={() => setCurrentStep(3)}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setCurrentStep(3)}
+              >
                 Back to Event Details
               </Button>
               <Button type="button" onClick={() => setCurrentStep(5)}>
@@ -359,11 +413,17 @@ export const BlankEventForm = () => {
         <FormStep display={currentStep === 5}>
           <FormStepHeader>
             <FormStepTitle>Event Confirmation</FormStepTitle>
-            <FormStepDescription>Review and confirm your event details</FormStepDescription>
+            <FormStepDescription>
+              Review and confirm your event details
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
             <div className="grid grid-cols-2 gap-2">
-              <Button type="button" variant="outline" onClick={() => setCurrentStep(4)}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setCurrentStep(4)}
+              >
                 Back to Event Participants
               </Button>
               <Button type="submit">Submit</Button>

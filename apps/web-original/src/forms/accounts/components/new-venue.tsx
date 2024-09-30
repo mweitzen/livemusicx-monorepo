@@ -5,7 +5,7 @@
 //   CardDescription,
 //   CardHeader,
 //   CardTitle,
-// } from "@/components/ui/card";
+// } from "@repo/ui/components/card";
 // import {
 //   Dialog,
 //   DialogClose,
@@ -14,13 +14,13 @@
 //   DialogHeader,
 //   DialogTitle,
 //   DialogTrigger,
-// } from "@/components/ui/dialog";
-// import { Label } from "@/components/ui/label";
-// import { Button } from "@/components/ui/button";
-// import { Separator } from "@/components/ui/separator";
-// import { GooglePlacesAutocomplete } from "@/google-maps/components/google-maps";
-// import type { GooglePlaceResult } from "@/google-maps/lib/google-maps";
-// import { useAppStore } from "@/google-maps/state";
+// } from "@repo/ui/components/dialog";
+// import { Label } from "@repo/ui/components/label";
+// import { Button } from "@repo/ui/components/button";
+// import { Separator } from "@repo/ui/components/separator";
+// import { GooglePlacesAutocomplete } from "~/google-maps/components/google-maps";
+// import type { GooglePlaceResult } from "~/google-maps/lib/google-maps";
+// import { useAppStore } from "~/google-maps/state";
 
 // type VenueCreateType = "create" | "claim" | null;
 

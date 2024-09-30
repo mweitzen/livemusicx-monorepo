@@ -15,10 +15,10 @@ import type {
   VenueDetails,
   OrganizerDetails,
   EventDetails,
-} from "@/lib/types/outputs";
+} from "~/lib/types/outputs";
 
 export function generateEventSeriesStructuredData(
-  organizer: OrganizerDetails
+  organizer: OrganizerDetails,
 ): WithContext<Organization> {
   return {
     "@context": "https://schema.org",

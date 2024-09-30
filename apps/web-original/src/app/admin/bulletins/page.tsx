@@ -1,17 +1,22 @@
-import { Badge, type BadgeProps } from "@/components/ui/badge";
-import { CardContent, Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Badge, type BadgeProps } from "@repo/ui/components/badge";
+import { CardContent, Card } from "@repo/ui/components/card";
+import { Button } from "@repo/ui/components/button";
+import { Skeleton } from "@repo/ui/components/skeleton";
 import { BookmarkIcon } from "@heroicons/react/24/outline";
-import { CardGrid } from "@/components/shared/card-grid";
-import { TypographyH1, TypographyLead } from "@/components/shared/typography";
-import { currentUser } from "@/lib/auth";
+import { CardGrid } from "~/components/shared/card-grid";
+import { TypographyH1, TypographyLead } from "~/components/shared/typography";
+import { currentUser } from "~/lib/auth";
 import {
   AdminPageDescription,
   AdminPageHeader,
   AdminPageTitle,
-} from "@/components/admin/page";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "~/components/admin/page";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@repo/ui/components/tabs";
 
 const BulletinCard = ({ children }: { children: React.ReactNode }) => {
   return (

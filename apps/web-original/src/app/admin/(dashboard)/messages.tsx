@@ -6,8 +6,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@repo/ui/components/card";
+import { Skeleton } from "@repo/ui/components/skeleton";
 
 const DashboardMessages = () => {
   const { data: events, status } =

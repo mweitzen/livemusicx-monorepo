@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { NoInputSchema } from "@/lib/schema";
+import { NoInputSchema } from "~/lib/schema";
 
 export const GetChildrenInputSchema = z.object({
   id: z.string(),
@@ -14,7 +14,7 @@ export const GetStatesOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     shortCode: z.string(),
-  })
+  }),
 );
 
 export const GetStateRegionsInputSchema = GetChildrenInputSchema;
@@ -23,7 +23,7 @@ export const GetStateRegionsOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
-  })
+  }),
 );
 
 export const GetStateCitiesInputSchema = GetChildrenInputSchema;
@@ -31,7 +31,7 @@ export const GetStateCitiesOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
-  })
+  }),
 );
 
 export const GetStateEventsInputSchema = GetChildrenInputSchema;
@@ -39,7 +39,7 @@ export const GetStateEventsOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
-  })
+  }),
 );
 
 export const GetStateVenuesInputSchema = GetChildrenInputSchema;
@@ -47,5 +47,5 @@ export const GetStateVenuesOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
-  })
+  }),
 );

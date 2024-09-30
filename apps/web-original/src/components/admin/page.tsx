@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import { TypographyH1, TypographyLead } from "../shared/typography";
 
 export const AdminPageHeader = ({

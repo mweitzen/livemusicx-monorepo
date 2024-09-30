@@ -1,8 +1,8 @@
 import { z } from "zod";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db/schema";
 
-import { SaveEventDraftInputSchema } from "@/lib/schema/events/drafts";
-import { GetDetailsInputSchema, SimpleSearchSchema } from "@/lib/schema";
+import { SaveEventDraftInputSchema } from "~/lib/schema/events/drafts";
+import { GetDetailsInputSchema, SimpleSearchSchema } from "~/lib/schema";
 
 export const SaveEventDraftQuery = (
   input: z.infer<typeof SaveEventDraftInputSchema>,

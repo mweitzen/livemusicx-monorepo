@@ -2,10 +2,10 @@ import Link from "next/link";
 
 import { api } from "@repo/trpc/server";
 import { cookies } from "next/headers";
-import { convertSearchParamsToQuery } from "@/lib/utils";
+import { convertSearchParamsToQuery } from "@repo/utils";
 import { format } from "date-fns";
 
-import { ListPage } from "@/components/public/list-page";
+import { ListPage } from "~/components/public/list-page";
 import {
   List,
   ListHeader,
@@ -13,25 +13,24 @@ import {
   ListSearchInput,
   ListFilters,
   ListContent,
-} from "@/components/public/list";
+} from "~/components/public/list";
 import {
   ListItem,
   ListItemContent,
   ListItemImage,
   ListItemTitle,
-} from "@/components/public/list-item";
-import { TypographyH2 } from "@/components/shared/typography";
-import { ToggleFilter } from "@/components/public/filters";
-import { BookmarkButton } from "@/components/public/interactions";
+} from "~/components/public/list-item";
+import { TypographyH2 } from "~/components/shared/typography";
+import { ToggleFilter } from "~/components/public/filters";
+import { BookmarkButton } from "~/components/public/interactions";
 
-import { GetUpcomingEventsInputSchema } from "@/lib/schema/events";
+import { GetUpcomingEventsInputSchema } from "~/lib/schema/events";
 
 export default async function EventsPage({
   searchParams,
 }: {
   searchParams: SearchParams;
 }) {
-  const cookieString = cookies().toString();
   const conversion = convertSearchParamsToQuery(searchParams);
   const query = GetUpcomingEventsInputSchema.parse(conversion);
 
@@ -39,7 +38,8 @@ export default async function EventsPage({
   const bookmarkedEvents: any[] = []; // await api.v1.events.main.getBookmarked;
 
   return (
-    <ListPage cookies={cookieString}>
+    <>
+      {" "}
       <TypographyH2 className="mt-0 flex w-full items-end justify-between">
         Explore Events
         <ListShowFavorites events />
@@ -80,6 +80,6 @@ export default async function EventsPage({
             : "No events."}
         </ListContent>
       </List>
-    </ListPage>
+    </>
   );
 }

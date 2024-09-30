@@ -4,11 +4,11 @@ import Link from "next/link";
 import { api } from "@repo/trpc/react";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { useAuthStatus } from "@/lib/hooks/auth";
+import { useAuthStatus } from "~/lib/hooks/auth";
 
 import { toast } from "sonner";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Skeleton } from "@repo/ui/components/skeleton";
+import { Button, buttonVariants } from "@repo/ui/components/button";
 // import { AddToCalendarButton as AddToCalendarButtonPrimitive } from "add-to-calendar-button-react";
 
 import { StarIcon, BookmarkIcon } from "@heroicons/react/24/outline";
@@ -31,7 +31,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose,
-} from "@/components/ui/dialog";
+} from "@repo/ui/components/dialog";
 import { TypographyMuted } from "../shared/typography";
 
 const RequiresAuth = ({

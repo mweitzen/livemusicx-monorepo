@@ -1,4 +1,4 @@
-import * as content from "@/lib/content/about";
+import * as content from "~/lib/content/about";
 import { MarketingPageBase } from "../base";
 import type { Metadata, ResolvingMetadata } from "next";
 

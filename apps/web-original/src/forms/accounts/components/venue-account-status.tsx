@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/button";
 
 const existingVenues = [
   {
@@ -27,16 +27,20 @@ const existingVenues = [
   },
 ];
 
-export const VenueAccountStatus = ({ venue }: { venue: { name: string | null } }) => {
+export const VenueAccountStatus = ({
+  venue,
+}: {
+  venue: { name: string | null };
+}) => {
   // call api to check if venue exists
   const existingVenue = existingVenues.find((v) => v.name === venue.name);
 
   return existingVenue ? (
     existingVenue.accountManagerId ? (
       <div className="text-center">
-        <p className="text-xl font-semibold justify-center">Uh oh!</p>
-        <p className="text-2xl font-medium justify-center">Account Claimed</p>
-        <p className="text-sm text-muted-foreground justify-center">
+        <p className="justify-center text-xl font-semibold">Uh oh!</p>
+        <p className="justify-center text-2xl font-medium">Account Claimed</p>
+        <p className="justify-center text-sm text-muted-foreground">
           This account has already been claimed by another user.
           <br />
           If you believe this is a mistake, please contact.
@@ -46,10 +50,11 @@ export const VenueAccountStatus = ({ venue }: { venue: { name: string | null } }
     ) : (
       <div className="flex flex-col gap-6 text-center">
         <div>
-          <p className="text-xl font-semibold mb-1 justify-center">Psst!</p>
-          <p className="text-2xl font-medium justify-center">Account Exists</p>
-          <p className="text-sm text-muted-foreground justify-center">
-            This venue has already been added by other users referencing it for their events.
+          <p className="mb-1 justify-center text-xl font-semibold">Psst!</p>
+          <p className="justify-center text-2xl font-medium">Account Exists</p>
+          <p className="justify-center text-sm text-muted-foreground">
+            This venue has already been added by other users referencing it for
+            their events.
           </p>
         </div>
         <p className="justify-center leading-loose">
@@ -58,7 +63,9 @@ export const VenueAccountStatus = ({ venue }: { venue: { name: string | null } }
           you will want to double check it anyway.`}
         </p>
         <div className="flex flex-col gap-2">
-          <p className="text-sm justify-center">If you have selected the correct venue:</p>
+          <p className="justify-center text-sm">
+            If you have selected the correct venue:
+          </p>
           <Button onClick={() => {}}>Claim Venue</Button>
         </div>
       </div>
@@ -66,15 +73,19 @@ export const VenueAccountStatus = ({ venue }: { venue: { name: string | null } }
   ) : (
     <>
       <div className="text-center">
-        <p className="text-xl font-semibold mb-1 justify-center">Good to go!</p>
-        <p className="text-2xl font-medium justify-center">No Existing Account</p>
-        <p className="text-sm text-muted-foreground justify-center">
+        <p className="mb-1 justify-center text-xl font-semibold">Good to go!</p>
+        <p className="justify-center text-2xl font-medium">
+          No Existing Account
+        </p>
+        <p className="justify-center text-sm text-muted-foreground">
           {`You are creating a brand new venue. If this is your first venue, welcome! If it isnt,
           welcome back. :)`}
         </p>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm justify-center">If you have selected the correct venue:</p>
+        <p className="justify-center text-sm">
+          If you have selected the correct venue:
+        </p>
         <Button onClick={() => {}}>Create Venue</Button>
       </div>
     </>

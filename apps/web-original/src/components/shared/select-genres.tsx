@@ -1,9 +1,9 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 
-import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
+import { Label } from "@repo/ui/components/label";
+import { Badge } from "@repo/ui/components/badge";
 import { XMarkIcon } from "@heroicons/react/20/solid";
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/button";
 
 export const SelectGenres = () => {
   const { register, getValues } = useFormContext();
@@ -20,7 +20,8 @@ export const SelectGenres = () => {
               className="flex items-center gap-1 pr-1 hover:cursor-pointer hover:bg-secondary"
               onClick={() => remove(index)}
             >
-              {getValues(`genres.${index}.id`)} <XMarkIcon className="h-3 w-3" />
+              {getValues(`genres.${index}.id`)}{" "}
+              <XMarkIcon className="h-3 w-3" />
               <input hidden {...register(`genres.${index}.id`)} />
             </Badge>
           ))

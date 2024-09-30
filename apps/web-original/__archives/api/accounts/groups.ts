@@ -1,13 +1,13 @@
 import { z } from "zod";
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+import type { RouterInputs, RouterOutputs } from "~/lib/trpc/shared";
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
   authorizedProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 
-import { createSlug, generateUniqueSlug } from "@/lib/utils";
+import { createSlug, generateUniqueSlug } from "@repo/utils";
 
 import {
   GetAllGroupsInputSchema,
@@ -18,7 +18,7 @@ import {
   GetGroupEventsOutputSchema,
   CreateGroupInputSchema,
   ClaimGroupInputSchema,
-} from "@/lib/schema/accounts/groups";
+} from "~/lib/schema/accounts/groups";
 
 import { GetAllGroupsQuery } from "./groups.queries";
 
@@ -47,7 +47,9 @@ export const groupsRouter = createTRPCRouter({
     .input(GetAllGroupsInputSchema)
     // .output(GetAllGroupsOutputSchema)
     .query(({ ctx, input }) =>
-      ctx.prisma.musicGroup.findMany(GetAllGroupsQuery(input, ctx.session?.user))
+      ctx.prisma.musicGroup.findMany(
+        GetAllGroupsQuery(input, ctx.session?.user),
+      ),
     ),
   getDetails: publicProcedure
     // .meta({
@@ -80,7 +82,7 @@ export const groupsRouter = createTRPCRouter({
             },
           },
         },
-      })
+      }),
     ),
 
   getEvents: publicProcedure
@@ -134,7 +136,9 @@ export const groupsRouter = createTRPCRouter({
       let x = 1;
       while (exists) {
         returnSlug = `${slug}-${x}`;
-        exists = await ctx.prisma.musicGroup.findUnique({ where: { slug: returnSlug } });
+        exists = await ctx.prisma.musicGroup.findUnique({
+          where: { slug: returnSlug },
+        });
         x++;
       }
 

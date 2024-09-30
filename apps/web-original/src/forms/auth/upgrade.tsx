@@ -12,12 +12,12 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+} from "@repo/ui/components/select";
+import { Button } from "@repo/ui/components/button";
 
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
-import { Label } from "@/components/ui/label";
-import { TypographyMuted, TypographyP } from "@/components/shared/typography";
+import { Label } from "@repo/ui/components/label";
+import { TypographyMuted, TypographyP } from "~/components/shared/typography";
 
 const UpgradeButton = () => {
   const { pending } = useFormStatus();
@@ -45,7 +45,9 @@ export function UpgradeUserForm() {
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Account Type</SelectLabel>
-              <SelectItem value="PERFORMER">Performer (Musician or Group)</SelectItem>
+              <SelectItem value="PERFORMER">
+                Performer (Musician or Group)
+              </SelectItem>
               <SelectItem value="VENUE">Venue</SelectItem>
               <SelectItem value="ORGANIZER">Event Organizer</SelectItem>
               <SelectItem value="ASSOCIATE">Staff or Associate</SelectItem>
@@ -55,8 +57,9 @@ export function UpgradeUserForm() {
       </div>
 
       <TypographyMuted className="text-center">
-        If your upgrade is successful, you will need to sign back in again. You will be
-        redirected to the setup screen. We are excited to have you on board!
+        If your upgrade is successful, you will need to sign back in again. You
+        will be redirected to the setup screen. We are excited to have you on
+        board!
       </TypographyMuted>
       <UpgradeButton />
     </form>

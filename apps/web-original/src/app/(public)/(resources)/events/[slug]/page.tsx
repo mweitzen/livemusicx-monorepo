@@ -6,14 +6,14 @@ import { api } from "@repo/trpc/server";
 import { notFound } from "next/navigation";
 import { format, isThisYear } from "date-fns";
 
-import StructuredData from "@/components/shared/structured-data";
-import { generateEventPageMetadata } from "@/lib/metadata";
-import { generateEventStructuredData } from "@/lib/structured-data";
+import StructuredData from "~/components/shared/structured-data";
+import { generateEventPageMetadata } from "~/lib/metadata";
+import { generateEventStructuredData } from "~/lib/structured-data";
 
-import { Badge } from "@/components/ui/badge";
-import { ProfileImage } from "@/components/shared/image";
+import { Badge } from "@repo/ui/components/badge";
+import { ProfileImage } from "~/components/shared/image";
 import { ClockIcon } from "@heroicons/react/20/solid";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@repo/ui/components/card";
 
 export async function generateMetadata({
   params,

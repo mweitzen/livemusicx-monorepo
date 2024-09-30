@@ -1,7 +1,7 @@
-import { socialSites, type SocialSite } from "@/lib/social-sites";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { socialSites, type SocialSite } from "@repo/constants";
+import { Label } from "@repo/ui/components/label";
+import { Input } from "@repo/ui/components/input";
+import { Button } from "@repo/ui/components/button";
 
 export const AddSocialAccount = ({ site }: { site: SocialSite }) => {
   return (

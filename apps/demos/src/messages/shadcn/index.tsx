@@ -1,5 +1,5 @@
-import { Mail } from "@/messages/shadcn/components/mail";
-import { accounts, mails } from "@/messages/shadcn/data";
+import { Mail } from "~/messages/shadcn/components/mail";
+import { accounts, mails } from "~/messages/shadcn/data";
 
 export default function MailPage() {
   return (

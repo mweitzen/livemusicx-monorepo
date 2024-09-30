@@ -4,7 +4,7 @@ import {
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 
 import { accountsRouter } from "../../../__archives/api/accounts";
 import { eventsRouter } from "../../../__archives/api/events";

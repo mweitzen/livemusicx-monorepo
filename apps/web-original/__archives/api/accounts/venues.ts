@@ -1,13 +1,13 @@
 import { z } from "zod";
-import { createSlug } from "@/lib/utils";
-import type { RouterInputs, RouterOutputs } from "@/lib/trpc/shared";
+import { createSlug } from "@repo/utils";
+import type { RouterInputs, RouterOutputs } from "~/lib/trpc/shared";
 
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
   authorizedProcedure,
-} from "@/server/trpc";
+} from "~/server/trpc";
 
 import {
   VenuesWhere,
@@ -27,7 +27,7 @@ import {
   GetVenueQuickViewOutputSchema,
   CreateVenueInuptSchema,
   CreateVenueOutputSchema,
-} from "@/lib/schema/accounts/venues";
+} from "~/lib/schema/accounts/venues";
 
 type VenuesOutputs = RouterOutputs["accounts"]["venues"];
 

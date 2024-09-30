@@ -15,9 +15,11 @@ import type {
   VenueDetails,
   OrganizerDetails,
   EventDetails,
-} from "@/lib/types/outputs";
+} from "~/lib/types/outputs";
 
-export function generateGroupStructuredData(group: GroupDetails): WithContext<MusicGroup> {
+export function generateGroupStructuredData(
+  group: GroupDetails,
+): WithContext<MusicGroup> {
   return {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
@@ -26,7 +28,9 @@ export function generateGroupStructuredData(group: GroupDetails): WithContext<Mu
     disambiguatingDescription: group.about || undefined,
     image: group.avatar || undefined,
     telephone: group.phone || undefined,
-    url: group.website || `${process.env.NEXT_PUBLIC_SITE_URL}/groups/${group.slug}`,
+    url:
+      group.website ||
+      `${process.env.NEXT_PUBLIC_SITE_URL}/groups/${group.slug}`,
     email: group.email || undefined,
     genre: group.genres.map((genre) => genre.displayName),
     areaServed: group.basedIn
@@ -70,7 +74,9 @@ export function generateGroupStructuredData(group: GroupDetails): WithContext<Mu
           disambiguatingDescription: member.about || undefined,
           image: member.avatar || undefined,
           telephone: member.phone || undefined,
-          url: member.website || `${process.env.NEXT_PUBLIC_SITE_URL}/musicians/${member.slug}`,
+          url:
+            member.website ||
+            `${process.env.NEXT_PUBLIC_SITE_URL}/musicians/${member.slug}`,
           email: member.email || undefined,
           sameAs: [
             `${process.env.NEXT_PUBLIC_SITE_URL}/musicians/${member.slug}`,

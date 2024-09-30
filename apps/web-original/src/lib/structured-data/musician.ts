@@ -15,9 +15,11 @@ import type {
   VenueDetails,
   OrganizerDetails,
   EventDetails,
-} from "@/lib/types/outputs";
+} from "~/lib/types/outputs";
 
-export function generateMusicianStructuredData(musician: MusicianDetails): WithContext<Person> {
+export function generateMusicianStructuredData(
+  musician: MusicianDetails,
+): WithContext<Person> {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -27,7 +29,9 @@ export function generateMusicianStructuredData(musician: MusicianDetails): WithC
     disambiguatingDescription: musician.about || undefined,
     image: musician.avatar || undefined,
     telephone: musician.phone || undefined,
-    url: musician.website || `${process.env.NEXT_PUBLIC_SITE_URL}/musicians/${musician.slug}`,
+    url:
+      musician.website ||
+      `${process.env.NEXT_PUBLIC_SITE_URL}/musicians/${musician.slug}`,
     email: musician.email || undefined,
     homeLocation: musician.basedIn
       ? {

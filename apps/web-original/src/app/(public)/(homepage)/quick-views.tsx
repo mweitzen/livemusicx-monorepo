@@ -5,7 +5,7 @@ import {
   PerformerQuickViewItem,
   OrganizerQuickViewItem,
   QuickViewEmptyState,
-} from "@/components/public/quick-view-item";
+} from "~/components/public/quick-view-item";
 
 export async function VenuesItems() {
   const venues = await api.v1.accounts.venues.getQuickView();

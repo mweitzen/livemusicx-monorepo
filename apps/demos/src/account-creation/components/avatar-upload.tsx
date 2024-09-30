@@ -7,8 +7,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
 
 export const AvatarUpload = () => {
   const { control, setValue } = useFormContext();
@@ -16,12 +16,16 @@ export const AvatarUpload = () => {
     <div>
       <FormField
         control={control}
-        name="avatar"
+        name='avatar'
         render={({ field }) => (
           <FormItem>
             <FormLabel>Avatar</FormLabel>
             <FormControl>
-              <Input type="text" placeholder="Avatar" {...field} />
+              <Input
+                type='text'
+                placeholder='Avatar'
+                {...field}
+              />
             </FormControl>
             <FormDescription>Enter a URL for your avatar</FormDescription>
             <FormMessage />

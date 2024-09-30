@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import type { AccountType } from "@prisma/client";
+import type { AccountType } from "@repo/db/schema";
 
 type State = {
   userLoading: boolean;

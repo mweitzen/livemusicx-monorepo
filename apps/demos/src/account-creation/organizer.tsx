@@ -8,15 +8,15 @@ import {
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/form-step";
-import { Form } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
+} from "~/components/form-step";
+import { Form } from "~/components/ui/form";
+import { Button } from "~/components/ui/button";
 
 // feature specific components
-import { SelectGenres } from "@/account-creation/components/select-genres";
-import { AboutTextarea } from "@/account-creation/components/about-textarea";
-import { UnclaimedAccountSearch } from "@/account-creation/components/unclaimed-search";
-import { CreateOrganizerSchema } from "@/account-creation/lib/schema";
+import { SelectGenres } from "~/account-creation/components/select-genres";
+import { AboutTextarea } from "~/account-creation/components/about-textarea";
+import { UnclaimedAccountSearch } from "~/account-creation/components/unclaimed-search";
+import { CreateOrganizerSchema } from "~/account-creation/lib/schema";
 import { AvatarUpload } from "./components/avatar-upload";
 
 const FormSchema = CreateOrganizerSchema.extend({
@@ -52,7 +52,7 @@ export const CreateOrganizerAccount = () => {
             </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
-            <UnclaimedAccountSearch type="organizer" />
+            <UnclaimedAccountSearch type='organizer' />
           </FormStepContent>
         </FormStep>
         <FormStep display={!!createType}>
@@ -66,7 +66,10 @@ export const CreateOrganizerAccount = () => {
             <AvatarUpload />
             <AboutTextarea />
             <SelectGenres />
-            <Button className="w-full" type="submit">
+            <Button
+              className='w-full'
+              type='submit'
+            >
               Submit (Test)
             </Button>
           </FormStepContent>

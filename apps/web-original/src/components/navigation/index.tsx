@@ -1,8 +1,8 @@
 import Link, { type LinkProps } from "next/link";
-import { cn } from "@/lib/utils";
-import { routes } from "@/routes";
+import { cn } from "@repo/ui/helpers";
+import { routes } from "~/routes";
 
-import Brand from "@/components/shared/brand";
+import Brand from "~/components/shared/brand";
 
 import { ModeToggle } from "./mode-toggle";
 import { MobileMenu } from "./menu-mobile";
@@ -12,8 +12,8 @@ const navigationSpacerClass = "pt-14";
 
 const Navigation = () => {
   return (
-    <header className="h-14 bg-header/50 fixed inset-x-0 top-0 z-40 border-b border-border/50 backdrop-blur-md">
-      <div className="h-full container flex max-w-screen-2xl items-center justify-between px-4 py-2 md:px-6 lg:px-8">
+    <header className="bg-header/50 fixed inset-x-0 top-0 z-40 h-14 border-b border-border/50 backdrop-blur-md">
+      <div className="container flex h-full max-w-screen-2xl items-center justify-between px-4 py-2 md:px-6 lg:px-8">
         <div className="flex lg:flex-1">
           <Brand />
         </div>
@@ -45,12 +45,16 @@ const Navigation = () => {
 };
 
 type NavigationLinkProps = LinkProps & React.HTMLAttributes<HTMLAnchorElement>;
-const NavigationLink = ({ className, children, ...props }: NavigationLinkProps) => {
+const NavigationLink = ({
+  className,
+  children,
+  ...props
+}: NavigationLinkProps) => {
   return (
     <Link
       className={cn(
-        "rounded-full bg-background/30 px-1 md:px-4 py-1 hover:bg-background/90",
-        className
+        "rounded-full bg-background/30 px-1 py-1 hover:bg-background/90 md:px-4",
+        className,
       )}
       {...props}
     >

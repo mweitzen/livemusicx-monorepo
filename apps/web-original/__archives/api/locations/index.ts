@@ -1,4 +1,4 @@
-import { createTRPCRouter } from "@/server/trpc";
+import { createTRPCRouter } from "~/server/trpc";
 
 import { statesRouter } from "./states";
 import { regionsRouter } from "./regions";

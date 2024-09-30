@@ -1,4 +1,8 @@
-import { PageDescription, PageHeader, PageTitle } from "@/components/public/page";
+import {
+  PageDescription,
+  PageHeader,
+  PageTitle,
+} from "~/components/public/page";
 
 export default function EventsPageLayout({ children }: LayoutProps) {
   return (
@@ -6,8 +10,8 @@ export default function EventsPageLayout({ children }: LayoutProps) {
       <PageHeader>
         <PageTitle>Upcoming Events</PageTitle>
         <PageDescription>
-          Explore live music happening near you. Custom tailor your search to match your
-          interests.
+          Explore live music happening near you. Custom tailor your search to
+          match your interests.
         </PageDescription>
       </PageHeader>
       {children}

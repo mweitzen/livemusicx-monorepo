@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { GetAllGroupsInputSchema } from "./groups";
-import { NoInputSchema } from "@/lib/schema";
+import { NoInputSchema } from "~/lib/schema";
 
 export const GetAllPerformersInputSchema = GetAllGroupsInputSchema;
 export const GetAllPerformersOutputSchema = z.array(
@@ -9,7 +9,7 @@ export const GetAllPerformersOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const GetPerformersQuickViewInputSchema = NoInputSchema;
@@ -19,5 +19,5 @@ export const GetPerformersQuickViewOutputSchema = z.array(
   //   name: z.string(),
   //   slug: z.string(),
   // })
-  z.any()
+  z.any(),
 );

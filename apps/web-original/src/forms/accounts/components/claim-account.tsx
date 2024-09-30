@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/button";
 import {
   Dialog,
   DialogTrigger,
@@ -8,7 +8,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose,
-} from "@/components/ui/dialog";
+} from "@repo/ui/components/dialog";
 
 export const ClaimAccountButton = ({
   account,
@@ -28,7 +28,8 @@ export const ClaimAccountButton = ({
         <DialogHeader>
           <DialogTitle>Claim Account</DialogTitle>
           <DialogDescription>
-            Verify you have selected the correct acccount, and click cliam to continue.
+            Verify you have selected the correct acccount, and click cliam to
+            continue.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

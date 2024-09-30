@@ -8,9 +8,9 @@ import {
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/form-step";
-import { Form } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
+} from "~/components/form-step";
+import { Form } from "~/components/ui/form";
+import { Button } from "~/components/ui/button";
 
 // feature specific imports
 import { SelectGenres } from "./components/select-genres";
@@ -18,7 +18,7 @@ import { AvatarUpload } from "./components/avatar-upload";
 import { AboutTextarea } from "./components/about-textarea";
 import { UnclaimedAccountSearch } from "./components/unclaimed-search";
 import { CreateMusicianSchema } from "./lib/schema";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "~/lib/utils";
 
 const FormSchema = CreateMusicianSchema.extend({
   performerType: z.enum(["musician", "group"]).nullable(),
@@ -57,17 +57,17 @@ export const CreatePerformerAccount = () => {
             </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
-            <div className="flex flex-col gap-4">
+            <div className='flex flex-col gap-4'>
               <Button
-                variant="outline"
-                size="lg"
+                variant='outline'
+                size='lg'
                 onClick={() => form.setValue("performerType", "musician")}
               >
                 Musician
               </Button>
               <Button
-                variant="outline"
-                size="lg"
+                variant='outline'
+                size='lg'
                 onClick={() => form.setValue("performerType", "group")}
               >
                 Group
@@ -77,7 +77,9 @@ export const CreatePerformerAccount = () => {
         </FormStep>
         <FormStep display={!!performerType && !createType}>
           <FormStepHeader>
-            <FormStepTitle>Enter {capitalize(performerType || "performer")} Name</FormStepTitle>
+            <FormStepTitle>
+              Enter {capitalize(performerType || "performer")} Name
+            </FormStepTitle>
             <FormStepDescription>
               Enter a publicly displayed name for your {performerType} account.
             </FormStepDescription>
@@ -97,7 +99,10 @@ export const CreatePerformerAccount = () => {
             <AvatarUpload />
             <AboutTextarea />
             <SelectGenres />
-            <Button className="w-full" type="submit">
+            <Button
+              className='w-full'
+              type='submit'
+            >
               Submit (Test)
             </Button>
           </FormStepContent>

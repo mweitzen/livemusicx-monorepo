@@ -11,17 +11,22 @@ import {
   SelectGroup,
   SelectLabel,
   SelectItem,
-} from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+} from "@repo/ui/components/select";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@repo/ui/components/card";
 
-import { Button } from "@/components/ui/button";
-import { RegisterButton } from "@/components/shared/auth-buttons";
+import { Button } from "@repo/ui/components/button";
+import { RegisterButton } from "~/components/shared/auth-buttons";
 import {
   PageHeader,
   PageTitle,
   PageDescription,
-} from "@/components/public/page";
-import { TypographyMuted, TypographyP } from "@/components/shared/typography";
+} from "~/components/public/page";
+import { TypographyMuted, TypographyP } from "~/components/shared/typography";
 
 async function register() {
   "use server";

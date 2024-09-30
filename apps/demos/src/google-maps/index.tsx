@@ -1,12 +1,12 @@
 import { APIProvider } from "./provider";
 import { useEffect, useRef, useState } from "react";
-import { useAppStore } from "@/google-maps/state";
+import { useAppStore } from "~/google-maps/state";
 
 import { Map, useMap } from "@vis.gl/react-google-maps";
-import { Button, type ButtonProps } from "@/components/ui/button";
-import { GoogleMapsMarker } from "@/google-maps/components/google-maps";
-import { regions } from "@/_data/locations/nm-regions";
-import { coordinates } from "@/_data/locations/geo-coordinates/nm-outline";
+import { Button, type ButtonProps } from "~/components/ui/button";
+import { GoogleMapsMarker } from "~/google-maps/components/google-maps";
+import { regions } from "~/_data/locations/nm-regions";
+import { coordinates } from "~/_data/locations/geo-coordinates/nm-outline";
 
 const VenueButton = ({
   position,
@@ -50,12 +50,20 @@ const VenueButton = ({
   );
 };
 
-const RegionRectangle = ({ bounds }: { bounds: google.maps.LatLngBoundsLiteral }) => {
+const RegionRectangle = ({
+  bounds,
+}: {
+  bounds: google.maps.LatLngBoundsLiteral;
+}) => {
   useRegionRectangle(bounds);
   return null;
 };
 
-const RegionPolygon = ({ coordinates }: { coordinates: { lat: number; lng: number }[] }) => {
+const RegionPolygon = ({
+  coordinates,
+}: {
+  coordinates: { lat: number; lng: number }[];
+}) => {
   useRegionPolygon(coordinates);
   return null;
 };
@@ -102,11 +110,13 @@ const useRegionRectangle = (bounds: google.maps.LatLngBoundsLiteral) => {
 
 export const GoogleMapsPage = () => {
   const venues = useAppStore((state) => state.venues);
-  const [selectedVenue, setSelectedVenue] = useState<(typeof venues)[0] | null>(null);
+  const [selectedVenue, setSelectedVenue] = useState<(typeof venues)[0] | null>(
+    null
+  );
   return (
     <APIProvider>
       <h1>Google Maps Demo Page</h1>
-      <div className="mb-4">
+      <div className='mb-4'>
         <p>Map Controls</p>
         <div>
           {venues.map((venue) => (
@@ -131,11 +141,14 @@ export const GoogleMapsPage = () => {
         mapTypeControl={false}
         clickableIcons={false}
         fullscreenControl={false}
-        className="w-full h-96"
+        className='w-full h-96'
       >
         <RegionPolygon coordinates={coordinates} />
         {regions.map((region) => (
-          <RegionRectangle key={region.name} bounds={region.bounds} />
+          <RegionRectangle
+            key={region.name}
+            bounds={region.bounds}
+          />
         ))}
         {venues.map((venue) => (
           <GoogleMapsMarker

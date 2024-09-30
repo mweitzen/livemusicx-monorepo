@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import type { Genre } from "@repo/db/v1";
+import type { Genre } from "@repo/db/schema";
 
-import { Badge } from "@/components/ui/badge";
-import { ProfileImage } from "@/components/shared/image";
-import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@repo/ui/components/badge";
+import { ProfileImage } from "~/components/shared/image";
+import { Card, CardContent } from "@repo/ui/components/card";
 
 import { CalendarIcon, ClockIcon, MapPinIcon } from "@heroicons/react/24/solid";
 

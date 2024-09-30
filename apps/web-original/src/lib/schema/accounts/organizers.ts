@@ -1,16 +1,21 @@
 import { z } from "zod";
 
-import { GetDetailsInputSchema, SearchSchemaBase, defaultPaginationValues } from "@/lib/schema";
+import {
+  GetDetailsInputSchema,
+  SearchSchemaBase,
+  defaultPaginationValues,
+} from "~/lib/schema";
 import { CreateAccountSchema } from "./shared";
 
-export const GetAllOrganizersInputSchema =
-  SearchSchemaBase.optional().default(defaultPaginationValues);
+export const GetAllOrganizersInputSchema = SearchSchemaBase.optional().default(
+  defaultPaginationValues,
+);
 export const GetAllOrganizersOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const GetOrganizerDetailsInputSchema = GetDetailsInputSchema;
@@ -26,7 +31,7 @@ export const GetOrganizerEventsOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const CreateOrganizerInputSchema = CreateAccountSchema.extend({});

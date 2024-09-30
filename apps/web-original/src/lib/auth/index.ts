@@ -15,5 +15,5 @@ export const currentRole = async () => {
 export const currentAccountType = async () => {
   const session = await auth();
 
-  return session?.user?.accountType;
+  return session?.user?.type;
 };

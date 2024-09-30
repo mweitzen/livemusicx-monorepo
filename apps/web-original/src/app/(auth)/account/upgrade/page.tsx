@@ -1,5 +1,5 @@
-import { TypographyH2 } from "@/components/shared/typography";
-import { UpgradeUserForm } from "@/forms/auth/upgrade";
+import { TypographyH2 } from "~/components/shared/typography";
+import { UpgradeUserForm } from "~/forms/auth/upgrade";
 
 export default function UpgradeUserPage() {
   return (

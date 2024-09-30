@@ -1,8 +1,8 @@
 import { signIn, signOut } from "@repo/auth";
-import type { AccountType } from "@repo/db/v1";
+import type { AccountType } from "@repo/db/schema";
 
 import { toast } from "sonner";
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@repo/ui/components/button";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/solid";
 
 function SignInButton() {

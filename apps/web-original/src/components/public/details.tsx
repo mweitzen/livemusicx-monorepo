@@ -1,22 +1,27 @@
 import Link from "next/link";
-import type { Genre } from "@repo/db/v1";
-import type { GroupDetails, MusicianDetails } from "@/lib/types/outputs";
+import type { Genre } from "@repo/db/schema";
+import type { GroupDetails, MusicianDetails } from "~/lib/types/outputs";
 
 import { SocialIcon } from "react-social-icons";
 import { LinkIcon, MapPinIcon } from "@heroicons/react/24/solid";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Badge } from "@repo/ui/components/badge";
+import { Button } from "@repo/ui/components/button";
+import { ScrollArea, ScrollBar } from "@repo/ui/components/scroll-area";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { ProfileImage } from "@/components/shared/image";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+} from "@repo/ui/components/dialog";
+import { ProfileImage } from "~/components/shared/image";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@repo/ui/components/card";
 import { format } from "date-fns";
 import { TypographyLarge } from "../shared/typography";
 

@@ -1,13 +1,18 @@
 import { z } from "zod";
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import { useFormContext, useWatch } from "react-hook-form";
-import { AddDatesFormSchema } from "@/forms/events/create-add-dates";
+import { AddDatesFormSchema } from "~/forms/events/create-add-dates";
 
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { Button } from "@repo/ui/components/button";
+import { Calendar } from "@repo/ui/components/calendar";
 import { CalendarDaysIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Separator } from "@/components/ui/separator";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "@repo/ui/components/dialog";
+import { Separator } from "@repo/ui/components/separator";
 
 export const DatePickerMultiple = () => {
   const { setValue } = useFormContext();
@@ -24,7 +29,7 @@ export const DatePickerMultiple = () => {
             variant={"outline"}
             className={cn(
               "justify-start text-left font-normal",
-              !dates && "text-muted-foreground"
+              !dates && "text-muted-foreground",
             )}
           >
             <CalendarDaysIcon className="mr-2 h-4 w-4" />
@@ -32,7 +37,7 @@ export const DatePickerMultiple = () => {
           </Button>
         </DialogTrigger>
         <DialogContent className="w-auto p-6">
-          <p className="tracking-tight font-semibold">Select Dates</p>
+          <p className="font-semibold tracking-tight">Select Dates</p>
           <div className="rounded-md border">
             <Calendar
               mode="multiple"
@@ -65,7 +70,7 @@ export const DatePickerMultiple = () => {
             .map((date) => (
               <div
                 key={date.toISOString()}
-                className="rounded-md bg-primary-foreground text-primary-background p-4 flex justify-between items-center"
+                className="text-primary-background flex items-center justify-between rounded-md bg-primary-foreground p-4"
               >
                 <span>{date.toLocaleDateString()}</span>
                 <Button
@@ -74,7 +79,7 @@ export const DatePickerMultiple = () => {
                   onClick={() => {
                     setValue(
                       "selectedDates",
-                      dates.filter((d) => d !== date)
+                      dates.filter((d) => d !== date),
                     );
                   }}
                 >

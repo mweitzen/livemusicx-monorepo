@@ -1,14 +1,19 @@
 import Link, { LinkProps } from "next/link";
-import { routes } from "@/routes";
+import { routes } from "~/routes";
 
-import Brand from "@/components/shared/brand";
+import Brand from "~/components/shared/brand";
 import { SignOutButton } from "./signout-button";
 import { DashboardButton } from "./dashboard-button";
 
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@repo/ui/components/button";
+import { Separator } from "@repo/ui/components/separator";
+import { ScrollArea, ScrollBar } from "@repo/ui/components/scroll-area";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTrigger,
+} from "@repo/ui/components/sheet";
 
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { MenuSection } from "./client-components";
@@ -39,7 +44,9 @@ export function MobileMenu() {
               <MenuSectionLinks>
                 {routes
                   .filter(
-                    (route) => route.navigation.mobile === true && route.section === "core"
+                    (route) =>
+                      route.navigation.mobile === true &&
+                      route.section === "core",
                   )
                   .map((route) => (
                     <MenuSectionLink key={route.href} href={route.href}>
@@ -54,7 +61,10 @@ export function MobileMenu() {
               <MenuSectionTitle>Admin Pages</MenuSectionTitle>
               <MenuSectionLinks>
                 {routes
-                  .filter((route) => route.navigation.mobile && route.section === "admin")
+                  .filter(
+                    (route) =>
+                      route.navigation.mobile && route.section === "admin",
+                  )
                   .map((route) => (
                     <MenuSectionLink key={route.href} href={route.href}>
                       {route.icon ?? null}
@@ -68,7 +78,10 @@ export function MobileMenu() {
               <MenuSectionTitle>Account Pages</MenuSectionTitle>
               <MenuSectionLinks>
                 {routes
-                  .filter((route) => route.navigation.mobile && route.section === "auth")
+                  .filter(
+                    (route) =>
+                      route.navigation.mobile && route.section === "auth",
+                  )
                   .map((route) => (
                     <MenuSectionLink key={route.href} href={route.href}>
                       {route.icon ?? null}
@@ -96,15 +109,21 @@ export function MobileMenu() {
 //   return <div className="py-4" {...props} />;
 // };
 
-const MenuSectionTitle = (props: React.HTMLAttributes<HTMLParagraphElement>) => {
-  return <p className="mb-2 px-4 text-lg font-semibold tracking-tight" {...props} />;
+const MenuSectionTitle = (
+  props: React.HTMLAttributes<HTMLParagraphElement>,
+) => {
+  return (
+    <p className="mb-2 px-4 text-lg font-semibold tracking-tight" {...props} />
+  );
 };
 
 const MenuSectionLinks = (props: React.HTMLAttributes<HTMLDivElement>) => {
   return <div className="flex flex-col" {...props} />;
 };
 
-const MenuSectionLink = (props: LinkProps & React.HTMLAttributes<HTMLAnchorElement>) => {
+const MenuSectionLink = (
+  props: LinkProps & React.HTMLAttributes<HTMLAnchorElement>,
+) => {
   return (
     <SheetClose asChild>
       <Button variant="ghost" className="justify-start" asChild>

@@ -1,8 +1,8 @@
-import { currentUser } from "@/lib/auth";
+import { currentUser } from "~/lib/auth";
 
-import { CreateOrganizerForm } from "@/forms/accounts/create-organizer";
-import { CreatePerformerForm } from "@/forms/accounts/create-performer";
-// import { CreateVenueForm } from "@/forms/accounts/create-venue";}
+import { CreateOrganizerForm } from "~/forms/accounts/create-organizer";
+import { CreatePerformerForm } from "~/forms/accounts/create-performer";
+// import { CreateVenueForm } from "~/forms/accounts/create-venue";}
 
 export default async function CreateAccountPage() {
   const user = await currentUser();

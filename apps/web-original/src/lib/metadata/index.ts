@@ -5,11 +5,13 @@ import type {
   VenueDetails,
   OrganizerDetails,
   EventDetails,
-} from "@/lib/types/outputs";
+} from "~/lib/types/outputs";
 
-import { siteName } from "@/lib/content/global";
+import { siteName } from "~/lib/content/global";
 
-function generateMusicianPageMetadata(musician: MusicianDetails | null): Metadata {
+function generateMusicianPageMetadata(
+  musician: MusicianDetails | null,
+): Metadata {
   if (!musician) return {};
 
   return {
@@ -66,7 +68,9 @@ function generateVenuePageMetadata(venue: VenueDetails | null): Metadata {
   };
 }
 
-function generateOrganizerPageMetadata(organizer: OrganizerDetails | null): Metadata {
+function generateOrganizerPageMetadata(
+  organizer: OrganizerDetails | null,
+): Metadata {
   if (!organizer) return {};
 
   return {};
@@ -77,11 +81,14 @@ function generateEventPageMetadata(event: EventDetails | null): Metadata {
 
   return {
     title: event.name,
-    description: event.description || `${event.name} is a live music event in New Mexico.`,
+    description:
+      event.description || `${event.name} is a live music event in New Mexico.`,
     openGraph: {
       images: [event.image || ""],
       title: `${event.name} on ${siteName}`,
-      description: event.description || `${event.name} is a live music event in New Mexico.`,
+      description:
+        event.description ||
+        `${event.name} is a live music event in New Mexico.`,
       type: "website",
     },
   };

@@ -1,17 +1,22 @@
-import { siteName } from "@/lib/content/global";
+import { siteName } from "~/lib/content/global";
 import { api } from "@repo/trpc/server";
 
-// import { AdminListCard } from "@/components/admin-list-card";
-import { TypographyH1, TypographyLead } from "@/components/shared/typography";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { AdminListCard } from "~/components/admin-list-card";
+import { TypographyH1, TypographyLead } from "~/components/shared/typography";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@repo/ui/components/tabs";
 
 import type { Metadata } from "next";
 import {
   AdminPageDescription,
   AdminPageHeader,
   AdminPageTitle,
-} from "@/components/admin/page";
-import { Button } from "@/components/ui/button";
+} from "~/components/admin/page";
+import { Button } from "@repo/ui/components/button";
 import Link from "next/link";
 
 export const metadata: Metadata = {

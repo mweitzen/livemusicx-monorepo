@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 
 const typography = {
   h1: "text-4xl font-bold tracking-tight lg:text-5xl",

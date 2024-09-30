@@ -15,9 +15,11 @@ import type {
   VenueDetails,
   OrganizerDetails,
   EventDetails,
-} from "@/lib/types/outputs";
+} from "~/lib/types/outputs";
 
-export function generateEventStructuredData(event: EventDetails): WithContext<MusicEvent> {
+export function generateEventStructuredData(
+  event: EventDetails,
+): WithContext<MusicEvent> {
   const performers = [...event.musicians, ...event.groups];
 
   return {
@@ -29,20 +31,24 @@ export function generateEventStructuredData(event: EventDetails): WithContext<Mu
     startDate: new Date(event.timeStart).toISOString(),
     image: event.image || undefined,
     url: `https://${process.env.NEXT_PUBLIC_SITE_URL}/events/${event.slug}`,
-    doorTime: event.timeDoor ? new Date(event.timeDoor).toISOString() : undefined,
+    doorTime: event.timeDoor
+      ? new Date(event.timeDoor).toISOString()
+      : undefined,
     duration: event.timeEnd
       ? formatISODuration(
           intervalToDuration({
             start: new Date(event.timeStart),
             end: new Date(event.timeEnd),
-          })
+          }),
         )
       : undefined,
     endDate: event.timeEnd ? new Date(event.timeEnd).toISOString() : undefined,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     inLanguage: "en-US",
-    isAccessibleForFree: event.isFree ? "https://schema.org/True" : "https://schema.org/False",
+    isAccessibleForFree: event.isFree
+      ? "https://schema.org/True"
+      : "https://schema.org/False",
     keywords: [
       "Live Music",
       ...event.genres.map((genre) => genre.displayName),
@@ -52,7 +58,8 @@ export function generateEventStructuredData(event: EventDetails): WithContext<Mu
       "@type": "Place",
       name: event.venue.name,
       sameAs:
-        event.venue.website || `${process.env.NEXT_PUBLIC_SITE_URL}/venues/${event.venue.slug}`,
+        event.venue.website ||
+        `${process.env.NEXT_PUBLIC_SITE_URL}/venues/${event.venue.slug}`,
       address: {
         "@type": "PostalAddress",
         streetAddress: event.venue.addressLong.split(",")[0],
@@ -69,7 +76,7 @@ export function generateEventStructuredData(event: EventDetails): WithContext<Mu
     performer: performers.map((performer) =>
       performer.performerType === "musician"
         ? { "@type": "Person", name: performer.name }
-        : { "@type": "MusicGroup", name: performer.name }
+        : { "@type": "MusicGroup", name: performer.name },
     ),
     // previousStartDate: event.timeStartPrevious || undefined,
     // eventSchedule: {},

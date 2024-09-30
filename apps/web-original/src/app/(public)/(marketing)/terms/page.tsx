@@ -1,12 +1,16 @@
-import * as content from "@/lib/content/terms";
+import * as content from "~/lib/content/terms";
 import { MarketingPageBase } from "../base";
-import { TypographyMuted, TypographyP, TypographySmall } from "@/components/shared/typography";
+import {
+  TypographyMuted,
+  TypographyP,
+  TypographySmall,
+} from "~/components/shared/typography";
 
 export default function TermsAndConditionsPage() {
   return (
     <>
       <MarketingPageBase {...content}>
-        <div className="text-center mb-8">
+        <div className="mb-8 text-center">
           <TypographyP>
             <strong>Effective Date: </strong>
             {content.effectiveDate}
@@ -14,7 +18,7 @@ export default function TermsAndConditionsPage() {
           <TypographySmall>{content.p}</TypographySmall>
         </div>
       </MarketingPageBase>
-      <div className="text-center mt-8">
+      <div className="mt-8 text-center">
         <TypographyMuted>{content.disclaimer}</TypographyMuted>
         <TypographySmall>{content.contact}</TypographySmall>
       </div>

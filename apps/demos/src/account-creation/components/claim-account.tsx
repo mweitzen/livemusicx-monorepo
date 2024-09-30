@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import {
   Dialog,
   DialogTrigger,
@@ -8,7 +8,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose,
-} from "@/components/ui/dialog";
+} from "~/components/ui/dialog";
 
 export const ClaimAccountButton = ({
   account,
@@ -20,24 +20,31 @@ export const ClaimAccountButton = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button
+          variant='outline'
+          size='sm'
+        >
           Claim Account
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
           <DialogTitle>Claim Account</DialogTitle>
           <DialogDescription>
-            Verify you have selected the correct acccount, and click cliam to continue.
+            Verify you have selected the correct acccount, and click cliam to
+            continue.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className='grid gap-4 py-4'>
           <p>{account.name}</p>
           {account.basedIn ? <p>{account.basedIn.name}</p> : null}
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button type="button" onClick={() => callback("claim")}>
+            <Button
+              type='button'
+              onClick={() => callback("claim")}
+            >
               Claim
             </Button>
           </DialogClose>

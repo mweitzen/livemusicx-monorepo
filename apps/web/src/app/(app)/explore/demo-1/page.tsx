@@ -71,7 +71,7 @@ export default async function DemoPage({
                 "use server";
                 await api.events.addGenres({
                   resourceId: event.id,
-                  tagId: "clsa0ngym000feg5fvjucc7ug",
+                  tagId: "jazz",
                 });
               }}
             >

@@ -1,5 +1,5 @@
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '~/auth/guards/jwt-auth.guard';
 import {
   Controller,
   Get,

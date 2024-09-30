@@ -1,8 +1,8 @@
-import { routes } from "@/routes";
+import { routes } from "~/routes";
 
-import { AdminLink } from "@/components/admin/link";
-import { MainWrapper } from "@/components/shared/main-wrapper";
-import { BasicFooter } from "@/components/shared/footer-basic";
+import { AdminLink } from "~/components/admin/link";
+import { MainWrapper } from "~/components/shared/main-wrapper";
+import { BasicFooter } from "~/components/shared/footer-basic";
 
 import { TRPCReactProvider } from "@repo/trpc/react";
 

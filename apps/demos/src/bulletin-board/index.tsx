@@ -4,9 +4,9 @@ import {
   AdminTabsContent,
   AdminTabsList,
   AdminTabsTrigger,
-} from "@/components/admin-tabs";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from "~/components/admin-tabs";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 
 export const BulletinBoardPage = () => {
   const [selectedFilter, setSelectedFilter] = useState<
@@ -14,20 +14,23 @@ export const BulletinBoardPage = () => {
   >(null);
   return (
     <>
-      <h1 className="text-center font-semibold tracking-tight text-xl mb-2">
+      <h1 className='text-center font-semibold tracking-tight text-xl mb-2'>
         Bulletin Board Demos
       </h1>
-      <AdminTabs defaultValue="feed">
-        <AdminTabsList className="grid w-full grid-cols-3">
-          <AdminTabsTrigger value="feed">Feed</AdminTabsTrigger>
-          <AdminTabsTrigger value="posts">Posts</AdminTabsTrigger>
-          <AdminTabsTrigger value="replies">Replies</AdminTabsTrigger>
+      <AdminTabs defaultValue='feed'>
+        <AdminTabsList className='grid w-full grid-cols-3'>
+          <AdminTabsTrigger value='feed'>Feed</AdminTabsTrigger>
+          <AdminTabsTrigger value='posts'>Posts</AdminTabsTrigger>
+          <AdminTabsTrigger value='replies'>Replies</AdminTabsTrigger>
         </AdminTabsList>
-        <AdminTabsContent value="feed">
+        <AdminTabsContent value='feed'>
           <div>
             <div>
-              <Input type="search" placeholder="Search feed" />
-              <div className="grid grid-cols-4 gap-2">
+              <Input
+                type='search'
+                placeholder='Search feed'
+              />
+              <div className='grid grid-cols-4 gap-2'>
                 <Button
                   onClick={() => setSelectedFilter(null)}
                   variant={selectedFilter === null ? "default" : "outline"}
@@ -42,13 +45,17 @@ export const BulletinBoardPage = () => {
                 </Button>
                 <Button
                   onClick={() => setSelectedFilter("organizers")}
-                  variant={selectedFilter === "organizers" ? "default" : "outline"}
+                  variant={
+                    selectedFilter === "organizers" ? "default" : "outline"
+                  }
                 >
                   Organizers Seeking
                 </Button>
                 <Button
                   onClick={() => setSelectedFilter("performers")}
-                  variant={selectedFilter === "performers" ? "default" : "outline"}
+                  variant={
+                    selectedFilter === "performers" ? "default" : "outline"
+                  }
                 >
                   Performers Seeking
                 </Button>
@@ -56,8 +63,12 @@ export const BulletinBoardPage = () => {
             </div>
           </div>
         </AdminTabsContent>
-        <AdminTabsContent value="posts">{/* <AddDatesForm /> */}</AdminTabsContent>
-        <AdminTabsContent value="replies">{/* <FromTemplateForm /> */}</AdminTabsContent>
+        <AdminTabsContent value='posts'>
+          {/* <AddDatesForm /> */}
+        </AdminTabsContent>
+        <AdminTabsContent value='replies'>
+          {/* <FromTemplateForm /> */}
+        </AdminTabsContent>
       </AdminTabs>
     </>
   );

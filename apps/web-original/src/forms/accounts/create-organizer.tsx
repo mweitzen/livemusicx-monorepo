@@ -4,7 +4,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { CreateOrganizerInputSchema } from "@/lib/schema/accounts/organizers";
+import { CreateOrganizerInputSchema } from "~/lib/schema/accounts/organizers";
 
 import {
   FormStep,
@@ -12,12 +12,12 @@ import {
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/admin/form-step";
-import { Form } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
+} from "~/components/admin/form-step";
+import { Form } from "@repo/ui/components/form";
+import { Button } from "@repo/ui/components/button";
 
 // feature specific components
-import { SelectGenres } from "@/components/shared/select-genres";
+import { SelectGenres } from "~/components/shared/select-genres";
 import { AboutTextarea } from "./components/about-textarea";
 import { UnclaimedAccountSearch } from "./components/unclaimed-search";
 import { AvatarUpload } from "./components/avatar-upload";

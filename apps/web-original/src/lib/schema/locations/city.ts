@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { GetChildrenInputSchema } from "@/lib/schema";
+import { GetChildrenInputSchema } from "~/lib/schema";
 
 export const GetCitiesInputSchema = z
   .object({
@@ -22,7 +22,7 @@ export const GetCitiesOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
-  })
+  }),
 );
 
 export const GetCityNeighborhoodsInputSchema = GetChildrenInputSchema;
@@ -30,7 +30,7 @@ export const GetCityNeighborhoodsOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
-  })
+  }),
 );
 
 export const GetCityVenuesInputSchema = GetChildrenInputSchema;
@@ -38,7 +38,7 @@ export const GetCityVenuesOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
-  })
+  }),
 );
 
 export const GetCityEventsInputSchema = GetChildrenInputSchema;
@@ -46,5 +46,5 @@ export const GetCityEventsOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
-  })
+  }),
 );

@@ -1,8 +1,8 @@
 import { api } from "@repo/trpc/server";
 import { cookies } from "next/headers";
-import { convertSearchParamsToQuery } from "@/lib/utils";
+import { convertSearchParamsToQuery } from "@repo/utils";
 
-import { ListPage } from "@/components/public/list-page";
+import { ListPage } from "~/components/public/list-page";
 import {
   List,
   ListHeader,
@@ -10,21 +10,21 @@ import {
   ListSearchInput,
   ListFilters,
   ListContent,
-} from "@/components/public/list";
+} from "~/components/public/list";
 import {
   ListItem,
   ListItemContent,
   ListItemImage,
   ListItemTitle,
-} from "@/components/public/list-item";
-import { TypographyH2 } from "@/components/shared/typography";
+} from "~/components/public/list-item";
+import { TypographyH2 } from "~/components/shared/typography";
 import {
   ToggleFilter,
   ToggleWithUpcomingEvents,
-} from "@/components/public/filters";
-import { FavoriteButton } from "@/components/public/interactions";
+} from "~/components/public/filters";
+import { FavoriteButton } from "~/components/public/interactions";
 
-import { GetAllOrganizersInputSchema } from "@/lib/schema/accounts/organizers";
+import { GetAllOrganizersInputSchema } from "~/lib/schema/accounts/organizers";
 
 export default async function OrganizersPage({
   searchParams,

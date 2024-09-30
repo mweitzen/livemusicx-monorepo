@@ -5,12 +5,12 @@ import { Module } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { AppConfigService } from '@app/config/config.service';
+import { AppConfigService } from '~/config/config.service';
 
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 
-import { MESSAGE_BROKER } from '@app/constants';
+import { MESSAGE_BROKER } from '~/constants';
 
 @Module({
   imports: [

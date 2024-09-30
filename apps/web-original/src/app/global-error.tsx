@@ -3,12 +3,12 @@
 import Link from "next/link";
 
 import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/button";
 import {
   TypographyH1,
   TypographyLarge,
   TypographyMuted,
-} from "@/components/shared/typography";
+} from "~/components/shared/typography";
 
 export default function GlobalError({ error, reset }: ErrorPageProps) {
   return (

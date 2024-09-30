@@ -1,27 +1,32 @@
 import { z } from "zod";
 
-import { ClaimAccountSchema, CreatePerformerSchema, defaultPerformerValues } from "./shared";
+import {
+  ClaimAccountSchema,
+  CreatePerformerSchema,
+  defaultPerformerValues,
+} from "./shared";
 
 import {
   GetDetailsInputSchema,
   IDInputSchema,
   SearchSchemaBase,
   defaultPaginationValues,
-} from "@/lib/schema";
+} from "~/lib/schema";
 
 export const defaultCreateMusicianValues = {
   ...defaultPerformerValues,
   groups: [],
 };
 
-export const GetAllMusiciansInputSchema =
-  SearchSchemaBase.optional().default(defaultPaginationValues);
+export const GetAllMusiciansInputSchema = SearchSchemaBase.optional().default(
+  defaultPaginationValues,
+);
 export const GetAllMusiciansOutputSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const GetMusicianDetailsInputSchema = GetDetailsInputSchema;
@@ -37,7 +42,7 @@ export const GetMusicianEventsOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const GetRelatedMusiciansInputSchema = IDInputSchema;
@@ -46,7 +51,7 @@ export const GetRelatedMusiciansOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const CreateMusicianInputSchema = CreatePerformerSchema.extend({
@@ -59,6 +64,6 @@ export const CreateMusicianOutputSchema = z.object({
 export const ClaimMusicianInputSchema = ClaimAccountSchema.merge(
   z.object({
     data: CreateMusicianInputSchema.optional(),
-  })
+  }),
 );
 export const ClaimMusicianOutputSchema = z.object({});

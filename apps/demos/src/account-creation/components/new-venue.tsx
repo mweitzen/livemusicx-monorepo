@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "~/components/ui/card";
 import {
   Dialog,
   DialogClose,
@@ -14,13 +14,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { GooglePlacesAutocomplete } from "@/google-maps/components/google-maps";
-import type { GooglePlaceResult } from "@/google-maps/lib/google-maps";
-import { useAppStore } from "@/google-maps/state";
+} from "~/components/ui/dialog";
+import { Label } from "~/components/ui/label";
+import { Button } from "~/components/ui/button";
+import { Separator } from "~/components/ui/separator";
+import { GooglePlacesAutocomplete } from "~/google-maps/components/google-maps";
+import type { GooglePlaceResult } from "~/google-maps/lib/google-maps";
+import { useAppStore } from "~/google-maps/state";
 
 type VenueCreateType = "create" | "claim" | null;
 
@@ -37,8 +37,16 @@ const VenueAccountStatus = ({
     <div>
       <p>Account Status</p>
       <pre>{JSON.stringify(venue, null, 2)}</pre>
-      <ConfirmVenueAccount venue={venue} createType="create" setCreateType={setCreateType} />
-      <ConfirmVenueAccount venue={venue} createType="claim" setCreateType={setCreateType} />
+      <ConfirmVenueAccount
+        venue={venue}
+        createType='create'
+        setCreateType={setCreateType}
+      />
+      <ConfirmVenueAccount
+        venue={venue}
+        createType='claim'
+        setCreateType={setCreateType}
+      />
     </div>
   );
 };
@@ -64,16 +72,18 @@ const ConfirmVenueAccount = ({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{ct} Venue</DialogTitle>
-          <DialogDescription>Confirm this is your venue before continuing</DialogDescription>
+          <DialogDescription>
+            Confirm this is your venue before continuing
+          </DialogDescription>
         </DialogHeader>
-        <div className="space-y-2">
+        <div className='space-y-2'>
           <p>{venue.name}</p>
           <p>{venue.addressShort}</p>
           <p>{venue.phone}</p>
           <p>{venue.website}</p>
-          <div className="flex gap-2 justify-end">
+          <div className='flex gap-2 justify-end'>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant='outline'>Cancel</Button>
             </DialogClose>
             <DialogClose asChild>
               <Button onClick={() => setCreateType(createType)}>{ct}</Button>
@@ -96,15 +106,18 @@ export function NewVenuePage() {
         <CardHeader>
           <CardTitle>Create Your Venue</CardTitle>
           <CardDescription>
-            Begin by searching your venue with Google Places. Select your venue from the list of
-            suggestions to continue.
+            Begin by searching your venue with Google Places. Select your venue
+            from the list of suggestions to continue.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Label>Search Venue Name</Label>
           <GooglePlacesAutocomplete setSelectedPlace={setVenue} />
-          <Separator className="my-8" />
-          <VenueAccountStatus venue={venue} setCreateType={setCreateType} />
+          <Separator className='my-8' />
+          <VenueAccountStatus
+            venue={venue}
+            setCreateType={setCreateType}
+          />
           <Button onClick={() => addVenue(venue!)}>Create</Button>
         </CardContent>
       </Card>

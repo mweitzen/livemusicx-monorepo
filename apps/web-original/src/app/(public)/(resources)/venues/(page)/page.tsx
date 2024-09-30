@@ -1,6 +1,6 @@
 import { api } from "@repo/trpc/server";
 import { cookies } from "next/headers";
-import { convertSearchParamsToQuery } from "@/lib/utils";
+import { convertSearchParamsToQuery } from "@repo/utils";
 
 import {
   List,
@@ -10,18 +10,18 @@ import {
   ListFilters,
   ListContent,
   // ListDateInput,
-} from "@/components/public/list";
+} from "~/components/public/list";
 import {
   ListItem,
   ListItemContent,
   ListItemImage,
   ListItemTitle,
-} from "@/components/public/list-item";
-import { ListPage } from "@/components/public/list-page";
-import { TypographyH2 } from "@/components/shared/typography";
-import { ToggleWithUpcomingEvents } from "@/components/public/filters";
+} from "~/components/public/list-item";
+import { ListPage } from "~/components/public/list-page";
+import { TypographyH2 } from "~/components/shared/typography";
+import { ToggleWithUpcomingEvents } from "~/components/public/filters";
 
-import { GetAllVenuesInputSchema } from "@/lib/schema/accounts/venues";
+import { GetAllVenuesInputSchema } from "~/lib/schema/accounts/venues";
 
 export default async function MusiciansPage({
   searchParams,

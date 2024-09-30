@@ -8,10 +8,10 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ClientProxy } from '@nestjs/microservices';
-import { MESSAGE_BROKER } from '@app/constants';
+import { MESSAGE_BROKER } from '~/constants';
 
 import { User } from '@prisma/client';
-import { CreateUserDto } from '@app/resources/users/dto';
+import { CreateUserDto } from '~/resources/users/dto';
 import { AccessToken } from './interfaces/access-token.interface';
 import {
   ConnectCredentialsDto,

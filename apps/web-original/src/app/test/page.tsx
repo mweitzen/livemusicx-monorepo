@@ -1,10 +1,15 @@
 "use client";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@repo/ui/components/tabs";
 
-import { CreateOrganizerForm } from "@/forms/accounts/create-organizer";
-import { CreatePerformerForm } from "@/forms/accounts/create-performer";
+import { CreateOrganizerForm } from "~/forms/accounts/create-organizer";
+import { CreatePerformerForm } from "~/forms/accounts/create-performer";
 import { z } from "zod";
-// import { CreateVenueForm } from "@/forms/accounts/create-venue";}
+// import { CreateVenueForm } from "~/forms/accounts/create-venue";}
 
 export default function TestPage() {
   // const { data: organizers } = api.v1.accounts.organizers.getAll.useQuery();

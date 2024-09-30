@@ -1,5 +1,3 @@
-// TODO: add to monorepo
-
 import type { AppleImage } from "next/dist/lib/metadata/types/extra-types";
 export const appleImages: AppleImage[] = [
   {

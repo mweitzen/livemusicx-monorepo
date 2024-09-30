@@ -1,4 +1,4 @@
-import { TypographyH1 } from "@/components/shared/typography";
+import { TypographyH1 } from "~/components/shared/typography";
 import { api } from "@repo/trpc/server";
 import { notFound } from "next/navigation";
 

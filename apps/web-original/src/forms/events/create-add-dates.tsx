@@ -5,18 +5,18 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Form } from "@/components/ui/form";
+import { Form } from "@repo/ui/components/form";
 import {
   FormStep,
   FormStepContent,
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/admin/form-step";
+} from "~/components/admin/form-step";
 
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Label } from "@repo/ui/components/label";
+import { Button } from "@repo/ui/components/button";
+import { Input } from "@repo/ui/components/input";
 
 import { DatePickerMultiple } from "./components/date-picker-multiple";
 
@@ -49,7 +49,9 @@ export const AddDatesForm = () => {
         <FormStep display={!eventId}>
           <FormStepHeader>
             <FormStepTitle>Select Existing Event</FormStepTitle>
-            <FormStepDescription>Choose an existing event to add dates to</FormStepDescription>
+            <FormStepDescription>
+              Choose an existing event to add dates to
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent className="py-4">
             <Input type="search" placeholder="Search for an event" />
@@ -79,7 +81,9 @@ export const AddDatesForm = () => {
         <FormStep display={!!eventId && !datesAdded}>
           <FormStepHeader>
             <FormStepTitle>Select Dates to Add</FormStepTitle>
-            <FormStepDescription>Add dates to the selected event</FormStepDescription>
+            <FormStepDescription>
+              Add dates to the selected event
+            </FormStepDescription>
           </FormStepHeader>
           <FormStepContent>
             <Label>Select dates to add</Label>

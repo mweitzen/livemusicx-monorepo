@@ -1,15 +1,15 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 import { format, addMonths } from "date-fns";
 
 import { useCallback } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-import { Input } from "@/components/ui/input";
-import { Toggle } from "@/components/ui/toggle";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Input } from "@repo/ui/components/input";
+import { Toggle } from "@repo/ui/components/toggle";
+import { Button } from "@repo/ui/components/button";
 
 export interface SearchInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {}
@@ -30,21 +30,21 @@ const SearchInput = ({
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newSearchParams = new URLSearchParams(searchParams);
     if (e.target.value !== "") {
-      newSearchParams.set("query", e.target.value);
+      newSearchParams.set("q", e.target.value);
     } else {
-      newSearchParams.delete("query");
+      newSearchParams.delete("q");
     }
     router.replace(`${pathname}?${newSearchParams.toString()}`);
   }
 
   return (
     <Input
-      id="query"
+      id="q"
       type="search"
       name={name}
       autoComplete={autoComplete}
       placeholder={placeholder}
-      defaultValue={searchParams.get("query") || undefined}
+      defaultValue={searchParams.get("q") || undefined}
       onChange={debouncedSearchQuery}
       className={cn(className)}
       {...props}
@@ -102,7 +102,10 @@ const ToggleWithUpcomingEvents = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams()!;
 
-  const withUpcomingSelected = searchParams.has("dateStart", format(new Date(), "yyyy-MM-dd"));
+  const withUpcomingSelected = searchParams.has(
+    "dateStart",
+    format(new Date(), "yyyy-MM-dd"),
+  );
 
   const toggleWithUpcoming = useCallback(() => {
     const params = new URLSearchParams(searchParams);
@@ -143,7 +146,9 @@ const TogglePerformerType = () => {
     <>
       <Button
         onClick={() =>
-          router.replace(`/performers${workaround ? `?${searchParams.toString()}` : ""}`)
+          router.replace(
+            `/performers${workaround ? `?${searchParams.toString()}` : ""}`,
+          )
         }
         variant="outline"
         className={pathname === "/performers" ? "bg-secondary" : ""}
@@ -152,7 +157,9 @@ const TogglePerformerType = () => {
       </Button>
       <Button
         onClick={() =>
-          router.replace(`/musicians${workaround ? `?${searchParams.toString()}` : ""}`)
+          router.replace(
+            `/musicians${workaround ? `?${searchParams.toString()}` : ""}`,
+          )
         }
         variant="outline"
         className={pathname === "/musicians" ? "bg-secondary" : ""}
@@ -161,7 +168,9 @@ const TogglePerformerType = () => {
       </Button>
       <Button
         onClick={() =>
-          router.replace(`/groups${workaround ? `?${searchParams.toString()}` : ""}`)
+          router.replace(
+            `/groups${workaround ? `?${searchParams.toString()}` : ""}`,
+          )
         }
         variant="outline"
         className={pathname === "/groups" ? "bg-secondary" : ""}

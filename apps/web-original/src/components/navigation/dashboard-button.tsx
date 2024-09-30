@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuthStatus, useCurrentUser } from "@/lib/hooks/auth";
+import { useAuthStatus, useCurrentUser } from "~/lib/hooks/auth";
 
-import { Button, type ButtonProps } from "../ui/button";
+import { Button, type ButtonProps } from "@repo/ui/components/button";
 import { ArrowPathIcon, ArrowRightCircleIcon } from "@heroicons/react/20/solid";
 import React from "react";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@repo/utils";
 import { ProfileImage } from "../shared/image";
 
 export const DashboardButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -35,7 +35,7 @@ export const DashboardButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <Button {...props} ref={ref} variant="outline" asChild>
           <Link href="/login">
             Login
-            <ArrowRightCircleIcon className="ml-2 w-4 h-4" />
+            <ArrowRightCircleIcon className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       );
@@ -55,7 +55,7 @@ export const DashboardButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <Button {...props} ref={ref} variant="outline" asChild>
           <Link href="/account">
             Your Account
-            <ArrowRightCircleIcon className="ml-2 w-4 h-4" />
+            <ArrowRightCircleIcon className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       );
@@ -71,12 +71,12 @@ export const DashboardButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Button {...props} ref={ref} variant="outline" asChild>
         <Link href="/admin">
-          <span className="hidden lg:block lg:mr-1">Go to</span>
+          <span className="hidden lg:mr-1 lg:block">Go to</span>
           Dashboard
-          <ArrowRightCircleIcon className="ml-2 w-4 h-4" />
+          <ArrowRightCircleIcon className="ml-2 h-4 w-4" />
         </Link>
       </Button>
     );
-  }
+  },
 );
 DashboardButton.displayName = "DashboardButton";

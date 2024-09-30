@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { IDArraySchema } from "@/lib/schema";
+import { IDArraySchema } from "~/lib/schema";
 
 export const TicketLinkSchema = z.object({
   url: z.string().url("Please provide a valid URL"),

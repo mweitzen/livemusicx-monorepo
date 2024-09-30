@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@repo/ui/components/badge";
 import {
   Card,
   CardContent,
@@ -9,7 +9,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/ui/components/card";
 import {
   CalendarDaysIcon,
   ClockIcon,
@@ -19,8 +19,8 @@ import {
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
-import { Separator } from "@/components/ui/separator";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Separator } from "@repo/ui/components/separator";
+import { ScrollArea, ScrollBar } from "@repo/ui/components/scroll-area";
 
 const events = [
   {

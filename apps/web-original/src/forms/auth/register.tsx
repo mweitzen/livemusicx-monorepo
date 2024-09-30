@@ -1,6 +1,6 @@
 import { api } from "@repo/trpc/server";
 import { redirect } from "next/navigation";
-import type { AccountType } from "@repo/db/v1";
+import type { AccountType } from "@repo/db/schema";
 
 import {
   Select,
@@ -10,10 +10,10 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+} from "@repo/ui/components/select";
+import { Button } from "@repo/ui/components/button";
+import { Label } from "@repo/ui/components/label";
+import { Input } from "@repo/ui/components/input";
 
 async function signUpUser(formData: FormData) {
   "use server";

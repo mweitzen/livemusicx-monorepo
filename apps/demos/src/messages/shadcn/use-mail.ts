@@ -1,6 +1,6 @@
 import { atom, useAtom } from "jotai";
 
-import { Mail, mails } from "@/messages/shadcn/data";
+import { Mail, mails } from "~/messages/shadcn/data";
 
 type Config = {
   selected: Mail["id"] | null;

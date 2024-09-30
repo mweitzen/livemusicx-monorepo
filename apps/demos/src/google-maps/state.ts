@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import type { GooglePlaceResult } from "@/google-maps/lib/google-maps";
+import type { GooglePlaceResult } from "~/google-maps/lib/google-maps";
 
 type State = {
   venues: GooglePlaceResult[];

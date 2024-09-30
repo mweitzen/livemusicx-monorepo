@@ -1,10 +1,10 @@
 // "use client";
 
 // import { useState, useCallback, useMemo, ChangeEvent } from "react";
-// import { toast } from "@/components/ui/use-toast";
+// import { toast } from "@repo/ui/components/use-toast";
 
 // import { PutBlobResult } from "@vercel/blob";
-// import { Card } from "@/components/ui/card";
+// import { Card } from "@repo/ui/components/card";
 
 // export default function Uploader() {
 //   const [data, setData] = useState<{

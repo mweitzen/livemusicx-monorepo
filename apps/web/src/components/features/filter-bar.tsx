@@ -96,7 +96,7 @@ export default function FilterBar() {
 }
 
 function SelectLocation() {
-  const { data: cities, isLoading } = api.location.getCities.useQuery();
+  const { data: cities, isLoading } = api.locations.getCities.useQuery();
 
   const [location, setLocation] = useState("Select Location");
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);

@@ -1,11 +1,11 @@
 import { z } from "zod";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db/schema";
 
 import {
   GetNeighborhoodEventsInputSchema,
   GetNeighborhoodVenuesInputSchema,
   GetNeighborhoodsInputSchema,
-} from "@/lib/schema/locations/neighborhood";
+} from "~/lib/schema/locations/neighborhood";
 
 export const GetAllNeighborhoodsQuery = (
   input: z.infer<typeof GetNeighborhoodsInputSchema>,

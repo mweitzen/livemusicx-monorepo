@@ -2,19 +2,24 @@ import Link from "next/link";
 import { auth } from "@repo/auth";
 import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import { GoogleButton } from "@/components/shared/auth-buttons";
+import { Button } from "@repo/ui/components/button";
+import { GoogleButton } from "~/components/shared/auth-buttons";
 import {
   TypographyLarge,
   TypographyMuted,
   TypographyP,
-} from "@/components/shared/typography";
+} from "~/components/shared/typography";
 import {
   PageHeader,
   PageTitle,
   PageDescription,
-} from "@/components/public/page";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+} from "~/components/public/page";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@repo/ui/components/card";
 
 export default async function LoginPage() {
   const session = await auth();

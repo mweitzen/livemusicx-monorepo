@@ -5,8 +5,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
+} from "@repo/ui/components/form";
+import { Textarea } from "@repo/ui/components/textarea";
 import { useFormContext } from "react-hook-form";
 
 export const AboutTextarea = () => {
@@ -27,7 +27,8 @@ export const AboutTextarea = () => {
             />
           </FormControl>
           <FormDescription>
-            Enter a brief description. Try to keep the length within the provided space.
+            Enter a brief description. Try to keep the length within the
+            provided space.
           </FormDescription>
           <FormMessage />
         </FormItem>

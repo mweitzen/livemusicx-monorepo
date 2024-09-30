@@ -1,6 +1,6 @@
 import { SwaggerCustomOptions, SwaggerDocumentOptions } from '@nestjs/swagger';
 import { SWAGGER_DOCUMENT_TITLE, SWAGGER_CSS_URL } from './swagger.constants';
-import { FAVICON_URL } from '@app/constants';
+import { FAVICON_URL } from '~/constants';
 
 /**
  * Swagger Document Options

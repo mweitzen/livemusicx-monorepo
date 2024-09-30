@@ -5,7 +5,7 @@ import {
   SearchSchemaBase,
   defaultPaginationValues,
   groupSizes,
-} from "@/lib/schema";
+} from "~/lib/schema";
 import { ClaimAccountSchema, CreatePerformerSchema } from "./shared";
 
 export const GetAllGroupsInputSchema = SearchSchemaBase.extend({
@@ -18,7 +18,7 @@ export const GetAllGroupsOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const GetGroupDetailsInputSchema = GetDetailsInputSchema;
@@ -34,7 +34,7 @@ export const GetGroupEventsOutputSchema = z.array(
     id: z.string(),
     name: z.string(),
     slug: z.string(),
-  })
+  }),
 );
 
 export const CreateGroupInputSchema = CreatePerformerSchema.extend({
@@ -44,5 +44,5 @@ export const CreateGroupInputSchema = CreatePerformerSchema.extend({
 export const ClaimGroupInputSchema = ClaimAccountSchema.merge(
   z.object({
     data: CreateGroupInputSchema.optional(),
-  })
+  }),
 );

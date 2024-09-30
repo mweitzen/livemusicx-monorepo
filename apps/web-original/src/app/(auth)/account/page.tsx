@@ -3,13 +3,13 @@ import Image from "next/image";
 
 import { auth } from "@repo/auth";
 import { api } from "@repo/trpc/server";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Label } from "@repo/ui/components/label";
+import { Input } from "@repo/ui/components/input";
+import { Button } from "@repo/ui/components/button";
 import {
   TypographyLarge,
   TypographyMuted,
-} from "@/components/shared/typography";
+} from "~/components/shared/typography";
 
 export default async function UserAccountPage() {
   const session = await auth();

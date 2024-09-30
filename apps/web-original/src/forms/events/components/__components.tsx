@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui/helpers";
 
 export const CreateEventFormBase = () => {
   return <div>Create Event Form Base</div>;

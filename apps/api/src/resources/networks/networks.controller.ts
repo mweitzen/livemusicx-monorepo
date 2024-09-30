@@ -11,7 +11,7 @@ import { NetworksService } from './networks.service';
 import { CreateNetworkDto } from './dto/create-network.dto';
 import { UpdateNetworkDto } from './dto/update-network.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '~/auth/guards/jwt-auth.guard';
 
 @ApiTags('Networks')
 @Controller('networks')

@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // logging: {
-  //   fetches: {
-  //     fullUrl: true,
-  //   },
-  // },
+  transpilePackages: ["@repo/db", "@repo/auth", "@repo/trpc", "@repo/ui"],
   images: {
     remotePatterns: [
       // Google account imgaes

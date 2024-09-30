@@ -2,10 +2,10 @@ import { api } from "@repo/trpc/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-import StructuredData from "@/components/shared/structured-data";
-import { generateGroupPageMetadata } from "@/lib/metadata";
-import { generateGroupStructuredData } from "@/lib/structured-data";
-import { getSocialLinks } from "@/lib/utils";
+import StructuredData from "~/components/shared/structured-data";
+import { generateGroupPageMetadata } from "~/lib/metadata";
+import { generateGroupStructuredData } from "~/lib/structured-data";
+import { getSocialLinks } from "@repo/utils";
 import {
   AboutInformation,
   WebsiteLink,
@@ -19,7 +19,7 @@ import {
   AdditionalResources,
   GroupMembers,
   AffiliatedAccounts,
-} from "@/components/public/details";
+} from "~/components/public/details";
 
 export async function generateMetadata({
   params,

@@ -16,7 +16,7 @@ import {
   ClipboardDocumentListIcon,
 } from "@heroicons/react/20/solid";
 
-import { CalendarPlusIcon } from "lucide-react";
+import { CalendarPlusIcon } from "@repo/ui/icons";
 
 /*
  *

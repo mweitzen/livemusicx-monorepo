@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   CreateMusicianInputSchema,
   defaultCreateMusicianValues,
-} from "@/lib/schema/accounts/musicians";
+} from "~/lib/schema/accounts/musicians";
 
 import {
   FormStep,
@@ -15,16 +15,16 @@ import {
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/admin/form-step";
-import { Form } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
+} from "~/components/admin/form-step";
+import { Form } from "@repo/ui/components/form";
+import { Button } from "@repo/ui/components/button";
 
 // feature specific imports
-import { SelectGenres } from "@/components/shared/select-genres";
+import { SelectGenres } from "~/components/shared/select-genres";
 import { AvatarUpload } from "./components/avatar-upload";
 import { AboutTextarea } from "./components/about-textarea";
 import { UnclaimedAccountSearch } from "./components/unclaimed-search";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@repo/utils";
 import { api } from "@repo/trpc/react";
 
 const FormSchema = CreateMusicianInputSchema.extend({

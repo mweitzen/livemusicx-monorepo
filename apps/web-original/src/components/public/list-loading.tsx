@@ -1,13 +1,13 @@
-import { Input } from "@/components/ui/input";
-import { Skeleton } from "@/components/ui/skeleton";
-import { TypographyH2 } from "@/components/shared/typography";
+import { Input } from "@repo/ui/components/input";
+import { Skeleton } from "@repo/ui/components/skeleton";
+import { TypographyH2 } from "~/components/shared/typography";
 import {
   List,
   ListContent,
   ListHeader,
   ListShowFavorites,
-} from "@/components/public/list";
-import { Button } from "../ui/button";
+} from "~/components/public/list";
+import { Button } from "@repo/ui/components/button";
 import { AdjustmentsVerticalIcon } from "@heroicons/react/24/outline";
 import { ListItem } from "./list-item";
 

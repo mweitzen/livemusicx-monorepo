@@ -6,12 +6,12 @@ import {
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/admin/form-step";
-import { Button } from "@/components/ui/button";
+} from "~/components/admin/form-step";
+import { Button } from "@repo/ui/components/button";
 
-import { BlankEventForm } from "@/forms/events/create-blank";
-import { AddDatesForm } from "@/forms/events/create-add-dates";
-import { FromTemplateForm } from "@/forms/events/create-from-template";
+import { BlankEventForm } from "~/forms/events/create-blank";
+import { AddDatesForm } from "~/forms/events/create-add-dates";
+import { FromTemplateForm } from "~/forms/events/create-from-template";
 
 export default function AdminEventsCreatePage({
   searchParams,
@@ -36,7 +36,9 @@ export default function AdminEventsCreatePage({
         <FormStep display={!searchParams.type}>
           <FormStepHeader>
             <FormStepTitle>Event Creation Type</FormStepTitle>
-            <FormStepDescription>Choose how you want to create your event</FormStepDescription>
+            <FormStepDescription>
+              Choose how you want to create your event
+            </FormStepDescription>
             <FormStepContent className="py-4">
               <Button variant="outline" size="lg" asChild>
                 <Link href="/admin/events/create?type=blank" replace>

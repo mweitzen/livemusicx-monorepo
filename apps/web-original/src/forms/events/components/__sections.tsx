@@ -1,8 +1,8 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@repo/ui/components/input";
+import { Label } from "@repo/ui/components/label";
+import { Switch } from "@repo/ui/components/switch";
+import { Button } from "@repo/ui/components/button";
+import { Textarea } from "@repo/ui/components/textarea";
 
 import {
   FormStep,
@@ -10,7 +10,7 @@ import {
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "@/components/admin/form-step";
+} from "~/components/admin/form-step";
 
 export const EventInformation = () => {
   return (
@@ -92,27 +92,29 @@ export const EventDetails = () => {
     <FormStep display>
       <FormStepHeader>
         <FormStepTitle>Event Details</FormStepTitle>
-        <FormStepDescription>Finally, enter the details for your event</FormStepDescription>
+        <FormStepDescription>
+          Finally, enter the details for your event
+        </FormStepDescription>
       </FormStepHeader>
       <FormStepContent>
         <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2 flex flex-col">
+          <div className="flex flex-col space-y-2">
             <Label htmlFor="is-free">Is Free?</Label>
             <Switch name="is-free" />
           </div>
-          <div className="space-y-2 flex flex-col">
+          <div className="flex flex-col space-y-2">
             <Label htmlFor="is-holiday">Is Holiday?</Label>
             <Switch name="is-holiday" />
           </div>
-          <div className="space-y-2 flex flex-col">
+          <div className="flex flex-col space-y-2">
             <Label htmlFor="is-child-friendly">Is Child Friendly?</Label>
             <Switch name="is-child-friendly" />
           </div>
-          <div className="space-y-2 flex flex-col">
+          <div className="flex flex-col space-y-2">
             <Label htmlFor="serves-alcohol">Serves Alcohol?</Label>
             <Switch name="serves-alcohol" />
           </div>
-          <div className="space-y-2 flex flex-col">
+          <div className="flex flex-col space-y-2">
             <Label htmlFor="serves-food">Serves Food?</Label>
             <Switch name="serves-food" />
           </div>
@@ -138,7 +140,9 @@ export const EventParticipants = () => {
     <FormStep display>
       <FormStepHeader>
         <FormStepTitle>Participants</FormStepTitle>
-        <FormStepDescription>Add venue, performers, and organizer details</FormStepDescription>
+        <FormStepDescription>
+          Add venue, performers, and organizer details
+        </FormStepDescription>
       </FormStepHeader>
       <FormStepContent>
         <div className="space-y-2">
@@ -173,8 +177,8 @@ export const EventConfirmation = () => {
       <FormStepContent>
         <div className="space-y-4">
           <p className="text-gray-500 dark:text-gray-400">
-            Ensure all the details are correct. Once you submit, you will not be able to make
-            changes.
+            Ensure all the details are correct. Once you submit, you will not be
+            able to make changes.
           </p>
           <div className="space-y-2">
             <Label htmlFor="event-image">Event Image</Label>
@@ -182,7 +186,12 @@ export const EventConfirmation = () => {
           </div>
           <div className="space-y-2">
             <Label htmlFor="event-name">Event Name</Label>
-            <Input name="event-name" placeholder="Event Name" readOnly required />
+            <Input
+              name="event-name"
+              placeholder="Event Name"
+              readOnly
+              required
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="event-description">Event Description</Label>
@@ -222,7 +231,12 @@ export const EventConfirmation = () => {
           </div>
           <div className="space-y-2">
             <Label htmlFor="performers">Performers</Label>
-            <Input name="performers" placeholder="Performers" readOnly required />
+            <Input
+              name="performers"
+              placeholder="Performers"
+              readOnly
+              required
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="organizer">Organizer</Label>

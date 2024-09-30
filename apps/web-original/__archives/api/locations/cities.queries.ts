@@ -1,12 +1,12 @@
 import { z } from "zod";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db/schema";
 
 import {
   GetCitiesInputSchema,
   GetCityNeighborhoodsInputSchema,
   GetCityVenuesInputSchema,
   GetCityEventsInputSchema,
-} from "@/lib/schema/locations/city";
+} from "~/lib/schema/locations/city";
 
 export const GetAllCitiesQuery = (
   input: z.infer<typeof GetCitiesInputSchema>,

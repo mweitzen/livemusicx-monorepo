@@ -1,14 +1,19 @@
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
+import { Label } from "~/components/ui/label";
+import { Input } from "~/components/ui/input";
+import { Textarea } from "~/components/ui/textarea";
 
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "~/components/ui/dialog";
 import { LinkIcon } from "@heroicons/react/20/solid";
-import { cn } from "@/lib/utils";
+import { cn } from "~/lib/utils";
 
 type InquiryStatus = "unread" | "read" | "response" | "archived";
 
@@ -34,42 +39,54 @@ export const OutgoingInquiries = () => {
   return (
     <div>
       <p>Outgoing Inquiries</p>
-      <div className="flex flex-col">
-        <Button variant="outline" className="justify-between p-6">
+      <div className='flex flex-col'>
+        <Button
+          variant='outline'
+          className='justify-between p-6'
+        >
           <div>
             <p>
-              You sent inquiry to: <span className="font-semibold">John Doe</span>
+              You sent inquiry to:{" "}
+              <span className='font-semibold'>John Doe</span>
             </p>
             <p>
-              Date: <span className="font-semibold">2021-07-01</span>
-            </p>
-          </div>
-          <div>
-            <p>Status</p>
-            <Badge variant="outline">Unread</Badge>
-          </div>
-        </Button>
-        <Button variant="outline" className="justify-between p-6">
-          <div>
-            <p>
-              You sent inquiry to: <span className="font-semibold">John Doe</span>
-            </p>
-            <p>
-              Date: <span className="font-semibold">2021-07-01</span>
+              Date: <span className='font-semibold'>2021-07-01</span>
             </p>
           </div>
           <div>
             <p>Status</p>
-            <Badge variant="outline">Read</Badge>
+            <Badge variant='outline'>Unread</Badge>
           </div>
         </Button>
-        <Button variant="outline" className="justify-between p-6">
+        <Button
+          variant='outline'
+          className='justify-between p-6'
+        >
           <div>
             <p>
-              You sent inquiry to: <span className="font-semibold">John Doe</span>
+              You sent inquiry to:{" "}
+              <span className='font-semibold'>John Doe</span>
             </p>
             <p>
-              Date: <span className="font-semibold">2021-07-01</span>
+              Date: <span className='font-semibold'>2021-07-01</span>
+            </p>
+          </div>
+          <div>
+            <p>Status</p>
+            <Badge variant='outline'>Read</Badge>
+          </div>
+        </Button>
+        <Button
+          variant='outline'
+          className='justify-between p-6'
+        >
+          <div>
+            <p>
+              You sent inquiry to:{" "}
+              <span className='font-semibold'>John Doe</span>
+            </p>
+            <p>
+              Date: <span className='font-semibold'>2021-07-01</span>
             </p>
           </div>
           <div>
@@ -113,14 +130,15 @@ export const QuickResponseTextarea = () => {
     <>
       <Label>
         Message{" "}
-        <span className="text-muted-foreground">
+        <span className='text-muted-foreground'>
           (
           <span
             className={cn(
               characterCount > maxCharacterCount &&
                 characterCount < warningCharacterCount &&
                 "font-semibold text-yellow-500",
-              characterCount >= warningCharacterCount && "font-bold text-red-500"
+              characterCount >= warningCharacterCount &&
+                "font-bold text-red-500"
             )}
           >
             {characterCount}
@@ -128,14 +146,16 @@ export const QuickResponseTextarea = () => {
           /{maxCharacterCount})
         </span>
         <Textarea
-          className="resize-none"
+          className='resize-none'
           rows={5}
-          onChange={(e) => setCharacterCount(e.target.value.split(" ").join("").length)}
+          onChange={(e) =>
+            setCharacterCount(e.target.value.split(" ").join("").length)
+          }
         />
       </Label>
-      <p className="text-sm text-muted-foreground">
-        Hint: Keep your message short and to the point. The recipient will be able to view your
-        profile.
+      <p className='text-sm text-muted-foreground'>
+        Hint: Keep your message short and to the point. The recipient will be
+        able to view your profile.
       </p>
     </>
   );
@@ -143,8 +163,8 @@ export const QuickResponseTextarea = () => {
 export const ReferenceLink = () => {
   return (
     <Label>
-      <span className="flex gap-1 items-center">
-        <LinkIcon className="h-4 w-4" /> Reference Link
+      <span className='flex gap-1 items-center'>
+        <LinkIcon className='h-4 w-4' /> Reference Link
       </span>
       <Input />
     </Label>

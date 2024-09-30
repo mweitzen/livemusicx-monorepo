@@ -1,12 +1,12 @@
 import { z } from "zod";
-import type { Prisma } from "@repo/db/v1";
+import type { Prisma } from "@repo/db/schema";
 
 import {
   GetRegionsInputSchema,
   GetRegionCitiesInputSchema,
   GetRegionVenuesInputSchema,
   GetRegionEventsInputSchema,
-} from "@/lib/schema/locations/region";
+} from "~/lib/schema/locations/region";
 
 export const GetAllRegionsQuery = (
   input: z.infer<typeof GetRegionsInputSchema>,
