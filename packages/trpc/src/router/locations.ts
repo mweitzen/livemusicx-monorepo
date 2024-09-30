@@ -4,7 +4,7 @@ import { publicProcedure } from "../trpc";
 
 import { __PLACEHOLDER__ } from "@repo/validators/general";
 
-export const locationRouter = {
+export const locationsRouter = {
   getAll: publicProcedure.query(
     async ({ ctx }) => await ctx.db.location.findMany()
   ),

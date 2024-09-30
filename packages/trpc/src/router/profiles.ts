@@ -1,7 +1,7 @@
 import { TRPCRouterRecord } from "@trpc/server";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
-export const profileRouter = createTRPCRouter({
+export const profilesRouter = createTRPCRouter({
   musicians: {
     getAll: publicProcedure
       .input(() => {})
@@ -43,10 +43,32 @@ export const profileRouter = createTRPCRouter({
   } satisfies TRPCRouterRecord,
 
   venues: {
-    getAll: publicProcedure.input(() => {}).query(async ({ ctx, input }) => {}),
+    getAll: publicProcedure
+      .input(() => {})
+      .query(async ({ ctx, input }) => {
+        const bands = await ctx.db.band.findMany({
+          include: { profile: true, members: { include: { profile: true } } },
+        });
+
+        return bands.map(({ profile, ...band }) => ({
+          ...band,
+          ...profile,
+        }));
+      }),
   } satisfies TRPCRouterRecord,
 
   organizers: {
-    getAll: publicProcedure.input(() => {}).query(async ({ ctx, input }) => {}),
+    getAll: publicProcedure
+      .input(() => {})
+      .query(async ({ ctx, input }) => {
+        const bands = await ctx.db.band.findMany({
+          include: { profile: true, members: { include: { profile: true } } },
+        });
+
+        return bands.map(({ profile, ...band }) => ({
+          ...band,
+          ...profile,
+        }));
+      }),
   } satisfies TRPCRouterRecord,
 });
