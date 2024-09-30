@@ -1,5 +1,11 @@
-import type { TRPCRouterRecord } from "@trpc/server";
 import { __PLACEHOLDER__ } from "@repo/validators/general";
+import type { TRPCRouterRecord } from "@trpc/server";
+
+import { format } from "date-fns";
+import { createSlug } from "@repo/utils";
+function createEventSlug(event: { timeStart: string; name: string }) {
+  return createSlug(`${format(event.timeStart, "yyyy-MM-dd")} ${event.name}`);
+}
 
 import {
   protectedProcedure,
@@ -16,8 +22,8 @@ import {
 } from "@repo/validators/events";
 
 import {
-  AddTagInput,
   FEATURED_TAKE,
+  AddTagInput,
   GetDetailsInput,
   GetFeaturedInput,
 } from "@repo/validators/shared";
@@ -27,13 +33,17 @@ import {
   BookmarkedQuery,
   EventIncludePublicQuery,
   FavoritedAccountsQuery,
+  FilterEventsQuery,
+  FindManyEventsInclude,
   GetCurrentQuery,
   GetDetailsQuery,
   GetDraftsQuery,
+  GetEventDetailsInclude,
   GetFeatureDatesQuery,
   GetFutureDatesQuery,
   GetPreviousDatesQuery,
   GetPublishedQuery,
+  ManyToManyConnect,
   MultiKeywordQuery,
   OrderByDateAscending,
   OrderByDateDescending,
@@ -61,31 +71,13 @@ export const eventsRouter = {
               ...GetFutureDatesQuery,
               ...GetPublishedQuery,
               ...BookmarkedQuery(userId, input.bookmarked),
-              isFree: input.isFree,
-              isChildFriendly: input.isChildFriendly,
-              isHoliday: input.isHoliday,
-              servesAlcohol: input.servesAlcohol,
-              servesFood: input.servesFood,
-              // Price range query
-              // location query
-              // event type query
-              // age restriction query
-              // performer type / group size query
+              ...FilterEventsQuery(input),
             },
           ],
         },
         include: {
+          ...FindManyEventsInclude,
           ...BookmarkedIncludeQuery(userId),
-          genres: true,
-          venue: {
-            select: {
-              profile: {
-                select: {
-                  name: true,
-                },
-              },
-            },
-          },
         },
         orderBy: OrderByDateAscending,
       });
@@ -104,20 +96,17 @@ export const eventsRouter = {
             { venue: { ...VenueTypesQuery(input.venueTypes) } },
             { genres: { ...MultiKeywordQuery(input.genres) } },
             { keywords: { ...MultiKeywordQuery(input.keywords) } },
+            { ...FavoritedAccountsQuery(userId, input.favorites) },
             {
               ...GetCurrentQuery,
               ...GetPublishedQuery,
               ...BookmarkedQuery(userId, input.bookmarked),
-              ...FavoritedAccountsQuery(userId, input.favorites),
-              isFree: input.isFree,
-              isChildFriendly: input.isChildFriendly,
-              isHoliday: input.isHoliday,
-              servesAlcohol: input.servesAlcohol,
-              servesFood: input.servesFood,
+              ...FilterEventsQuery(input),
             },
           ],
         },
         include: {
+          ...FindManyEventsInclude,
           ...BookmarkedIncludeQuery(userId),
         },
         orderBy: OrderByDateAscending,
@@ -170,7 +159,8 @@ export const eventsRouter = {
           ...GetDetailsQuery(input),
         },
         include: {
-          ...EventIncludePublicQuery(ctx.session?.user.id),
+          ...GetEventDetailsInclude,
+          ...BookmarkedIncludeQuery(ctx.session?.user.id),
         },
       })
   ),
@@ -185,11 +175,8 @@ export const eventsRouter = {
           // location query
         },
         include: {
-          venue: {
-            include: {
-              profile: true,
-            },
-          },
+          ...FindManyEventsInclude,
+          ...BookmarkedIncludeQuery(ctx.session?.user.id),
         },
         orderBy: OrderByDateAscending,
       })
@@ -274,7 +261,50 @@ export const eventsRouter = {
 
   create: authorizedProcedure
     .input(CreateEventInput)
-    .mutation(async ({ ctx, input }) => {}),
+    .mutation(async ({ ctx, input }) => {
+      const {
+        genreIds,
+        keywordIds,
+        bandIds,
+        musicianIds,
+        ticketLinks,
+        ...data
+      } = input;
+
+      /**
+       * Get venue for location
+       */
+      const venue = await ctx.db.venue.findUnique({
+        where: {
+          id: data.venueId,
+        },
+        select: { location: { select: { id: true } } },
+      });
+
+      /**
+       * Create slug
+       */
+      const slug = createEventSlug(data);
+
+      /**
+       * Create Event
+       */
+      const newEvent = await ctx.db.event.create({
+        data: {
+          slug,
+          createdById: ctx.session.user.id!,
+          managedById: ctx.session.user.id!,
+          locationId: venue?.location.id,
+          genres: !genreIds ? undefined : ManyToManyConnect(genreIds),
+          keywords: !keywordIds ? undefined : ManyToManyConnect(keywordIds),
+          bands: !bandIds ? undefined : ManyToManyConnect(bandIds),
+          musicians: !musicianIds ? undefined : ManyToManyConnect(musicianIds),
+          ...data,
+        },
+      });
+
+      // If publishing, Run Publish
+    }),
 
   update: authorizedProcedure
     .input(UpdateEventInput)
@@ -286,19 +316,59 @@ export const eventsRouter = {
 
   publish: authorizedProcedure
     .input(UpdateEventDateInput)
-    .mutation(async ({ ctx, input }) => {}),
+    .mutation(async ({ ctx, input }) => {
+      // Ensure all details are input
+      //
+      // Publish event (change event publish status)
+      //
+      // Check for external linking
+      //
+      // Link to external services
+      //
+      // Notify participants
+    }),
 
   postpone: authorizedProcedure
     .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+    .mutation(async ({ ctx, input }) => {
+      // Update event status
+      //
+      // Check for external linking (including all participants)
+      //
+      // Update external linked services
+      //
+      // Notify participants
+      //
+      // Notify registered users
+    }),
 
   reschedule: authorizedProcedure
     .input(UpdateEventDateInput)
-    .mutation(async ({ ctx, input }) => {}),
+    .mutation(async ({ ctx, input }) => {
+      // Update event status
+      //
+      // Check for external linking (including all participants)
+      //
+      // Update external linked services
+      //
+      // Notify participants
+      //
+      // Notify registered users
+    }),
 
   cancel: authorizedProcedure
     .input(__PLACEHOLDER__)
-    .mutation(async ({ ctx, input }) => {}),
+    .mutation(async ({ ctx, input }) => {
+      // Update event status
+      //
+      // Check for external linking (including all participants)
+      //
+      // Update external linked services
+      //
+      // Notify participants
+      //
+      // Notify registered users
+    }),
 
   archive: authorizedProcedure
     .input(__PLACEHOLDER__)
@@ -391,15 +461,29 @@ export const eventsRouter = {
 
   emailParticipants: authorizedProcedure
     .input(__PLACEHOLDER__)
-    .query(async ({ ctx, input }) => {}),
+    .query(async ({ ctx, input }) => {
+      // Retrieve event participants
+      //
+      // Send email
+    }),
 
   emailAttendees: authorizedProcedure
     .input(__PLACEHOLDER__)
-    .query(async ({ ctx, input }) => {}),
+    .query(async ({ ctx, input }) => {
+      // Retrieve event atendees
+      //
+      // Send email
+    }),
 
   getNext: authorizedProcedure
     .input(__PLACEHOLDER__)
-    .query(async ({ ctx, input }) => {}),
+    .query(async ({ ctx, input }) => {
+      // Get user
+      //
+      // Get profiles
+      //
+      // Find next event
+    }),
 
   createTemplate: authorizedProcedure
     .input(__PLACEHOLDER__)
@@ -407,5 +491,11 @@ export const eventsRouter = {
 
   addDates: authorizedProcedure
     .input(UpdateEventDateInput)
-    .mutation(async ({ ctx, input }) => {}),
+    .mutation(async ({ ctx, input }) => {
+      // Retrieve details from base event
+      //
+      // Iterate over new dates and create events
+      //
+      // Notify participants of new dates
+    }),
 } satisfies TRPCRouterRecord;

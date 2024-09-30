@@ -28,7 +28,18 @@ export const profileRouter = createTRPCRouter({
   } satisfies TRPCRouterRecord,
 
   bands: {
-    getAll: publicProcedure.input(() => {}).query(async ({ ctx, input }) => {}),
+    getAll: publicProcedure
+      .input(() => {})
+      .query(async ({ ctx, input }) => {
+        const bands = await ctx.db.band.findMany({
+          include: { profile: true, members: { include: { profile: true } } },
+        });
+
+        return bands.map(({ profile, ...band }) => ({
+          ...band,
+          ...profile,
+        }));
+      }),
   } satisfies TRPCRouterRecord,
 
   venues: {
