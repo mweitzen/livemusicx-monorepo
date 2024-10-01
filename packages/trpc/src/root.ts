@@ -12,7 +12,7 @@ export const appRouter = createTRPCRouter({
   auth: authRouter,
   user: userRouter,
   general: generalRouter,
-  location: locationsRouter,
+  locations: locationsRouter,
   events: eventsRouter,
   accounts: accountsRouter,
   profiles: profilesRouter,

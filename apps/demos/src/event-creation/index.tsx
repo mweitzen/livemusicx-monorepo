@@ -3,14 +3,25 @@ import { useState } from "react";
 import { FromTemplateForm } from "./from-template";
 import { BlankEventForm } from "./blank";
 import { AddDatesForm } from "./add-dates";
+
+import { CreateEventForm } from "~/new-events/blank-event";
+import { AddDatesToEventForm } from "~/new-events/add-dates";
+import { CreateEventFromTemplate } from "~/new-events/from-templates";
+
 import {
-  FormStep,
-  FormStepContent,
-  FormStepDescription,
-  FormStepHeader,
-  FormStepTitle,
-} from "~/components/form-step";
-import { Button } from "~/components/ui/button";
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@repo/ui/components/card";
+import { Button } from "@repo/ui/components/button";
+
+import {
+  PlusCircle,
+  Calendar as CalendarIcon,
+  BetweenHorizonalStart as Template,
+} from "lucide-react";
 
 export const EventCreationPage = () => {
   const [selectedType, setSelectedType] = useState<
@@ -19,51 +30,49 @@ export const EventCreationPage = () => {
 
   return (
     <>
-      <h1 className='text-center font-semibold tracking-tight text-xl mb-2'>
-        Event Creation Demos
-      </h1>
-      <FormStep display={!selectedType}>
-        <FormStepHeader>
-          <FormStepTitle>Event Creation Type</FormStepTitle>
-          <FormStepDescription>
-            Choose how you want to create your event
-          </FormStepDescription>
-          <FormStepContent className='py-4'>
-            <Button
-              variant='outline'
-              size='lg'
-              onClick={() => setSelectedType("blank")}
-            >
-              New, Blank Event
-            </Button>
-            <Button
-              variant='outline'
-              size='lg'
-              onClick={() => setSelectedType("add-dates")}
-            >
-              Add Dates to Existing Event
-            </Button>
-            <Button
-              variant='outline'
-              size='lg'
-              onClick={() => setSelectedType("from-template")}
-            >
-              Create from Template
-            </Button>
-          </FormStepContent>
-        </FormStepHeader>
-      </FormStep>
+      <Card className='w-full max-w-4xl mx-auto'>
+        <CardHeader className='text-center'>
+          <CardTitle className='text-3xl font-bold'>Create an Event</CardTitle>
+          <CardDescription>
+            Choose how you'd like to create your event
+          </CardDescription>
+        </CardHeader>
+        <CardContent className='flex flex-col space-y-4'>
+          <Button
+            variant='outline'
+            size='lg'
+            onClick={() => setSelectedType("blank")}
+          >
+            <PlusCircle className='mr-2 h-5 w-5' />
+            Create New Blank Event
+          </Button>
+          <Button
+            variant='outline'
+            size='lg'
+            onClick={() => setSelectedType("add-dates")}
+          >
+            <CalendarIcon className='mr-2 h-5 w-5' />
+            Add Dates to Existing Event
+          </Button>
+          <Button
+            variant='outline'
+            size='lg'
+            onClick={() => setSelectedType("from-template")}
+          >
+            <Template className='mr-2 h-5 w-5' />
+            Create Event from a Template
+          </Button>
+        </CardContent>
+      </Card>
       {selectedType === "blank" ? <BlankEventForm /> : null}
       {selectedType === "add-dates" ? <AddDatesForm /> : null}
       {selectedType === "from-template" ? <FromTemplateForm /> : null}
-
-      {selectedType ? (
-        <Button
-          variant='outline'
-          onClick={() => setSelectedType(null)}
-        >
-          Clear
-        </Button>
+      {selectedType === "blank" ? <CreateEventForm /> : null}
+      {selectedType === "add-dates" ? (
+        <AddDatesToEventForm onBack={() => setSelectedType(null)} />
+      ) : null}
+      {selectedType === "from-template" ? (
+        <CreateEventFromTemplate onBack={() => setSelectedType(null)} />
       ) : null}
     </>
   );

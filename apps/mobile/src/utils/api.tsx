@@ -2,7 +2,7 @@ import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
-import superjson from "superjson";
+import SuperJSON from "superjson";
 
 import type { AppRouter } from "@repo/trpc";
 
@@ -31,7 +31,7 @@ export function TRPCProvider(props: {
           colorMode: "ansi",
         }),
         httpBatchLink({
-          transformer: superjson,
+          transformer: SuperJSON,
           url: `${props.baseUrl}/api/trpc`,
           headers() {
             const headers = new Map<string, string>();

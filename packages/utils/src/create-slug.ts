@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export function createSlug(input: string): string {
   const slug = input
     .toLowerCase()
@@ -6,4 +8,8 @@ export function createSlug(input: string): string {
     .replace(/--+/g, "-"); // Replace multiple "-" with a single "-"
 
   return slug;
+}
+
+export function createEventSlug(event: { timeStart: Date; name: string }) {
+  return createSlug(`${format(event.timeStart, "yyyy-MM-dd")} ${event.name}`);
 }

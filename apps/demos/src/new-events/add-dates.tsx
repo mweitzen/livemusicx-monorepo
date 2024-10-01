@@ -5,7 +5,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { format, addDays, isBefore, parseISO } from "date-fns";
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/button";
 import {
   Card,
   CardContent,
@@ -13,7 +13,7 @@ import {
   CardTitle,
   CardDescription,
   CardFooter,
-} from "@/components/ui/card";
+} from "@repo/ui/components/card";
 import {
   Form,
   FormControl,
@@ -21,22 +21,22 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@repo/ui/components/form";
+import { Input } from "@repo/ui/components/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@repo/ui/components/select";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { Checkbox } from "@/components/ui/checkbox";
+} from "@repo/ui/components/popover";
+import { Calendar } from "@repo/ui/components/calendar";
+import { Checkbox } from "@repo/ui/components/checkbox";
 import {
   ArrowLeft,
   ArrowRight,
@@ -44,19 +44,19 @@ import {
   Check,
   AlertTriangle,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@repo/ui/helpers";
+import { ScrollArea } from "@repo/ui/components/scroll-area";
+import { Badge } from "@repo/ui/components/badge";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
-import { toast } from "@/components/ui/use-toast";
+} from "@repo/ui/components/accordion";
+import { Alert, AlertDescription, AlertTitle } from "@repo/ui/components/alert";
+import { Progress } from "@repo/ui/components/progress";
+import { Separator } from "@repo/ui/components/separator";
+import { toast } from "@repo/ui/hooks/use-toast";
 
 const addDatesSchema = z.object({
   eventId: z.string().min(1, "Please select an event"),
@@ -267,7 +267,6 @@ export function AddDatesToEventForm({ onBack }: { onBack: () => void }) {
                       align='start'
                     >
                       <Calendar
-                        initialFocus
                         mode='multiple'
                         selected={field.value.map((d) => d.date)}
                         onSelect={(dates) =>
@@ -289,7 +288,7 @@ export function AddDatesToEventForm({ onBack }: { onBack: () => void }) {
                                     field.onChange(checked);
                                     if (checked) {
                                       form.setValue("dates", [
-                                        form.getValues("dates")[0],
+                                        form.getValues("dates")[0]!,
                                       ]);
                                     }
                                   }}
@@ -463,7 +462,6 @@ export function AddDatesToEventForm({ onBack }: { onBack: () => void }) {
                                               `dates.${index}.date`
                                             )
                                         }
-                                        initialFocus
                                       />
                                     </PopoverContent>
                                   </Popover>

@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@repo/trpc": "workspace:^",
     "@repo/ui": "workspace:^",
+    "@repo/validators": "workspace:^",
     "react": "catalog:react18",
-    "react-dom": "catalog:react18"
+    "react-dom": "catalog:react18",
+    "react-hook-form": "^7.53.0",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@repo/tailwind-config": "workspace:*",

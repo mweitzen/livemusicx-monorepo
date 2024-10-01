@@ -38,13 +38,12 @@ export const CreateEventInput = z.object({
     message: "Event name must be at least 2 characters.",
   }),
   description: z.string(),
-  image: z.any(),
+  imageUrl: z.any(),
 
   // DATE / TIME
-  dateStart: z.date().min(new Date(), "Event must be in the future."),
-  timeDoor: z.string().optional(),
-  timeStart: z.string(),
-  timeEnd: z.string().optional(),
+  timeDoor: z.date().min(new Date(), "Event must be in the future.").optional(),
+  timeStart: z.date().min(new Date(), "Event must be in the future."),
+  timeEnd: z.date().min(new Date(), "Event must be in the future.").optional(),
 
   // DETAILS
   isPublished: z.boolean(),
@@ -99,7 +98,6 @@ export const PublishEventInput = CreateEventInput.refine(
 export const CreateEventTemplateInput = CreateEventInput.omit({
   name: true,
   ticketLinks: true,
-  dateStart: true,
 })
   .partial()
   .extend({

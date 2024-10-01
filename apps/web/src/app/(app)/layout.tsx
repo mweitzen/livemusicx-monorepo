@@ -1,3 +1,4 @@
+import { TRPCReactProvider } from "@repo/trpc/react";
 import { Toaster } from "@repo/ui/components/sonner";
 import { Toaster as OtherToaster } from "@repo/ui/components/toaster";
 
@@ -10,7 +11,7 @@ export default function AppLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <TRPCReactProvider>
       <div className='relative min-h-screen'>
         <AppNavigation />
 
@@ -22,6 +23,6 @@ export default function AppLayout({
 
       <Toaster />
       <OtherToaster />
-    </>
+    </TRPCReactProvider>
   );
 }

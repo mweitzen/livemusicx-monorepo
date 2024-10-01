@@ -1,11 +1,7 @@
 import { __PLACEHOLDER__ } from "@repo/validators/general";
 import type { TRPCRouterRecord } from "@trpc/server";
 
-import { format } from "date-fns";
-import { createSlug } from "@repo/utils";
-function createEventSlug(event: { timeStart: string; name: string }) {
-  return createSlug(`${format(event.timeStart, "yyyy-MM-dd")} ${event.name}`);
-}
+import { createEventSlug } from "@repo/utils";
 
 import {
   protectedProcedure,
@@ -31,7 +27,6 @@ import {
 import {
   BookmarkedIncludeQuery,
   BookmarkedQuery,
-  EventIncludePublicQuery,
   FavoritedAccountsQuery,
   FilterEventsQuery,
   FindManyEventsInclude,
@@ -258,7 +253,31 @@ export const eventsRouter = {
         },
       })
   ),
+  test: publicProcedure.input(CreateEventInput).mutation(({ input }) => {
+    const { genreIds, keywordIds, bandIds, musicianIds, ticketLinks, ...data } =
+      input;
 
+    /**
+     * Create slug
+     */
+    const slug = createEventSlug(data);
+
+    /**
+     * Create Event
+     */
+    const newEvent = {
+      data: {
+        slug,
+        genres: !genreIds ? undefined : ManyToManyConnect(genreIds),
+        keywords: !keywordIds ? undefined : ManyToManyConnect(keywordIds),
+        bands: !bandIds ? undefined : ManyToManyConnect(bandIds),
+        musicians: !musicianIds ? undefined : ManyToManyConnect(musicianIds),
+        ...data,
+      },
+    };
+
+    return newEvent;
+  }),
   create: authorizedProcedure
     .input(CreateEventInput)
     .mutation(async ({ ctx, input }) => {
@@ -304,6 +323,7 @@ export const eventsRouter = {
       });
 
       // If publishing, Run Publish
+      return newEvent;
     }),
 
   update: authorizedProcedure

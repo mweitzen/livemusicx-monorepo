@@ -22,9 +22,9 @@ import {
   Check,
   Globe,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { cn } from "@repo/ui/helpers";
+import { Button } from "@repo/ui/components/button";
+import { Calendar } from "@repo/ui/components/calendar";
 import {
   Form,
   FormControl,
@@ -33,36 +33,41 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@repo/ui/components/form";
+import { Input } from "@repo/ui/components/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+} from "@repo/ui/components/popover";
+import { Textarea } from "@repo/ui/components/textarea";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@repo/ui/components/card";
+import { Checkbox } from "@repo/ui/components/checkbox";
+import { RadioGroup, RadioGroupItem } from "@repo/ui/components/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { Slider } from "@/components/ui/slider";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
+} from "@repo/ui/components/select";
+import { Switch } from "@repo/ui/components/switch";
+import { Slider } from "@repo/ui/components/slider";
+import { Separator } from "@repo/ui/components/separator";
+import { Badge } from "@repo/ui/components/badge";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "@/components/ui/command";
-import { ScrollArea } from "@/components/ui/scroll-area";
+} from "@repo/ui/components/command";
+import { ScrollArea } from "@repo/ui/components/scroll-area";
 
 // Mock data for affiliated venues and performers
 const affiliatedVenues = [
@@ -91,21 +96,15 @@ const formSchema = z.object({
     .string()
     .min(2, { message: "Event name must be at least 2 characters." }),
   date: z.date({ required_error: "A date is required." }),
-  doorTime: z
-    .string()
-    .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, {
-      message: "Please enter a valid time in HH:MM format.",
-    }),
-  startTime: z
-    .string()
-    .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, {
-      message: "Please enter a valid time in HH:MM format.",
-    }),
-  endTime: z
-    .string()
-    .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, {
-      message: "Please enter a valid time in HH:MM format.",
-    }),
+  doorTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, {
+    message: "Please enter a valid time in HH:MM format.",
+  }),
+  startTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, {
+    message: "Please enter a valid time in HH:MM format.",
+  }),
+  endTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, {
+    message: "Please enter a valid time in HH:MM format.",
+  }),
   venue: z.string().min(1, { message: "Please select a venue." }),
   performers: z
     .array(z.string())
@@ -148,7 +147,7 @@ const steps = [
   { name: "Publish", icon: <Globe className='w-4 h-4' /> },
 ];
 
-export default function CreateEventForm() {
+export function CreateEventForm() {
   const [step, setStep] = useState(1);
   const [genres, setGenres] = useState<string[]>([]);
 
@@ -416,7 +415,6 @@ export default function CreateEventForm() {
                                 date < new Date() ||
                                 date < new Date("1900-01-01")
                               }
-                              initialFocus
                             />
                           </PopoverContent>
                         </Popover>

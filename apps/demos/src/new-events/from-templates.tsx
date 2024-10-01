@@ -5,7 +5,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { format } from "date-fns";
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/button";
 import {
   Card,
   CardContent,
@@ -13,7 +13,7 @@ import {
   CardTitle,
   CardDescription,
   CardFooter,
-} from "@/components/ui/card";
+} from "@repo/ui/components/card";
 import {
   Form,
   FormControl,
@@ -22,26 +22,26 @@ import {
   FormLabel,
   FormMessage,
   FormDescription,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@repo/ui/components/form";
+import { Input } from "@repo/ui/components/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+} from "@repo/ui/components/select";
+import { Textarea } from "@repo/ui/components/textarea";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Switch } from "@/components/ui/switch";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
+} from "@repo/ui/components/popover";
+import { Calendar } from "@repo/ui/components/calendar";
+import { Checkbox } from "@repo/ui/components/checkbox";
+import { Switch } from "@repo/ui/components/switch";
+import { RadioGroup, RadioGroupItem } from "@repo/ui/components/radio-group";
+import { Label } from "@repo/ui/components/label";
 import {
   ArrowLeft,
   ArrowRight,
@@ -49,18 +49,23 @@ import {
   Check,
   AlertTriangle,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
+import { cn } from "@repo/ui/helpers";
+import { ScrollArea } from "@repo/ui/components/scroll-area";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@repo/ui/components/tabs";
+import { Progress } from "@repo/ui/components/progress";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { toast } from "@/components/ui/use-toast";
+} from "@repo/ui/components/tooltip";
+import { Alert, AlertDescription, AlertTitle } from "@repo/ui/components/alert";
+import { toast } from "@repo/ui/hooks/use-toast";
 
 // Define the schema for template variables
 const templateVariableSchema = z.object({
@@ -287,7 +292,6 @@ export function CreateEventFromTemplate({ onBack }: { onBack: () => void }) {
                       mode='single'
                       selected={field.value ? new Date(field.value) : undefined}
                       onSelect={(date) => field.onChange(date?.toISOString())}
-                      initialFocus
                     />
                   </PopoverContent>
                 </Popover>
@@ -424,7 +428,6 @@ export function CreateEventFromTemplate({ onBack }: { onBack: () => void }) {
                         mode='single'
                         selected={field.value}
                         onSelect={field.onChange}
-                        initialFocus
                       />
                     </PopoverContent>
                   </Popover>
@@ -712,7 +715,7 @@ export function CreateEventFromTemplate({ onBack }: { onBack: () => void }) {
             Please correct the following errors:
             <ul className='list-disc pl-5 mt-2'>
               {Object.entries(errors).map(([key, error]) => (
-                <li key={key}>{error.message}</li>
+                <li key={key}>{error.message as string}</li>
               ))}
             </ul>
           </AlertDescription>

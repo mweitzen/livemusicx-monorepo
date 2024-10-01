@@ -10,17 +10,20 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
-  Info,
-  Calendar as CalendarIcon,
-  CalendarClock,
+  CalendarIcon,
+  Clock,
   Music,
   Users,
   DollarSign,
   Image as ImageIcon,
   Search,
+  AlertTriangle,
   Utensils,
   Beer,
+  Gift,
+  Lock,
   X,
+  Check,
   Globe,
 } from "lucide-react";
 import { Button } from "@repo/ui/components/button";
@@ -91,15 +94,15 @@ type FormValues = Omit<z.infer<typeof CreateEventInput>, "imageUrl"> & {
 };
 
 const steps = [
-  { name: "Basic Info", icon: <Info className='w-4 h-4' /> },
-  { name: "Date & Time", icon: <CalendarClock className='w-4 h-4' /> },
-  { name: "Participants", icon: <Users className='w-4 h-4' /> },
+  { name: "Basic Info", icon: <AlertTriangle className='w-4 h-4' /> },
+  { name: "Date & Time", icon: <CalendarIcon className='w-4 h-4' /> },
+  { name: "Venue & Performers", icon: <Music className='w-4 h-4' /> },
   { name: "Ticketing", icon: <DollarSign className='w-4 h-4' /> },
-  { name: "Details", icon: <Music className='w-4 h-4' /> },
+  { name: "Details", icon: <Users className='w-4 h-4' /> },
   { name: "Publish", icon: <Globe className='w-4 h-4' /> },
 ];
 
-export default function CreateEventForm() {
+export function CreateEventForm() {
   const [step, setStep] = useState(1);
   const [genres, setGenres] = useState<string[]>([]);
 
@@ -186,12 +189,12 @@ export default function CreateEventForm() {
       </CardHeader>
       <CardContent>
         <div className='mb-8'>
-          <div className='grid grid-cols-6 mb-2'>
+          <div className='flex justify-between mb-2 px-4'>
             {steps.map((s, index) => (
               <div
                 key={index}
                 className={cn(
-                  `flex flex-col items-center text-center space-y-2`,
+                  `flex flex-col items-center space-y-2`,
                   index + 1 === step ? "text-primary" : "text-muted-foreground"
                 )}
               >
@@ -436,7 +439,6 @@ export default function CreateEventForm() {
                             selected={field.value}
                             onSelect={field.onChange}
                             disabled={(date) => date < new Date()}
-                            initialFocus
                           />
                         </PopoverContent>
                       </Popover>

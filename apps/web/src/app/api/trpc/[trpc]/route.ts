@@ -1,7 +1,7 @@
 import { appRouter, createTRPCContext, fetchRequestHandler } from "@repo/trpc";
 import { auth } from "@repo/auth";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 /**
  * Configure basic CORS headers
