@@ -1,0 +1,35 @@
+{
+  "name": "create-profiles",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@repo/trpc": "workspace:^",
+    "@repo/ui": "workspace:^",
+    "@repo/utils": "workspace:^",
+    "@repo/validators": "workspace:^",
+    "react": "catalog:react18",
+    "react-dom": "catalog:react18",
+    "react-hook-form": "^7.53.0",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
+    "@types/react": "catalog:react18",
+    "@types/react-dom": "catalog:react18",
+    "@vitejs/plugin-react": "^4.3.1",
+    "globals": "^15.9.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "vite": "^5.4.1"
+  }
+}

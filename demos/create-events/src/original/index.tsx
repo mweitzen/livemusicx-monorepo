@@ -4,6 +4,10 @@ import { FromTemplateForm } from "./from-template";
 import { BlankEventForm } from "./blank";
 import { AddDatesForm } from "./add-dates";
 
+import { CreateEventForm } from "~/new-events/blank-event";
+import { AddDatesToEventForm } from "~/new-events/add-dates";
+import { CreateEventFromTemplate } from "~/new-events/from-templates";
+
 import {
   Card,
   CardContent,
@@ -63,6 +67,13 @@ export const EventCreationPage = () => {
       {selectedType === "blank" ? <BlankEventForm /> : null}
       {selectedType === "add-dates" ? <AddDatesForm /> : null}
       {selectedType === "from-template" ? <FromTemplateForm /> : null}
+      {selectedType === "blank" ? <CreateEventForm /> : null}
+      {selectedType === "add-dates" ? (
+        <AddDatesToEventForm onBack={() => setSelectedType(null)} />
+      ) : null}
+      {selectedType === "from-template" ? (
+        <CreateEventFromTemplate onBack={() => setSelectedType(null)} />
+      ) : null}
     </>
   );
 };
