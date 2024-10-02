@@ -8,15 +8,15 @@ import {
   FormStepDescription,
   FormStepHeader,
   FormStepTitle,
-} from "../components/form-step";
+} from "./components/form-step";
 import { Form } from "@repo/ui/components/form";
 import { Button } from "@repo/ui/components/button";
 
 // feature specific imports
-import { SelectGenres } from "../components/select-genres";
-import { AvatarUpload } from "../components/avatar-upload";
-import { AboutTextarea } from "../components/about-textarea";
-import { UnclaimedAccountSearch } from "../components/unclaimed-search";
+import { SelectGenres } from "./components/select-genres";
+import { AvatarUpload } from "./components/avatar-upload";
+import { AboutTextarea } from "./components/about-textarea";
+import { UnclaimedAccountSearch } from "./components/unclaimed-search";
 import { CreateMusicianSchema } from "../lib/schema";
 import { capitalize } from "@repo/utils";
 

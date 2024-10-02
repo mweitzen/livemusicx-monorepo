@@ -16,7 +16,7 @@ import { Label } from "@repo/ui/components/label";
 import { Button } from "@repo/ui/components/button";
 import { GooglePlacesAutocomplete } from "~/google-maps/components/google-maps";
 import type { GooglePlaceResult } from "~/google-maps/lib/google-maps";
-import { VenueAccountStatus } from "../components/venue-account-status";
+import { VenueAccountStatus } from "./components/venue-account-status";
 import { Separator } from "@repo/ui/components/separator";
 
 const CreateVenueAccountFormSchema = z.object({});

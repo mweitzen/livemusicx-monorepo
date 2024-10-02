@@ -17,7 +17,7 @@ import { SelectGenres } from "~/account-creation/components/select-genres";
 import { AboutTextarea } from "~/account-creation/components/about-textarea";
 import { UnclaimedAccountSearch } from "~/account-creation/components/unclaimed-search";
 import { CreateOrganizerSchema } from "~/account-creation/lib/schema";
-import { AvatarUpload } from "../components/avatar-upload";
+import { AvatarUpload } from "./components/avatar-upload";
 
 const FormSchema = CreateOrganizerSchema.extend({
   createType: z.enum(["create", "claim"]).nullable(),
