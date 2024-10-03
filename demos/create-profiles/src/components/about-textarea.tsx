@@ -9,7 +9,11 @@ import {
 import { Textarea } from "@repo/ui/components/textarea";
 import { useFormContext } from "react-hook-form";
 
-export const AboutTextarea = () => {
+export const AboutTextarea = ({
+  placeholder = "Enter a brief, but encompassing description for your account.",
+}: {
+  placeholder?: string;
+}) => {
   const form = useFormContext();
   return (
     <FormField
@@ -20,10 +24,10 @@ export const AboutTextarea = () => {
           <FormLabel>About</FormLabel>
           <FormControl>
             <Textarea
-              {...field}
               className='resize-none'
+              placeholder={placeholder}
               rows={5}
-              placeholder='Enter a brief, but encompassing description for your account.'
+              {...field}
             />
           </FormControl>
           <FormDescription>

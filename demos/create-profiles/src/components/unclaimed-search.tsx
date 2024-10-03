@@ -4,7 +4,7 @@ import { capitalize } from "@repo/utils";
 
 import { Input } from "@repo/ui/components/input";
 import { Button } from "@repo/ui/components/button";
-import { MapPinIcon } from "@heroicons/react/20/solid";
+import { MapPinIcon } from "@repo/ui/icons";
 import { Separator } from "@repo/ui/components/separator";
 import {
   FormControl,
@@ -23,6 +23,7 @@ export const UnclaimedAccountSearch = ({
   const { data: unclaimedAccounts, isLoading } = api.accounts.getAll.useQuery({
     type: type || "MUSICIAN",
   });
+
   const { control, setValue } = useFormContext();
   const inputName = useWatch({ name: "name" }) as string;
 

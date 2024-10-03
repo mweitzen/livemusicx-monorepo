@@ -2,12 +2,12 @@
 
 import { z } from "zod";
 
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { Dispatch, SetStateAction, useState } from "react";
+import { useForm, useFormContext } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
-import { Textarea } from "@repo/ui/components/textarea";
+
 import {
   Select,
   SelectContent,
@@ -32,10 +32,25 @@ import {
   CardTitle,
 } from "@repo/ui/components/card";
 import { Switch } from "@repo/ui/components/switch";
-import { Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Loader2, AlertCircle } from "@repo/ui/icons";
 import { Alert, AlertDescription, AlertTitle } from "@repo/ui/components/alert";
-import { Badge } from "@repo/ui/components/badge";
+
 import { Separator } from "@repo/ui/components/separator";
+import {
+  AboutTextarea,
+  BookingEmailInput,
+  BookingPhoneInput,
+  EmailInput,
+  GenresSelect,
+  GoogleBusinessInput,
+  NameInput,
+  OpenTableInput,
+  PhoneInput,
+  TripAdvisorInput,
+  VenueKeywordsSelect,
+  WebsiteInput,
+  YelpInput,
+} from "./basic-info-inputs";
 
 // Mock function to simulate Google Places API search
 const searchGooglePlaces = async (query: string) => {
@@ -58,6 +73,7 @@ const searchGooglePlaces = async (query: string) => {
     },
   ].filter((place) => place.name.toLowerCase().includes(query.toLowerCase()));
 };
+type SearchResults = Awaited<ReturnType<typeof searchGooglePlaces>>;
 
 // Mock function to check if a venue already exists in the app
 const checkExistingVenue = async (placeId: string) => {
@@ -81,6 +97,9 @@ const venueFormSchema = z.object({
   description: z
     .string()
     .max(500, { message: "Description must not exceed 500 characters." }),
+  genres: z
+    .array(z.object({ id: z.string() }))
+    .min(1, { message: "Please select at least one keyword." }),
   keywords: z
     .array(z.string())
     .min(1, { message: "Please select at least one keyword." }),
@@ -103,10 +122,7 @@ type VenueFormValues = z.infer<typeof venueFormSchema>;
 
 export default function CreateVenueProfileForm() {
   const [step, setStep] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [selectedPlace, setSelectedPlace] = useState(null);
-  const [existingVenueCheck, setExistingVenueCheck] = useState(null);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isManualEntry, setIsManualEntry] = useState(false);
 
@@ -124,6 +140,7 @@ export default function CreateVenueProfileForm() {
       capacity: 50,
       venueType: "",
       description: "",
+      genres: [],
       keywords: [],
       servesAlcohol: false,
       servesFood: false,
@@ -140,43 +157,6 @@ export default function CreateVenueProfileForm() {
       yelpUrl: "",
     },
   });
-
-  const handleSearch = async (query: string) => {
-    setSearchQuery(query);
-    if (query.length >= 3) {
-      setIsLoading(true);
-      const results = await searchGooglePlaces(query);
-      setSearchResults(results);
-      setIsLoading(false);
-    } else {
-      setSearchResults([]);
-    }
-  };
-
-  const handlePlaceSelect = async (place) => {
-    setSelectedPlace(place);
-    setIsLoading(true);
-    const checkResult = await checkExistingVenue(place.id);
-    setExistingVenueCheck(checkResult);
-    setIsLoading(false);
-    if (!checkResult.exists && !checkResult.claimed) {
-      form.reset({
-        ...form.getValues(),
-        name: place.name,
-        address: place.address,
-        // You would parse the address to fill these fields in a real implementation
-        city: "",
-        state: "",
-        zipCode: "",
-      });
-      setStep(2);
-    }
-  };
-
-  const handleManualEntry = () => {
-    setIsManualEntry(true);
-    setStep(2);
-  };
 
   const onSubmit = (values: VenueFormValues) => {
     setIsLoading(true);
@@ -207,102 +187,10 @@ export default function CreateVenueProfileForm() {
             className='space-y-6'
           >
             {step === 1 && (
-              <div className='space-y-4'>
-                <FormField
-                  control={form.control}
-                  name='name'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Search for your venue</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder='Enter venue name'
-                          {...field}
-                          onChange={(e) => {
-                            field.onChange(e);
-                            handleSearch(e.target.value);
-                          }}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        We'll search Google Places for your venue.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                {isLoading && (
-                  <Loader2 className='w-4 h-4 animate-spin mx-auto' />
-                )}
-                {searchResults.length > 0 && (
-                  <div className='space-y-2'>
-                    {searchResults.map((place) => (
-                      <Card
-                        key={place.id}
-                        className='cursor-pointer hover:bg-accent'
-                        onClick={() => handlePlaceSelect(place)}
-                      >
-                        <CardHeader>
-                          <CardTitle className='text-lg'>
-                            {place.name}
-                          </CardTitle>
-                          <CardDescription>{place.address}</CardDescription>
-                        </CardHeader>
-                      </Card>
-                    ))}
-                  </div>
-                )}
-                {existingVenueCheck && (
-                  <Alert
-                    variant={
-                      existingVenueCheck.claimed ? "destructive" : "warning"
-                    }
-                  >
-                    <AlertCircle className='h-4 w-4' />
-                    <AlertTitle>
-                      {existingVenueCheck.claimed
-                        ? "Venue Already Claimed"
-                        : "Venue Already Exists"}
-                    </AlertTitle>
-                    <AlertDescription>
-                      {existingVenueCheck.claimed
-                        ? "This venue has already been claimed. If you believe this is an error, please report it."
-                        : "This venue already exists in our system. You can claim it if you're the owner."}
-                    </AlertDescription>
-                    <div className='mt-2'>
-                      {existingVenueCheck.claimed ? (
-                        <Button
-                          variant='outline'
-                          size='sm'
-                        >
-                          Report an Issue
-                        </Button>
-                      ) : (
-                        <Button
-                          variant='outline'
-                          size='sm'
-                        >
-                          Claim This Venue
-                        </Button>
-                      )}
-                    </div>
-                  </Alert>
-                )}
-                <div className='flex justify-between items-center'>
-                  <Button
-                    variant='outline'
-                    onClick={handleManualEntry}
-                  >
-                    My venue isn't listed
-                  </Button>
-                  <Button
-                    onClick={() => setStep(2)}
-                    disabled={!selectedPlace && !isManualEntry}
-                  >
-                    Continue
-                  </Button>
-                </div>
-              </div>
+              <SearchProfilesInput
+                setStep={setStep}
+                setIsManualEntry={setIsManualEntry}
+              />
             )}
             {step === 2 && (
               <div className='space-y-6'>
@@ -316,19 +204,13 @@ export default function CreateVenueProfileForm() {
                     </AlertDescription>
                   </Alert>
                 )}
-                <FormField
-                  control={form.control}
-                  name='name'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Venue Name</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <NameInput
+                  label='Venue Name'
+                  placeholder='The Rock Cafe'
                 />
+                <AboutTextarea placeholder='Tell us about your venue' />
+                <GenresSelect />
+                <VenueKeywordsSelect />
                 <FormField
                   control={form.control}
                   name='address'
@@ -383,54 +265,9 @@ export default function CreateVenueProfileForm() {
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name='phone'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Phone</FormLabel>
-                      <FormControl>
-                        <Input
-                          type='tel'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name='email'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          type='email'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name='website'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Website (optional)</FormLabel>
-                      <FormControl>
-                        <Input
-                          type='url'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <PhoneInput />
+                <EmailInput />
+                <WebsiteInput />
                 <Separator />
                 <div className='space-y-4'>
                   <h3 className='text-lg font-semibold'>Venue Details</h3>
@@ -634,127 +471,17 @@ export default function CreateVenueProfileForm() {
                 <Separator />
                 <div className='space-y-4'>
                   <h3 className='text-lg font-semibold'>Booking Information</h3>
-                  <FormField
-                    control={form.control}
-                    name='bookingPhoneNumber'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Booking Phone Number (optional)</FormLabel>
-                        <FormControl>
-                          <Input
-                            type='tel'
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name='bookingEmail'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Booking Email (optional)</FormLabel>
-                        <FormControl>
-                          <Input
-                            type='email'
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <BookingPhoneInput />
+                  <BookingEmailInput />
                 </div>
                 <Separator />
                 <div className='space-y-4'>
                   <h3 className='text-lg font-semibold'>External Links</h3>
-                  <FormField
-                    control={form.control}
-                    name='googleBusinessUrl'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Google Business URL (optional)</FormLabel>
-                        <FormControl>
-                          <Input
-                            type='url'
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name='tripadvisorUrl'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>TripAdvisor URL (optional)</FormLabel>
-                        <FormControl>
-                          <Input
-                            type='url'
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name='opentableUrl'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>OpenTable URL (optional)</FormLabel>
-                        <FormControl>
-                          <Input
-                            type='url'
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name='yelpUrl'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Yelp URL (optional)</FormLabel>
-                        <FormControl>
-                          <Input
-                            type='url'
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <GoogleBusinessInput />
+                  <OpenTableInput />
+                  <TripAdvisorInput />
+                  <YelpInput />
                 </div>
-                <FormField
-                  control={form.control}
-                  name='description'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Description</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder='Tell us about your venue'
-                          className='resize-none'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        Max 500 characters. You can always edit this later.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
                 <Button
                   type='submit'
                   className='w-full'
@@ -777,5 +504,156 @@ export default function CreateVenueProfileForm() {
         </Form>
       </CardContent>
     </Card>
+  );
+}
+
+interface SearchProfilesInputProps {
+  setStep: Dispatch<SetStateAction<number>>;
+  setIsManualEntry: Dispatch<SetStateAction<boolean>>;
+}
+
+function SearchProfilesInput({
+  setStep,
+  setIsManualEntry,
+}: SearchProfilesInputProps) {
+  const [, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<SearchResults>([]);
+  const [selectedPlace, setSelectedPlace] = useState<
+    SearchResults[number] | null
+  >(null);
+  const [existingVenueCheck, setExistingVenueCheck] = useState<{
+    claimed: boolean;
+    exists: boolean;
+  } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const form = useFormContext();
+
+  const handleSearch = async (query: string) => {
+    setSearchQuery(query);
+    if (query.length >= 3) {
+      setIsLoading(true);
+      const results = await searchGooglePlaces(query);
+      setSearchResults(results);
+      setIsLoading(false);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  const handlePlaceSelect = async (place: SearchResults[number]) => {
+    setSelectedPlace(place);
+    setIsLoading(true);
+    const checkResult = await checkExistingVenue(place.id);
+    setExistingVenueCheck(checkResult);
+    setIsLoading(false);
+    if (!checkResult.exists && !checkResult.claimed) {
+      form.reset({
+        ...form.getValues(),
+        name: place.name,
+        address: place.address,
+        // You would parse the address to fill these fields in a real implementation
+        city: "",
+        state: "",
+        zipCode: "",
+      });
+      setStep(2);
+    }
+  };
+
+  const handleManualEntry = () => {
+    setIsManualEntry(true);
+    setStep(2);
+  };
+
+  return (
+    <div className='space-y-4'>
+      <FormField
+        control={form.control}
+        name='name'
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Search for your venue</FormLabel>
+            <FormControl>
+              <Input
+                placeholder='Enter venue name'
+                {...field}
+                onChange={(e) => {
+                  field.onChange(e);
+                  handleSearch(e.target.value);
+                }}
+              />
+            </FormControl>
+            <FormDescription>
+              We'll search Google Places for your venue.
+            </FormDescription>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      {isLoading && <Loader2 className='w-4 h-4 animate-spin mx-auto' />}
+      {searchResults.length > 0 && (
+        <div className='space-y-2'>
+          {searchResults.map((place) => (
+            <Card
+              key={place.id}
+              className='cursor-pointer hover:bg-accent'
+              onClick={() => handlePlaceSelect(place)}
+            >
+              <CardHeader>
+                <CardTitle className='text-lg'>{place.name}</CardTitle>
+                <CardDescription>{place.address}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+      )}
+      {existingVenueCheck && (
+        <Alert variant={existingVenueCheck.claimed ? "destructive" : "default"}>
+          <AlertCircle className='h-4 w-4' />
+          <AlertTitle>
+            {existingVenueCheck.claimed
+              ? "Venue Already Claimed"
+              : "Venue Already Exists"}
+          </AlertTitle>
+          <AlertDescription>
+            {existingVenueCheck.claimed
+              ? "This venue has already been claimed. If you believe this is an error, please report it."
+              : "This venue already exists in our system. You can claim it if you're the owner."}
+          </AlertDescription>
+          <div className='mt-2'>
+            {existingVenueCheck.claimed ? (
+              <Button
+                variant='outline'
+                size='sm'
+              >
+                Report an Issue
+              </Button>
+            ) : (
+              <Button
+                variant='outline'
+                size='sm'
+              >
+                Claim This Venue
+              </Button>
+            )}
+          </div>
+        </Alert>
+      )}
+      <div className='flex justify-between items-center'>
+        <Button
+          variant='outline'
+          onClick={handleManualEntry}
+        >
+          My venue isn't listed
+        </Button>
+        <Button
+          onClick={() => setStep(2)}
+          disabled={!selectedPlace}
+        >
+          Continue
+        </Button>
+      </div>
+    </div>
   );
 }
