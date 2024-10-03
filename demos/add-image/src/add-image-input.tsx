@@ -34,6 +34,7 @@ export function AddImageInput() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [imageUrl, setImageUrl] = useState("");
   const [activeTab, setActiveTab] = useState<ImageUploadType>("gallery");
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Mock data for already uploaded images (expanded to simulate a large number)
