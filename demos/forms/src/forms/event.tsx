@@ -32,13 +32,17 @@ import {
   NameInput,
   RsvpLink,
   StartTimeInput,
-} from "../basic-info-inputs";
+} from "../components/basic-info-inputs";
 import {
   DoorTimePicker,
   EventMinimumAge,
   ParticipantSelect,
-} from "../event-inputs";
-import { FormDollarInput, FormSwitch, FormTextInput } from "../form-inputs";
+} from "../components/event-inputs";
+import {
+  FormDollarInput,
+  FormSwitch,
+  FormTextInput,
+} from "../components/form-inputs";
 import { Separator } from "@repo/ui/components/separator";
 import { Button } from "@repo/ui/components/button";
 import { Progress } from "@repo/ui/components/progress";

@@ -91,7 +91,7 @@ export const DoorTimePicker = () => {
 interface ParticipantSelectProps {
   name: string;
   label: string;
-  items: any[];
+  items: { id: string; name: string; [key: string]: unknown }[];
 }
 
 export function ParticipantSelect({

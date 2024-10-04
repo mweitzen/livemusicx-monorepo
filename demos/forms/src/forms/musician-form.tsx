@@ -37,9 +37,9 @@ import {
   SpotifyInput,
   BandcampInput,
   GenresSelect,
-} from "../basic-info-inputs";
-import { FormTextInput } from "../form-inputs";
-import { MockProfile } from "../use-search-profiles";
+} from "../components/basic-info-inputs";
+import { FormTextInput } from "../components/form-inputs";
+import { MockProfile } from "../lib/use-search-profiles";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),

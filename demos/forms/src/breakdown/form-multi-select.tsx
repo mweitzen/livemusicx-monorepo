@@ -17,94 +17,18 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@repo/ui/components/popover";
-
 import {
-  FormField,
+  // FormField,
   FormControl,
   FormDescription,
   FormItem,
   FormLabel,
-  FormMessage,
+  // FormMessage,
 } from "@repo/ui/components/form";
-import { Textarea, TextareaProps } from "@repo/ui/components/textarea";
-import { Input, InputProps } from "@repo/ui/components/input";
 import { Badge } from "@repo/ui/components/badge";
 import { Button } from "@repo/ui/components/button";
+
 import { Check, ChevronsUpDown, X } from "@repo/ui/icons";
-
-interface FormTextInputProps extends InputProps {
-  name: string;
-  label: string;
-  description?: string;
-}
-
-export const FormTextInput = ({
-  name,
-  label,
-  description,
-  ...props
-}: FormTextInputProps) => {
-  const form = useFormContext();
-
-  return (
-    <FormField
-      control={form.control}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <Input
-              {...props}
-              {...field}
-            />
-          </FormControl>
-          {description && <FormDescription>{description}</FormDescription>}
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  );
-};
-
-interface FormTextareaProps extends TextareaProps {
-  name: string;
-  label: string;
-  description?: string;
-}
-
-export const FormTextarea = ({
-  name,
-  label,
-  description,
-  className,
-  rows,
-  ...props
-}: FormTextareaProps) => {
-  const form = useFormContext();
-
-  return (
-    <FormField
-      control={form.control}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <Textarea
-              className={cn("resize-none", className)}
-              rows={rows || 5}
-              {...props}
-              {...field}
-            />
-          </FormControl>
-          {description && <FormDescription>{description}</FormDescription>}
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  );
-};
 
 interface FormMultiSelectTagsProps {
   name: string;
@@ -122,7 +46,7 @@ export const FormMultiSelectTags = ({
 }: FormMultiSelectTagsProps) => {
   const [open, setOpen] = useState(false);
 
-  const { register, getValues } = useFormContext();
+  const form = useFormContext();
   const { fields, append, remove } = useFieldArray({ name });
 
   return (
@@ -133,17 +57,19 @@ export const FormMultiSelectTags = ({
         onOpenChange={setOpen}
       >
         <PopoverTrigger asChild>
-          <Button
-            variant='outline'
-            role='combobox'
-            aria-expanded={open}
-            className='w-full justify-between'
-          >
-            {fields.length > 0
-              ? `${fields.length} ${name.slice(0, -1)}${fields.length > 1 ? "s" : ""} selected`
-              : `Select ${name}...`}
-            <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
-          </Button>
+          <FormControl>
+            <Button
+              variant='outline'
+              role='combobox'
+              aria-expanded={open}
+              className='w-full justify-between'
+            >
+              {fields.length > 0
+                ? `${fields.length} ${name.slice(0, -1)}${fields.length > 1 ? "s" : ""} selected`
+                : `Select ${name}...`}
+              <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+            </Button>
+          </FormControl>
         </PopoverTrigger>
         <PopoverContent className='w-full p-0'>
           <Command>
@@ -191,11 +117,11 @@ export const FormMultiSelectTags = ({
               className='flex items-center gap-1 pr-1 hover:cursor-pointer hover:bg-secondary'
               onClick={() => remove(index)}
             >
-              {getValues(`${name}.${index}.displayName`)}
+              {form.getValues(`${name}.${index}.displayName`)}
               <X className='h-3 w-3' />
               <input
                 hidden
-                {...register(`${name}.${index}.id`)}
+                {...form.register(`${name}.${index}.id`)}
               />
             </Badge>
           ))

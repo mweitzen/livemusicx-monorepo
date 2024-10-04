@@ -65,8 +65,8 @@ import {
   NameInput,
   RsvpLink,
   StartTimeInput,
-} from "../basic-info-inputs";
-import { FormSwitch, FormTextInput } from "../form-inputs";
+} from "../components/basic-info-inputs";
+import { FormSwitch, FormTextInput } from "../components/form-inputs";
 
 const affiliatedVenues = [
   { id: "1", name: "Starlight Arena" },

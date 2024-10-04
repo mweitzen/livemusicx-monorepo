@@ -57,20 +57,19 @@ import {
   SpotifyInput,
   BandcampInput,
   GenresSelect,
-} from "../basic-info-inputs";
-import { FormTextInput } from "../form-inputs";
-import { MockProfile, useSearchProfiles } from "../use-search-profiles";
+} from "../components/basic-info-inputs";
+import { FormTextInput } from "../components/form-inputs";
+import { MockProfile, useSearchProfiles } from "../lib/use-search-profiles";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   genres: z.array(z.string()).min(1, { message: "Please select a genre." }),
-  location: z
-    .string()
-    .min(2, { message: "Location must be at least 2 characters." }),
   basedIn: z
     .string()
     .min(2, { message: "Based in location must be at least 2 characters." }),
-  bio: z.string().max(500, { message: "Bio must not exceed 500 characters." }),
+  about: z
+    .string()
+    .max(500, { message: "Bio must not exceed 500 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
   phone: z.string().optional(),
   website: z.string().url({ message: "Please enter a valid URL." }).optional(),
@@ -115,10 +114,9 @@ export default function ComprehensivePerformerProfileForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      about: "",
       genres: [],
-      location: "",
       basedIn: "",
-      bio: "",
       email: "",
       phone: "",
       website: "",
@@ -177,13 +175,13 @@ export default function ComprehensivePerformerProfileForm() {
                   </Alert>
                 )}
                 <NameInput label='Performer Name' />
-                <GenresSelect />
                 <FormTextInput
                   name='basedIn'
                   label='Based In'
                   placeholder='e.g., Los Angeles, CA'
                 />
                 <AboutTextarea />
+                <GenresSelect />
                 <EmailInput />
                 <Collapsible
                   open={isOptionalFieldsOpen}

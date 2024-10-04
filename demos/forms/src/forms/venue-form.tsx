@@ -50,7 +50,7 @@ import {
   VenueKeywordsSelect,
   WebsiteInput,
   YelpInput,
-} from "../basic-info-inputs";
+} from "../components/basic-info-inputs";
 
 // Mock function to simulate Google Places API search
 const searchGooglePlaces = async (query: string) => {

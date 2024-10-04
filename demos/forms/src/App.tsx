@@ -6,12 +6,13 @@ import {
 } from "@repo/ui/components/tabs";
 
 import CreateVenueProfileForm from "./forms/venue-form";
-import CreatePerformerProfileForm from "./forms/performer-form";
 import CreateOrganizerProfileForm from "./forms/organizer-form";
 // import { CreateEventForm } from "./forms/blank-event";
 import { CreateEventForm } from "./forms/event";
 import { AddDatesToEventForm } from "./forms/add-dates";
 import { CreateEventFromTemplate } from "./forms/from-templates";
+
+import { CreatePerformerProfile } from "./performer";
 
 export default function App() {
   return (
@@ -30,7 +31,7 @@ export default function App() {
           <TabsTrigger value='event-template'>Event Template</TabsTrigger>
         </TabsList>
         <TabsContent value='performer'>
-          <CreatePerformerProfileForm />
+          <CreatePerformerProfile />
         </TabsContent>
         <TabsContent value='venue'>
           <CreateVenueProfileForm />

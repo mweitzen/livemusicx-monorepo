@@ -1,24 +1,25 @@
 import { api } from "@repo/trpc/react";
 import { instruments } from "@repo/constants";
 
-import {
-  FormMultiSelectTags,
-  FormTextarea,
-  FormTextInput,
-} from "./form-inputs";
+import { FormTextInput } from "./form-input";
+import { FormMultiSelectTags } from "./form-multi-select";
+import { FormTextarea } from "./form-textarea";
 
 export const NameInput = ({
   label = "Name",
   placeholder = "Enter account name",
+  description,
 }: {
   label?: string;
   placeholder?: string;
+  description?: string;
 }) => {
   return (
     <FormTextInput
       name='name'
       label={label}
       placeholder={placeholder}
+      description={description}
     />
   );
 };
@@ -299,9 +300,53 @@ export const EventKeywordsSelect = () => {
 export const InstrumentsSelect = () => {
   return (
     <FormMultiSelectTags
-      name='keywords'
-      label='Keywords'
+      name='instruments'
+      label='Instruments'
       items={instruments}
+    />
+  );
+};
+
+export const StartTimeInput = () => {
+  return (
+    <FormTextInput
+      type='time'
+      name='startTime'
+      label='Start Time'
+      placeholder='1:00 PM'
+    />
+  );
+};
+
+export const EndTimeInput = () => {
+  return (
+    <FormTextInput
+      type='time'
+      name='endTime'
+      label='End Time'
+      placeholder='4:00 PM'
+    />
+  );
+};
+
+export const RsvpLink = () => {
+  return (
+    <FormTextInput
+      type='url'
+      name='rsvpLink'
+      label='Reservation Link'
+      placeholder='https://...'
+    />
+  );
+};
+
+export const TicketLink = () => {
+  return (
+    <FormTextInput
+      type='url'
+      name='rsvpLink'
+      label='Reservation Link'
+      placeholder='https://...'
     />
   );
 };

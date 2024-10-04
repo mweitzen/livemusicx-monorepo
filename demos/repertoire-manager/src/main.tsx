@@ -13,7 +13,7 @@ import RepertoireManagement from "./repertoire-manager.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <TRPCReactProvider>
-      {/* <App
+      <App
         initialSetlist={{
           id: "set-1",
           name: "setlits1",
@@ -40,8 +40,8 @@ createRoot(document.getElementById("root")!).render(
             duration: "3:45",
           },
         ]}
-      /> */}
-      <RepertoireManagement onAddToSetlist={() => {}} />
+      />
+      {/* <RepertoireManagement onAddToSetlist={() => {}} /> */}
       <Toaster />
     </TRPCReactProvider>
   </StrictMode>
