@@ -474,10 +474,12 @@ model Venue {
   location     Location @relation(fields: [locationId], references: [id])
 
   // * BUSINESS CONTACT
-  googleBusinessUrl String?
-  tripadvisorUrl    String?
-  opentableUrl      String?
-  yelpUrl           String?
+  bookingPhoneNumber String?
+  bookingEmail       String?
+  googleBusinessUrl  String?
+  tripadvisorUrl     String?
+  opentableUrl       String?
+  yelpUrl            String?
 
   // * EVENTS
   events           Event[]
