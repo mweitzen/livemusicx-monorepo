@@ -17,17 +17,38 @@ export const SearchAccountsInput = z.object({
   ...SortSchema,
   type: ProfileType,
 });
+
 export const CreateAccountInput = z.object({});
+
 export const GetFeaturedAccountsInput = z.object({
   type: ProfileType,
   location: z.string().optional(),
 });
 
+const CreateProfileSharedInput = {
+  name: z.string().min(2, {
+    message: "Profile name must be at least 2 characters.",
+  }),
+  about: z.string().optional(),
+  imageUrl: URLSchema.optional(),
+  genreIds: IDArraySchema.optional(),
+  email: EmailSchema.optional(),
+  phone: PhoneNumberSchema.optional(),
+  website: URLSchema.optional(),
+  canCall: z.boolean().optional(),
+  canText: z.boolean().optional(),
+  canEmail: z.boolean().optional(),
+  socialYouTube: URLSchema.optional(),
+  socialFacebook: URLSchema.optional(),
+  socialInstagram: URLSchema.optional(),
+  socialTwitter: URLSchema.optional(),
+};
+
 const AccountSchemaBase = {
   name: z.string(),
   about: z.string().optional(),
-  avatar: URLSchema.optional(),
-  genreIds: IDArraySchema.optional(),
+  imageUrl: URLSchema.optional(),
+  genres: IDArraySchema.optional(),
   email: EmailSchema.optional(),
   phone: PhoneNumberSchema.optional(),
   website: URLSchema.optional(),

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   FilterSchema,
+  IDArraySchema,
   SearchSchema,
   SearchSchemaDefaults,
   SortSchema,
@@ -66,12 +67,12 @@ export const CreateEventInput = z.object({
   venueId: z.string(),
   stageId: z.string(),
   organizerId: z.string().optional(),
-  musicianIds: z.array(z.string()).optional(),
-  bandIds: z.array(z.string()).optional(),
+  musicianIds: IDArraySchema.optional(),
+  bandIds: IDArraySchema.optional(),
 
   // TAGS
-  genreIds: z.array(z.string()).optional(),
-  keywordIds: z.array(z.string()).optional(),
+  genreIds: IDArraySchema.optional(),
+  keywordIds: IDArraySchema.optional(),
 });
 
 export const UpdateEventInput = CreateEventInput.partial();

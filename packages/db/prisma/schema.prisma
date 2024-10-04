@@ -595,6 +595,7 @@ model Event {
   name        String
   slug        String  @unique
   imageUrl    String?
+  about       String?
   description String?
   websiteUrl  String?
 

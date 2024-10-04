@@ -268,10 +268,10 @@ export const eventsRouter = {
     const newEvent = {
       data: {
         slug,
-        genres: !genreIds ? undefined : ManyToManyConnect(genreIds),
-        keywords: !keywordIds ? undefined : ManyToManyConnect(keywordIds),
-        bands: !bandIds ? undefined : ManyToManyConnect(bandIds),
-        musicians: !musicianIds ? undefined : ManyToManyConnect(musicianIds),
+        genres: { connect: genreIds },
+        keywords: { connect: keywordIds },
+        bands: { connect: bandIds },
+        musicians: { connect: musicianIds },
         ...data,
       },
     };
@@ -314,10 +314,10 @@ export const eventsRouter = {
           createdById: ctx.session.user.id!,
           managedById: ctx.session.user.id!,
           locationId: venue?.location.id,
-          genres: !genreIds ? undefined : ManyToManyConnect(genreIds),
-          keywords: !keywordIds ? undefined : ManyToManyConnect(keywordIds),
-          bands: !bandIds ? undefined : ManyToManyConnect(bandIds),
-          musicians: !musicianIds ? undefined : ManyToManyConnect(musicianIds),
+          genres: { connect: genreIds },
+          keywords: { connect: keywordIds },
+          bands: { connect: bandIds },
+          musicians: { connect: musicianIds },
           ...data,
         },
       });
