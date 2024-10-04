@@ -10,7 +10,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@repo/ui/components/tabs";
-
 import {
   FormControl,
   FormDescription,
@@ -19,12 +18,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@repo/ui/components/form";
-
+import { Alert, AlertTitle, AlertDescription } from "@repo/ui/components/alert";
 import { Input } from "@repo/ui/components/input";
 import { Button } from "@repo/ui/components/button";
 import { Label } from "@repo/ui/components/label";
 
-import { X, ChevronLeft, ChevronRight } from "@repo/ui/icons";
+import { X, ChevronLeft, ChevronRight, Construction } from "@repo/ui/icons";
 
 type ImageUploadType = "gallery" | "url" | "upload";
 
@@ -200,7 +199,7 @@ export function AddImageInput() {
               </Tabs>
 
               {selectedImage && (
-                <div>
+                <div className='space-y-2'>
                   <div className='flex justify-between items-center mb-2'>
                     <h3 className='text-lg font-semibold'>
                       Selected Image Preview
@@ -214,6 +213,13 @@ export function AddImageInput() {
                       <X className='h-4 w-4' />
                     </Button>
                   </div>
+                  <Alert>
+                    <Construction className='h-4 w-4' />
+                    <AlertTitle>Under Construction!</AlertTitle>
+                    <AlertDescription>
+                      Adding crop feature to adjust final picture.
+                    </AlertDescription>
+                  </Alert>
                   <div className='relative w-full h-40 sm:h-48 bg-gray-100 rounded-lg overflow-hidden'>
                     <img
                       src={selectedImage}
