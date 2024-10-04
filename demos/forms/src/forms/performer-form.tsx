@@ -1,20 +1,16 @@
 "use client";
 import { z } from "zod";
 
-import { useState, useEffect } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { useForm, useFormContext } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@repo/ui/components/button";
-import { Input } from "@repo/ui/components/input";
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,
 } from "@repo/ui/components/form";
 import {
   Card,
@@ -61,14 +57,9 @@ import {
   SpotifyInput,
   BandcampInput,
   GenresSelect,
-} from "./basic-info-inputs";
-import { FormTextInput } from "./form-inputs";
-
-const mockExistingProfiles = [
-  { id: 1, name: "John Doe", genres: ["rock"], location: "New York" },
-  { id: 2, name: "Jane Smith", genres: ["pop"], location: "Los Angeles" },
-  { id: 3, name: "Bob Johnson", genres: ["jazz"], location: "Chicago" },
-];
+} from "../basic-info-inputs";
+import { FormTextInput } from "../form-inputs";
+import { MockProfile, useSearchProfiles } from "../use-search-profiles";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -113,17 +104,11 @@ const formSchema = z.object({
 });
 
 export default function ComprehensivePerformerProfileForm() {
-  // const { data: searchResults } = api.profiles.bands.getAll.useQuery();
-
   const [step, setStep] = useState(1);
-  const [searchResults, setSearchResults] = useState<
-    typeof mockExistingProfiles | null
-  >(null);
-  const [selectedProfile, setSelectedProfile] = useState<
-    (typeof mockExistingProfiles)[number] | null
-  >(null);
+  const [selectedProfile, setSelectedProfile] = useState<MockProfile | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState(false);
-
   const [isOptionalFieldsOpen, setIsOptionalFieldsOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -149,19 +134,6 @@ export default function ComprehensivePerformerProfileForm() {
     },
   });
 
-  const performerName = form.watch("name");
-
-  useEffect(() => {
-    if (performerName.length >= 2) {
-      const results = mockExistingProfiles.filter((profile) =>
-        profile.name.toLowerCase().includes(performerName.toLowerCase())
-      );
-      setSearchResults(results);
-    } else {
-      setSearchResults([]);
-    }
-  }, [performerName]);
-
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     setTimeout(() => {
@@ -169,20 +141,6 @@ export default function ComprehensivePerformerProfileForm() {
       setIsLoading(false);
       alert("Profile submitted successfully!");
     }, 1500);
-  };
-
-  const handleProfileSelect = (
-    profile: (typeof mockExistingProfiles)[number]
-  ) => {
-    setSelectedProfile(profile);
-    form.reset({
-      name: profile.name,
-      genres: profile.genres,
-      location: profile.location,
-      basedIn: profile.location,
-      bio: "",
-    });
-    setStep(2);
   };
 
   return (
@@ -200,59 +158,11 @@ export default function ComprehensivePerformerProfileForm() {
             className='space-y-6'
           >
             {step === 1 && (
-              <div className='space-y-4'>
-                <FormField
-                  control={form.control}
-                  name='name'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Performer Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder='Enter your performer name'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        We'll check if a profile already exists for this name.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                {searchResults && searchResults.length > 0 && (
-                  <div className='space-y-2'>
-                    <p className='text-sm font-medium'>
-                      Existing profiles found:
-                    </p>
-                    {searchResults.map((profile) => (
-                      <Card
-                        key={profile.id}
-                        className='flex justify-between items-center p-4'
-                      >
-                        <div>
-                          <h3 className='font-medium'>{profile.name}</h3>
-                          <p className='text-sm text-muted-foreground'>
-                            {profile.genres[0]} • {profile.location}
-                          </p>
-                        </div>
-                        <Button onClick={() => handleProfileSelect(profile)}>
-                          Claim Account
-                        </Button>
-                      </Card>
-                    ))}
-                  </div>
-                )}
-                <Button
-                  onClick={() => setStep(2)}
-                  className='w-full'
-                  disabled={performerName.length < 2}
-                >
-                  {searchResults && searchResults.length > 0
-                    ? "Create New Profile"
-                    : "Continue"}
-                </Button>
-              </div>
+              <SearchExistingProfiles
+                type='musicians'
+                setStep={setStep}
+                setSelectedProfile={setSelectedProfile}
+              />
             )}
             {step === 2 && (
               <div className='space-y-6'>
@@ -358,6 +268,7 @@ function ConnectExternalServices() {
       setIsLoading(false);
     }, 1500);
   };
+
   return (
     <div className='space-y-2'>
       {(["facebook", "youtube", "instagram"] as const).map((platform) => (
@@ -431,6 +342,70 @@ function ConnectExternalServices() {
           )}
         </div>
       ))}
+    </div>
+  );
+}
+
+interface SearchExistingProfilesProps {
+  type: "musicians" | "bands" | "organizers";
+  setStep: Dispatch<SetStateAction<number>>;
+  setSelectedProfile: Dispatch<SetStateAction<MockProfile | null>>;
+}
+
+function SearchExistingProfiles({
+  type,
+  setStep,
+  setSelectedProfile,
+}: SearchExistingProfilesProps) {
+  const form = useFormContext();
+  const query = form.watch("name");
+
+  // const {} = api.accounts.searchUnclaimed.useQuery()
+  const searchResults = useSearchProfiles(type, query);
+
+  const handleProfileSelect = (profile: MockProfile) => {
+    setSelectedProfile(profile);
+    form.reset({
+      name: profile.name,
+      genres: profile.genres,
+      location: profile.location,
+      basedIn: profile.location,
+      bio: "",
+    });
+    setStep(2);
+  };
+
+  return (
+    <div className='space-y-4'>
+      <NameInput description="We'll check if a profile already exists for this name." />
+      {searchResults && searchResults.length > 0 && (
+        <div className='space-y-2'>
+          <p className='text-sm font-medium'>Existing profiles found:</p>
+          {searchResults.map((profile) => (
+            <Card
+              key={profile.id}
+              className='flex justify-between items-center p-4'
+            >
+              <div>
+                <h3 className='font-medium'>{profile.name}</h3>
+                <p className='text-sm text-muted-foreground'>
+                  {profile.genres[0]} • {profile.location}
+                </p>
+              </div>
+              <Button onClick={() => handleProfileSelect(profile)}>
+                Claim Account
+              </Button>
+            </Card>
+          ))}
+        </div>
+      )}
+      <Button
+        onClick={() => setStep(2)}
+        className='w-full'
+        disabled={query.length < 2}
+      >
+        Create New Profile
+      </Button>
     </div>
   );
 }

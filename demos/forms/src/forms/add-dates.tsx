@@ -96,7 +96,7 @@ const existingEvents = [
   { id: "3", name: "Art Exhibition" },
 ];
 
-export function AddDatesToEventForm({ onBack }: { onBack: () => void }) {
+export function AddDatesToEventForm() {
   const [selectedEventName, setSelectedEventName] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
@@ -132,7 +132,6 @@ export function AddDatesToEventForm({ onBack }: { onBack: () => void }) {
         description: "Your event dates have been updated.",
         duration: 5000,
       });
-      onBack(); // Return to the previous screen after successful submission
     }, 2000);
   }
 
@@ -587,7 +586,6 @@ export function AddDatesToEventForm({ onBack }: { onBack: () => void }) {
           <Button
             type='button'
             variant='outline'
-            onClick={onBack}
           >
             <ArrowLeft className='mr-2 h-4 w-4' />
             Cancel

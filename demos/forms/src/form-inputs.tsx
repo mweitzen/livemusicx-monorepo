@@ -17,7 +17,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@repo/ui/components/popover";
-
 import {
   FormField,
   FormControl,
@@ -30,8 +29,23 @@ import { Textarea, TextareaProps } from "@repo/ui/components/textarea";
 import { Input, InputProps } from "@repo/ui/components/input";
 import { Badge } from "@repo/ui/components/badge";
 import { Button } from "@repo/ui/components/button";
-import { Check, ChevronsUpDown, X } from "@repo/ui/icons";
+import { Switch } from "@repo/ui/components/switch";
 
+import { Check, ChevronsUpDown, DollarSign, X } from "@repo/ui/icons";
+
+/**
+ *
+ *
+ *
+ *
+ *
+ * Form Text Input
+ *
+ *
+ *
+ *
+ *
+ */
 interface FormTextInputProps extends InputProps {
   name: string;
   label: string;
@@ -67,6 +81,19 @@ export const FormTextInput = ({
   );
 };
 
+/**
+ *
+ *
+ *
+ *
+ *
+ * Form Textarea
+ *
+ *
+ *
+ *
+ *
+ */
 interface FormTextareaProps extends TextareaProps {
   name: string;
   label: string;
@@ -106,6 +133,114 @@ export const FormTextarea = ({
   );
 };
 
+/**
+ *
+ *
+ *
+ *
+ *
+ * Form Switch Input
+ *
+ *
+ *
+ *
+ *
+ */
+interface FormSwitchProps {
+  name: string;
+  label: string;
+  description: string;
+}
+export function FormSwitch({ name, label, description }: FormSwitchProps) {
+  const form = useFormContext();
+
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => (
+        <FormItem className='flex flex-row items-center justify-between rounded-lg border p-4'>
+          <div className='space-y-0.5'>
+            <FormLabel>{label}</FormLabel>
+            <FormDescription>{description}</FormDescription>
+          </div>
+          <FormControl>
+            <Switch
+              checked={field.value}
+              onCheckedChange={field.onChange}
+            />
+          </FormControl>
+        </FormItem>
+      )}
+    />
+  );
+}
+
+/**
+ *
+ *
+ *
+ *
+ *
+ * Form Dollar Input
+ *
+ *
+ *
+ *
+ *
+ */
+interface FormDollarInputProps extends InputProps {
+  name: string;
+  label: string;
+  description?: string;
+}
+
+export function FormDollarInput({
+  name,
+  label,
+  description,
+}: FormDollarInputProps) {
+  const form = useFormContext();
+
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>{label}</FormLabel>
+          <FormControl>
+            <div className='relative'>
+              <Input
+                type='number'
+                placeholder='25.00'
+                min={0}
+                {...field}
+              />
+              <DollarSign className='absolute right-3 top-2.5 h-4 w-4 opacity-50' />
+            </div>
+          </FormControl>
+          {description && <FormDescription>{description}</FormDescription>}
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  );
+}
+
+/**
+ *
+ *
+ *
+ *
+ *
+ * Form Multi-Select with Tags
+ *
+ *
+ *
+ *
+ *
+ */
 interface FormMultiSelectTagsProps {
   name: string;
   label: string;
@@ -133,17 +268,19 @@ export const FormMultiSelectTags = ({
         onOpenChange={setOpen}
       >
         <PopoverTrigger asChild>
-          <Button
-            variant='outline'
-            role='combobox'
-            aria-expanded={open}
-            className='w-full justify-between'
-          >
-            {fields.length > 0
-              ? `${fields.length} ${name.slice(0, -1)}${fields.length > 1 ? "s" : ""} selected`
-              : `Select ${name}...`}
-            <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
-          </Button>
+          <FormControl>
+            <Button
+              variant='outline'
+              role='combobox'
+              aria-expanded={open}
+              className='w-full justify-between'
+            >
+              {fields.length > 0
+                ? `${fields.length} ${name.slice(0, -1)}${fields.length > 1 ? "s" : ""} selected`
+                : `Select ${name}...`}
+              <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+            </Button>
+          </FormControl>
         </PopoverTrigger>
         <PopoverContent className='w-full p-0'>
           <Command>

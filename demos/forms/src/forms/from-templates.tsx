@@ -166,7 +166,7 @@ const eventTemplates: EventTemplate[] = [
   },
 ];
 
-export function CreateEventFromTemplate({ onBack }: { onBack: () => void }) {
+export function CreateEventFromTemplate() {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedTemplate, setSelectedTemplate] =
@@ -222,7 +222,6 @@ export function CreateEventFromTemplate({ onBack }: { onBack: () => void }) {
         description: "Your event has been created from the template.",
         duration: 5000,
       });
-      onBack(); // Return to the previous screen after successful submission
     }, 2000);
   }
 
@@ -667,7 +666,6 @@ export function CreateEventFromTemplate({ onBack }: { onBack: () => void }) {
           <Button
             type='button'
             variant='outline'
-            onClick={onBack}
           >
             <ArrowLeft className='mr-2 h-4 w-4' />
             Cancel
