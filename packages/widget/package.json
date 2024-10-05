@@ -1,0 +1,23 @@
+{
+  "name": "@repo/widget",
+  "version": "0.1.0",
+  "description": "LMX Event Widget",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/eslint": "catalog:eslint9",
+    "@types/node": "catalog:",
+    "eslint": "catalog:eslint9",
+    "tsup": "^8.3.0",
+    "typescript": "catalog:"
+  }
+}
