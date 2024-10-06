@@ -21,6 +21,7 @@
     "@react-navigation/native": "^6.1.18",
     "@repo/db": "workspace:*",
     "@repo/trpc": "workspace:*",
+    "@repo/ui": "workspace:^",
     "expo": "catalog:expo51",
     "expo-asset": "^10.0.10",
     "expo-constants": "~16.0.2",

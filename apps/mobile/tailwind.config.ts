@@ -6,5 +6,5 @@ import baseConfig from "@repo/tailwind-config/native";
 
 export default {
   content: ["./src/**/*.{ts,tsx}"],
-  presets: [baseConfig, nativewind],
+  presets: [nativewind, baseConfig],
 } satisfies Config;

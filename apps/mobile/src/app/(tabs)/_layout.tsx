@@ -1,5 +1,4 @@
-import { Tabs } from "expo-router";
-import React from "react";
+import { Tabs, Redirect } from "expo-router";
 
 import { TabBarIcon } from "~/components/navigation/TabBarIcon";
 import { Colors } from "~/constants/Colors";
@@ -16,7 +15,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name='index'
+        name='home'
         options={{
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
@@ -33,7 +32,31 @@ export default function TabLayout() {
           title: "Explore",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
+              name={focused ? "globe" : "globe-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name='bookmarks'
+        options={{
+          title: "Bookmarks",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "bookmarks" : "bookmarks-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name='tickets'
+        options={{
+          title: "Tickets",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "ticket" : "ticket-outline"}
               color={color}
             />
           ),

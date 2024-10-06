@@ -34,6 +34,7 @@ import {
   SheetTrigger,
 } from "@repo/ui/components/sheet";
 import { motion, AnimatePresence } from "framer-motion";
+import { AdvancedLocationSelector } from "./selector";
 
 enum LocationType {
   REGION = "REGION",
@@ -568,6 +569,7 @@ export default function App() {
 
   return (
     <div className='flex flex-col lg:flex-row gap-4 p-4'>
+      <AdvancedLocationSelector />
       <Card className='w-full lg:w-1/2'>
         <CardHeader>
           <CardTitle>Select Location</CardTitle>
